@@ -1,0 +1,24 @@
+.home{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: brown;
+    .left{
+        width: 30%;
+        background-color: red;
+        p{
+            color: white;
+            weight: 600;
+        }
+    }
+    .rigth{
+        width: 30%;
+        background-color: blue;
+        p{
+            color: yellow;
+            weight: 600;
+        }
+    }
+
+}
