@@ -6,7 +6,9 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import DataService from '../services/DataService';
 
 // COMPONENTS
-import Home from '../Home'
+import Header from '../Header';
+import Home from '../Home';
+
 
 // CSS
 import './index.css';
@@ -54,8 +56,7 @@ class App extends Component {
   }
 
   render() {
-    // const { user } = this.state;
-    //console.log('el user en App render: ', user)
+    const { user } = this.state;
     return (
       <div>
 
@@ -63,9 +64,9 @@ class App extends Component {
 
           <div className="app">
           
-            {/* <div className="app-header">
-            <Header user={user} />}
-            </div> */}
+            <div className="app-header">
+              <Header user={user} />}
+            </div>
         
             <div className="app-body">
 
