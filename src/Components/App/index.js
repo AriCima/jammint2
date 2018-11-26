@@ -7,7 +7,7 @@ import DataService from '../services/DataService';
 
 // COMPONENTS
 import Header from '../Header';
-import Home from '../Home';
+import MyJams from '../MyJams';
 
 
 // CSS
@@ -75,7 +75,7 @@ class App extends Component {
                 {/* <Route path="/login" render = {(props) => {return <Login propsFn={props.history}/>}}/>
                 <Route path="/register" render = {(props) => {return <Register propsFn={props.history}/>}}/> */}
 
-                <Route path="/home" render = {(props) => { return <Home userID={props.match.params.user}/>}}/>
+                <Route path="/home" render = {(props) => { return <MyJams userID={props.match.params.user}/>}}/>
                
                 
               </Switch>
