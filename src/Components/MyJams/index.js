@@ -54,16 +54,22 @@ export default class Home extends React.Component {
   //       <div className="jam-container">
   //         <Link className="jam-box" key={j} to={`/single_jam_board/${jam.id}`}> 
           
-  //           <div className="jam-img">
+  //           <div className="img">
   //              {jam.img}
   //           </div>
-  //           <div className="jam-title">
-  //               <h4>{jam.tenantName} </h4>}
-  //           </div>
-  //           <div className="jam-text">
-  //               <p>{jam.text}</p>
-  //           </div>
-            
+          //    <div className="info">
+          //      <div className="upper-line">
+          //           <div className="title">
+          //               <h4>{jam.title} </h4>}
+          //           </div>
+          //           <div className="time">
+          //              <p>{chat.time}</p>
+          //           </div>
+          //       </div>
+      //           <div className="jam-text">
+      //               <p>{jam.text}</p>
+      //           </div>
+      //        </div>
   //         </Link>
   //       </div>
   //     )
@@ -79,11 +85,21 @@ export default class Home extends React.Component {
   //           <div className="chat-img">
   //              {chat.img}
   //           </div>
-            
-  //           <div className="chat-text">
-  //               <p>{chat.text}</p>
-  //           </div>
-            
+           //  <div className="info">
+          //       <div className="upper-line">
+          //            <div className="title">
+          //              <h4>{chat.name}</h4>
+          //            </div>
+          //            <div className="time">
+          //              <p>{chat.time}</p>
+          //            </div>
+      //               
+      //           </div>
+
+      //           <div className="chat-text">
+      //               <p>{chat.text}</p>
+      //           </div>
+      //       </div>
   //         </Link>
   //       </div>
   //     )
@@ -95,7 +111,7 @@ export default class Home extends React.Component {
   render() {
 
     return (
-      <div className="home">
+      <div className="myjams">
 
         <div className="left">
           <p>Hello</p>
@@ -105,14 +121,14 @@ export default class Home extends React.Component {
           <p>World</p>
         </div>
 
-        <div>
+        <div className="add-button">
           <Link to={`/new_jam/${this.state.userId}`}><AddButton/></Link>
         </div>
         
       </div>
     )
-
   }
+
 };
 
 

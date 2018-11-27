@@ -1,0 +1,124 @@
+.user-container{
+    box-sizing: border-box;
+    width: 95%;
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    .user-header{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        .user-header-left{
+            width: 15%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
+            .user-pic{
+                width: 15%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                img{
+                    border-radius: 50%;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+
+        .user-header-right{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+
+            .user-name{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+            }
+
+        }
+
+        .user-info-studies{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            }
+    }
+    
+
+    .user-board{
+        box-sizing: border-box;
+        width: 100%;
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+
+        .user-chat-content{
+            width: 100%;
+            height: 90%;
+            border: 1px solid rgb(50, 180, 150);
+        }
+
+        .user-send-area{
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            border: 1px solid rgb(50, 180, 150);
+            background-color: white;
+    
+            input{
+                display:block;
+                width:75%;
+                margin:20px 0px 20px 5px;
+                padding:15px;
+                background:rgba(0,0,0,0.2);
+                color:#fff;
+                border:0;
+    
+                &:focus{
+                    outline:none;
+                }
+    
+                &:active{
+                    outline:none;
+                }
+            }
+    
+            button{
+                background:#2ecc71;
+                border:0;
+                color:#fff;
+                padding:10px;
+                font-size: 1rem;
+                width:15%;
+                margin:20px auto;
+                display:block;
+                cursor:pointer;
+    
+                &:focus{
+                    outline:none;
+                }
+    
+                &:active{
+                    outline:none;
+                    background:#27ae60;
+                }
+            }
+        }
+
+    }
+
+        
+}

@@ -6,8 +6,12 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import DataService from '../services/DataService';
 
 // COMPONENTS
+import Login from '../Access/Login';
+import Register from '../Access/Register';
 import Header from '../Header';
 import MyJams from '../MyJams';
+import NewJam from '../NewJam';
+
 
 
 // CSS
@@ -71,11 +75,12 @@ class App extends Component {
             <div className="app-body">
 
               <Switch>
-                {/* <Route path="/landing" render = {(props) => {return <Login propsFn={props.history}/>}}/> */}
-                {/* <Route path="/login" render = {(props) => {return <Login propsFn={props.history}/>}}/>
-                <Route path="/register" render = {(props) => {return <Register propsFn={props.history}/>}}/> */}
+                <Route path="/sign_in" render = {(props) => {return <Login propsFn={props.history}/>}}/>
+                {/* <Route path="/login" render = {(props) => {return <Login new_jam//>}}/>*/}
+                <Route path="/register" render = {(props) => {return <Register propsFn={props.history}/>}}/> 
 
                 <Route path="/home" render = {(props) => { return <MyJams userID={props.match.params.user}/>}}/>
+                <Route path="new_jam/:userID" render = {(props) => { return <NewJam propsFn={props.history} userID={props.match.params.user}/>}}/>
                
                 
               </Switch>

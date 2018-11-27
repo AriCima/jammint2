@@ -1,0 +1,86 @@
+.user-container {
+  box-sizing: border-box;
+  width: 95%;
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; }
+  .user-container .user-header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center; }
+    .user-container .user-header .user-header-left {
+      width: 15%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center; }
+      .user-container .user-header .user-header-left .user-pic {
+        width: 15%;
+        display: flex;
+        justify-content: center;
+        align-items: center; }
+        .user-container .user-header .user-header-left .user-pic img {
+          border-radius: 50%;
+          width: 100%;
+          height: 100%; }
+    .user-container .user-header .user-header-right {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start; }
+      .user-container .user-header .user-header-right .user-name {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center; }
+    .user-container .user-header .user-info-studies {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center; }
+  .user-container .user-board {
+    box-sizing: border-box;
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; }
+    .user-container .user-board .user-chat-content {
+      width: 100%;
+      height: 90%;
+      border: 1px solid #32b496; }
+    .user-container .user-board .user-send-area {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      border: 1px solid #32b496;
+      background-color: white; }
+      .user-container .user-board .user-send-area input {
+        display: block;
+        width: 75%;
+        margin: 20px 0px 20px 5px;
+        padding: 15px;
+        background: rgba(0, 0, 0, 0.2);
+        color: #fff;
+        border: 0; }
+        .user-container .user-board .user-send-area input:focus {
+          outline: none; }
+        .user-container .user-board .user-send-area input:active {
+          outline: none; }
+      .user-container .user-board .user-send-area button {
+        background: #2ecc71;
+        border: 0;
+        color: #fff;
+        padding: 10px;
+        font-size: 1rem;
+        width: 15%;
+        margin: 20px auto;
+        display: block;
+        cursor: pointer; }
+        .user-container .user-board .user-send-area button:focus {
+          outline: none; }
+        .user-container .user-board .user-send-area button:active {
+          outline: none;
+          background: #27ae60; }
