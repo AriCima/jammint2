@@ -42,7 +42,6 @@ export default class DataService {
 
     // JAMS
     static createJam(jamInfo) {  
-        console.log('CreateJam launched con la info = ', jamInfo)
 
         return new Promise((resolve, reject) => {
 
@@ -63,6 +62,28 @@ export default class DataService {
             
         });
     };
+
+    static getJam(jamCode) {  
+
+        return new Promise((resolve, reject) => {
+
+            firebase.firestore().collection('jams').where('jamCode', '==', jamCode).get()
+
+            .then((result) => {
+                
+                resolve(result);
+            })
+
+            .catch((error) => {
+                var errorCode = error.code;
+                console.log('Jam could not be created: ', errorCode);
+                var errorMessage = error.message;
+                
+            })
+            
+        });
+    };
+
     static getUserJams(userId){
         return new Promise((resolve, reject) => {
             console.log('el userID en getJams = ', userId)
@@ -86,10 +107,11 @@ export default class DataService {
             
         });
     };
-    static addJamtoUser(userID, newJam){
+    static addJamToUser(userID, newJam){
+        console.log('add jam to user launched con ', userID, newJam )
         return new Promise((resolve, reject) => {
             firebase.firestore().collection('users').doc(userID).update({
-                jam : newJam})
+                userJams : newJam})
             .then((result) => {
                 console.log("message succesfully sent !")
                 resolve(result);

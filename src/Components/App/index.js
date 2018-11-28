@@ -10,7 +10,7 @@ import Login from '../Access/Login';
 import Register from '../Access/Register';
 import Header from '../Header';
 import MyJams from '../MyJams';
-import NewJam from '../NewJam';
+import NewJoinJam from '../NewJoinJam';
 import Jam from '../Jam';
 
 
@@ -80,7 +80,7 @@ class App extends Component {
                 <Route path="/register" render = {(props) => {return <Register propsFn={props.history}/>}}/> 
 
                 <Route path="/my_jams/:user" render = {(props) => { return <MyJams userID={props.match.params.user}/>}}/>
-                <Route path="/new_jam/:user" render = {(props) => { return <NewJam propsFn={props.history} userID={props.match.params.user}/>}}/>
+                <Route path="/new_join_jam/:user" render = {(props) => { return <NewJoinJam propsFn={props.history} userID={props.match.params.user}/>}}/>
                 {/* <Route path="/create_jam/:user" render = {(props) => { return <CreateJam propsFn={props.history} userID={props.match.params.user}/>}}/> */}
 
                 <Route path="/jam/:jamId" render = {(props) => { return <Jam propsFn={props.history} jamID={props.match.params.jamId}/>}}/>

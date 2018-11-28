@@ -22,56 +22,39 @@ export default class Home extends React.Component {
 
     this.state = {
       userId    : this.props.userID,
-      jams      : [],
-      messages  : [],
+      userJams  : [],
+      userChats : [],
     }
  
   };
 
 
   componentDidMount() {
-    DataService.getUserJams(this.props.userID)
-    .then(jms =>{
-      this.setState({ jams : jms });
-      console.log('jams = ', this.state.jams)
+    DataService.getUserInfo(this.props.userID)
+    .then(result =>{
+      this.setState({ userJams : result.jams });
+      console.log('jams = ', this.state.userJams)
      
     }).catch(function (error) {   
       console.log(error);
     });
-
-    DataService.getUserMessages(this.props.userID)
-    .then(chts =>{
-      this.setState({ messages : chts });
-     
-    }).catch(function (error) {   
-      console.log(error);
-    })
   };
 
 
 
   _renderJams(){
-    return this.state.jams.map((jam,j) => {
+    
+    return this.state.userJams.map((jam,j) => {
       return (
         <div className="jam-container">
-          <Link className="jam-box" key={j} to={`/single_jam_board/${jam.id}`}> 
-          
-            {/* <div className="img">
-               {jam.img}
-            </div> */}
+          <Link className="jam-box" key={j} to={`/jam/${jam.id}`}> 
              <div className="info">
-
                <div className="upper-line">
                     <div className="title">
                         <h4>{jam.jamName} </h4>}
                     </div>
-                    {/* <div className="time">
-                       <p>{chat.time}</p>
-                    </div> */}
                 </div>
-                {/* <div className="jam-text">
-                    <p>{jam.text}</p>
-                </div> */}
+               
              </div>
           </Link>
         </div>
@@ -115,13 +98,11 @@ export default class Home extends React.Component {
 
     return (
       <div className="myjams">
-
-        <div>
-          {this._renderJams()}
-        </div>
-
+        
+        {this._renderJams()}
+        
         <div className="add-button">
-          <Link to={`/new_jam/${this.state.userId}`}><AddButton/></Link>
+          <Link to={`/new_join_jam/${this.state.userId}`}><AddButton/></Link>
         </div>
 
         
