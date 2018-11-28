@@ -25,7 +25,7 @@ export default class DataService {
             
         });
     };
-    static getUserContactInfo(userId){
+    static getUserInfo(userId){
         return new Promise((resolve, reject) => {
 
             firebase.firestore().collection('users').doc(userId).get()
@@ -42,13 +42,15 @@ export default class DataService {
 
     // JAMS
     static createJam(jamInfo) {  
+        console.log('CreateJam launched con la info = ', jamInfo)
+
         return new Promise((resolve, reject) => {
 
             firebase.firestore().collection('jams').add(jamInfo)
 
             .then((result) => {
                 
-                console.log("Jam succesfully created !")
+                console.log(`${result.id} Jam succesfully created !`)
                 resolve(result);
             })
 
@@ -63,8 +65,8 @@ export default class DataService {
     };
     static getUserJams(userId){
         return new Promise((resolve, reject) => {
-
-            firebase.firestore().collection('jams').where(`userId`,`==`, userId).get()
+            console.log('el userID en getJams = ', userId)
+            firebase.firestore().collection('jams').where(``,`==`, userId).get()
             .then((result) => {
             
                 let jms=[];
@@ -84,7 +86,24 @@ export default class DataService {
             
         });
     };
+    static addJamtoUser(userID, newJam){
+        return new Promise((resolve, reject) => {
+            firebase.firestore().collection('users').doc(userID).update({
+                jam : newJam})
+            .then((result) => {
+                console.log("message succesfully sent !")
+                resolve(result);
+            })
 
+            .catch((error) => {
+                var errorCode = error.code;
+                console.log('Message could not be sent: ', errorCode);
+                var errorMessage = error.message;
+                
+            })
+            
+        });
+    }
 
     // MESSAGES
     static sendMessage(messageInfo) {  
@@ -123,5 +142,69 @@ export default class DataService {
             
         });
     };
+
+    static saveNewMessage (messageId, messageToSave){
+        return new Promise((resolve, reject) => {
+
+            firebase.firestore().collection('boardMessages').doc(messageId).set(messageToSave)
+            .then((result) => {
+                
+                console.log("New Board Message succesfully saved !")
+                resolve(result);
+            })
+
+            .catch((error) => {
+                var errorCode = error.code;
+                console.log('Message NOT added: ', errorCode);
+                var errorMessage = error.message;
+                
+            })
+            
+        });
+    }
+    static getBoardMessages(jamId){
+
+        return new Promise((resolve, reject) => {
+            let boardMessagesResult = [];
+
+            firebase.firestore().collection('boardMessages').where(`jamId`,`==`, jamId).orderBy("date").get()  // Where me devuelve todos los mensajes que tengan ese jamId
+                .then(docs => {
+
+                    docs.forEach((d) => {
+                        boardMessagesResult.push(d.data());
+                    })
+                    resolve(boardMessagesResult);
+                })
+                .catch(error => reject(error))
+        })
+    }
+
+    // JAMMERS
+
+    static getJammers(jamId){
+
+        return new Promise((resolve, reject) => {
+
+            firebase.firestore().collection('users').where(`jams.${jamId}`,`==`, true).get() // Where me devuelve todos los users que tengan ese jamId
+            .then((result) => {
+                let jammers=[];
+                result.docs.forEach((d) => {
+                    let j = d.data();
+                    j.id=d.id;
+                    jammers.push(j);
+                })
+                resolve(jammers);  
+
+            })
+
+            .catch((error) => {
+               console.log('error: ', error)
+                // reject('Usuario no existe', error)
+
+            })
+            
+        });
+    }
+
 
 }

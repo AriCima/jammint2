@@ -52,8 +52,8 @@ class Header extends Component {
 
                     <div className="nav-block">
                         {!this.props.user ? <Link to={`/sign_in`}>Sign In</Link> :
-                            <LongUserMenu />
-                            // <span onClick={this.signOut}><Link to="/login">Sign-out</Link></span>
+                            //<LongUserMenu />
+                             <span onClick={this.signOut}><Link to="/login">Sign-out</Link></span>
                         }
                     </div>
 

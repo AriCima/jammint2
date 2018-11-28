@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 // // MATERIAL UI
 import AddButton from '../../Components/Accessories/AddButton';
+import CreateJam from '../CreateJam';
 
 // // DATA
 import DataService from '../services/DataService';
@@ -20,7 +21,7 @@ export default class Home extends React.Component {
     super(props);
 
     this.state = {
-      userID    : this.props.userID,
+      userId    : this.props.userID,
       jams      : [],
       messages  : [],
     }
@@ -32,6 +33,7 @@ export default class Home extends React.Component {
     DataService.getUserJams(this.props.userID)
     .then(jms =>{
       this.setState({ jams : jms });
+      console.log('jams = ', this.state.jams)
      
     }).catch(function (error) {   
       console.log(error);
@@ -48,33 +50,34 @@ export default class Home extends React.Component {
 
 
 
-  // _renderJams(){
-  //   return this.state.jams.map((jam,j) => {
-  //     return (
-  //       <div className="jam-container">
-  //         <Link className="jam-box" key={j} to={`/single_jam_board/${jam.id}`}> 
+  _renderJams(){
+    return this.state.jams.map((jam,j) => {
+      return (
+        <div className="jam-container">
+          <Link className="jam-box" key={j} to={`/single_jam_board/${jam.id}`}> 
           
-  //           <div className="img">
-  //              {jam.img}
-  //           </div>
-          //    <div className="info">
-          //      <div className="upper-line">
-          //           <div className="title">
-          //               <h4>{jam.title} </h4>}
-          //           </div>
-          //           <div className="time">
-          //              <p>{chat.time}</p>
-          //           </div>
-          //       </div>
-      //           <div className="jam-text">
-      //               <p>{jam.text}</p>
-      //           </div>
-      //        </div>
-  //         </Link>
-  //       </div>
-  //     )
-  //   })
-  // };
+            {/* <div className="img">
+               {jam.img}
+            </div> */}
+             <div className="info">
+
+               <div className="upper-line">
+                    <div className="title">
+                        <h4>{jam.jamName} </h4>}
+                    </div>
+                    {/* <div className="time">
+                       <p>{chat.time}</p>
+                    </div> */}
+                </div>
+                {/* <div className="jam-text">
+                    <p>{jam.text}</p>
+                </div> */}
+             </div>
+          </Link>
+        </div>
+      )
+    })
+  };
 
   // _renderChats(){
   //   return this.state.chats.map((chat,j) => {
@@ -113,17 +116,14 @@ export default class Home extends React.Component {
     return (
       <div className="myjams">
 
-        <div className="left">
-          <p>Hello</p>
-        </div>
-
-        <div className="right">
-          <p>World</p>
+        <div>
+          {this._renderJams()}
         </div>
 
         <div className="add-button">
           <Link to={`/new_jam/${this.state.userId}`}><AddButton/></Link>
         </div>
+
         
       </div>
     )

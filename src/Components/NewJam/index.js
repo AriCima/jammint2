@@ -2,6 +2,7 @@ import React from 'react';
 
 // SERVICE API
 import DataService from '../services/DataService';
+import Calculations from '../services/Calculations';
 
 // MATERIAL-UI
 import PropTypes from 'prop-types';
@@ -72,35 +73,68 @@ class NewJam extends React.Component {
     constructor(props){
         super(props);
         this.state = { 
-            adminID          : this.props.userID,
-            jamName         : '',
-            jamCode         : '',
-            jamType         : '',
+            userID      : this.props.userID,
+            jams        : [],
+            jamName     : '',
+            jamType     : 'basic',
+            jamCode     : '',
         };
-
         this.onNewJam             = this.onNewJam.bind(this);
-
     }
 
+    componentDidMount(){
+        DataService.getUserInfo(this.state.userID)
+        .then(res => {
+            console.log('el res = ', res)
+            let jams = res.jam;
+            this.state.jams = jams;
+        })
+    }
 
     onChangeState(field, value){
-        let aptInfo = this.state;
-        aptInfo[field] = value;
-        this.setState(aptInfo)
+        let jamInfo = this.state;
+        jamInfo[field] = value;
+        this.setState(jamInfo)
     };
 
-    handleSelectChange = event => {
-        this.setState({ jamType: event.target.value });
-    };
+
 
     onNewJam(e){
         e.preventDefault();       
 
-        let newState = this.state;
+        let jcode = Calculations.generateCode();
+        this.state.jamCode = jcode;
 
-        DataService.createJam(newState);
-        this.props.propsFn.push(`/home/${this.state.userId}`)
+        let newState = this.state;
+        console.log('state del Jam = ', newState)
+        DataService.createJam(newState)
+        .then((result)=>{
+            console.log('el result del createJam = ', result);
+           
+            let newJam = {
+                jamId       : result.id,
+                admin       : true,
+                moderator   : true,
+                jammer      : true,
+            }
+
+            let transJam = this.state.jams
+            transJam.push(newJam);
+
+            this.setState({
+                jams : transJam,
+            })
         
+
+            console.log('el jams actualizado es = ', this.state.jams)
+            DataService.addJamtoUser(this.state.userID, this.state.jams)
+                
+            this.props.propsFn.push(`/jam/${result.id}`)
+        })
+        .catch(function (error) {    
+            console.log(error);
+        })
+            
     };
 
   
@@ -131,7 +165,7 @@ class NewJam extends React.Component {
                     </div>
 
 
-                    <div id="input-fields-select">
+                    {/* <div id="input-fields-select">
                         <TextField
                             select
                             label="Jam Type"
@@ -145,32 +179,9 @@ class NewJam extends React.Component {
                                 </MenuItem>
                             ))}
                         </TextField>
-                    </div>
+                    </div> */}
 
-                    <div id="input-fields-select">
-                        <FormControl component="fieldset" className={classes.formControl}>
-                            <FormLabel component="legend">Jam Type</FormLabel>
-                            <RadioGroup
-                                aria-label="Type"
-                                name="gender1"
-                                className={classes.group}
-                                value={this.state.value}
-                                onChange={this.handleSelectChange}
-                            >
-                                <FormControlLabel value="friends_jam" control={<Radio />} label="Friends jam" />
-                                <FormControlLabel value="shared_flat" control={<Radio />} label="Shared Flat" />
-                                <FormControlLabel value="networking" control={<Radio />} label="Networking" />
-                                <FormControlLabel
-                                value="disabled"
-                                disabled
-                                control={<Radio />}
-                                label="(Disabled option)"
-                                />
-                            </RadioGroup>
-                        </FormControl>
-                     </div>
-                   
-                    
+
                 </div>
 
                 <div className="button-area">

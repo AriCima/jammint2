@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import DataService from '../../../services/DataService';
+import DataService from '../../services/DataService';
 
 import './index.css';
 
@@ -9,13 +9,13 @@ export default class Board extends React.Component {
     super(props);
 
     this.state = {
-      messagesInBoard: [],
-      jammers: [],
+      jamId           : this.props.jamID,
+      messagesInBoard : [],
+      jammers         : [],
     }
 
     this.sendNewMessage = this.sendNewMessage.bind(this);
 
-    console.log("Props del Board", this.props)
 
   }
 
@@ -30,12 +30,12 @@ export default class Board extends React.Component {
     let messageId= user.concat(messageDate.toString());
 
     let messageToSave = {
-      userId: user,
-      userName: this.props.user.name,
-      text: this.state.messageText,
-      date: messageDate, 
-      messageId: messageId,
-      jamId: this.props.jamId,
+      userId      : user,
+      userName    : this.props.user.name,
+      text        : this.state.messageText,
+      date        : messageDate, 
+      messageId   : messageId,
+      jamId       : this.state.jamID,
     }
 
     DataService.saveNewMessage(messageId, messageToSave)
@@ -44,7 +44,7 @@ export default class Board extends React.Component {
 
   componentDidMount(){
     console.log("Se ejecuta ComponenDidMount");
-    DataService.getBoardMessages(this.props.jamId).then(
+    DataService.getBoardMessages(this.props.jamID).then(
       (boardMessagesResult) => {
         console.log("Mensajes del Board recibidos desde Firebase:", boardMessagesResult)
 
@@ -80,7 +80,7 @@ export default class Board extends React.Component {
          
           <div className="whole-message">
 
-          {this.state.messagesInBoard.map((messageItem, i) => {
+          {/* {this.state.messagesInBoard.map((messageItem, i) => {
                   const jammer = this.state.jammers.filter((j)=>{j.id == messageItem.userId})[0]
                   if(!jammer) console.log("Messageitem", messageItem);
                   return <div key={i}>
@@ -92,7 +92,7 @@ export default class Board extends React.Component {
                   </div>
                   
                   </div>
-            })}
+            })} */}
             
           </div>
 

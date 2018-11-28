@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DataService from "../../../services/DataService";
+import DataService from "../../services/DataService";
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 import './index.css';
@@ -9,10 +9,9 @@ export default class Jammers extends React.Component {
     super(props);
 
     this.state = {
-        jammers: [],
+        jamId   : this.props.jamID,
+        jammers : [],
     }
-
-    console.log("Props del jammers", this.props)
 
   }
 
@@ -20,7 +19,6 @@ export default class Jammers extends React.Component {
     DataService.getJammers(this.props.jamId).then(
         (jamsData)=>{
 
-            console.log('El jamData es: ', jamsData);
         this.setState({ jammers: jamsData})
 
         }
@@ -79,8 +77,6 @@ export default class Jammers extends React.Component {
     } 
 
     render() {
-        console.log("render");
-        console.log('props de Jammers', this.props)
         
         return (
             

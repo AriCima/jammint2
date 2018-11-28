@@ -11,6 +11,7 @@ import Register from '../Access/Register';
 import Header from '../Header';
 import MyJams from '../MyJams';
 import NewJam from '../NewJam';
+import Jam from '../Jam';
 
 
 
@@ -76,13 +77,14 @@ class App extends Component {
 
               <Switch>
                 <Route path="/sign_in" render = {(props) => {return <Login propsFn={props.history}/>}}/>
-                {/* <Route path="/login" render = {(props) => {return <Login new_jam//>}}/>*/}
                 <Route path="/register" render = {(props) => {return <Register propsFn={props.history}/>}}/> 
 
-                <Route path="/home" render = {(props) => { return <MyJams userID={props.match.params.user}/>}}/>
-                <Route path="new_jam/:userID" render = {(props) => { return <NewJam propsFn={props.history} userID={props.match.params.user}/>}}/>
-               
-                
+                <Route path="/my_jams/:user" render = {(props) => { return <MyJams userID={props.match.params.user}/>}}/>
+                <Route path="/new_jam/:user" render = {(props) => { return <NewJam propsFn={props.history} userID={props.match.params.user}/>}}/>
+                {/* <Route path="/create_jam/:user" render = {(props) => { return <CreateJam propsFn={props.history} userID={props.match.params.user}/>}}/> */}
+
+                <Route path="/jam/:jamId" render = {(props) => { return <Jam propsFn={props.history} jamID={props.match.params.jamId}/>}}/>
+
               </Switch>
 
 
