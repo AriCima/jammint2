@@ -66,7 +66,7 @@ class NewJam extends React.Component {
     }
 
     componentDidMount(){
-        DataService.getUserInfo(this.state.userID)
+        DataService.getUserInfo(this.state.adminId)
         .then(res => {
             let jams = res.userJams;
             this.state.userJams = jams;
@@ -87,7 +87,14 @@ class NewJam extends React.Component {
         let jcode = Calculations.generateCode();
         this.state.jamCode = jcode;
 
-        let newState = this.state;
+        let newState = {
+            adminId     : this.state.adminId,
+            jamName     : this.state.jamName, 
+            jamType     : this.state.jamType,
+            jamCode     : this.state.jamCode, 
+        };
+
+        //console.log('El state de newJAm después del delete =', this.state)
        
         console.log('new state = ', newState)
         DataService.createJam(newState)
@@ -101,6 +108,7 @@ class NewJam extends React.Component {
                 jammer      : true,
             }
             console.log('el newJam = ', newJam);
+
             let transJam = this.state.userJams
             transJam.push(newJam);
 
