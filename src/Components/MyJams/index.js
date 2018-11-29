@@ -16,7 +16,7 @@ import './index.css';
 
 
 
-export default class Home extends React.Component {
+export default class MyJams extends React.Component {
   constructor(props){
     super(props);
 
@@ -32,8 +32,7 @@ export default class Home extends React.Component {
   componentDidMount() {
     DataService.getUserInfo(this.props.userID)
     .then(result =>{
-      this.setState({ userJams : result.jams });
-      console.log('jams = ', this.state.userJams)
+      this.setState({ userJams : result.userJams });
      
     }).catch(function (error) {   
       console.log(error);
@@ -43,11 +42,11 @@ export default class Home extends React.Component {
 
 
   _renderJams(){
-    
+
     return this.state.userJams.map((jam,j) => {
       return (
         <div className="jam-container">
-          <Link className="jam-box" key={j} to={`/jam/${jam.id}`}> 
+          <Link className="jam-box" key={j} to={`/jam/${jam.jamId}`}> 
              <div className="info">
                <div className="upper-line">
                     <div className="title">

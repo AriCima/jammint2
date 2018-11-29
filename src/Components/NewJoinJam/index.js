@@ -1,10 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-
 
 // SERVICE API
-import DataService from '../services/DataService';
-import Calculations from '../services/Calculations';
 import NewJam from '../NewJam';
 import JoinJam from '../JoinJam';
 
@@ -24,25 +20,32 @@ export default class NewJoinJam extends React.Component {
             userId      : this.props.userID,
         };
 
+        this._onNewJam =  this._onNewJam.bind(this)
     }
 
+    _onNewJam(x){
+        this.props.propsFn.push(`/jam/${x}`);
+    }
 
+    _onJoinJam(x){
+        this.props.propsFn.push(`/jam/${x}`);
+    }
   
   render() {
-    const {props} = this.props;
+    
     return (
 
         <div className="container">
-        <Router>
+        
             <div className="new-jam">
-                <NewJam userID={this.state.userId} propsFn={props.history}/>
+                <NewJam userID={this.state.userId} newJam={this._onNewJam}/>
             </div>
 
             <div className="new-jam">
-                <JoinJam userID={this.state.userId} propsFn={props.history}/>
+                <JoinJam userID={this.state.userId} joinJam={this._onJoinJam}/>
             </div>
            
-        </Router>
+        
         </div>
     );
   }

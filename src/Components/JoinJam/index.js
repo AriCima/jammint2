@@ -71,7 +71,6 @@ class JoinJam extends React.Component {
     componentDidMount(){
         DataService.getUserInfo(this.state.userID)
         .then(res => {
-            console.log('el res = ', res)
             let jams = res.jam;
             this.state.userJams = jams;
         })
@@ -87,7 +86,6 @@ class JoinJam extends React.Component {
 
     onJoinJam(e){
         e.preventDefault();       
-
        
         DataService.getJam(this.state.jamCode)
         .then((result)=>{
@@ -111,12 +109,13 @@ class JoinJam extends React.Component {
             console.log('el jams actualizado es = ', this.state.userJams)
             DataService.addJamtoUser(this.state.userID, this.state.userJams)
                 
-            this.props.propsFn.push(`/jam/${result.id}`)
+            this.props.JoinJam(result.id);
         })
         .catch(function (error) {    
             console.log(error);
         })
-            
+        
+       
     };
 
   
@@ -134,17 +133,6 @@ class JoinJam extends React.Component {
             <form  id="form-format" className={classes.container} noValidate autoComplete="off" onSubmit={this.onJoinJam}>
             
                 <div id="input-area">
-
-                    {/* <div id="input-fields">
-                        <TextField
-                            id="with-placeholder"
-                            label="Enter Jam Code"
-                            className={classes.textField}
-                            margin="normal"
-                            value={this.state.jamCodee}
-                            onChange={(e)=>{this.onChangeState('jamCode', e.target.value)}}
-                        />
-                    </div> */}
 
                     <TextField
                         className={classes.margin}

@@ -56,7 +56,7 @@ class NewJam extends React.Component {
     constructor(props){
         super(props);
         this.state = { 
-            userID      : this.props.userID,
+            adminId      : this.props.userID,
             userJams    : [],
             jamName     : '',
             jamType     : 'basic',
@@ -68,8 +68,7 @@ class NewJam extends React.Component {
     componentDidMount(){
         DataService.getUserInfo(this.state.userID)
         .then(res => {
-            console.log('el res = ', res)
-            let jams = res.jams;
+            let jams = res.userJams;
             this.state.userJams = jams;
         })
     }
@@ -111,9 +110,9 @@ class NewJam extends React.Component {
         
 
             //console.log('el jams actualizado es = ', this.state.userJams)
-            DataService.addJamToUser(this.state.userID, this.state.userJams)
+            DataService.addJamToUser(this.state.adminId, this.state.userJams)
                 
-            this.props.propsFn.push(`/jam/${result.id}`)
+            this.props.newJam(result.id);
         })
         .catch(function (error) {    
             console.log(error);
@@ -137,14 +136,27 @@ class NewJam extends React.Component {
             
                 <div id="input-area">
                     <div id="input-fields">
-                        <TextField
-                            id="with-placeholder"
-                            label="Jam Name"
-                            className={classes.textField}
-                            margin="normal"
-                            value={this.state.jamName}
-                            onChange={(e)=>{this.onChangeState('jamName', e.target.value)}}
-                        />
+                         <TextField
+                        className={classes.margin}
+                        InputLabelProps={{
+                        classes: {
+                            root: classes.cssLabel,
+                            focused: classes.cssFocused,
+                        },
+                        }}
+                        InputProps={{
+                        classes: {
+                            root: classes.cssOutlinedInput,
+                            focused: classes.cssFocused,
+                            notchedOutline: classes.notchedOutline,
+                        },
+                        }}
+                        label="Jam Name"
+                        variant="outlined"
+                        id="custom-css-outlined-input"
+                        onChange={(e)=>{this.onChangeState('jamName', e.target.value)}}
+                    />
+
                     </div>
                 </div>
 

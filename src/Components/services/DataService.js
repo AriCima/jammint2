@@ -84,6 +84,27 @@ export default class DataService {
         });
     };
 
+    static getJamInfo(jamId) {  
+
+        return new Promise((resolve, reject) => {
+            console.log('el ID con el que se pide la info de la jam = ', jamId)
+            firebase.firestore().collection('jams').doc(jamId).get()
+
+            .then((result) => {
+                console.log('el result del getJamInfo', result);
+                resolve(result.data());
+            })
+
+            .catch((error) => {
+                var errorCode = error.code;
+                console.log('Error al cargar la JamInfo: ', errorCode);
+                var errorMessage = error.message;
+                
+            })
+            
+        });
+    };
+
     static getUserJams(userId){
         return new Promise((resolve, reject) => {
             console.log('el userID en getJams = ', userId)
@@ -108,18 +129,17 @@ export default class DataService {
         });
     };
     static addJamToUser(userID, newJam){
-        console.log('add jam to user launched con ', userID, newJam )
         return new Promise((resolve, reject) => {
             firebase.firestore().collection('users').doc(userID).update({
                 userJams : newJam})
             .then((result) => {
-                console.log("message succesfully sent !")
+                console.log("message succesfully sent !, userJams = ", result.userJams)
                 resolve(result);
             })
 
             .catch((error) => {
                 var errorCode = error.code;
-                console.log('Message could not be sent: ', errorCode);
+                console.log('ERROR Jam NOT added to user: ', errorCode);
                 var errorMessage = error.message;
                 
             })

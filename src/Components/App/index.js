@@ -39,9 +39,14 @@ class App extends Component {
     super(props);
 
     this.state = {
-      user: null
+      user  : null,
+      nav   : '',
+      jam   : [],
+      chat  : [],
     }
 
+    this.navJam   = this.navJam.bind(this);
+    this.navChat  = this.navChat.bind(this);
   }
 
 
@@ -50,7 +55,7 @@ class App extends Component {
       if (user) {
 
         this.setState({user : user});
-      
+        console.log('el user en App', this.state.user);
       } else {
         this.setState({
           user : null
@@ -60,8 +65,28 @@ class App extends Component {
     
   }
 
+  navJam(jamID, jamName){
+    let transJam = [jamID, jamName];
+    this.setState ({
+      nav   : 'jam',
+      jam   : transJam,
+      chat  : [], 
+    })
+    console.log('el state en el APP luego de navJam = ', this.state)
+  }
+
+  navChat(chatID, chatterName){
+    let transChat = [chatID, chatterName];
+    this.setState ({
+      nav   : 'chat',
+      jam   : [],
+      chat  : transChat, 
+    })
+    console.log('actualización App, state = ', this.state);
+  }
+
   render() {
-    const { user } = this.state;
+    const { user, nav, jam, chat } = this.state;
     return (
       <div>
 
@@ -70,7 +95,7 @@ class App extends Component {
           <div className="app">
           
             <div className="app-header">
-              <Header user={user} />}
+              <Header user={user} nav={nav} jam={jam} chat={chat}/>}
             </div>
         
             <div className="app-body">
@@ -83,7 +108,7 @@ class App extends Component {
                 <Route path="/new_join_jam/:user" render = {(props) => { return <NewJoinJam propsFn={props.history} userID={props.match.params.user}/>}}/>
                 {/* <Route path="/create_jam/:user" render = {(props) => { return <CreateJam propsFn={props.history} userID={props.match.params.user}/>}}/> */}
 
-                <Route path="/jam/:jamId" render = {(props) => { return <Jam propsFn={props.history} jamID={props.match.params.jamId}/>}}/>
+                <Route path="/jam/:jamId" render = {(props) => { return <Jam propsFn={props.history} jamID={props.match.params.jamId} navJam={this.navJam}/>}}/>
 
               </Switch>
 
