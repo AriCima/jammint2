@@ -63,20 +63,31 @@ export default class DataService {
         });
     };
 
-    static getJam(jamCode) {  
-
+    static getJamToJoin(jamCode) {  
+        console.log('JamCode recibido en el join del Data =', jamCode);
         return new Promise((resolve, reject) => {
 
             firebase.firestore().collection('jams').where('jamCode', '==', jamCode).get()
 
-            .then((result) => {
+            // .then((result) => {
+            //     console.log('el result del join = ', result);
+            //     resolve(result.data());
+            // })
+            .then(function(querySnapshot) {
+                querySnapshot.forEach(function(doc) {
+                    // doc.data() is never undefined for query doc snapshots
+
+                    let reply = doc.data();
+                    reply.jamId = doc.id;
+
+                    resolve(reply)
+                });
                 
-                resolve(result);
             })
 
             .catch((error) => {
                 var errorCode = error.code;
-                console.log('Jam could not be created: ', errorCode);
+                console.log('Jam NOT joined: ', errorCode);
                 var errorMessage = error.message;
                 
             })
@@ -130,18 +141,17 @@ export default class DataService {
     };
     static addJamToUser(userID, newJam){
         return new Promise((resolve, reject) => {
+            console.log('inputs en el dataservice ', userID, newJam);
             firebase.firestore().collection('users').doc(userID).update({
                 userJams : newJam})
             .then((result) => {
-                console.log("message succesfully sent !, userJams = ", result.userJams)
+                console.log("Jam succesfully added to the User ")
                 resolve(result);
             })
 
             .catch((error) => {
                 var errorCode = error.code;
-                console.log('ERROR Jam NOT added to user: ', errorCode);
-                var errorMessage = error.message;
-                
+                console.log('ERROR Jam NOT added to user: ', error);                
             })
             
         });

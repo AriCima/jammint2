@@ -65,7 +65,7 @@ class NewJam extends React.Component {
         this.onNewJam             = this.onNewJam.bind(this);
     }
 
-    componentDidMount(){
+    componentDidMount(){ // Obtengo todos los Jams del user paera agregarle el nuevo
         DataService.getUserInfo(this.state.adminId)
         .then(res => {
             let jams = res.userJams;
@@ -107,7 +107,6 @@ class NewJam extends React.Component {
                 moderator   : true,
                 jammer      : true,
             }
-            console.log('el newJam = ', newJam);
 
             let transJam = this.state.userJams
             transJam.push(newJam);
@@ -116,10 +115,7 @@ class NewJam extends React.Component {
                 userJams : transJam,
             })
         
-
-            //console.log('el jams actualizado es = ', this.state.userJams)
-            DataService.addJamToUser(this.state.adminId, this.state.userJams)
-                
+            DataService.addJamToUser(this.state.adminId, this.state.userJams)  
             this.props.newJam(result.id);
         })
         .catch(function (error) {    

@@ -20,7 +20,8 @@ export default class NewJoinJam extends React.Component {
             userId      : this.props.userID,
         };
 
-        this._onNewJam =  this._onNewJam.bind(this)
+        this._onNewJam  =  this._onNewJam.bind(this)
+        this._onJoinJam =  this._onJoinJam.bind(this)
     }
 
     _onNewJam(x){
@@ -28,6 +29,7 @@ export default class NewJoinJam extends React.Component {
     }
 
     _onJoinJam(x){
+        console.log('el X en el joinJam = ', x)
         this.props.propsFn.push(`/jam/${x}`);
     }
   

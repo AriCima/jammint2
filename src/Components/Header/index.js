@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom';
 import * as firebase from 'firebase';
 
-import LongUserMenu from '../Accessories/LongMenu';
-
 import './index.css';
 
 class Header extends Component {

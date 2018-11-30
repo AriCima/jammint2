@@ -106,7 +106,6 @@ class App extends Component {
 
                 <Route path="/my_jams/:user" render = {(props) => { return <MyJams userID={props.match.params.user}/>}}/>
                 <Route path="/new_join_jam/:user" render = {(props) => { return <NewJoinJam propsFn={props.history} userID={props.match.params.user}/>}}/>
-                {/* <Route path="/create_jam/:user" render = {(props) => { return <CreateJam propsFn={props.history} userID={props.match.params.user}/>}}/> */}
 
                 <Route path="/jam/:jamId" render = {(props) => { return <Jam propsFn={props.history} jamID={props.match.params.jamId} navJam={this.navJam}/>}}/>
 

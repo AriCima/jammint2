@@ -57,7 +57,7 @@ const styles = theme => ({
 });
 
 
-class JoinJam extends React.Component {
+class joinJam extends React.Component {
     constructor(props){
         super(props);
         this.state = { 
@@ -65,14 +65,16 @@ class JoinJam extends React.Component {
             userJams    : [],
             jamCode     : '',
         };
-        this.onJoinJam             = this.onJoinJam.bind(this);
+        this.onjoinJam             = this.onjoinJam.bind(this);
     }
 
-    componentDidMount(){
+    componentDidMount(){   // Obtengo todos los Jams del user paera agregarle el nuevo
         DataService.getUserInfo(this.state.userID)
         .then(res => {
-            let jams = res.jam;
-            this.state.userJams = jams;
+            let jams = res.userJams;
+            this.setState({
+                userJams : jams,
+            })
         })
     }
 
@@ -84,38 +86,47 @@ class JoinJam extends React.Component {
 
 
 
-    onJoinJam(e){
+    onjoinJam(e){
         e.preventDefault();       
        
-        DataService.getJam(this.state.jamCode)
+        DataService.getJamToJoin(this.state.jamCode)
         .then((result)=>{
            
-            let JoinJam = {
-                jamId       : result.id,
-                jamName     : this.state.jamName,
+            let joinJam = {
+                jamId       : result.jamId,
+                jamName     : result.jamName,
                 admin       : false,
                 moderator   : false,
                 jammer      : true,
             }
-            console.log('el JoinJam = ', JoinJam);
-            let transJam = this.state.userJams
-            transJam.push(JoinJam);
+            let transJam = this.state.userJams;
+            let alreadyJammed = false;
 
-            this.setState({
-                userJams : transJam,
-            })
-        
-
-            console.log('el jams actualizado es = ', this.state.userJams)
-            DataService.addJamtoUser(this.state.userID, this.state.userJams)
-                
-            this.props.JoinJam(result.id);
+            for (let i = 0; i < transJam.length; i++){
+                if (transJam[i].jamId == joinJam.jamId){
+                    alreadyJammed = true;
+                }
+            }
+            
+            if (alreadyJammed){
+                alert(`you are already jammed in ${joinJam.jamName}`)
+                return
+            }else{
+                transJam.push(joinJam);
+                this.setState({
+                    userJams : transJam,
+                })
+            
+                DataService.addJamToUser(this.state.userID, this.state.userJams) 
+                console.log('el result.jamId = ', result.jamId) 
+                this.props.joinJam(result.jamId);
+            }
+          
         })
         .catch(function (error) {    
             console.log(error);
         })
         
-       
     };
 
   
@@ -130,7 +141,7 @@ class JoinJam extends React.Component {
                 <h4>JOIN A JAM</h4>
             </div>
 
-            <form  id="form-format" className={classes.container} noValidate autoComplete="off" onSubmit={this.onJoinJam}>
+            <form  id="form-format" className={classes.container} noValidate autoComplete="off" onSubmit={this.onjoinJam}>
             
                 <div id="input-area">
 
@@ -171,8 +182,8 @@ class JoinJam extends React.Component {
   }
 }
 
-JoinJam.propTypes = {
+joinJam.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(JoinJam);
+export default withStyles(styles)(joinJam);
