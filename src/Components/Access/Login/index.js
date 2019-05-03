@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from '../../../../node_modules/react';
 import {Link} from 'react-router-dom';
+import firebase from '../../../../node_modules/firebase';
+
 
 // SERVICES API
 import AuthService from '../../services/AuthService'

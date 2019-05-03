@@ -42,28 +42,28 @@ export default class Board extends React.Component {
 
   }
 
-  componentDidMount(){
-    console.log("Se ejecuta ComponenDidMount");
-    DataService.getBoardMessages(this.props.jamID).then(
-      (boardMessagesResult) => {
-        console.log("Mensajes del Board recibidos desde Firebase:", boardMessagesResult)
+  // componentDidMount(){
+  //   console.log("Se ejecuta ComponenDidMount");
+  //   DataService.getBoardMessages(this.props.jamID).then(
+  //     (boardMessagesResult) => {
+  //       console.log("Mensajes del Board recibidos desde Firebase:", boardMessagesResult)
 
-        // hacer setState del array result
-        this.setState({messagesInBoard: boardMessagesResult})
+  //       // hacer setState del array result
+  //       this.setState({messagesInBoard: boardMessagesResult})
 
-      }
-    )  
+  //     }
+  //   )  
 
-    DataService.getJammers(this.props.jamId).then(
-      (jammers) => {
-        console.log("Jammers recibidos desde Firebase:", jammers)
+  //   DataService.getJammers(this.props.jamId).then(
+  //     (jammers) => {
+  //       console.log("Jammers recibidos desde Firebase:", jammers)
 
-        // hacer setState del array result
-        this.setState({jammers: jammers})
+  //       // hacer setState del array result
+  //       this.setState({jammers: jammers})
 
-      }
-    )  
-  }
+  //     }
+  //   )  
+  // }
 
   render() {
 
@@ -81,17 +81,21 @@ export default class Board extends React.Component {
           <div className="whole-message">
 
           {/* {this.state.messagesInBoard.map((messageItem, i) => {
-                  const jammer = this.state.jammers.filter((j)=>{j.id == messageItem.userId})[0]
+                  // const jammer = this.state.jammers.filter((j)=>{j.id === messageItem.userId})[0];
+                  
                   if(!jammer) console.log("Messageitem", messageItem);
-                  return <div key={i}>
-                  <div className="jammer">
-                    {jammer ? jammer.name : messageItem.userName}
-                  </div>
-                  <div className="board-messages">
-                  {messageItem.text}
-                  </div>
+                  
+                  return( 
+                  <div key={i}>
+                    <div className="jammer">
+                      {jammer ? jammer.name : messageItem.userName}
+                    </div>
+                    <div className="board-messages">
+                      {messageItem.text}
+                    </div>
                   
                   </div>
+                  )
             })} */}
             
           </div>

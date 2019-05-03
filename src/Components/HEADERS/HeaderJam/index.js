@@ -4,12 +4,12 @@ import * as firebase from 'firebase';
 
 import './index.css';
 
-class Header extends Component {
+export default class HeaderJam extends Component {
    constructor(props){
     super(props);
 
     this.state = {
-        user    : this.props.user,
+        user    : this.props.userID,
         nav     : this.props.nav, 
         jam     : this.props.jam,
         chat    : this.props.chat,
@@ -19,13 +19,7 @@ class Header extends Component {
 
    }
 
-   componentDidUpdate(prevState){
-       if(this.state.jam !== prevState.jam){
-           this.setState({
 
-           });
-       }
-   }
     signOut(){   //Esta función informa a FireBase sobre el logout y FB automáticamente ejecuta el onAuthStateChange del App
         firebase.auth().signOut()
             .then(() => {
@@ -102,20 +96,8 @@ class Header extends Component {
     }
 
     render() {
-        console.log('el state.jam en el JAM', this.state.jam)
-        let headerLeft = null;
-        let headerMiddle = null;
 
-        console.log('el jam en el state del header =', this.state.jam)
-
-        if(this.state.jam.length === 0){
-            headerMiddle = 'JAMMINT';
-        }else{
-            headerLeft    = <Link to={`/my_jams/pepito`}>My Jams</Link>;
-            headerMiddle   = this.state.jam[1];
-        };
-        //console.log('props.user en el header', this.props.user)
-        //console.log('el this.state.user en render del header: ', this.state.user)
+      
         return (
 
             
@@ -123,29 +105,23 @@ class Header extends Component {
 
             <div className="header-left">
                 <div className="title">
-                    <p>{headerLeft}</p>
-                    {/* {this.props.user &&  <p>{this.props.user.email}</p>} */}
+                    <p> JAM LEFT</p>
+
                 </div>
             </div>
 
             <div className="header-mid">
                 <div className="nav-block">
 
-                     <p>{headerMiddle}</p>
+                     <p>JAM MID</p>
 
-                    {/* {!this.props.user ? <p>JAMMINT</p>
-                        :<Link to={`/my_jams/${this.props.user.uid}`}>My Jams</Link>
-                    }  */}
                 </div>
             </div>
 
             <div className="header-right">
 
                 <div className="nav-block">
-                    {!this.props.user ? <Link to={`/sign_in`}>Sign In</Link> :
-                        //<LongUserMenu />
-                         <span onClick={this.signOut}><Link to="/login">Sign-out</Link></span>
-                    }
+                    {!this.props.user ? <Link to={`/sign_in`}>Sign In</Link> : <span onClick={this.signOut}><Link to="/login">Sign-out</Link></span>}
                 </div>
 
             </div>
@@ -156,4 +132,4 @@ class Header extends Component {
         );
     }
 }
-export default Header;
+

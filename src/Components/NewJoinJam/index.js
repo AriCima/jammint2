@@ -2,12 +2,7 @@ import React from 'react';
 
 // SERVICE API
 import NewJam from '../NewJam';
-import JoinJam from '../JoinJam';
-
-// MATERIAL-UI
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-
+import JoinJam from '../HOME/JoinJam';
 
 import './index.css'; 
 

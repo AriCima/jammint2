@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
-import Board from "./Board";
-import Jammers from './Jammers';
+
 
 import './index.css';
 import DataService from '../services/DataService';
 
-export default class Jam extends React.Component {
+export default class Chat extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      jamId   : this.props.jamID,
-      jamName : '',
+      userId    : this.props.userID,
+      jamName   : '',
     }
 
   }
 
   componentDidMount(){
-    DataService.getJamInfo(this.state.jamId)
+    DataService.getChatMessages(this.state.jamId)
     .then(result =>{     
       this.setState({ jamName : result.jamName });
       

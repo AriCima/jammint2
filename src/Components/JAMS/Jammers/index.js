@@ -15,15 +15,15 @@ export default class Jammers extends React.Component {
 
   }
 
-  componentDidMount(){
-    DataService.getJammers(this.props.jamId).then(
-        (jamsData)=>{
+//   componentDidMount(){
+//     DataService.getJammers(this.props.jamId).then(
+//         (jamsData)=>{
 
-        this.setState({ jammers: jamsData})
+//         this.setState({ jammers: jamsData})
 
-        }
-    )
-  }
+//         }
+//     )
+//   }
 
 
   _renderJammers(){

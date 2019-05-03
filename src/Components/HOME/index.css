@@ -1,0 +1,14 @@
+.home{
+    margin-top: 60px;
+    display: flex;
+    
+}
+
+.home-left{
+    width: 30%;
+    overflow-y: scroll;
+}
+
+.home-right{
+    width: 70%;
+}

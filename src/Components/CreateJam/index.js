@@ -1,11 +1,6 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+
+
 
 // SERVICE API
 import DataService from '../services/DataService';
@@ -59,37 +54,7 @@ export default class CreateJam extends React.Component {
   render() {
     return (
       <div>
-        <Button onClick={this.handleClickOpen}>New Jam</Button>
-        <Dialog
-          open={this.state.open}
-          onClose={this.handleClose}
-          aria-labelledby="form-dialog-title"
-        >
-          <DialogTitle id="form-dialog-title">New Jam</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              To create a new Jam you just need to enter its Name. Once created you will be able to customize it in its Settings. 
-            </DialogContentText>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="name"
-              label="Jam Name"
-              type="email"
-              fullWidth
-              value={this.state.jamName}
-              onChange={(e)=>{this.onChangeState('jamName', e.target.value)}}
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={this.onNewJam} color="primary">
-              Create
-            </Button>
-          </DialogActions>
-        </Dialog>
+       
       </div>
     );
   }

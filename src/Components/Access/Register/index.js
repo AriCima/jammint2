@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import firebase from 'firebase';
+import React, { Component } from '../../../../node_modules/react';
+import firebase from '../../../../node_modules/firebase' 
 
 import AuthService from '../../services/AuthService';
 import DataService from '../../services/DataService';

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
+import Chat from '../../../Chat'
+
 import './index.css';
 
 export default class JammerProfile extends React.Component {
@@ -11,15 +13,10 @@ export default class JammerProfile extends React.Component {
         users : this.props,
     }
 
-    console.log("State en Jammers", this.state.users)
-    console.log("Props en Jammers", this.state.props)
+    // console.log("State en Jammers", this.state.users)
+    // console.log("Props en Jammers", this.state.props)
 
   }
-
-
-  
-
-
 
     render() {
             
@@ -54,8 +51,7 @@ export default class JammerProfile extends React.Component {
                 <div className="user-board">
 
                     <div className="user-chat-content">
-
-
+                        <Chat />
                     </div>
 
 
