@@ -4,7 +4,7 @@ import DataService from '../../services/DataService';
 
 import './index.css';
 
-export default class Board extends Component {
+export default class SendMessage extends React.Component {
   constructor(props){
     super(props);
 
@@ -15,6 +15,8 @@ export default class Board extends Component {
     }
 
     this.sendNewMessage = this.sendNewMessage.bind(this);
+
+
   }
 
   sendNewMessage(e){
@@ -40,50 +42,25 @@ export default class Board extends Component {
 
   }
 
-  // componentDidMount(){
-  //   console.log("Se ejecuta ComponenDidMount");
-  //   DataService.getBoardMessages(this.props.jamID).then(
-  //     (boardMessagesResult) => {
-  //       console.log("Mensajes del Board recibidos desde Firebase:", boardMessagesResult)
-
-  //       // hacer setState del array result
-  //       this.setState({messagesInBoard: boardMessagesResult})
-
-  //     }
-  //   )  
-
-  //   DataService.getJammers(this.props.jamId).then(
-  //     (jammers) => {
-  //       console.log("Jammers recibidos desde Firebase:", jammers)
-
-  //       // hacer setState del array result
-  //       this.setState({jammers: jammers})
-
-  //     }
-  //   )  
-  // }
-
   render() {
 
     return (
-
-      <div className="board">
-
-        <div className="board-content" id="board-content">
-         
-          <p>THIS IS THE BOARD</p>
+      
+        <div className="send-area">
+          
+          <form onSubmit={this.sendNewMessage}>
+            <input type="textarea" 
+              placeholder="Message"
+              value={this.state.messageText}
+              onChange={ (event) => { this.setState({messageText: event.target.value}) } }
+            />
+            <button>Send</button>
+          </form>
 
         </div>
-
-      </div>
-      
 
     );
   }
 }
-
-
-
-
 
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 // COMPONENTS
+import JamInfo from '../JamInfo';
 import Board from "../Board";
 import Jammers from '../Jammers';
 
@@ -15,12 +16,14 @@ export default class Jam extends Component {
     this.state = {
       jamId   : this.props.jamID,
       jamName : '',
+      showJamInfo: false,
       showBoard: true,
       showJammers: false,
     }
 
     this.showBoard = this.showBoard.bind(this);
     this.showJammers = this.showJammers.bind(this);
+    this.showJamInfo = this.showJamInfo.bind(this);
   }
 
   componentDidMount(){
@@ -35,20 +38,38 @@ export default class Jam extends Component {
     });
   };
 
-  showBoard(){
+  componentDidUpdate(prevProps, prevState) {
+    // Typical usage (don't forget to compare props):
+    if (this.state.showBoard !== prevState.showBoard) {
+      this.setState({
+        showBoard: !prevState.showBoard,
+        showJammers: !prevState.showJammers,
+      });
+    }
+}
+
+  showJamInfo() {
     this.setState({
+      showJamInfo: true,
+      showBoard: false,
+      showJammers: false,
+    })
+  };
+
+  showBoard() {
+    this.setState({
+      showJamInfo: false,
       showBoard: true,
       showJammers: false,
     })
-    console.log('Board => Board = ', this.state.showBoard, ', jammers = ',this.state.showJammers)
   };
 
-  showJammers(){
+  showJammers() {
     this.setState({
+      showJamInfo: false,
       showBoard: false,
       showJammers: true,
     })
-    console.log('Jammers => Board = ', this.state.showBoard, ', jammers = ',this.state.showJammers)
   };
 
   
@@ -60,17 +81,21 @@ export default class Jam extends Component {
         <div className="jam-header">
 
           <div className="jam-header-block">
-            <button onCLick={this.showBoard}>Board</button>
+            <button onClick={this.showJamInfo}>JamInfo</button>
           </div>
 
           <div className="jam-header-block">
-          <button onCLick={this.showJammers}>Jammers</button>
+            <button onClick={this.showBoard}>Board</button>
+          </div>
+
+          <div className="jam-header-block">
+          <button onClick={this.showJammers}>Jammers</button>
           </div>
 
         </div>
 
-        <div className="jam-filed">
-          {this.state.showJammers === true ? <Jammers user={this.props.user} jamID={this.state.jamId}/> : <Board user={this.props.user} jamID={this.state.jamId}/>}
+        <div className="jam-field">
+          {this.state.showJamInfo ? this.state.showJammers ? <Jammers user={this.props.user} jamID={this.state.jamId}/> : <Board user={this.props.user} jamID={this.state.jamId}/> : <JamInfo/>}
         </div>
  
       </div>

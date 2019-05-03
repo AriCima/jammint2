@@ -1,3 +1,6 @@
+// COOL STYLE https://codepen.io/egoens/pen/NxejgJ
+
+
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom';
 import * as firebase from 'firebase';
@@ -51,13 +54,6 @@ export default class HeaderHome extends Component {
             
 
             <div className="header-HOME-right">
-            
-                <div className="header-HOME-nav-block">
-                    <p>BOARD</p>
-                </div>
-                <div className="header-HOME-nav-block">
-                    <p>JAMMERS</p>
-                </div>
 
                 <div className="header-HOME-nav-block">
                     {!this.props.user ? <Link to={`/sign_in`}>Sign In</Link> : <span onClick={this.signOut}><Link to="/login">Sign-out</Link></span>}

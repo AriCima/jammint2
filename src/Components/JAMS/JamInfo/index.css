@@ -1,4 +1,4 @@
-.board {
+.jam-info {
   box-sizing: border-box;
   width: 100%;
   height: 800px;
@@ -7,7 +7,7 @@
   justify-content: center;
   align-items: flex-start; 
 }
-.board .board-title {
+.jam-info .jam-info-title {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -15,13 +15,13 @@
   border: 1px solid #32b496;
   background: linear-gradient(to bottom right, #00e0ff, #0cd5b4); 
 }
-.board .board-title h4 {
+.jam-info .jam-info-title h4 {
   font-family: helvetica;
   font-size: 1.2rem;
   color: white;
   font-weight: 550; 
 }
-.board .board-content {
+.jam-info .jam-info-content {
   width: 100%;
   height: 100%;
   background-image: url("../../../assets/images/chatBackground-2.jpg");
@@ -31,13 +31,13 @@
   border: 1px solid #32b496; 
 }
 
-.board .board-content .whole-message {
+.jam-info .jam-info-content .whole-message {
   background-color: rgba(255, 255, 255, 0.3); 
 }
-.board .board-content .whole-message .jammer {
+.jam-info .jam-info-content .whole-message .jammer {
   color: blue; 
 }
-.board .board-content .whole-message .board-messages {
+.jam-info .jam-info-content .whole-message .jam-info-messages {
   margin-bottom: 10px;
   border-bottom: 1px solid lightgray;
   padding: 5px; 

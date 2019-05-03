@@ -65,11 +65,6 @@ export default class MyJams extends Component {
         
         {this._renderJams()}
         
-        <div className="add-button">
-          <Link to={`/new_join_jam/${this.state.userId}`}>ADD</Link>
-        </div>
-
-        
       </div>
     )
   }

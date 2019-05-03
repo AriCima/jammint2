@@ -4,7 +4,7 @@ import DataService from '../../services/DataService';
 
 import './index.css';
 
-export default class Board extends Component {
+export default class JamInfo extends Component {
   constructor(props){
     super(props);
 
@@ -67,11 +67,11 @@ export default class Board extends Component {
 
     return (
 
-      <div className="board">
+      <div className="jam-info">
 
-        <div className="board-content" id="board-content">
+        <div className="jam-Info-content" id="jam-content">
          
-          <p>THIS IS THE BOARD</p>
+          <p>THIS IS JAM INFO</p>
 
         </div>
 
