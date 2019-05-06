@@ -5,6 +5,10 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom';
 import * as firebase from 'firebase';
 
+// COMPONENTS
+import PopUpButton from '../../ACCESSORIES/PopUpSample/PopUpButton';
+import SubmitButton from '../../ACCESSORIES/SubmitButton';
+
 import './index.css';
 
 export default class HeaderHome extends Component {
@@ -12,7 +16,9 @@ export default class HeaderHome extends Component {
         super(props);
 
         this.state = {
-            user    : this.props.userID,
+            user        : this.props.userID,
+            name        : '',
+            description : '',
         }
 
         this.signOut = this.signOut.bind(this);
@@ -43,11 +49,51 @@ export default class HeaderHome extends Component {
                 </div>
 
                 <div className="header-HOME-nav-block">
-                    <p>CREATE JAM</p>
+                    {/* <Link to={`/create-new-jam/${this.props.userID}`}>CREATE JAM</Link> */}
+                    {/* <MyPopUp /> */}
+                    <PopUpButton
+                        buttonText={'Create a Jam'}
+                        popupText={'Create a Jam is very simple, just give it a Name and Description'}
+                        closeButtonText = {'Create'}
+                        renderInside={
+                            <form className="create-form">
+                               <label className="label-short">
+                                    <p>Name</p>
+                                    <input
+                                        className="input-short"
+                                        type="text"
+                                        name="Name"
+                                        size="350"
+                                        value={this.state.jamName}
+                                        onChange={e => {
+                                            this.onChangeState("jamName", e.target.value);
+                                        }}
+                                    />
+                                </label>
+                                <label className="label-textarea">
+                                    <p>Description</p>
+                                    <textarea
+                                        className="textarea"
+                                        type="text"
+                                        name="Description"
+                                        size="350"
+                                        value={this.state.description}
+                                        onChange={e => {
+                                            this.onChangeState("description", e.target.value);
+                                        }}
+                                    />
+                                </label>
+                                <div className="nev-button-area">
+                                    <SubmitButton text={"GUARDAR"} fn={this.onNewEvent}/>
+                                </div>
+                                
+                            </form>
+                        }
+                    />
                 </div>
 
                 <div className="header-HOME-nav-block">
-                    <p>JOIN JAM</p>
+                    <Link to={`/join-jam/${this.props.userID}`}>JOIN JAM</Link>
                 </div>
             </div>
 

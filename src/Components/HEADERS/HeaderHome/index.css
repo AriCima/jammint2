@@ -48,4 +48,60 @@ a{
    font-size: 20px;
 }
 
+/* * * * *  INNER CONTENT * * * * */
 
+.create-form{
+    margin-left: 20px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.label-short{
+    width: 70%;
+    margin: 5px 25px;
+    color: rgb(134, 134, 134);
+}
+
+.label-short p, .label-textarea p{
+
+    color: rgb(134, 134, 134);
+}
+
+input:hover, textarea:hover, input:focus, input:active, textarea:focus, textarea:active {
+    border: 2px solid rgba(0, 144, 248, 1);
+    outline: 0;
+    box-shadow: none;
+}
+
+.input-short{
+    height: 40px;
+    margin-top: 5px;
+    width: 100%;
+    background-color: white;
+    border: 1px solid rgb(152, 152, 152);
+    border-radius: 5px;
+    font-size: 16px;
+    color: rgb(134, 134, 134);
+    text-align: center;
+}
+
+.label-textarea{
+    width: 70%;
+    height: 100%;
+    margin: 0px 30px 0 20px;
+}
+
+.textarea{
+    margin-top: 5px;
+    width: 100%;
+    height: 200px;
+    background-color: white;
+    border: 1px solid rgb(152, 152, 152);
+    border-radius: 5px;
+    font-size: 16px;
+    color: rgb(134, 134, 134);
+    text-align: left;
+  }

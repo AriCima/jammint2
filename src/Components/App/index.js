@@ -19,6 +19,7 @@ import HeaderJam from '../HEADERS/HeaderJam';
 import MyJams from '../HOME/MyJams';
 import NewJoinJam from '../NewJoinJam';
 import Jam from '../JAMS/Jam';
+import CreateJam from '../CreateJam';
 
 // CSS
 import './index.css';
@@ -105,8 +106,9 @@ class App extends Component {
               <Switch>
 
                 <Route path="/"  exact render = {() => { return  <HeaderLanding/>}}/>
-                <Route path="/pirulo"  exact render = {() => { return  <HeaderLogIn />}}/>
-      
+                <Route path="/login"  exact render = {() => { return  <HeaderLogIn />}}/>
+                <Route path="/create-new-jam/:userId" exact render = {(props) => { return <HeaderHome userID={props.match.params.userId}/>}}/>
+
                 {/* * * *  HOME * * * */}
                 <Route path="/home/:userId" exact render = {(props) => { return <HeaderHome userID={props.match.params.userId}/>}}/>
                 
@@ -124,8 +126,10 @@ class App extends Component {
             <div className="app-body">
 
               <Switch>
+                
                 <Route path="/sign_in" render = {(props) => {return <Login propsFn={props.history}/>}}/>
                 <Route path="/register" render = {(props) => {return <Register propsFn={props.history}/>}}/> 
+                <Route path="/create-new-jam/:userId" exact render = {(props) => { return <CreateJam userID={props.match.params.userId}/>}}/>
 
                 {/* * * *  HOME * * * */}
                 <Route path="/home/:userId" exact render = {(props) => { return <Home userID={props.match.params.userId}/>}}/>

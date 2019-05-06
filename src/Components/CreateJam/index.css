@@ -1,59 +1,62 @@
 
-.form-container{
+
+
+input{
+  height: 40px;
+  margin-top: 5px;
   width: 100%;
-  margin-top: 80px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  background-color: white;
+  border: 1px solid rgb(152, 152, 152);
+  border-radius: 5px;
+  font-size: 16px;
+  color: rgb(134, 134, 134);
+  text-align: center;
 }
 
-.form-title{
-  width: 80%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+input:hover, textarea:hover, input:focus, input:active, textarea:focus, textarea:active {
+  border: 2px solid rgba(0, 144, 248, 1);
+  outline: 0;
+  box-shadow: none;
 }
 
-.form-title h4{
-  color: rgba(0, 144, 248, 1);
-  font-weight: 700;
-  font-size: 22px;
+.label-large{
+  width: 400px;
+  margin: 5px 25px;
 }
 
-#form-format{
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-}
-#input-area{
-  background-color: rgba(0, 144, 248, 0.2);
-  width: 80%;
-  margin: 0px 0px 10px 0px;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  flex-wrap: wrap;
+
+.label-short{
+  width: 170px;
+  margin: 5px 25px;
 }
 
-#input-fields{
-  margin: 10px 10px;
-  color: white;
+label p{
+  color: rgb(134, 134, 134);
 }
 
-#input-fields-select{
-  margin: 26px 10px;
+.nev-textarea-label{
+  width: 45%;
+  height: 100%;
+  margin: 0px 30px 0 20px;;
+}
+
+.nev-textarea{
+  margin-top: 5px;
+  width: 100%;
+  height: 200px;
+  background-color: white;
+  border: 1px solid rgb(152, 152, 152);
+  border-radius: 5px;
+  font-size: 16px;
+  color: rgb(134, 134, 134);
+  text-align: left;
 }
 
 .button-area{
-  margin-left: 0px;
+  margin: 20px 0;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  width: 80%;
-
+  width: 85%;
 }
-
-
 
