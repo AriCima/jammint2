@@ -10,7 +10,7 @@ import './index.css';
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
-    background: 'rgba(0, 144, 248, 1)',
+    background: 'none',
     padding: '5px',
     boxShadow: 'none',
     
@@ -18,15 +18,15 @@ const styles = theme => ({
   cssRoot: {
     color: theme.palette.getContrastText('rgb(0, 187, 150)'),
     border: 'solid 1px rgba(0, 144, 248, 1)',
-    backgroundColor: 'rgba(0, 144, 248, 1)',
-    color: 'white',
+    backgroundColor: 'white',
+    color: 'rgba(0, 144, 248, 1)',
     fontSize: '12px',
     fontWeight: '550',
     display: 'flex',
     alignItems: 'center',
     boxShadow: 'none',
     '&:hover': {
-      backgroundColor: 'rgba(0, 144, 248, 0.7)',
+      backgroundColor: 'rgba(0, 144, 248, 1)',
       color: 'white',
     },
   },
@@ -36,7 +36,7 @@ const styles = theme => ({
   },
 });
 
-class SubmitButton extends React.Component {
+class CancelButton extends React.Component {
   // constructor(props){
   //   super(props);
   // }
@@ -60,8 +60,8 @@ class SubmitButton extends React.Component {
   }
 }
 
-SubmitButton.propTypes = {
+CancelButton.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SubmitButton);
+export default withStyles(styles)(CancelButton);

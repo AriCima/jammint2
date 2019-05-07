@@ -6,8 +6,8 @@ import {Link} from 'react-router-dom';
 import * as firebase from 'firebase';
 
 // COMPONENTS
-import PopUpButton from '../../ACCESSORIES/PopUpSample/PopUpButton';
-import SubmitButton from '../../ACCESSORIES/SubmitButton';
+import PopUpButton from '../../ACCESSORIES/PopUpBody/PopUpButton';
+import CreateJam from '../../CreateJam';
 
 import './index.css';
 
@@ -17,8 +17,6 @@ export default class HeaderHome extends Component {
 
         this.state = {
             user        : this.props.userID,
-            name        : '',
-            description : '',
         }
 
         this.signOut = this.signOut.bind(this);
@@ -54,41 +52,7 @@ export default class HeaderHome extends Component {
                     <PopUpButton
                         buttonText={'Create a Jam'}
                         popupText={'Create a Jam is very simple, just give it a Name and Description'}
-                        closeButtonText = {'Create'}
-                        renderInside={
-                            <form className="create-form">
-                               <label className="label-short">
-                                    <p>Name</p>
-                                    <input
-                                        className="input-short"
-                                        type="text"
-                                        name="Name"
-                                        size="350"
-                                        value={this.state.jamName}
-                                        onChange={e => {
-                                            this.onChangeState("jamName", e.target.value);
-                                        }}
-                                    />
-                                </label>
-                                <label className="label-textarea">
-                                    <p>Description</p>
-                                    <textarea
-                                        className="textarea"
-                                        type="text"
-                                        name="Description"
-                                        size="350"
-                                        value={this.state.description}
-                                        onChange={e => {
-                                            this.onChangeState("description", e.target.value);
-                                        }}
-                                    />
-                                </label>
-                                <div className="nev-button-area">
-                                    <SubmitButton text={"GUARDAR"} fn={this.onNewEvent}/>
-                                </div>
-                                
-                            </form>
-                        }
+                        renderInside={<CreateJam />}
                     />
                 </div>
 

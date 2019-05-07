@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
-import PopUpSample from '../../PopUpSample';
+import PopUpBody from '../../PopUpBody';
+
 
 // CSS
 import './index.css'
@@ -28,20 +29,12 @@ export default class PopUpButton extends Component {
         <button onClick={this.togglePopup}>{this.state.buttonText}</button>
         {this.state.showPopup ? 
             <div className="popup-wrapper">
-                <PopUpSample
+                <PopUpBody
                     popupText={this.state.popupText}
                     closePopup={this.togglePopup}
-                    closeButtonText={this.state.closeButtonText}
+                    closeButtonText = {'Cancel'}
                     renderInside={this.props.renderInside}
                 />
-                <div className="popup-buttons-area">
-                    <div className="popup-button" id="cancel-button">
-                        <button onClick={this.cancel}>Cancel</button>
-                    </div>
-                    <div className="popup-button" id="submit-button">
-                        <button onClick={this.cancel}>Cancel</button>
-                    </div>
-                </div>
             </div>
           : null
         }

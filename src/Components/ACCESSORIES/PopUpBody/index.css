@@ -1,8 +1,4 @@
-h1 {
-    margin: 0;
-    padding: 0;
-    color: blueviolet;
-}
+
 
 .popup {
     position: fixed;
@@ -27,4 +23,22 @@ h1 {
     margin: auto;
     background: white;
     overflow: scroll;
+}
+
+.popup_inner_title{
+    box-sizing: border-box;
+    margin: 20px 0 10px 0;
+    padding: 0 25px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup_inner_title h1{
+    font-size: 30px;
+    line-height: 50px;
+    color: rgba(0, 144, 248, 1);
+    margin: 0px;
+    text-align: center;
 }

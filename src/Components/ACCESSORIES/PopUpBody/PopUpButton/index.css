@@ -3,11 +3,10 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background-color: green;
     overflow: scroll;
 }
 
-
+/* 
 .popup-buttons-area{
     width: 100%;
     display: flex;
@@ -28,4 +27,4 @@
 
 #submit-button{
     justify-content: flex-end;
-}
+} */
