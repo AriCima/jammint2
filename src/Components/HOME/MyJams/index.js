@@ -17,6 +17,7 @@ export default class MyJams extends Component {
 
     this.state = {
       userId    : this.props.userID,
+      userName  : '',
       userJams  : [],
       userChats : [],
     }
@@ -27,7 +28,11 @@ export default class MyJams extends Component {
   componentDidMount() {
     DataService.getUserInfo(this.props.userID)
     .then(result =>{
-      this.setState({ userJams : result.userJams });
+      let userJams = result.userJams;
+
+      this.setState({ 
+        userJams : userJams,
+      });
      
     }).catch(function (error) {   
       console.log(error);
@@ -38,19 +43,21 @@ export default class MyJams extends Component {
 
   _renderJams(){
 
-    return this.state.userJams.map((jam,j) => {
+    let jams = this.state.userJams
+
+    return jams.map((jam,j) => {
       return (
-        <div className="jam-container">
-          <Link className="jam-box" key={j} to={`/jam/${jam.jamId}`}> 
-             <div className="info">
-               <div className="upper-line">
-                    <div className="title">
-                        <h4> MY JAMS </h4>}
-                    </div>
-                </div>
-               
-             </div>
-          </Link>
+        <div className="jam-container" key={j}>
+          
+          <div className="info">
+            <div className="upper-line">
+              <div className="title">
+                  <h4>{jam.jamName}</h4>
+                  <p>{jam.jamId}</p>
+              </div>
+            </div>
+          </div>
+
         </div>
       )
     })

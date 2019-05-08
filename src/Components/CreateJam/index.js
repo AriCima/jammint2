@@ -13,15 +13,27 @@ export default class CreateJam extends React.Component {
     this.state = {
       userId      : this.props.userID,
       jamId       : "",
-      name        : '',
-      description : '',
+      jamName        : '',
+      jamDescription : '',
       createdAt   : "",
+      userJams: [],
 
     };
 
     this.onCreateNewJam = this.onCreateNewJam.bind(this);
   }
 
+  componentDidMount(){
+    DataService.getUserJams(this.state.userId)
+    .then(result =>{
+
+      let userJams = result.userJams;
+
+      this.setState({
+        userJams: userJams
+      })
+    })
+  }
   onChangeState(field, value) {
     let jamInfo = this.state;
     jamInfo[field] = value;
@@ -30,6 +42,7 @@ export default class CreateJam extends React.Component {
 
   onCreateNewJam(e){
     let userID = this.state.userId;
+    let uJams = this.state.userJams;
     e.preventDefault();
 
     let createdAt = new Date();
@@ -37,9 +50,12 @@ export default class CreateJam extends React.Component {
     let newJam = {
       jamAdmin: true,
       jamName: this.state.jamName,
-      jamDescription: this.state.jamDesc,
+      jamDescription: this.state.jamDescription,
       createdAt: createdAt,
-    }
+    };
+
+    uJams.push(newJam)
+
 
     DataService.createJam(newJam)
     .then((result)=>{
@@ -48,7 +64,8 @@ export default class CreateJam extends React.Component {
       let jamId = result.id;
       console.log('jamID = ', jamId);
 
-      // DataService.addJamToUser(userID, jamId)
+
+      DataService.addJamToUser(userID, uJams)
 
       this.props.propsFn.push(`/jam/${result.id}`)
 
@@ -60,14 +77,14 @@ export default class CreateJam extends React.Component {
   render() {
     return (
 
-        <form className="createJam-form-container">
+        <form className="createJam-form-container" onSubmit={this.onCreateNewJam}>
 
           <label id="label-short">
               <h5>Name</h5>
               <input
                   className="input-short"
                   type="text"
-                  name="Name"
+                  name="jamName"
                   size="350"
                   value={this.state.jamName}
                   onChange={e => {
@@ -81,11 +98,11 @@ export default class CreateJam extends React.Component {
               <textarea
                   className="textarea"
                   type="text"
-                  name="Description"
+                  name="description"
                   size="350"
-                  value={this.state.description}
+                  value={this.state.jamDescription}
                   onChange={e => {
-                      this.onChangeState("description", e.target.value);
+                      this.onChangeState("jamDescription", e.target.value);
                   }}
               />
           </label>

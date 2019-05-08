@@ -11,6 +11,7 @@ export default class PopupBody extends Component {
         }
 
     };
+    
     render() {
       return (
         <div className='popup'>

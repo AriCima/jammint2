@@ -1,5 +1,13 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+
+## COOL CHAT SUGGESTIONS 
+https://medium.com/@ngengesenior/database-structure-of-one-to-one-chat-app-with-firebase-93f813184dfe
+
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:

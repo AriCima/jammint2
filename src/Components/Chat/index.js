@@ -4,7 +4,8 @@ import React, { Component } from 'react';
 import './index.css';
 import DataService from '../services/DataService';
 
-export default class Chat extends React.Component {
+
+export default class Chat extends Component {
   constructor(props){
     super(props);
     this.state = {

@@ -95,7 +95,10 @@ export default class Jam extends Component {
         </div>
 
         <div className="jam-field">
-          {this.state.showJamInfo ? this.state.showJammers ? <Jammers user={this.props.user} jamID={this.state.jamId}/> : <Board user={this.props.user} jamID={this.state.jamId}/> : <JamInfo/>}
+          {this.state.showJamInfo ? this.state.showJammers ? 
+            <Jammers user={this.props.user} jamID={this.state.jamId}/> : 
+            <Board user={this.props.user} jamID={this.state.jamId}/> : 
+            <JamInfo/>}
         </div>
  
       </div>

@@ -40,9 +40,13 @@ export default class DataService {
         });
     };
 
+
+
     // JAMS
+
     static createJam(jamInfo) {  
 
+        console.log('creteJam launched en Dataservice')
         return new Promise((resolve, reject) => {
 
             firebase.firestore().collection('jams').add(jamInfo)
@@ -139,16 +143,18 @@ export default class DataService {
             
         });
     };
-    static addJamToUser(userID, newJam){
+
+    static addJamToUser(userID, jamsList){
         return new Promise((resolve, reject) => {
-            console.log('inputs en el dataservice ', userID, newJam);
-            firebase.firestore().collection('users').doc(userID).update({
-                userJams : newJam})
+            // console.log('inputs en el dataservice ', userID, jamsList);
+
+            firebase.firestore().collection(`users`).doc(userID).update({
+                userJams : jamsList})
+
             .then((result) => {
-                console.log("Jam succesfully added to the User ")
+                console.log("Jam succesfully added to the User")
                 resolve(result);
             })
-
             .catch((error) => {
                 var errorCode = error.code;
                 console.log('ERROR Jam NOT added to user: ', error);                

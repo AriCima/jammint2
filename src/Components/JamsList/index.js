@@ -6,14 +6,13 @@ import React from 'react';
 import DataService from '../services/DataService';
 
 // COMPONENTS
-// import MyJams from './MyJams';
-import Jam from '../JAMS/Jam';
+import MyJams from '../HOME/MyJams';
 
 import './index.css'; 
 
 
 
-export default class Home extends React.Component {
+export default class JamsList extends React.Component {
     constructor(props){
         super(props);
         this.state = { 
@@ -33,14 +32,11 @@ export default class Home extends React.Component {
             })
         })
     }
-
     onChangeState(field, value){
         let jamInfo = this.state;
         jamInfo[field] = value;
         this.setState(jamInfo)
     };
-
-
     onjoinJam(e){
         e.preventDefault();       
        
@@ -89,10 +85,8 @@ export default class Home extends React.Component {
 
     return (
 
-        <div className="jams-screen">
-
-            {this.state.jamId !== null ? <Jam jamID={this.state.jamId}/> : null }
-           
+        <div className="jams-list">
+            <MyJams userID = {this.state.userId}/>
         </div>
     );
   }

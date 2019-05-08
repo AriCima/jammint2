@@ -1,6 +1,5 @@
-.jams-screens{
+.jams-list{
     width: 100%;
     margin-top: 60px;
-    display: flex;
+    overflow-y: scroll;
 }
-

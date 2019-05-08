@@ -17,12 +17,14 @@ export default class PopUpButton extends Component {
     };
 
     this.togglePopup = this.togglePopup.bind(this);
-  }
+  };
+  
   togglePopup() {
     this.setState({
       showPopup: !this.state.showPopup
     });
-  }
+  };
+
   render() {
     return (
       <div className='app'>
@@ -30,10 +32,10 @@ export default class PopUpButton extends Component {
         {this.state.showPopup ? 
             <div className="popup-wrapper">
                 <PopUpBody
-                    popupText={this.state.popupText}
-                    closePopup={this.togglePopup}
-                    closeButtonText = {'Cancel'}
-                    renderInside={this.props.renderInside}
+                  popupText={this.state.popupText}
+                  closePopup={this.togglePopup}
+                  closeButtonText = {'Cancel'}
+                  renderInside={this.props.renderInside}
                 />
             </div>
           : null
