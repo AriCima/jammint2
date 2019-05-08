@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 
 // // DATA
-import DataService from '../../services/DataService';
+import DataService from '../../Components/services/DataService';
 
 // CSS
 import './index.css';

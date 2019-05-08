@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 // COMPONENTS
-import JamInfo from '../JamInfo';
-import Board from "../Board";
-import Jammers from '../Jammers';
+import JamInfo from './JamInfo';
+import Board from "./Board";
+import Jammers from './Jammers';
 
 import './index.css';
 

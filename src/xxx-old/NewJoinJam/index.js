@@ -1,8 +1,8 @@
 import React from 'react';
 
 // SERVICE API
-import NewJam from '../NewJam';
-import JoinJam from '../HOME/JoinJam';
+import NewJam from '../../Components/NewJam';
+import JoinJam from '../Jam/JoinJam';
 
 import './index.css'; 
 

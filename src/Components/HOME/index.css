@@ -1,6 +1,16 @@
-.jams-screens{
+.home{
     width: 100%;
-    margin-top: 60px;
     display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.jams-list{
+    margin-top: 0px;
+    width: 30%;
+}
+
+.jam-screen{
+    width: 70%;
 }
 

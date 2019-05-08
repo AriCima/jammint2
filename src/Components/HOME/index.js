@@ -6,8 +6,8 @@ import React from 'react';
 import DataService from '../services/DataService';
 
 // COMPONENTS
-// import MyJams from './MyJams';
-import Jam from '../JAMS/Jam';
+import JamsList from './JamsList';
+import Jam from './Jam';
 
 import './index.css'; 
 
@@ -89,9 +89,15 @@ export default class Home extends React.Component {
 
     return (
 
-        <div className="jams-screen">
+        <div className="home">
 
-            {this.state.jamId !== null ? <Jam jamID={this.state.jamId}/> : null }
+            <side className="jams-list">
+                <JamsList userID={this.state.userId}/>
+            </side>
+
+            <div className="jam-screen">
+                <Jam jamID={this.state.jamId}/> 
+            </div>
            
         </div>
     );

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-import DataService from '../../services/DataService';
+import DataService from '../../../services/DataService';
 
 import './index.css';
 
-export default class JamInfo extends Component {
+export default class Board extends Component {
   constructor(props){
     super(props);
 
@@ -67,11 +67,11 @@ export default class JamInfo extends Component {
 
     return (
 
-      <div className="jam-info">
+      <div className="board">
 
-        <div className="jam-Info-content" id="jam-content">
+        <div className="board-content" id="board-content">
          
-          <p>THIS IS JAM INFO</p>
+          <p>THIS IS THE BOARD</p>
 
         </div>
 

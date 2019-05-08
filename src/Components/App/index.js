@@ -13,15 +13,11 @@ import HeaderLanding from '../HEADERS/HeaderLanding';
 import HeaderLogIn from '../HEADERS/HeaderLogIn';
 import HeaderHome from '../HEADERS/HeaderHome';
 import HeaderJam from '../HEADERS/HeaderJam';
-// import HeaderChat from '../HEADERS/HeaderChat';
 
-// SIDE
-import JamsList from '../JamsList';
 
 // BODIES
-import Home from '../HOME/';
-import NewJoinJam from '../NewJoinJam';
-import Jam from '../JAMS/Jam';
+import Home from '../Home';
+import Jam from '../Home/Jam';
 import CreateJam from '../CreateJam';
 
 // CSS
@@ -119,40 +115,18 @@ class App extends Component {
                 <Route path="/jam/:jamId" exact render = {(props) => { return <HeaderJam propsFn={props.history} patID={props.match.params.patientId} />}}/> 
 
                 {/* * * *  CHAT * * * */}
-                {/* <Route path="/chat/:cahtId" exact render = {(props) => { return <HeaderChat propsFn={props.history} patID={props.match.params.patientId} />}}/>  */}
 
               </Switch>
 
             </div>
 
             <div className="appBody">
-
-                {/* * * * * * * SIDE JAMS LIST * * * * * * */}
-                <div className="jams-side-list">
-                  <Route path="/*/:userId" exact render = {(props) => { return <JamsList propsFn={props.history} userID={props.match.params.userId} />}}/> 
-                </div>
-
-              {/* * * * * * * BODIES * * * * * * */}
-              <div className="jam-screen">
-
-                <Switch>
-                  
-                  <Route path="/sign_in" render = {(props) => {return <Login propsFn={props.history}/>}}/>
-                  <Route path="/register" render = {(props) => {return <Register propsFn={props.history}/>}}/> 
-                  <Route path="/create-new-jam/:userId" exact render = {(props) => { return <CreateJam userID={props.match.params.userId}/>}}/>
-
-                  {/* * * *  HOME * * * */}
-                  <Route path="/home/:userId" exact render = {(props) => { return <Home userID={props.match.params.userId}/>}}/>
-                  <Route path="/new_join_jam/:user" render = {(props) => { return <NewJoinJam propsFn={props.history} userID={props.match.params.user}/>}}/>
-                  
-                  {/* * * *  JAM * * * */}
-                  <Route path="/jam/:jamId" render = {(props) => { return <Jam propsFn={props.history} jamID={props.match.params.jamId} navJam={this.navJam}/>}}/>
-                  
-                  {/* * * *  CHAT * * * */}
-
-                </Switch>
-
-              </div>
+                
+              <Switch>    
+                <Route path="/sign_in" render = {(props) => {return <Login propsFn={props.history}/>}}/>
+                <Route path="/register" render = {(props) => {return <Register propsFn={props.history}/>}}/> 
+                <Route path="/home/:userId" exact render = {(props) => { return <Home userID={props.match.params.userId}/>}}/>
+              </Switch>
 
             </div>
           </div>

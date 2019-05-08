@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import DataService from "../../services/DataService";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+
+import DataService from "../../../services/DataService";
 
 import "./index.css";
 
@@ -29,7 +30,7 @@ export default class Jammers extends React.Component {
       return (
         <Link className="room-cover" key={i} to={`/user/${user.id}`}>
           <div className="user-pic">
-            <img src={require("../../../assets/icons/user.png")} />
+            <img src={require("../../../../assets/icons/user.png")} alt="user"/>
           </div>
 
           <div className="user-info">

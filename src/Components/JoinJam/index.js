@@ -1,22 +1,17 @@
 import React from 'react';
 
-
-
 // SERVICE API
 import DataService from '../services/DataService';
-
-// COMPONENTS
-import MyJams from '../HOME/MyJams';
 
 import './index.css'; 
 
 
 
-export default class JamsList extends React.Component {
+export default class JoinJam extends React.Component {
     constructor(props){
         super(props);
         this.state = { 
-            userId      : this.props.userID,
+            userID      : this.props.userID,
             userJams    : [],
             jamCode     : '',
         };
@@ -24,7 +19,7 @@ export default class JamsList extends React.Component {
     }
 
     componentDidMount(){   // Obtengo todos los Jams del user paera agregarle el nuevo
-        DataService.getUserInfo(this.state.userId)
+        DataService.getUserInfo(this.state.userID)
         .then(res => {
             let jams = res.userJams;
             this.setState({
@@ -32,11 +27,15 @@ export default class JamsList extends React.Component {
             })
         })
     }
+
     onChangeState(field, value){
         let jamInfo = this.state;
         jamInfo[field] = value;
         this.setState(jamInfo)
     };
+
+
+
     onjoinJam(e){
         e.preventDefault();       
        
@@ -82,11 +81,35 @@ export default class JamsList extends React.Component {
 
   
   render() {
+    const { classes } = this.props;
 
     return (
 
-        <div className="jams-list">
-            <MyJams userID = {this.state.userId}/>
+        <div className="form-container">
+
+            <div className="form-title">
+                <h4>JOIN A JAM</h4>
+            </div>
+
+            <form  id="form-format" className={classes.container} noValidate autoComplete="off" onSubmit={this.onjoinJam}>
+            
+              <div id="input-area">
+
+                <input 
+                  onChange={(e)=>{this.onChangeState('jamCode', e.target.value)}}
+                />     
+
+              </div>
+
+              <div className="button-area">
+                  
+                <button variant="contained" color="primary" className={classes.button} type="submit">
+                  Join
+                </button>
+                  
+              </div>
+
+            </form>
         </div>
     );
   }
