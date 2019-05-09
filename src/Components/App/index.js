@@ -7,6 +7,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Login from '../ACCESS/Login';
 import Register from '../ACCESS/Register';
 
+// SERVICES
+import DataService from '../services/DataService';
+
 
 // * * *  HEADERS * * * 
 import HeaderLanding from '../HEADERS/HeaderLanding';
@@ -17,8 +20,6 @@ import HeaderJam from '../HEADERS/HeaderJam';
 
 // BODIES
 import Home from '../Home';
-import Jam from '../Home/Jam';
-import CreateJam from '../CreateJam';
 
 // CSS
 import './index.css';
@@ -44,10 +45,11 @@ class App extends Component {
     super(props);
 
     this.state = {
-      user  : null,
-      nav   : '',
-      jam   : [],
-      chat  : [],
+      user    : null,
+      nav     : '',
+      userJams: [],
+      jam     : [],
+      chat    : [],
     }
 
     this.navJam   = this.navJam.bind(this);
@@ -58,16 +60,24 @@ class App extends Component {
   componentDidMount(){
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
+        DataService.getUserInfo(user.uid)
+        .then(result =>{
+         
+          let userJams = result.userJams;
+          
+          this.setState({
+            user : user,
+            userJams: userJams
+          })
+          console.log('APP state ', this.state)
+        })
 
-        this.setState({user : user});
-        console.log('el user en App', this.state.user);
       } else {
         this.setState({
           user : null
         });
       }
     });
-    
   }
 
   navJam(jamID, jamName){
@@ -91,7 +101,7 @@ class App extends Component {
   }
 
   render() {
-    // const { user, nav, jam, chat } = this.state;
+    console.log('state del App en el render ', this.state)
     return (
       <div>
 
@@ -109,7 +119,7 @@ class App extends Component {
                 <Route path="/create-new-jam/:userId" exact render = {(props) => { return <HeaderHome userID={props.match.params.userId}/>}}/>
 
                 {/* * * *  HOME * * * */}
-                <Route path="/home/:userId" exact render = {(props) => { return <HeaderHome userID={props.match.params.userId}/>}}/>
+                <Route path="/home/:userId/*" exact render = {(props) => { return <HeaderHome userJams={this.state.userJams} propsFn={props.history} userID={props.match.params.userId} jamID={props.match.params.jamId}/>}}/>
                 
                 {/* * * *  JAM * * * */}
                 <Route path="/jam/:jamId" exact render = {(props) => { return <HeaderJam propsFn={props.history} patID={props.match.params.patientId} />}}/> 
@@ -125,7 +135,9 @@ class App extends Component {
               <Switch>    
                 <Route path="/sign_in" render = {(props) => {return <Login propsFn={props.history}/>}}/>
                 <Route path="/register" render = {(props) => {return <Register propsFn={props.history}/>}}/> 
-                <Route path="/home/:userId" exact render = {(props) => { return <Home userID={props.match.params.userId}/>}}/>
+                <Route path="/home/:userId/*" exact render = {(props) => { return <Home userJams={this.state.userJams} userID={props.match.params.userId}/>}}/> 
+                <Route path="/home/:userId/jam/:jamId" render = {(props) => { return <Home userJams={this.state.userJams} jamID={props.match.params.jamId} userID={props.match.params.userId}/>}}/>
+
               </Switch>
 
             </div>

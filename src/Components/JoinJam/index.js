@@ -18,15 +18,15 @@ export default class JoinJam extends React.Component {
         this.onjoinJam             = this.onjoinJam.bind(this);
     }
 
-    componentDidMount(){   // Obtengo todos los Jams del user paera agregarle el nuevo
-        DataService.getUserInfo(this.state.userID)
-        .then(res => {
-            let jams = res.userJams;
-            this.setState({
-                userJams : jams,
-            })
-        })
-    }
+    // componentDidMount(){   // Obtengo todos los Jams del user paera agregarle el nuevo
+    //     DataService.getUserInfo(this.state.userID)
+    //     .then(res => {
+    //         let jams = res.userJams;
+    //         this.setState({
+    //             userJams : jams,
+    //         })
+    //     })
+    // }
 
     onChangeState(field, value){
         let jamInfo = this.state;

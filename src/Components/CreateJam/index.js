@@ -11,29 +11,19 @@ export default class CreateJam extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId      : this.props.userID,
-      jamId       : "",
-      jamName        : '',
-      jamDescription : '',
-      createdAt   : "",
-      userJams: [],
-
+      userId          : this.props.userID,
+      userJams        : this.props.userJams,
+      jamId           : "",
+      jamName         : '',
+      jamDescription  : '',
+      createdAt       : "",
     };
 
     this.onCreateNewJam = this.onCreateNewJam.bind(this);
+    console.log('state del create = ', this.state);
   }
 
-  componentDidMount(){
-    DataService.getUserJams(this.state.userId)
-    .then(result =>{
 
-      let userJams = result.userJams;
-
-      this.setState({
-        userJams: userJams
-      })
-    })
-  }
   onChangeState(field, value) {
     let jamInfo = this.state;
     jamInfo[field] = value;
@@ -41,10 +31,15 @@ export default class CreateJam extends React.Component {
   }
 
   onCreateNewJam(e){
-    let userID = this.state.userId;
-    let uJams = this.state.userJams;
     e.preventDefault();
-
+    console.log('userJams en el create', this.state.userJams)
+    let userID = this.state.userId;
+    let transJams = [];
+    
+    if (this.state.userJams.length !== 0){
+      transJams = [...this.state.userJams];
+    };
+   
     let createdAt = new Date();
 
     let newJam = {
@@ -54,7 +49,7 @@ export default class CreateJam extends React.Component {
       createdAt: createdAt,
     };
 
-    uJams.push(newJam)
+    transJams.push(newJam)
 
 
     DataService.createJam(newJam)
@@ -62,12 +57,15 @@ export default class CreateJam extends React.Component {
       console.log('el result es = ', result);
 
       let jamId = result.id;
+      let userId = this.state.userId;
       console.log('jamID = ', jamId);
 
 
-      DataService.addJamToUser(userID, uJams)
+      // DataService.addJamToUser(userID, uJams);
+      DataService.updateJamsArrayInUser(userID, transJams)
 
-      this.props.propsFn.push(`/jam/${result.id}`)
+
+      this.props.propsFn.push(`/home/${userId}/jam/${jamId}`)
 
     },(error)=>{
         console.log('Jam could not be created, error:', error);

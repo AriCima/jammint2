@@ -6,8 +6,8 @@ export default class PopupBody extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            popupText       : this.props.popupText,
-            closeButtonText : this.props.closeButtonText,
+          popupText       : this.props.popupText,
+          closeButtonText : this.props.closeButtonText,
         }
 
     };

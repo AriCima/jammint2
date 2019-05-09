@@ -26,6 +26,7 @@ export default class Jam extends Component {
     this.showJamInfo = this.showJamInfo.bind(this);
   }
 
+  
   componentDidMount(){
     DataService.getJamInfo(this.state.jamId)
     .then(result =>{     

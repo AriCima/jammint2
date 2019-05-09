@@ -66,7 +66,6 @@ export default class DataService {
             
         });
     };
-
     static getJamToJoin(jamCode) {  
         console.log('JamCode recibido en el join del Data =', jamCode);
         return new Promise((resolve, reject) => {
@@ -98,7 +97,6 @@ export default class DataService {
             
         });
     };
-
     static getJamInfo(jamId) {  
 
         return new Promise((resolve, reject) => {
@@ -119,32 +117,7 @@ export default class DataService {
             
         });
     };
-
-    static getUserJams(userId){
-        return new Promise((resolve, reject) => {
-            console.log('el userID en getJams = ', userId)
-            firebase.firestore().collection('jams').where(``,`==`, userId).get()
-            .then((result) => {
-            
-                let jms=[];
-                result.docs.forEach((d) => {
-                    let j = d.data();
-                    j.id=d.id;
-                    jms.push(j);
-                })
-                resolve(jms);  
-            })
-
-            .catch((error) => {
-               console.log('error: ', error)
-                // reject('Usuario no existe', error)
-
-            })
-            
-        });
-    };
-
-    static addJamToUser(userID, jamsList){
+    static updateJamsArrayInUser(userID, jamsList){
         return new Promise((resolve, reject) => {
             // console.log('inputs en el dataservice ', userID, jamsList);
 
@@ -152,7 +125,7 @@ export default class DataService {
                 userJams : jamsList})
 
             .then((result) => {
-                console.log("Jam succesfully added to the User")
+                console.log("Jam succesfully UPDATED")
                 resolve(result);
             })
             .catch((error) => {
@@ -161,7 +134,7 @@ export default class DataService {
             })
             
         });
-    }
+    };
 
     // MESSAGES
     static sendMessage(messageInfo) {  

@@ -18,28 +18,42 @@ export default class Home extends React.Component {
         super(props);
         this.state = { 
             userId      : this.props.userID,
-            userJams    : [],
-            jamCode     : '',
+            userJams    : this.props.userJams,
+            jamId       : this.props.jamID,
         };
-        this.onjoinJam             = this.onjoinJam.bind(this);
-    }
+        this.onjoinJam          = this.onjoinJam.bind(this);
+        this.updateJamScreen    = this.updateJamScreen.bind(this);
+
+        console.log('state del Home ', this.state)
+    };
 
     componentDidMount(){   // Obtengo todos los Jams del user paera agregarle el nuevo
-        DataService.getUserInfo(this.state.userId)
+        DataService.getUserInfo(this.props.userID)
         .then(res => {
             let jams = res.userJams;
+
             this.setState({
                 userJams : jams,
             })
         })
-    }
+    };
+
+    componentDidUpdate(prevProps, prevState){
+        // console.log('CDU launched', this.props.userJams, ' / ', prevProps.userJams);
+        if(this.props.userJams !== prevProps.userJams){
+            this.setState({
+                userJams: this.props.userJams
+            })
+            // console.log('state after CDU = ', this.state)
+        }
+
+    };
 
     onChangeState(field, value){
         let jamInfo = this.state;
         jamInfo[field] = value;
         this.setState(jamInfo)
     };
-
 
     onjoinJam(e){
         e.preventDefault();       
@@ -84,22 +98,38 @@ export default class Home extends React.Component {
         
     };
 
+    updateJamScreen(x){
+        this.setState({
+            jamId: x
+        })
+    };
   
   render() {
 
     return (
 
-        <div className="home">
+      
 
-            <side className="jams-list">
-                <JamsList userID={this.state.userId}/>
-            </side>
-
-            <div className="jam-screen">
-                <Jam jamID={this.state.jamId}/> 
-            </div>
            
-        </div>
+                <div className="home">
+                    <side className="jams-list">
+                        <JamsList 
+                            userID={this.state.userId} 
+                            updateJamScreenHome={this.updateJamScreen} 
+                            userJams={this.state.userJams}
+                        />
+                    </side>
+
+                    <div className="jam-screen">
+                        {this.state.jamId === '' ? <p>SELECT YOUR JAM</p> : 
+                            <Jam jamID={this.state.jamId}/> 
+                        }
+                    }
+                    </div>
+                </div>
+            
+           
+       
     );
   }
 }

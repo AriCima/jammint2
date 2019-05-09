@@ -25,19 +25,19 @@ export default class MyJams extends Component {
   };
 
 
-  componentDidMount() {
-    DataService.getUserInfo(this.props.userID)
-    .then(result =>{
-      let userJams = result.userJams;
+  // componentDidMount() {
+  //   DataService.getUserInfo(this.props.userID)
+  //   .then(result =>{
+  //     let userJams = result.userJams;
 
-      this.setState({ 
-        userJams : userJams,
-      });
+  //     this.setState({ 
+  //       userJams : userJams,
+  //     });
      
-    }).catch(function (error) {   
-      console.log(error);
-    });
-  };
+  //   }).catch(function (error) {   
+  //     console.log(error);
+  //   });
+  // };
 
 
 

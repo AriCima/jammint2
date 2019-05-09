@@ -9,6 +9,9 @@ import * as firebase from 'firebase';
 import PopUpButton from '../../ACCESSORIES/PopUpBody/PopUpButton';
 import CreateJam from '../../CreateJam';
 
+// SERVICES
+import DataService from '../../services/DataService';
+
 import './index.css';
 
 export default class HeaderHome extends Component {
@@ -16,11 +19,13 @@ export default class HeaderHome extends Component {
         super(props);
 
         this.state = {
-            user        : this.props.userID,
+            userId: this.props.userID,
+            userJams: this.props.userJams,
+            jamId   : this.props.jamID,
         }
 
         this.signOut = this.signOut.bind(this);
-
+        // console.log('user en Header = ', this.state.userId)
     }
 
     signOut(){   //Esta función informa a FireBase sobre el logout y FB automáticamente ejecuta el onAuthStateChange del App
@@ -35,6 +40,7 @@ export default class HeaderHome extends Component {
 
 
     render() {
+
        
         return (
 
@@ -47,12 +53,17 @@ export default class HeaderHome extends Component {
                 </div>
 
                 <div className="header-HOME-nav-block">
-                    {/* <Link to={`/create-new-jam/${this.props.userID}`}>CREATE JAM</Link> */}
-                    {/* <MyPopUp /> */}
                     <PopUpButton
+                        userID={this.state.userId}
                         buttonText={'Create a Jam'}
                         popupText={'Create a Jam is very simple, just give it a Name and Description'}
-                        renderInside={<CreateJam />}
+                        renderInside={
+                            <CreateJam 
+                                propsFn={this.props.propsFn} 
+                                userID={this.state.userId}
+                                userJams={this.state.userJams}
+                            />
+                        }
                     />
                 </div>
 

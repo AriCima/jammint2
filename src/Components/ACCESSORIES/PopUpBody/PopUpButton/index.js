@@ -10,6 +10,7 @@ export default class PopUpButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      userId: this.props.userID,
       showPopup: false,
       buttonText: this.props.buttonText,
       popupText: this.props.popupText,
@@ -17,6 +18,8 @@ export default class PopUpButton extends Component {
     };
 
     this.togglePopup = this.togglePopup.bind(this);
+    console.log('user en popupButton = ', this.state.userId)
+
   };
   
   togglePopup() {
