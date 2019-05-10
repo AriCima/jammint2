@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 
-import CreatePopup from '..';
+import JoinPopup from '..';
 
 
 // CSS
 import './index.css'
 
-export default class CreateButton extends Component {
+export default class JoinButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,10 +31,10 @@ export default class CreateButton extends Component {
   render() {
     return (
       <div className='app'>
-        <button onClick={this.togglePopup}>Create Jam</button>
+        <button onClick={this.togglePopup}>Join Jam</button>
         {this.state.showPopup ? 
             <div className="popup-wrapper">
-                <CreatePopup
+                <JoinPopup
                   userID={this.state.userId}
                   closePopup={this.togglePopup}
                 />

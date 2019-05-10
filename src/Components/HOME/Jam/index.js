@@ -14,9 +14,10 @@ export default class Jam extends Component {
   constructor(props){
     super(props);
     this.state = {
-      userId: this.props.userID,
+      userId    : this.props.userID,
       jamCode   : this.props.jamCode,
-      jamAdmin  : false,
+      adminId   : '',
+      userIsAdmin  : false,
       jamName : '',
 
       showJamInfo: false,
@@ -32,22 +33,25 @@ export default class Jam extends Component {
   
   componentDidMount(){
     DataService.getJamInfo(this.state.jamCode)
+
     .then(result =>{     
-        console.log('result en el Jam :', result)
-        let adminId = result.adminId;
-        let jamAdmin = false;
+      console.log('result en el Jam :', result)
+      let adminId = result.adminId;
+      let jamAdmin = false;
 
-        if(this.state.userId === adminId){
-          console.log('this.state.userId === adminId => ', this.state.userId, ' / ', adminId)
-          this.setState({
-            jamAdmin: true
-          });
-        };
-
-        this.setState({ 
-          jamCode : result.jamCode,
-          admin: jamAdmin,
+      if(this.state.userId === adminId){
+        console.log('this.state.userId === adminId => ', this.state.userId, ' / ', adminId)
+        this.setState({
+          adminId : adminId,
+          userIsAdmin: true
         });
+        console.log('actualización jamAdmin', this.state.userIsAdmin)
+      };
+
+      this.setState({ 
+        jamCode : result.jamCode,
+        admin: jamAdmin,
+      });
      
     }).catch(function (error) {   
       console.log(error);
@@ -120,7 +124,7 @@ export default class Jam extends Component {
             <button onClick={this.showJammers}>Jammers</button>
           </div>
 
-          {this.state.jamAdmin && 
+          {this.state.userIsAdmin && 
             <div className="jam-header-block">
               <button onClick={this.showJammers}>Settings</button>
             </div>
@@ -141,6 +145,7 @@ export default class Jam extends Component {
             <JamInfo 
               user={this.props.user} 
               jamCode={this.state.jamCode}
+              admin={this.state.userIsAdmin}
             />
           }
         </div>

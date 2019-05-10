@@ -110,7 +110,7 @@ export default class CreateJam extends React.Component {
             </div>
 
             <div className="createJam-button" id="create-button-right">
-              <SubmitButton text={"Create"} fn={this.onNewEvent}/>
+              <SubmitButton text={"Create"} />
             </div>
 
           </div>

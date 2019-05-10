@@ -9,6 +9,7 @@ import * as firebase from 'firebase';
 import PopUpButton from '../../ACCESSORIES/PopUpBody/PopUpButton';
 import CreateJam from '../../CreateJam';
 import CreateButton from '../../CreatePopup/CreateButton';
+import JoinButton from '../../JoinPopup/JoinButton';
 
 // CSS
 import './index.css';
@@ -55,8 +56,14 @@ export default class HeaderHome extends Component {
                 </div>
 
                 <div className="header-HOME-nav-block">
-                    <Link to={`/join-jam/${this.props.userID}`}>JOIN JAM</Link>
+                    <JoinButton
+                        userID={this.state.userId}
+                    />
                 </div>
+{/* 
+                <div className="header-HOME-nav-block">
+                    <Link to={`/join-jam/${this.props.userID}`}>JOIN JAM</Link>
+                </div> */}
             </div>
 
             

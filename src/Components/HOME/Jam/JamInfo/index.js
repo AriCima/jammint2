@@ -10,6 +10,7 @@ export default class JamInfo extends Component {
 
     this.state = {
       jamCode         : this.props.jamCode,
+      userIsAdmin        : this.props.admin,
       messagesInBoard : [],
     }
 
@@ -40,37 +41,28 @@ export default class JamInfo extends Component {
   }
 
   componentDidUpdate(prevProps, prevState){
-
     if(this.props.jamCode !== prevProps.jamCode){
       this.setState({
           jamCode: this.props.jamCode
       })
     };
-};
-// componentDidMount(){
-  //   console.log("Se ejecuta ComponenDidMount");
-  //   DataService.getBoardMessages(this.props.jamID).then(
-  //     (boardMessagesResult) => {
-  //       console.log("Mensajes del Board recibidos desde Firebase:", boardMessagesResult)
+    if(this.props.admin !== prevProps.admin){
+      this.setState({
+        userIsAdmin: this.props.admin
+      })
+    };
+  };
 
-  //       // hacer setState del array result
-  //       this.setState({messagesInBoard: boardMessagesResult})
-
-  //     }
-  //   )  
-
-  //   DataService.getJammers(this.props.jamId).then(
-  //     (jammers) => {
-  //       console.log("Jammers recibidos desde Firebase:", jammers)
-
-  //       // hacer setState del array result
-  //       this.setState({jammers: jammers})
-
-  //     }
-  //   )  
-  // }
 
   render() {
+    console.log('Am I the Jam Admin ?: ', this.state.userIsAdmin);
+    let text ='';
+
+    if(this.state.userIsAdmin){
+      text = 'true';
+    } else {
+      text = 'false';
+    };
 
     return (
 
@@ -79,6 +71,7 @@ export default class JamInfo extends Component {
         <div className="jam-Info-content" id="jam-content">
          
           <p>THIS IS JAM {this.state.jamCode}</p>
+          <p>Am I the Jam Admin  {text}</p>
 
         </div>
 

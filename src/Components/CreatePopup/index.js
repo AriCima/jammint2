@@ -41,7 +41,7 @@ export default class CreatePopup extends Component {
     let jamInfo = this.state;
     jamInfo[field] = value;
     this.setState(jamInfo);
-  }
+  };
 
   onCreateNewJam(e){
     e.preventDefault();
@@ -77,7 +77,6 @@ export default class CreatePopup extends Component {
         console.log('Jam could not be created, error:', error);
     });
   };
-
 
   render() {
     return (

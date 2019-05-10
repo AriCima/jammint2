@@ -37,9 +37,7 @@ const styles = theme => ({
 });
 
 class SubmitButton extends React.Component {
-  // constructor(props){
-  //   super(props);
-  // }
+ 
   render(){
     const { classes } = this.props;
     return (
@@ -51,7 +49,6 @@ class SubmitButton extends React.Component {
           box-shadow="none"
           type="submit"
           className={classNames(classes.margin, classes.cssRoot)}
-          onSubmit={this.props.fn}
         >
         {this.props.text}
         </Button>

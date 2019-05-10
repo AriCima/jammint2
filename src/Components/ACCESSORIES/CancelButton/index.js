@@ -16,10 +16,10 @@ const styles = theme => ({
     
   },
   cssRoot: {
-    color: theme.palette.getContrastText('rgba(170, 170, 170, 1)'),
+    color: theme.palette.getContrastText('rgba(0, 144, 248, 1)'),
     border: 'solid 1px rgba(170, 170, 170, 1)',
     backgroundColor: 'white',
-    color: 'rgba(170, 170, 170, 1)',
+    color: 'rgba(0, 144, 248, 1)',
     fontSize: '12px',
     fontWeight: '550',
     display: 'flex',

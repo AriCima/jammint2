@@ -122,7 +122,7 @@ export default class DataService {
     };
     static updateJamsArrayInUser(userID, jamsList){
         return new Promise((resolve, reject) => {
-            // console.log('inputs en el dataservice ', userID, jamsList);
+            console.log('inputs en el dataservice ', userID, jamsList);
 
             firebase.firestore().collection(`users`).doc(userID).update({
                 userJams : jamsList})
