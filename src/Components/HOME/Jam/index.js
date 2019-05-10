@@ -32,9 +32,7 @@ export default class Jam extends Component {
   componentDidMount(){
     DataService.getJamInfo(this.state.jamCode)
     .then(result =>{     
-      this.setState({ jamName : result.jamName });
-      
-      this.props.navJam(this.state.jamId, this.state.jamName);
+      this.setState({ jamCode : result.jamCode });
      
     }).catch(function (error) {   
       console.log(error);
@@ -48,8 +46,14 @@ export default class Jam extends Component {
         showBoard: !prevState.showBoard,
         showJammers: !prevState.showJammers,
       });
-    }
-}
+    };
+
+    if(this.props.jamCode !== prevProps.jamCode){
+      this.setState({
+          jamCode: this.props.jamCode
+      })
+    };
+  };
 
   showJamInfo() {
     this.setState({
@@ -99,9 +103,19 @@ export default class Jam extends Component {
 
         <div className="jam-field">
           {this.state.showJamInfo ? this.state.showJammers ? 
-            <Jammers user={this.props.user} jamID={this.state.jamId}/> : 
-            <Board user={this.props.user} jamID={this.state.jamId}/> : 
-            <JamInfo/>}
+            <Jammers 
+              user={this.props.user} 
+              jamCode={this.state.jamCode}
+            /> : 
+            <Board 
+              user={this.props.user} 
+              jamCode={this.state.jamCode} 
+            />:
+            <JamInfo 
+              user={this.props.user} 
+              jamCode={this.state.jamCode}
+            />
+          }
         </div>
  
       </div>

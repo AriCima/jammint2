@@ -9,9 +9,8 @@ export default class JamInfo extends Component {
     super(props);
 
     this.state = {
-      jamId           : this.props.jamID,
+      jamCode         : this.props.jamCode,
       messagesInBoard : [],
-      jammers         : [],
     }
 
     this.sendNewMessage = this.sendNewMessage.bind(this);
@@ -40,7 +39,15 @@ export default class JamInfo extends Component {
 
   }
 
-  // componentDidMount(){
+  componentDidUpdate(prevProps, prevState){
+
+    if(this.props.jamCode !== prevProps.jamCode){
+      this.setState({
+          jamCode: this.props.jamCode
+      })
+    };
+};
+// componentDidMount(){
   //   console.log("Se ejecuta ComponenDidMount");
   //   DataService.getBoardMessages(this.props.jamID).then(
   //     (boardMessagesResult) => {
@@ -71,7 +78,7 @@ export default class JamInfo extends Component {
 
         <div className="jam-Info-content" id="jam-content">
          
-          <p>THIS IS JAM INFO</p>
+          <p>THIS IS JAM {this.state.jamCode}</p>
 
         </div>
 
