@@ -14,15 +14,15 @@ export default class Jam extends Component {
   constructor(props){
     super(props);
     this.state = {
-      userId    : this.props.userID,
-      jamCode   : this.props.jamCode,
-      adminId   : '',
-      userIsAdmin  : false,
-      jamName : '',
+      userId      : this.props.userID,
+      jamCode     : this.props.jamCode,
+      adminId     : '',
+      userIsAdmin : false,
+      jamName     : '',
 
-      showJamInfo: false,
-      showBoard: true,
-      showJammers: false,
+      showBoard   : true,
+      showJamInfo : false,
+      showJammers : false,
     };
 
     this.showBoard = this.showBoard.bind(this);
@@ -151,21 +151,27 @@ export default class Jam extends Component {
         </div>
 
         <div className="jam-field">
-          {this.state.showJamInfo ? this.state.showJammers ? 
-            <Jammers 
-              user={this.props.user} 
-              jamCode={this.state.jamCode}
-            /> : 
-            <Board 
-              user={this.props.user} 
-              jamCode={this.state.jamCode} 
-            />:
+          {this.state.showJamInfo &&
             <JamInfo 
               user={this.props.user} 
               jamCode={this.state.jamCode}
               admin={this.state.userIsAdmin}
             />
           }
+          {this.state.showBoard &&
+            <Board 
+              user={this.props.user} 
+              jamCode={this.state.jamCode} 
+            />
+          }
+          {this.state.showJammers &&
+            <Jammers 
+              user={this.props.user} 
+              jamCode={this.state.jamCode}
+            /> 
+          }
+
+
         </div>
  
       </div>

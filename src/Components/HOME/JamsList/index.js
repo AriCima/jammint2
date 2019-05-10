@@ -39,7 +39,7 @@ export default class JamsList extends Component {
 
     return jams.map((jam, j) => {
       return (
-        <div className="myjams" key={j}>
+        <div className="jamCover-wrapper" key={j}>
           <JamCover 
             updateJamScreenInList={this.updateJamScreenList} 
             name={jam.jamName} 
@@ -56,7 +56,7 @@ export default class JamsList extends Component {
   render() {
     // console.log('userJams en el render del LIST', this.state.userJams)
     return (
-    <div>
+    <div className="jams-list-wrapper">
       {this.state.userJams === [] ? <p>loading </p>: 
       this._renderJams()}
     </div>

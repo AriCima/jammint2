@@ -1,7 +1,10 @@
-.myjams{
-    margin-top: 60px;
+.jams-list-wrapper{
+    height: 500px;
     overflow-y: scroll;
+}
 
+.jamCover-wrapper{
+    margin-top: 0px;
 }
 
 .jam-container{
