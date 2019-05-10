@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 
 // SERVICES
 import DataService from "../services/DataService";
@@ -8,10 +8,12 @@ import Calculations from "../services/Calculations";
 import SubmitButton from '../ACCESSORIES/SubmitButton';
 import CancelButton from '../ACCESSORIES/CancelButton';
 
-export default class CreateJam extends React.Component {
+export default class CreatePopup extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      showPopup       : true,
+
       userId          : this.props.userID,
       userJams        : this.props.userJams,
       jamId           : "",
@@ -24,6 +26,16 @@ export default class CreateJam extends React.Component {
     console.log('state del create = ', this.state);
   }
 
+  componentDidMount(){
+    
+    DataService.getUserInfo(this.state.userId)
+    .then(result =>{
+      let userJams = result.userJams;
+      this.setState({
+        userJams: userJams
+      })
+    })
+  };
 
   onChangeState(field, value) {
     let jamInfo = this.state;
@@ -35,17 +47,13 @@ export default class CreateJam extends React.Component {
     e.preventDefault();
     console.log('userJams en el create', this.state.userJams)
     let userID = this.state.userId;
-    let transJams = [];
     
-    if (this.state.userJams.length !== 0){
-      transJams = [...this.state.userJams];
-    };
-   
+    let transJams = [];
+    transJams = [...this.state.userJams];
     let createdAt = new Date();
     let jamCode = Calculations.generateCode();
-
     let newJam = {
-      adminId: this.state.userId,
+      adminId: userID,
       jamCode: jamCode,
       jamName: this.state.jamName,
       jamDescription: this.state.jamDescription,
@@ -54,11 +62,11 @@ export default class CreateJam extends React.Component {
 
     transJams.push(newJam)
 
-
     DataService.createJam(newJam)
     .then((result)=>{
 
       let userID = this.state.userId;
+
       DataService.updateJamsArrayInUser(userID, transJams);
       this.props.closePopup();
 
@@ -70,9 +78,16 @@ export default class CreateJam extends React.Component {
     });
   };
 
+
   render() {
     return (
+      <div className='popup'>
+        <div className='popup_inner'>
 
+          <div className="popup_inner_title">
+            <h1>CREATE YOUR OWN JAM IN ONE STEP !</h1>
+          </div>
+          
         <form className="createJam-form-container" onSubmit={this.onCreateNewJam}>
 
           <label id="label-short">
@@ -117,6 +132,10 @@ export default class CreateJam extends React.Component {
             
         </form>
 
+
+        </div>
+      </div>
     );
   }
 }
+

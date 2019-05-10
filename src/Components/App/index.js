@@ -38,6 +38,9 @@ var config = {
   messagingSenderId: "441787301493"
 };
 firebase.initializeApp(config);
+const firestore = firebase.firestore();
+const settings = {/* your settings... */ timestampsInSnapshots: true};
+firestore.settings(settings);
 
 
 class App extends Component {
@@ -46,20 +49,15 @@ class App extends Component {
 
     this.state = {
       user    : null,
-      nav     : '',
-      userJams: [],
-      jam     : [],
-      chat    : [],
     }
 
-    this.navJam   = this.navJam.bind(this);
-    this.navChat  = this.navChat.bind(this);
   }
 
 
   componentDidMount(){
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
+
         DataService.getUserInfo(user.uid)
         .then(result =>{
          
@@ -67,7 +65,6 @@ class App extends Component {
           
           this.setState({
             user : user,
-            userJams: userJams
           })
           console.log('APP state ', this.state)
         })
@@ -78,27 +75,7 @@ class App extends Component {
         });
       }
     });
-  }
-
-  navJam(jamID, jamName){
-    let transJam = [jamID, jamName];
-    this.setState ({
-      nav   : 'jam',
-      jam   : transJam,
-      chat  : [], 
-    })
-    console.log('el state en el APP luego de navJam = ', this.state)
-  }
-
-  navChat(chatID, chatterName){
-    let transChat = [chatID, chatterName];
-    this.setState ({
-      nav   : 'chat',
-      jam   : [],
-      chat  : transChat, 
-    })
-    console.log('actualización App, state = ', this.state);
-  }
+  };
 
   render() {
     console.log('state del App en el render ', this.state)
@@ -116,10 +93,10 @@ class App extends Component {
 
                 <Route path="/"  exact render = {() => { return  <HeaderLanding/>}}/>
                 <Route path="/login"  exact render = {() => { return  <HeaderLogIn />}}/>
-                <Route path="/create-new-jam/:userId" exact render = {(props) => { return <HeaderHome userID={props.match.params.userId}/>}}/>
+                {/* <Route path="/create-new-jam/:userId" exact render = {(props) => { return <HeaderHome userID={props.match.params.userId}/>}}/> */}
 
                 {/* * * *  HOME * * * */}
-                <Route path="/home/:userId/*" exact render = {(props) => { return <HeaderHome userJams={this.state.userJams} propsFn={props.history} userID={props.match.params.userId} jamID={props.match.params.jamId}/>}}/>
+                <Route path="/home/:userId" exact render = {(props) => { return <HeaderHome userJams={this.state.userJams} propsFn={props.history} userID={props.match.params.userId} jamID={props.match.params.jamId}/>}}/>
                 
                 {/* * * *  JAM * * * */}
                 <Route path="/jam/:jamId" exact render = {(props) => { return <HeaderJam propsFn={props.history} patID={props.match.params.patientId} />}}/> 
@@ -135,8 +112,8 @@ class App extends Component {
               <Switch>    
                 <Route path="/sign_in" render = {(props) => {return <Login propsFn={props.history}/>}}/>
                 <Route path="/register" render = {(props) => {return <Register propsFn={props.history}/>}}/> 
-                <Route path="/home/:userId/*" exact render = {(props) => { return <Home userJams={this.state.userJams} userID={props.match.params.userId}/>}}/> 
-                <Route path="/home/:userId/jam/:jamId" render = {(props) => { return <Home userJams={this.state.userJams} jamID={props.match.params.jamId} userID={props.match.params.userId}/>}}/>
+                <Route path="/home/:userId" render = {(props) => { return <Home userJams={this.state.userJams} userID={props.match.params.userId}/>}}/> 
+                {/* <Route path="/home/:userId/jam/:jamId" render = {(props) => { return <Home userJams={this.state.userJams} jamID={props.match.params.jamId} userID={props.match.params.userId}/>}}/> */}
 
               </Switch>
 

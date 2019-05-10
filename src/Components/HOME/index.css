@@ -11,6 +11,10 @@
 }
 
 .jam-screen{
+    margin-top: 60px;
     width: 70%;
 }
 
+h1{
+    color: black;
+}

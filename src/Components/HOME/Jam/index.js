@@ -90,7 +90,7 @@ export default class Jam extends Component {
           </div>
 
           <div className="jam-header-block">
-          <button onClick={this.showJammers}>Jammers</button>
+            <button onClick={this.showJammers}>Jammers</button>
           </div>
 
         </div>

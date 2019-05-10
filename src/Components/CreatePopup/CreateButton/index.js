@@ -1,25 +1,24 @@
 import React, {Component} from 'react';
 
-import PopUpBody from '../../PopUpBody';
+import CreatePopup from '..';
 
 
 // CSS
 import './index.css'
 
-export default class PopUpButton extends Component {
+export default class CreateButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
       userId: this.props.userID,
+
       showPopup: this.props.showPopup,
       buttonText: this.props.buttonText,
-      popupText: false,
+      popupText: this.props.popupText,
       closeButtonText: this.props.closeButtonText,
     };
 
     this.togglePopup = this.togglePopup.bind(this);
-    this.closePopupAfterCreate = this.closePopupAfterCreate.bind(this);
-    console.log('user en popupButton = ', this.state.userId)
 
   };
   
@@ -29,21 +28,15 @@ export default class PopUpButton extends Component {
     });
   };
 
-  closePopupAfterCreate(){
-    this.setState.state({ showPopup: false})
-  };
-
   render() {
     return (
       <div className='app'>
         <button onClick={this.togglePopup}>{this.state.buttonText}</button>
         {this.state.showPopup ? 
             <div className="popup-wrapper">
-                <PopUpBody
-                  popupText={this.state.popupText}
+                <CreatePopup
+                  userID={this.state.userId}
                   closePopup={this.togglePopup}
-                  closeButtonText = {'Cancel'}
-                  renderInside={this.props.renderInside}
                 />
             </div>
           : null

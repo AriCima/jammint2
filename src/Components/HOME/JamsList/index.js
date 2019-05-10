@@ -12,41 +12,43 @@ export default class JamsList extends Component {
     super(props);
     this.state = {
       userJams: this.props.userJams,
-      jamScreen: '',
+      jamCode: '',
     };
-    // console.log('state del JamsList = ', this.state)
-  };
-  componentDidUpdate(prevProps, prevState){
-    // console.log('CDU launched', this.props.userJams, ' / ', prevProps.userJams);
-    if(this.props.userJams !== prevProps.userJams){
-        this.setState({
-            userJams: this.props.userJams
-        })
-        // console.log('state after CDU = ', this.state)
-    }
 
+    this.updateJamScreenList = this.updateJamScreenList.bind(this);
   };
+
+  componentDidUpdate(prevProps, prevState){
+    if(this.props.userJams !== prevProps.userJams){
+      this.setState({
+        userJams: this.props.userJams
+      })
+    };
+  };
+
   _renderJams() {
     let jams = this.state.userJams;
 
     return jams.map((jam, j) => {
       return (
-        <JamCover updateJamScreenList={this.state.updateJamScreen} name={jam.jamName} desc={jam.jamDescription}/>
+        <div className="myjams" key={j}>
+          <JamCover updateJamScreenList={this.state.updateJamScreen} name={jam.jamName} desc={jam.jamDescription}/>
+        </div>
       )
     });
   }
 
   updateJamScreenList(x){
     this.setState({
-      jamScreen: x
+      jamCode: x
     })
-    this.props.updateJamScreenHome();
+    this.props.updateJamScreenHome(x);
   }
 
   render() {
     // console.log('userJams en el render del LIST', this.state.userJams)
     return (
-    <div className="myjams">
+    <div>
       {this.state.userJams === [] ? <p>loading </p>: this._renderJams()}
     </div>
     )

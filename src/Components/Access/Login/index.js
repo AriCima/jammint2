@@ -53,21 +53,17 @@ class Login extends Component {
         }
 
         if(!error){
-            this.setState({loginError: ''});
+            // this.setState({loginError: ''});
 
             AuthService.login(this.state.email, this.state.password)
-                .then((result)=>{
-                    // console.log('Result de Login', result)
-                   //console.log('Result.user.uid de Login', result.user.uid)
-                   this.state.userId = result.user.uid;
-                   console.log('this.state.userId en el Login = ', this.state.userId);
-                   this.props.propsFn.push(`/home/${this.state.userId}/jam/${this.state.jamId}`) 
-                },(error)=>{
-                    this.setState({loginError: error});
-                }
-            );
+            .then((result)=>{
+                this.setState({userId: result.user.uid});
+
+                this.props.propsFn.push(`/home/${this.state.userId}/jam/${this.state.jamId}`) 
+            },(error)=>{
+                this.setState({loginError: error});
+            });
            
-            
         }
 
         

@@ -9,6 +9,7 @@ import DataService from '../services/DataService';
 import JamsList from './JamsList';
 import Jam from './Jam';
 
+// CSS
 import './index.css'; 
 
 
@@ -18,23 +19,23 @@ export default class Home extends React.Component {
         super(props);
         this.state = { 
             userId      : this.props.userID,
-            userJams    : this.props.userJams,
-            jamId       : this.props.jamID,
+            userJams    : [],
+            jamCode     : this.props.jamCode,
         };
-        this.onjoinJam          = this.onjoinJam.bind(this);
+        this.onJoinJam          = this.onJoinJam.bind(this);
         this.updateJamScreen    = this.updateJamScreen.bind(this);
 
         console.log('state del Home ', this.state)
     };
 
-    componentDidMount(){   // Obtengo todos los Jams del user paera agregarle el nuevo
-        DataService.getUserInfo(this.props.userID)
-        .then(res => {
-            let jams = res.userJams;
-
-            this.setState({
-                userJams : jams,
-            })
+    componentDidMount(){
+    
+        DataService.getUserInfo(this.state.userId)
+        .then(result =>{
+          let userJams = result.userJams;
+          this.setState({
+            userJams: userJams
+          })
         })
     };
 
@@ -44,18 +45,19 @@ export default class Home extends React.Component {
             this.setState({
                 userJams: this.props.userJams
             })
-            // console.log('state after CDU = ', this.state)
-        }
-
+        };
+        if(this.props.jamCode !== prevProps.jamCode){
+            this.setState({
+                jamCode: this.props.jamCode
+            })
+        };
     };
-
     onChangeState(field, value){
         let jamInfo = this.state;
         jamInfo[field] = value;
         this.setState(jamInfo)
     };
-
-    onjoinJam(e){
+    onJoinJam(e){
         e.preventDefault();       
        
         DataService.getJamToJoin(this.state.jamCode)
@@ -97,10 +99,9 @@ export default class Home extends React.Component {
         })
         
     };
-
     updateJamScreen(x){
         this.setState({
-            jamId: x
+            jamCode: x
         })
     };
   
@@ -108,27 +109,23 @@ export default class Home extends React.Component {
 
     return (
 
-      
-
            
-                <div className="home">
-                    <side className="jams-list">
-                        <JamsList 
-                            userID={this.state.userId} 
-                            updateJamScreenHome={this.updateJamScreen} 
-                            userJams={this.state.userJams}
-                        />
-                    </side>
+        <div className="home">
+            <aside className="jams-list">
+                <JamsList 
+                    userID={this.state.userId} 
+                    updateJamScreenHome={this.updateJamScreen} 
+                    userJams={this.state.userJams}
+                />
+            </aside>
 
-                    <div className="jam-screen">
-                        {this.state.jamId === '' ? <p>SELECT YOUR JAM</p> : 
-                            <Jam jamID={this.state.jamId}/> 
-                        }
-                    }
-                    </div>
-                </div>
-            
-           
+            <div className="jam-screen">
+                {this.state.jamId === undefined ? <h1>SELECT YOUR JAM</h1> : 
+                    <Jam jamID={this.props.jamID}/> 
+                }
+            </div>
+        </div>
+        
        
     );
   }

@@ -8,25 +8,25 @@ import * as firebase from 'firebase';
 // COMPONENTS
 import PopUpButton from '../../ACCESSORIES/PopUpBody/PopUpButton';
 import CreateJam from '../../CreateJam';
+import CreateButton from '../../CreatePopup/CreateButton';
 
-// SERVICES
-import DataService from '../../services/DataService';
-
+// CSS
 import './index.css';
 
 export default class HeaderHome extends Component {
-   constructor(props){
+    constructor(props){
         super(props);
 
         this.state = {
             userId: this.props.userID,
-            userJams: this.props.userJams,
             jamId   : this.props.jamID,
+            // showPopup: false,
         }
 
         this.signOut = this.signOut.bind(this);
-        // console.log('user en Header = ', this.state.userId)
-    }
+        this.closeAfterCreateJam = this.closeAfterCreateJam.bind(this);
+
+    };
 
     signOut(){   //Esta función informa a FireBase sobre el logout y FB automáticamente ejecuta el onAuthStateChange del App
         firebase.auth().signOut()
@@ -36,14 +36,17 @@ export default class HeaderHome extends Component {
             .catch(() => {
                 alert("Ups! Seems you'll have to stay longer")// An error happened.
         });
-    }
-
+    };
+    
+    closeAfterCreateJam(){
+        this.setState({
+            showPopup: false,
+        });
+    };
 
     render() {
-
        
         return (
-
             
             <div className="header-HOME">
 
@@ -51,10 +54,11 @@ export default class HeaderHome extends Component {
                 <div className="header-HOME-nav-block">
                     <p>MENU</p>
                 </div>
-
+{/* 
                 <div className="header-HOME-nav-block">
                     <PopUpButton
                         userID={this.state.userId}
+                        showPopup={this.state.showPopup}
                         buttonText={'Create a Jam'}
                         popupText={'Create a Jam is very simple, just give it a Name and Description'}
                         renderInside={
@@ -62,8 +66,17 @@ export default class HeaderHome extends Component {
                                 propsFn={this.props.propsFn} 
                                 userID={this.state.userId}
                                 userJams={this.state.userJams}
+                                closePopup={this.closeAfterCreateJam}
                             />
                         }
+                    />
+                </div> */}
+
+
+                <div className="header-HOME-nav-block">
+                    <CreateButton
+                        userID={this.state.userId}
+                        // showPopup={this.state.showPopup}
                     />
                 </div>
 
