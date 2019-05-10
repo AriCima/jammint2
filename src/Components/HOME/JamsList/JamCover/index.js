@@ -12,10 +12,10 @@ export default class JamCover extends React.Component {
     this.state = {
       jamName: this.props.name,
       jamDescription: this.props.desc,
+      jamCode: this.props.code,
     };
 
     this.onJamClick = this.onJamClick.bind(this);
-
     console.log('props en el cover', this.props)
   }
 
@@ -36,9 +36,8 @@ export default class JamCover extends React.Component {
   // };
 
   onJamClick(){
-
-    console.log('clicked on: ', this.state.jamId);
-    this.props.updateJamScreenList(this.state.jamId);
+    console.log('clicked on: ', this.state.jamCode);
+    this.props.updateJamScreenInList(this.state.jamCode);
   };
 
   render() {

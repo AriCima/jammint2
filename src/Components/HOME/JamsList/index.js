@@ -26,30 +26,39 @@ export default class JamsList extends Component {
     };
   };
 
+  updateJamScreenList(jamCode){
+    console.log('update en el JamsList via props')
+    this.setState({
+      jamCode: jamCode,
+    })
+    this.props.updateJamScreenInHome(jamCode);
+  };
+
   _renderJams() {
     let jams = this.state.userJams;
 
     return jams.map((jam, j) => {
       return (
         <div className="myjams" key={j}>
-          <JamCover updateJamScreenList={this.state.updateJamScreen} name={jam.jamName} desc={jam.jamDescription}/>
+          <JamCover 
+            updateJamScreenInList={this.updateJamScreenList} 
+            name={jam.jamName} 
+            desc={jam.jamDescription}
+            code={jam.jamCode}
+            />
         </div>
       )
     });
-  }
+  };
 
-  updateJamScreenList(x){
-    this.setState({
-      jamCode: x
-    })
-    this.props.updateJamScreenHome(x);
-  }
+
 
   render() {
     // console.log('userJams en el render del LIST', this.state.userJams)
     return (
     <div>
-      {this.state.userJams === [] ? <p>loading </p>: this._renderJams()}
+      {this.state.userJams === [] ? <p>loading </p>: 
+      this._renderJams()}
     </div>
     )
   }

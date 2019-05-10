@@ -29,7 +29,6 @@ export default class Home extends React.Component {
     };
 
     componentDidMount(){
-    
         DataService.getUserInfo(this.state.userId)
         .then(result =>{
           let userJams = result.userJams;
@@ -99,9 +98,10 @@ export default class Home extends React.Component {
         })
         
     };
-    updateJamScreen(x){
+    updateJamScreen(jamCode){
+        console.log('update en el Home, jamCode = ', jamCode)
         this.setState({
-            jamCode: x
+            jamCode: jamCode,
         })
     };
   
@@ -114,7 +114,7 @@ export default class Home extends React.Component {
             <aside className="jams-list">
                 <JamsList 
                     userID={this.state.userId} 
-                    updateJamScreenHome={this.updateJamScreen} 
+                    updateJamScreenInHome={this.updateJamScreen} 
                     userJams={this.state.userJams}
                 />
             </aside>

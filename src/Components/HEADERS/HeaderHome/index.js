@@ -20,11 +20,9 @@ export default class HeaderHome extends Component {
         this.state = {
             userId: this.props.userID,
             jamId   : this.props.jamID,
-            // showPopup: false,
         }
 
         this.signOut = this.signOut.bind(this);
-        this.closeAfterCreateJam = this.closeAfterCreateJam.bind(this);
 
     };
 
@@ -38,12 +36,7 @@ export default class HeaderHome extends Component {
         });
     };
     
-    closeAfterCreateJam(){
-        this.setState({
-            showPopup: false,
-        });
-    };
-
+    
     render() {
        
         return (
@@ -54,29 +47,10 @@ export default class HeaderHome extends Component {
                 <div className="header-HOME-nav-block">
                     <p>MENU</p>
                 </div>
-{/* 
-                <div className="header-HOME-nav-block">
-                    <PopUpButton
-                        userID={this.state.userId}
-                        showPopup={this.state.showPopup}
-                        buttonText={'Create a Jam'}
-                        popupText={'Create a Jam is very simple, just give it a Name and Description'}
-                        renderInside={
-                            <CreateJam 
-                                propsFn={this.props.propsFn} 
-                                userID={this.state.userId}
-                                userJams={this.state.userJams}
-                                closePopup={this.closeAfterCreateJam}
-                            />
-                        }
-                    />
-                </div> */}
-
 
                 <div className="header-HOME-nav-block">
                     <CreateButton
                         userID={this.state.userId}
-                        // showPopup={this.state.showPopup}
                     />
                 </div>
 
