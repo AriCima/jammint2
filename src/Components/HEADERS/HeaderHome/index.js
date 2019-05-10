@@ -64,7 +64,7 @@ export default class HeaderHome extends Component {
             <div className="header-HOME-right">
 
                 <div className="header-HOME-nav-block">
-                    {!this.props.user ? <Link to={`/sign_in`}>Sign In</Link> : <span onClick={this.signOut}><Link to="/login">Sign-out</Link></span>}
+                    {!this.props.userID ? <Link to={`/sign_in`}>Sign In</Link> : <span onClick={this.signOut}><Link to="/login">Sign-out</Link></span>}
                 </div>
 
             </div>

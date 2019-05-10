@@ -16,6 +16,7 @@ export default class Jam extends Component {
     this.state = {
       userId: this.props.userID,
       jamCode   : this.props.jamCode,
+      jamAdmin  : false,
       jamName : '',
 
       showJamInfo: false,
@@ -32,7 +33,21 @@ export default class Jam extends Component {
   componentDidMount(){
     DataService.getJamInfo(this.state.jamCode)
     .then(result =>{     
-      this.setState({ jamCode : result.jamCode });
+        console.log('result en el Jam :', result)
+        let adminId = result.adminId;
+        let jamAdmin = false;
+
+        if(this.state.userId === adminId){
+          console.log('this.state.userId === adminId => ', this.state.userId, ' / ', adminId)
+          this.setState({
+            jamAdmin: true
+          });
+        };
+
+        this.setState({ 
+          jamCode : result.jamCode,
+          admin: jamAdmin,
+        });
      
     }).catch(function (error) {   
       console.log(error);
@@ -51,6 +66,12 @@ export default class Jam extends Component {
     if(this.props.jamCode !== prevProps.jamCode){
       this.setState({
           jamCode: this.props.jamCode
+      })
+    };
+
+    if(this.props.adminId !== prevProps.adminId){
+      this.setState({
+        adminId: this.props.adminId
       })
     };
   };
@@ -98,6 +119,12 @@ export default class Jam extends Component {
           <div className="jam-header-block">
             <button onClick={this.showJammers}>Jammers</button>
           </div>
+
+          {this.state.jamAdmin && 
+            <div className="jam-header-block">
+              <button onClick={this.showJammers}>Settings</button>
+            </div>
+          }
 
         </div>
 

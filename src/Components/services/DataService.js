@@ -97,15 +97,18 @@ export default class DataService {
             
         });
     };
-    static getJamInfo(jamId) {  
+    static getJamInfo(jamCode) {  
 
         return new Promise((resolve, reject) => {
-            console.log('el ID con el que se pide la info de la jam = ', jamId)
-            firebase.firestore().collection('jams').doc(jamId).get()
-
-            .then((result) => {
-                console.log('el result del getJamInfo', result);
-                resolve(result.data());
+            console.log('el ID con el que se pide la info de la jam = ', jamCode)
+            firebase.firestore().collection('jams').where('jamCode', '==', jamCode)
+            .get()
+            .then(function(querySnapshot) {
+                querySnapshot.forEach(function(doc) {
+                    // doc.data() is never undefined for query doc snapshots
+                    console.log(doc.id, " => ", doc.data());
+                    resolve(doc.data());
+                });
             })
 
             .catch((error) => {
@@ -173,7 +176,6 @@ export default class DataService {
             
         });
     };
-
     static saveNewMessage (messageId, messageToSave){
         return new Promise((resolve, reject) => {
 
@@ -192,7 +194,7 @@ export default class DataService {
             })
             
         });
-    }
+    };
     static getBoardMessages(jamId){
 
         return new Promise((resolve, reject) => {
@@ -208,7 +210,7 @@ export default class DataService {
                 })
                 .catch(error => reject(error))
         })
-    }
+    };
 
     // JAMMERS
 

@@ -51,6 +51,7 @@ export default class Home extends React.Component {
                 jamCode: this.props.jamCode
             })
         };
+
     };
     onChangeState(field, value){
         let jamInfo = this.state;
