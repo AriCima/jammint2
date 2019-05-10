@@ -45,6 +45,7 @@ export default class Home extends React.Component {
                 userJams: this.props.userJams
             })
         };
+
         if(this.props.jamCode !== prevProps.jamCode){
             this.setState({
                 jamCode: this.props.jamCode
@@ -98,8 +99,9 @@ export default class Home extends React.Component {
         })
         
     };
+
     updateJamScreen(jamCode){
-        console.log('update en el Home, jamCode = ', jamCode)
+        console.log('update en el Home, jamCode = ', jamCode);
         this.setState({
             jamCode: jamCode,
         })
@@ -120,8 +122,11 @@ export default class Home extends React.Component {
             </aside>
 
             <div className="jam-screen">
-                {this.state.jamId === undefined ? <h1>SELECT YOUR JAM</h1> : 
-                    <Jam jamID={this.props.jamID}/> 
+                {this.state.jamCode === undefined ? <h1>SELECT YOUR JAM</h1> : 
+                    <Jam 
+                        jamCode={this.state.jamCode}
+                        userID={this.state.userId}
+                    /> 
                 }
             </div>
         </div>

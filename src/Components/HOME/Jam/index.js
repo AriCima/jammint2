@@ -14,8 +14,10 @@ export default class Jam extends Component {
   constructor(props){
     super(props);
     this.state = {
-      jamId   : this.props.jamID,
+      userId: this.props.userID,
+      jamCode   : this.props.jamCode,
       jamName : '',
+
       showJamInfo: false,
       showBoard: true,
       showJammers: false,
@@ -28,7 +30,7 @@ export default class Jam extends Component {
 
   
   componentDidMount(){
-    DataService.getJamInfo(this.state.jamId)
+    DataService.getJamInfo(this.state.jamCode)
     .then(result =>{     
       this.setState({ jamName : result.jamName });
       
