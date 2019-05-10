@@ -10,7 +10,7 @@ export default class JamInfo extends Component {
 
     this.state = {
       jamCode         : this.props.jamCode,
-      userIsAdmin        : this.props.admin,
+      userIsAdmin     : this.props.admin,
       messagesInBoard : [],
     }
 
@@ -46,6 +46,7 @@ export default class JamInfo extends Component {
           jamCode: this.props.jamCode
       })
     };
+
     if(this.props.admin !== prevProps.admin){
       this.setState({
         userIsAdmin: this.props.admin
@@ -70,7 +71,7 @@ export default class JamInfo extends Component {
 
         <div className="jam-Info-content" id="jam-content">
          
-          <p>THIS IS JAM {this.state.jamCode}</p>
+          <p>THIS IS JAM: {this.state.jamCode}</p>
           <p>Am I the Jam Admin  {text}</p>
 
         </div>

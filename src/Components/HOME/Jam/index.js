@@ -23,13 +23,12 @@ export default class Jam extends Component {
       showJamInfo: false,
       showBoard: true,
       showJammers: false,
-    }
+    };
 
     this.showBoard = this.showBoard.bind(this);
     this.showJammers = this.showJammers.bind(this);
     this.showJamInfo = this.showJamInfo.bind(this);
-  }
-
+  };
   
   componentDidMount(){
     console.log('CDM launched');
@@ -60,8 +59,8 @@ export default class Jam extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    // Typical usage (don't forget to compare props):
-    if (this.state.showBoard !== prevState.showBoard) {
+
+    if(this.state.showBoard !== prevState.showBoard) {
       this.setState({
         showBoard: !prevState.showBoard,
         showJammers: !prevState.showJammers,
@@ -76,35 +75,25 @@ export default class Jam extends Component {
         let adminId = result.adminId;
   
         if(this.state.userId === adminId){
-          // console.log('this.state.userId === adminId => ', this.state.userId, ' / ', adminId)
+
           this.setState({
             adminId : adminId,
-            userIsAdmin: true
+            userIsAdmin: true,
+            jamCode: this.props.jamCode,
           });
-          // console.log('actualización jamAdmin', this.state.userIsAdmin)
+
         }else{
           this.setState({
             adminId : adminId,
             userIsAdmin: false,
+            jamCode: this.props.jamCode,
           });
         };
        
       }).catch(function (error) {   
         console.log(error);
       });
-    };
 
-    if(this.props.adminId !== prevProps.adminId){
-      if(this.props.adminId === this.state.userId){
-        this.setState({
-          adminId: this.props.adminId,
-          userIsAdmin: true,
-        })
-      }else{
-        this.setState({
-          adminId: this.props.adminId
-        })
-      }
     };
     
   };

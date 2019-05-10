@@ -53,6 +53,7 @@ export default class Home extends React.Component {
         };
 
     };
+    
     onChangeState(field, value){
         let jamInfo = this.state;
         jamInfo[field] = value;
