@@ -32,6 +32,7 @@ export default class Jam extends Component {
 
   
   componentDidMount(){
+    console.log('CDM launched');
     DataService.getJamInfo(this.state.jamCode)
 
     .then(result =>{     
@@ -50,7 +51,7 @@ export default class Jam extends Component {
 
       this.setState({ 
         jamCode : result.jamCode,
-        admin: jamAdmin,
+        adminId   : jamAdmin,
       });
      
     }).catch(function (error) {   
@@ -68,16 +69,44 @@ export default class Jam extends Component {
     };
 
     if(this.props.jamCode !== prevProps.jamCode){
-      this.setState({
-          jamCode: this.props.jamCode
-      })
+     
+      DataService.getJamInfo(this.props.jamCode)
+      .then(result => {     
+        console.log('result en el Jam :', result)
+        let adminId = result.adminId;
+  
+        if(this.state.userId === adminId){
+          // console.log('this.state.userId === adminId => ', this.state.userId, ' / ', adminId)
+          this.setState({
+            adminId : adminId,
+            userIsAdmin: true
+          });
+          // console.log('actualización jamAdmin', this.state.userIsAdmin)
+        }else{
+          this.setState({
+            adminId : adminId,
+            userIsAdmin: false,
+          });
+        };
+       
+      }).catch(function (error) {   
+        console.log(error);
+      });
     };
 
     if(this.props.adminId !== prevProps.adminId){
-      this.setState({
-        adminId: this.props.adminId
-      })
+      if(this.props.adminId === this.state.userId){
+        this.setState({
+          adminId: this.props.adminId,
+          userIsAdmin: true,
+        })
+      }else{
+        this.setState({
+          adminId: this.props.adminId
+        })
+      }
     };
+    
   };
 
   showJamInfo() {
