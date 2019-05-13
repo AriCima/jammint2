@@ -28,9 +28,12 @@ export default class Home extends React.Component {
         console.log('state del Home ', this.state)
     };
 
+    unsibscribe = null;
+
     componentDidMount(){
-        DataService.getUserInfo(this.state.userId)
+        DataService.getUserInfoBis(this.state.userId)
         .then(result =>{
+            console.log('result con el snapshot =', result)
           let userJams = result.userJams;
           this.setState({
             userJams: userJams
@@ -53,7 +56,7 @@ export default class Home extends React.Component {
         };
 
     };
-    
+
     onChangeState(field, value){
         let jamInfo = this.state;
         jamInfo[field] = value;

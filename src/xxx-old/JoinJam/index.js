@@ -1,7 +1,7 @@
 import React from 'react';
 
 // SERVICE API
-import DataService from '../services/DataService';
+import DataService from '../../Components/services/DataService';
 
 import './index.css'; 
 
@@ -11,22 +11,22 @@ export default class JoinJam extends React.Component {
     constructor(props){
         super(props);
         this.state = { 
-            userID      : this.props.userID,
+            userId      : this.props.userID,
             userJams    : [],
             jamCode     : '',
         };
         this.onjoinJam             = this.onjoinJam.bind(this);
     }
 
-    // componentDidMount(){   // Obtengo todos los Jams del user paera agregarle el nuevo
-    //     DataService.getUserInfo(this.state.userID)
-    //     .then(res => {
-    //         let jams = res.userJams;
-    //         this.setState({
-    //             userJams : jams,
-    //         })
-    //     })
-    // }
+    componentDidMount(){   // Obtengo todos los Jams del user paera agregarle el nuevo
+        DataService.getUserInfo(this.state.userID)
+        .then(res => {
+            let jams = res.userJams;
+            this.setState({
+                userJams : jams,
+            })
+        })
+    }
 
     onChangeState(field, value){
         let jamInfo = this.state;
@@ -67,7 +67,8 @@ export default class JoinJam extends React.Component {
                     userJams : transJam,
                 })
             
-                DataService.addJamToUser(this.state.userID, this.state.userJams) 
+                console.log('add Jam  llamada con userId / Jams :',this.state.userId, ' / ', this.state.userJams )
+                DataService.addJamToUser(this.state.userId, this.state.userJams) 
                 console.log('el result.jamId = ', result.jamId) 
                 this.props.joinJam(result.jamId);
             }

@@ -59,7 +59,7 @@ class Login extends Component {
             .then((result)=>{
                 this.setState({userId: result.user.uid});
 
-                this.props.propsFn.push(`/home/${this.state.userId}/jam/${this.state.jamId}`) 
+                this.props.propsFn.push(`/home/${this.state.userId}`) 
             },(error)=>{
                 this.setState({loginError: error});
             });

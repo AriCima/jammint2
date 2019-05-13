@@ -21,7 +21,6 @@ export default class JoinPopup extends Component {
     };
 
     this.onJoinJam = this.onJoinJam.bind(this);
-    console.log('state del create = ', this.state);
   }
 
   componentDidMount(){

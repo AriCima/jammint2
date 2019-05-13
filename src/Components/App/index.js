@@ -64,9 +64,9 @@ class App extends Component {
           let userJams = result.userJams;
           
           this.setState({
-            user : user,
+            user : result,
           })
-          console.log('APP state ', this.state)
+          console.log('USER en el APP state ', this.state)
         })
 
       } else {
