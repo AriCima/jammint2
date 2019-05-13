@@ -15,6 +15,7 @@ export default class CreatePopup extends Component {
       showPopup       : true,
 
       userId          : this.props.userID,
+      userName        : '',
       userJams        : this.props.userJams,
       jamId           : "",
       jamName         : '',
@@ -29,9 +30,21 @@ export default class CreatePopup extends Component {
   componentDidMount(){
     
     DataService.getUserInfo(this.state.userId)
+
     .then(result =>{
+      console.log('result en el get user info : ', result)
       let userJams = result.userJams;
+      if (userJams === undefined){
+        userJams.push({
+          jamName: 'sampleJam',
+          jamCode: '0000',
+          jamDescription: 'This is a sample Jam',
+          adminId: this.state.userId,
+          createdAt: new Date(),
+        })
+      };
       this.setState({
+        userName: result.email,
         userJams: userJams
       })
     })
@@ -58,18 +71,20 @@ export default class CreatePopup extends Component {
       jamName: this.state.jamName,
       jamDescription: this.state.jamDescription,
       createdAt: createdAt,
+      jammers: [{name: this.state.userName}]
     };
 
     transJams.push(newJam)
 
+    console.log('create jam called with', newJam)
     DataService.createJam(newJam)
     .then((result)=>{
 
       let userID = this.state.userId;
 
+      console.log('updateJAm called with: ', userID, '/ ', transJams)
       DataService.updateJamsArrayInUser(userID, transJams);
       this.props.closePopup();
-
 
       // this.props.propsFn.push(`/home/${userId}`)
 

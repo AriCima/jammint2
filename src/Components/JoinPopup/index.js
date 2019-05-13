@@ -15,6 +15,7 @@ export default class JoinPopup extends Component {
       showPopup : true,
 
       userId    : this.props.userID,
+      userName  : '',
       userJams  : this.props.userJams,
       
       jamToJoin : {},
@@ -28,6 +29,7 @@ export default class JoinPopup extends Component {
     .then(result =>{
       let userJams = result.userJams;
       this.setState({
+        userName: result.email,
         userJams: userJams
       })
     })
@@ -48,23 +50,35 @@ export default class JoinPopup extends Component {
 
     DataService.getJamInfo(this.state.jamCode)
     .then(result =>{     
+      let jam = result.data;
+      let jamId = result.id;
 
-      console.log('result en el Join ', result)
+      let jamCode = jam.jamCode;
+
+      console.log('result.data = ', result.data)
       let jamToJoin = {};
-      jamToJoin.adminId = result.adminId;
-      jamToJoin.jamCode = result.jamCode;
-      jamToJoin.jamName = result.jamName;
-      jamToJoin.jamDescription = result.jamDescription;
-      jamToJoin.createdAt = result.createdAt;
+      jamToJoin.adminId = jam.adminId;
+      jamToJoin.jamCode = jamCode;
+      jamToJoin.jamName = jam.jamName;
+      jamToJoin.jamDescription = jam.jamDescription;
+      jamToJoin.createdAt = jam.createdAt;
+      jamToJoin.jammers = jam.jammers;
+
+      console.log('jamToJoin.jammers = ', jamToJoin.jammers)
+      jamToJoin.jammers.push({name: this.state.userName})
 
       this.setState({
         jamToJoin : jamToJoin,
       })
 
-      transJams.push(this.state.jamToJoin)
+
 
       console.log('this.state.userId, transJams', this.state.userId, ' / ', transJams);
 
+      let transJammers = jamToJoin.jammers
+      DataService.updateJammersInJam(jamId, transJammers);
+
+      transJams.push(this.state.jamToJoin)
       DataService.updateJamsArrayInUser(this.state.userId, transJams);
       this.props.closePopup();
 

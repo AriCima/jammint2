@@ -123,16 +123,14 @@ export default class DataService {
             .then(function(querySnapshot) {
                 querySnapshot.forEach(function(doc) {
                     // doc.data() is never undefined for query doc snapshots
-                    console.log(doc.id, " => ", doc.data());
-                    resolve(doc.data());
+                    resolve({id: doc.id, data: doc.data()});
                 });
             })
 
             .catch((error) => {
                 var errorCode = error.code;
-                console.log('Error al cargar la JamInfo: ', errorCode);
                 var errorMessage = error.message;
-                
+                console.log('Error al cargar la JamInfo: ', errorCode, errorMessage);
             })
             
         });
@@ -151,6 +149,25 @@ export default class DataService {
             .catch((error) => {
                 var errorCode = error.code;
                 console.log('ERROR Jam NOT added to user: ', error);                
+            })
+            
+        });
+    };
+
+    static updateJammersInJam(jamId, jammers){
+        return new Promise((resolve, reject) => {
+            // console.log('inputs en el dataservice ', jamCode, jammers);
+
+            firebase.firestore().collection(`jams`).doc(jamId).update({
+                jammers : jammers})
+
+            .then((result) => {
+                console.log("Jammers succesfully UPDATED")
+                resolve(result);
+            })
+            .catch((error) => {
+                var errorCode = error.code;
+                console.log('ERROR Jam NOT added to user: ', errorCode);                
             })
             
         });
