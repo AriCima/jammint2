@@ -20,6 +20,7 @@ export default class Home extends React.Component {
         this.state = { 
             userId      : this.props.userID,
             userJams    : [],
+            jamId       : '',
             jamCode     : this.props.jamCode,
         };
         this.onJoinJam          = this.onJoinJam.bind(this);
@@ -31,6 +32,7 @@ export default class Home extends React.Component {
     unsibscribe = null;
 
     componentDidMount(){
+        
         DataService.getUserInfoBis(this.state.userId)
         .then(result =>{
             console.log('result con el snapshot =', result)
@@ -50,8 +52,23 @@ export default class Home extends React.Component {
         };
 
         if(this.props.jamCode !== prevProps.jamCode){
+
             this.setState({
-                jamCode: this.props.jamCode
+                jamCode: this.props.jamCode,
+            })
+        };
+
+        if(this.props.jamId !== prevProps.jamId){
+            let jamId = null;
+            DataService.getJamInfo(this.props.jamCode)
+            .then(result => {
+                console.log('result del jamCode en el Home', result)
+                jamId = result.id;
+            });
+
+            this.setState({
+
+                jamId: jamId,
             })
         };
 
@@ -105,10 +122,11 @@ export default class Home extends React.Component {
         
     };
 
-    updateJamScreen(jamCode){
+    updateJamScreen(jamCode, jamId){
         console.log('update en el Home, jamCode = ', jamCode);
         this.setState({
             jamCode: jamCode,
+            jamId: jamId,
         })
     };
   
@@ -127,9 +145,10 @@ export default class Home extends React.Component {
             </aside>
 
             <div className="jam-screen">
-                {this.state.jamCode === undefined ? <h1>SELECT YOUR JAM</h1> : 
+                {this.state.jamId === undefined ? <h1>SELECT YOUR JAM</h1> : 
                     <Jam 
                         jamCode={this.state.jamCode}
+                        jamId= {this.state.jamId}
                         userID={this.state.userId}
                     /> 
                 }

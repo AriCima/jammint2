@@ -10,13 +10,14 @@ export default class JamCover extends React.Component {
       jamName: this.props.name,
       jamDescription: this.props.desc,
       jamCode: this.props.code,
+      jamId: this.props.jamId
     };
 
     this.onJamClick = this.onJamClick.bind(this);
   }
 
   onJamClick(){
-    this.props.updateJamScreenInList(this.state.jamCode);
+    this.props.updateJamScreenInList(this.state.jamCode, this.state.jamId);
   };
 
   render() {

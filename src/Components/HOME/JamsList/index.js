@@ -13,6 +13,7 @@ export default class JamsList extends Component {
     this.state = {
       userJams: this.props.userJams,
       jamCode: '',
+      jamId: '',
     };
 
     this.updateJamScreenList = this.updateJamScreenList.bind(this);
@@ -26,12 +27,13 @@ export default class JamsList extends Component {
     };
   };
 
-  updateJamScreenList(jamCode){
+  updateJamScreenList(jamCode, jamId){
     console.log('update en el JamsList via props')
+
     this.setState({
       jamCode: jamCode,
     })
-    this.props.updateJamScreenInHome(jamCode);
+    this.props.updateJamScreenInHome(jamCode, jamId);
   };
 
   _renderJams() {
@@ -45,6 +47,7 @@ export default class JamsList extends Component {
             name={jam.jamName} 
             desc={jam.jamDescription}
             code={jam.jamCode}
+            jamId={jam.jamId}
             />
         </div>
       )

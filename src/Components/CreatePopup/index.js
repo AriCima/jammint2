@@ -65,6 +65,7 @@ export default class CreatePopup extends Component {
     transJams = [...this.state.userJams];
     let createdAt = new Date();
     let jamCode = Calculations.generateCode();
+    
     let newJam = {
       adminId: userID,
       jamCode: jamCode,
@@ -74,15 +75,20 @@ export default class CreatePopup extends Component {
       jammers: [{name: this.state.userName}]
     };
 
-    transJams.push(newJam)
 
-    console.log('create jam called with', newJam)
-    DataService.createJam(newJam)
+
+    DataService.createJamBeta(newJam)
     .then((result)=>{
-
+      // console.log('el result del create Jam = ', result)
+      let jamId = result.id;
       let userID = this.state.userId;
 
+      newJam.jamId = jamId;
+      transJams.push(newJam)
+
+ 
       console.log('updateJAm called with: ', userID, '/ ', transJams)
+
       DataService.updateJamsArrayInUser(userID, transJams);
       this.props.closePopup();
 

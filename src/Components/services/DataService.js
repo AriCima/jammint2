@@ -67,7 +67,6 @@ export default class DataService {
         return new Promise((resolve, reject) => {
 
             firebase.firestore().collection('jams').add(jamInfo)
-
             .then((result) => {
                 
                 console.log(`${result.id} Jam succesfully created !`)
@@ -79,6 +78,28 @@ export default class DataService {
                 console.log('Jam could not be created: ', errorCode);
                 var errorMessage = error.message;
                 
+            })
+            
+        });
+    };
+    static createJamBeta(jamInfo) {  
+
+        console.log('creteJam launched en Dataservice')
+        return new Promise((resolve, reject) => {
+
+            firebase.firestore().collection('jams').add(jamInfo)
+
+            .then((doc) => {
+               
+                resolve({id: doc.id});
+                
+            })
+
+            .catch((error) => {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log('Jam could not be created: ', errorCode, errorMessage);
+
             })
             
         });
