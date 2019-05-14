@@ -98,12 +98,12 @@ export default class Jam extends Component {
 
   componentDidUpdate(prevProps, prevState) {
 
-    if(this.state.showBoard !== prevState.showBoard) {
-      this.setState({
-        showBoard: !prevState.showBoard,
-        showJammers: !prevState.showJammers,
-      });
-    };
+    // if(this.state.showBoard !== prevState.showBoard) {
+    //   this.setState({
+    //     showBoard: !prevState.showBoard,
+    //     showJammers: !prevState.showJammers,
+    //   });
+    // };
 
     // if(this.props.jamCode !== prevProps.jamCode){
      
@@ -152,7 +152,9 @@ export default class Jam extends Component {
             userIsAdmin: true,
             jamCode: this.props.jamId,
             jammers: result.jammers,
-            
+            showBoard   : true,
+            showJamInfo : false,
+            showJammers : false
           });
 
         }else{
@@ -161,6 +163,9 @@ export default class Jam extends Component {
             userIsAdmin: false,
             jamCode: this.props.jamId,
             jammers: result.jammers,
+            showBoard   : true,
+            showJamInfo : false,
+            showJammers : false,
           });
         };
        
