@@ -52,6 +52,7 @@ export default class JoinPopup extends Component {
     .then(result =>{     
       let jam = result.data;
       let jamId = result.id;
+      let joinedAt = new Date();
 
       let jamCode = jam.jamCode;
 
@@ -63,6 +64,7 @@ export default class JoinPopup extends Component {
       jamToJoin.jamId = jamId;
       jamToJoin.jamDescription = jam.jamDescription;
       jamToJoin.createdAt = jam.createdAt;
+      jamToJoin.joineddAt = joinedAt;
       jamToJoin.jammers = jam.jammers;
 
       console.log('jamToJoin.jammers = ', jamToJoin.jammers)

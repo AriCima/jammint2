@@ -16,7 +16,7 @@ export default class Jam extends Component {
     this.state = {
       userId      : this.props.userID,
 
-      jamCode     : this.props.jamCode,
+      // jamCode     : this.props.jamCode,
       jamId       : this.props.jamId,
       adminId     : '',
       jamName     : '',
@@ -48,7 +48,7 @@ export default class Jam extends Component {
           this.setState({
             adminId : adminId,
             userIsAdmin: true,
-            jamCode: this.props.jamId,
+            jamId: this.props.jamId,
             jammers: result.jammers,
             showBoard   : true,
             showJamInfo : false,
@@ -59,7 +59,7 @@ export default class Jam extends Component {
           this.setState({
             adminId : adminId,
             userIsAdmin: false,
-            jamCode: this.props.jamId,
+            jamId: this.props.jamId,
             jammers: result.jammers,
             showBoard   : true,
             showJamInfo : false,
@@ -131,21 +131,20 @@ export default class Jam extends Component {
           {this.state.showJamInfo &&
             <JamInfo 
               user={this.props.user} 
-              jamCode={this.state.jamCode}
+              jamId={this.state.jamId}
               admin={this.state.userIsAdmin}
             />
           }
           {this.state.showBoard &&
             <Board 
               user={this.props.user} 
-              jamCode={this.state.jamCode} 
               jamId={this.state.jamId}
             />
           }
           {this.state.showJammers &&
             <Jammers 
               user={this.props.user} 
-              jamCode={this.state.jamCode}
+              jamId={this.state.jamId}
               jammers={this.state.jammers}
             /> 
           }

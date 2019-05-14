@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import DataService from '../../../services/DataService';
-
 import './index.css';
 
 export default class Board extends Component {
@@ -10,58 +8,25 @@ export default class Board extends Component {
 
     this.state = {
       jamId           : this.props.jamID,
-      messagesInBoard : [],
-      jammers         : [],
-    }
+      userId: this.props.userId,
+    };
+  };
 
-    this.sendNewMessage = this.sendNewMessage.bind(this);
-  }
+  componentDidUpdate(prevProps, prevState){
 
-  sendNewMessage(e){
-    e.preventDefault();
+    if(this.props.jamId !== prevProps.jamId){
+      this.setState({
+        jamId: this.props.jamId
+      });
+    };
 
-    console.log('SendNewMessage() en ejecución');
+    if(this.props.admin !== prevProps.admin){
+      this.setState({
+        userIsAdmin: this.props.admin
+      });
+    };
+  };
 
-    let date = new Date;
-    let messageDate = date.getTime();
-    let user = this.props.user.id
-    let messageId= user.concat(messageDate.toString());
-
-    let messageToSave = {
-      userId      : user,
-      userName    : this.props.user.name,
-      text        : this.state.messageText,
-      date        : messageDate, 
-      messageId   : messageId,
-      jamId       : this.state.jamID,
-    }
-
-    DataService.saveNewMessage(messageId, messageToSave)
-
-  }
-
-  // componentDidMount(){
-  //   console.log("Se ejecuta ComponenDidMount");
-  //   DataService.getBoardMessages(this.props.jamID).then(
-  //     (boardMessagesResult) => {
-  //       console.log("Mensajes del Board recibidos desde Firebase:", boardMessagesResult)
-
-  //       // hacer setState del array result
-  //       this.setState({messagesInBoard: boardMessagesResult})
-
-  //     }
-  //   )  
-
-  //   DataService.getJammers(this.props.jamId).then(
-  //     (jammers) => {
-  //       console.log("Jammers recibidos desde Firebase:", jammers)
-
-  //       // hacer setState del array result
-  //       this.setState({jammers: jammers})
-
-  //     }
-  //   )  
-  // }
 
   render() {
 
@@ -71,7 +36,7 @@ export default class Board extends Component {
 
         <div className="board-content" id="board-content">
          
-          <p>THIS IS THE BOARD</p>
+          <p>THIS IS THE BOARD : {this.state.jamId} </p>
 
         </div>
 

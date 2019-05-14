@@ -13,8 +13,6 @@ import Jam from './Jam';
 // CSS
 import './index.css'; 
 
-
-
 export default class Home extends React.Component {
     constructor(props){
         super(props);
@@ -25,10 +23,9 @@ export default class Home extends React.Component {
             // jamCode     : this.props.jamCode,
         };
 
-        this.onJoinJam          = this.onJoinJam.bind(this);
+        // this.onJoinJam          = this.onJoinJam.bind(this);
         this.updateJamScreen    = this.updateJamScreen.bind(this);
 
-        // console.log('state del Home ', this.state)
     };
 
     componentDidMount(){
@@ -64,14 +61,14 @@ export default class Home extends React.Component {
 
         if(this.props.jamId !== prevProps.jamId){
             console.log('new jamId en Home :', this.props.jamId)
-           DataService.getUserInfoById(this.state.userId)
+           DataService.getJamInfoById(this.props.jamId)
             .then(result =>{
                 // console.log('result con el snapshot =', result)
-                let userJams = result.userJams;
+                // let userJams = result.userJams;
                 let jamId = result.id;
                 
                 this.setState({
-                    userJams: userJams,
+                    // userJams: userJams,
                     jamId: jamId,
                 });
             });
@@ -83,48 +80,6 @@ export default class Home extends React.Component {
         let jamInfo = this.state;
         jamInfo[field] = value;
         this.setState(jamInfo)
-    };
-    onJoinJam(e){
-        e.preventDefault();       
-       
-        DataService.getJamToJoin(this.state.jamCode)
-        .then((result)=>{
-           
-            let joinJam = {
-                jamId       : result.jamId,
-                jamName     : result.jamName,
-                admin       : false,
-                moderator   : false,
-                jammer      : true,
-            }
-            let transJam = this.state.userJams;
-            let alreadyJammed = false;
-
-            for (let i = 0; i < transJam.length; i++){
-                if (transJam[i].jamId == joinJam.jamId){
-                    alreadyJammed = true;
-                }
-            }
-            
-            if (alreadyJammed){
-                alert(`you are already jammed in ${joinJam.jamName}`)
-                return
-            }else{
-                transJam.push(joinJam);
-                this.setState({
-                    userJams : transJam,
-                })
-            
-                DataService.addJamToUser(this.state.userID, this.state.userJams) 
-                // console.log('el result.jamId = ', result.jamId) 
-                this.props.joinJam(result.jamId);
-            }
-          
-        })
-        .catch(function (error) {    
-            console.log(error);
-        })
-        
     };
 
     updateJamScreen(jamCode, jamId){

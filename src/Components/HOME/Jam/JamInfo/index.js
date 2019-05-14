@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import DataService from '../../../services/DataService';
-
 import './index.css';
 
 export default class JamInfo extends Component {
@@ -9,41 +7,19 @@ export default class JamInfo extends Component {
     super(props);
 
     this.state = {
-      jamCode         : this.props.jamCode,
+      // jamCode         : this.props.jamCode,
+      jamId:          this.props.jamId,
       userIsAdmin     : this.props.admin,
       messagesInBoard : [],
-    }
+    };
 
-    this.sendNewMessage = this.sendNewMessage.bind(this);
-  }
+  };
 
-  sendNewMessage(e){
-    e.preventDefault();
-
-    console.log('SendNewMessage() en ejecución');
-
-    let date = new Date;
-    let messageDate = date.getTime();
-    let user = this.props.user.id
-    let messageId= user.concat(messageDate.toString());
-
-    let messageToSave = {
-      userId      : user,
-      userName    : this.props.user.name,
-      text        : this.state.messageText,
-      date        : messageDate, 
-      messageId   : messageId,
-      jamId       : this.state.jamID,
-    }
-
-    DataService.saveNewMessage(messageId, messageToSave)
-
-  }
 
   componentDidUpdate(prevProps, prevState){
-    if(this.props.jamCode !== prevProps.jamCode){
+    if(this.props.jamId !== prevProps.jamId){
       this.setState({
-          jamCode: this.props.jamCode
+          jamId: this.props.jamId
       })
     };
 
@@ -71,8 +47,8 @@ export default class JamInfo extends Component {
 
         <div className="jam-Info-content" id="jam-content">
          
-          <p>THIS IS JAM: {this.state.jamCode}</p>
-          <p>Am I the Jam Admin  {text}</p>
+          <p>THIS IS JAM: {this.state.jamId}</p>
+          <p>Am I the Jam Admin : {text}</p>
 
         </div>
 

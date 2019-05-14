@@ -1,31 +1,17 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-
-import DataService from "../../../services/DataService";
 
 import "./index.css";
 
-export default class Jammers extends React.Component {
+export default class Jammers extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      jamCode: this.props.jamCode,
       jammers: this.props.jammers,
       jamId: this.props.jamId,
     };
     console.log('props.jammers ', this.props.jammers);
   };
-
-  // componentDidMount(){
-  //   DataService.getJammers(this.props.jamId).then(
-  //       (jamsData)=>{
-
-  //       this.setState({ jammers: jamsData})
-
-  //       }
-  //   )
-  // }
 
   componentDidUpdate(prevProps, prevState){
     if (prevProps.jammers !== this.props.jammers){
