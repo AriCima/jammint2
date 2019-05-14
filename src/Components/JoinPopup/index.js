@@ -48,7 +48,7 @@ export default class JoinPopup extends Component {
     transJams = [...this.state.userJams];
     
 
-    DataService.getJamInfo(this.state.jamCode)
+    DataService.getJamInfoByCode(this.state.jamCode)
     .then(result =>{     
       let jam = result.data;
       let jamId = result.id;
@@ -60,6 +60,7 @@ export default class JoinPopup extends Component {
       jamToJoin.adminId = jam.adminId;
       jamToJoin.jamCode = jamCode;
       jamToJoin.jamName = jam.jamName;
+      jamToJoin.jamId = jamId;
       jamToJoin.jamDescription = jam.jamDescription;
       jamToJoin.createdAt = jam.createdAt;
       jamToJoin.jammers = jam.jammers;

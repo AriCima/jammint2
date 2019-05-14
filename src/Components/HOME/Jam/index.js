@@ -15,10 +15,15 @@ export default class Jam extends Component {
     super(props);
     this.state = {
       userId      : this.props.userID,
+
       jamCode     : this.props.jamCode,
+      jamId       : this.props.jamId,
       adminId     : '',
-      userIsAdmin : false,
       jamName     : '',
+      jammers     : [],
+
+      userIsAdmin : false,
+      
 
       showBoard   : true,
       showJamInfo : false,
@@ -31,12 +36,41 @@ export default class Jam extends Component {
   };
   
   componentDidMount(){
-    console.log('CDM launched');
-    DataService.getJamInfo(this.state.jamCode)
+    // console.log('CDM launched');
+    // DataService.getJamInfo(this.state.jamCode)
+
+    // .then(result =>{     
+    //   console.log('result en el Jam :', result)
+    //   let adminId = result.data.adminId;
+    //   let jamAdmin = false;
+
+    //   console.log('this.state.userId / adminId  ', this.state.userId, ' / ', adminId)
+
+    //   if(this.state.userId === adminId){
+    //     console.log('this.state.userId === adminId => ', this.state.userId, ' / ', adminId)
+    //     this.setState({
+    //       adminId : adminId,
+    //       userIsAdmin: true,
+    //       Jammers   : result.data.jammers
+    //     });
+    //     console.log('actualización jamAdmin', this.state.userIsAdmin)
+    //   };
+
+    //   this.setState({ 
+    //     jamCode   : result.jamCode,
+    //     adminId   : jamAdmin,
+    //     Jammers   : result.data.jammers
+    //   });
+     
+    // }).catch(function (error) {   
+    //   console.log(error);
+    // });
+
+    DataService.getJamInfoBis(this.state.jamId)
 
     .then(result =>{     
       console.log('result en el Jam :', result)
-      let adminId = result.data.adminId;
+      let adminId = result.adminId;
       let jamAdmin = false;
 
       console.log('this.state.userId / adminId  ', this.state.userId, ' / ', adminId)
@@ -45,14 +79,16 @@ export default class Jam extends Component {
         console.log('this.state.userId === adminId => ', this.state.userId, ' / ', adminId)
         this.setState({
           adminId : adminId,
-          userIsAdmin: true
+          userIsAdmin: true,
+          Jammers   : result.jammers
         });
         console.log('actualización jamAdmin', this.state.userIsAdmin)
       };
 
       this.setState({ 
-        jamCode : result.jamCode,
+        jamCode   : result.jamCode,
         adminId   : jamAdmin,
+        Jammers   : result.jammers
       });
      
     }).catch(function (error) {   
@@ -69,26 +105,62 @@ export default class Jam extends Component {
       });
     };
 
-    if(this.props.jamCode !== prevProps.jamCode){
+    // if(this.props.jamCode !== prevProps.jamCode){
      
-      DataService.getJamInfo(this.props.jamCode)
+    //   DataService.getJamInfo(this.props.jamCode)
+    //   .then(result => {     
+    //     console.log('result en el Jam :', result)
+    //     let adminId = result.data.adminId;
+  
+    //     if(this.state.userId === adminId){
+
+    //       this.setState({
+    //         adminId : adminId,
+    //         userIsAdmin: true,
+    //         jamCode: this.props.jamCode,
+    //         jammers: result.data.jammers,
+    //       });
+
+    //     }else{
+    //       this.setState({
+    //         adminId : adminId,
+    //         userIsAdmin: false,
+    //         jamCode: this.props.jamCode,
+    //         jammers: result.data.jammers,
+    //       });
+    //     };
+       
+    //   }).catch(function (error) {   
+    //     console.log(error);
+    //   });
+
+    // };
+
+    console.log('this.props.jamId !== prevProps.jamId', this.props.jamId, ' / ', prevProps.jamId)
+    if(this.props.jamId !== prevProps.jamId){
+     
+      DataService.getJamInfoBis(this.props.jamId)
       .then(result => {     
         console.log('result en el Jam :', result)
-        let adminId = result.data.adminId;
+        
+        let adminId = result.adminId;
   
         if(this.state.userId === adminId){
 
           this.setState({
             adminId : adminId,
             userIsAdmin: true,
-            jamCode: this.props.jamCode,
+            jamCode: this.props.jamId,
+            jammers: result.jammers,
+            
           });
 
         }else{
           this.setState({
             adminId : adminId,
             userIsAdmin: false,
-            jamCode: this.props.jamCode,
+            jamCode: this.props.jamId,
+            jammers: result.jammers,
           });
         };
        
@@ -164,12 +236,14 @@ export default class Jam extends Component {
             <Board 
               user={this.props.user} 
               jamCode={this.state.jamCode} 
+              jamId={this.state.jamId}
             />
           }
           {this.state.showJammers &&
             <Jammers 
               user={this.props.user} 
               jamCode={this.state.jamCode}
+              jammers={this.state.jammers}
             /> 
           }
 

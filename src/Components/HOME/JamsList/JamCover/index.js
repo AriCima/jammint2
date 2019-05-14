@@ -26,7 +26,7 @@ export default class JamCover extends React.Component {
       <button className="jam-container" onClick={this.onJamClick}>
 
         <div className="jams-list-content">
-          <h4>{this.state.jamName}</h4>
+          <h4>{this.state.jamName}, {this.state.jamId} </h4>
         </div>
 
         <div className="jams-list-content">

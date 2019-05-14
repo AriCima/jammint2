@@ -135,7 +135,7 @@ export default class DataService {
             
         });
     };
-    static getJamInfo(jamCode) {  
+    static getJamInfoByCode(jamCode) {  
 
         return new Promise((resolve, reject) => {
             console.log('el ID con el que se pide la info de la jam = ', jamCode)
@@ -156,6 +156,26 @@ export default class DataService {
             
         });
     };
+    static getJamInfoBis(jamId) {  
+
+        return new Promise((resolve, reject) => {
+            console.log('jamInfoBIS  ID de la jam = ', jamId)
+            firebase.firestore().collection('jams').doc(jamId)
+            .get()
+            .then((result) => {
+                console.log('el result del Bis = ', result);
+                resolve(result.data());
+            })
+
+            .catch((error) => {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log('Error al cargar la JamInfo: ', errorCode, errorMessage);
+            })
+            
+        });
+    };
+
     static updateJamsArrayInUser(userID, jamsList){
         return new Promise((resolve, reject) => {
             console.log('inputs en el dataservice ', userID, jamsList);

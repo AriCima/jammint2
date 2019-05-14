@@ -59,9 +59,8 @@ export default class Home extends React.Component {
         };
 
         if(this.props.jamId !== prevProps.jamId){
-            
+            console.log('new jamId en Home :', this.props.jamId)
             this.setState({
-
                 jamId: this.props.jamId,
             })
         };
@@ -117,7 +116,7 @@ export default class Home extends React.Component {
     };
 
     updateJamScreen(jamCode, jamId){
-        console.log('update en el Home, jamCode = ', jamCode);
+        console.log('update en el Home, jamCode / jamId = ', jamCode, ' / ', jamId);
         this.setState({
             jamCode: jamCode,
             jamId: jamId,
