@@ -36,8 +36,10 @@ export default class Jam extends Component {
 
     .then(result =>{     
       console.log('result en el Jam :', result)
-      let adminId = result.adminId;
+      let adminId = result.data.adminId;
       let jamAdmin = false;
+
+      console.log('this.state.userId / adminId  ', this.state.userId, ' / ', adminId)
 
       if(this.state.userId === adminId){
         console.log('this.state.userId === adminId => ', this.state.userId, ' / ', adminId)
@@ -72,7 +74,7 @@ export default class Jam extends Component {
       DataService.getJamInfo(this.props.jamCode)
       .then(result => {     
         console.log('result en el Jam :', result)
-        let adminId = result.adminId;
+        let adminId = result.data.adminId;
   
         if(this.state.userId === adminId){
 

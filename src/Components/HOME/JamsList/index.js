@@ -19,6 +19,7 @@ export default class JamsList extends Component {
     this.updateJamScreenList = this.updateJamScreenList.bind(this);
   };
 
+ 
   componentDidUpdate(prevProps, prevState){
     if(this.props.userJams !== prevProps.userJams){
       this.setState({
