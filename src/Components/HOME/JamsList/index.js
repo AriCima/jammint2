@@ -28,10 +28,11 @@ export default class JamsList extends Component {
   };
 
   updateJamScreenList(jamCode, jamId){
-    console.log('update en el JamsList via props')
+    console.log('update en el JamsList jamCode, jamId', jamCode, ' / ', jamId)
 
     this.setState({
       jamCode: jamCode,
+      jamId: jamId,
     })
     this.props.updateJamScreenInHome(jamCode, jamId);
   };

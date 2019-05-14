@@ -59,16 +59,10 @@ export default class Home extends React.Component {
         };
 
         if(this.props.jamId !== prevProps.jamId){
-            let jamId = null;
-            DataService.getJamInfo(this.props.jamCode)
-            .then(result => {
-                console.log('result del jamCode en el Home', result)
-                jamId = result.id;
-            });
-
+            
             this.setState({
 
-                jamId: jamId,
+                jamId: this.props.jamId,
             })
         };
 
