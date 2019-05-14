@@ -40,7 +40,7 @@ export default class DataService {
         });
     };
 
-    static getUserInfoBis(userId){
+    static getUserInfoById(userId){
         return new Promise((resolve, reject) => {
             firebase.firestore().collection('users').doc(userId).onSnapshot(function(doc) {
                 let userInfo = doc.data();
@@ -156,14 +156,14 @@ export default class DataService {
             
         });
     };
-    static getJamInfoBis(jamId) {  
+    static getJamInfoById(jamId) {  
 
         return new Promise((resolve, reject) => {
-            console.log('jamInfoBIS  ID de la jam = ', jamId)
+            // console.log('jamInfoBIS  ID de la jam = ', jamId)
             firebase.firestore().collection('jams').doc(jamId)
             .get()
             .then((result) => {
-                console.log('el result del Bis = ', result);
+                // console.log('el result del Bis = ', result);
                 resolve(result.data());
             })
 

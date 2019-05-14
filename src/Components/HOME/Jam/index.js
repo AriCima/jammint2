@@ -34,114 +34,12 @@ export default class Jam extends Component {
     this.showJammers = this.showJammers.bind(this);
     this.showJamInfo = this.showJamInfo.bind(this);
   };
-  
-  componentDidMount(){
-    // console.log('CDM launched');
-    // DataService.getJamInfo(this.state.jamCode)
-
-    // .then(result =>{     
-    //   console.log('result en el Jam :', result)
-    //   let adminId = result.data.adminId;
-    //   let jamAdmin = false;
-
-    //   console.log('this.state.userId / adminId  ', this.state.userId, ' / ', adminId)
-
-    //   if(this.state.userId === adminId){
-    //     console.log('this.state.userId === adminId => ', this.state.userId, ' / ', adminId)
-    //     this.setState({
-    //       adminId : adminId,
-    //       userIsAdmin: true,
-    //       Jammers   : result.data.jammers
-    //     });
-    //     console.log('actualización jamAdmin', this.state.userIsAdmin)
-    //   };
-
-    //   this.setState({ 
-    //     jamCode   : result.jamCode,
-    //     adminId   : jamAdmin,
-    //     Jammers   : result.data.jammers
-    //   });
-     
-    // }).catch(function (error) {   
-    //   console.log(error);
-    // });
-
-    DataService.getJamInfoBis(this.state.jamId)
-
-    .then(result =>{     
-      console.log('result en el Jam :', result)
-      let adminId = result.adminId;
-      let jamAdmin = false;
-
-      console.log('this.state.userId / adminId  ', this.state.userId, ' / ', adminId)
-
-      if(this.state.userId === adminId){
-        console.log('this.state.userId === adminId => ', this.state.userId, ' / ', adminId)
-        this.setState({
-          adminId : adminId,
-          userIsAdmin: true,
-          Jammers   : result.jammers
-        });
-        console.log('actualización jamAdmin', this.state.userIsAdmin)
-      };
-
-      this.setState({ 
-        jamCode   : result.jamCode,
-        adminId   : jamAdmin,
-        Jammers   : result.jammers
-      });
-     
-    }).catch(function (error) {   
-      console.log(error);
-    });
-  };
 
   componentDidUpdate(prevProps, prevState) {
-
-    // if(this.state.showBoard !== prevState.showBoard) {
-    //   this.setState({
-    //     showBoard: !prevState.showBoard,
-    //     showJammers: !prevState.showJammers,
-    //   });
-    // };
-
-    // if(this.props.jamCode !== prevProps.jamCode){
-     
-    //   DataService.getJamInfo(this.props.jamCode)
-    //   .then(result => {     
-    //     console.log('result en el Jam :', result)
-    //     let adminId = result.data.adminId;
-  
-    //     if(this.state.userId === adminId){
-
-    //       this.setState({
-    //         adminId : adminId,
-    //         userIsAdmin: true,
-    //         jamCode: this.props.jamCode,
-    //         jammers: result.data.jammers,
-    //       });
-
-    //     }else{
-    //       this.setState({
-    //         adminId : adminId,
-    //         userIsAdmin: false,
-    //         jamCode: this.props.jamCode,
-    //         jammers: result.data.jammers,
-    //       });
-    //     };
-       
-    //   }).catch(function (error) {   
-    //     console.log(error);
-    //   });
-
-    // };
-
-    console.log('this.props.jamId !== prevProps.jamId', this.props.jamId, ' / ', prevProps.jamId)
     if(this.props.jamId !== prevProps.jamId){
      
-      DataService.getJamInfoBis(this.props.jamId)
+      DataService.getJamInfoById(this.props.jamId)
       .then(result => {     
-        console.log('result en el Jam :', result)
         
         let adminId = result.adminId;
   

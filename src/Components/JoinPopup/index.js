@@ -89,7 +89,6 @@ export default class JoinPopup extends Component {
     
   };
 
-
   render() {
     return (
       <div className='popup'>
@@ -119,7 +118,7 @@ export default class JoinPopup extends Component {
           <div className="createJam-button-area">
 
             <div className="createJam-button" id="create-button-left">
-              <CancelButton text="Cancel" onClick={this.props.closePopup}/>
+              <CancelButton text="Cancel" fn={this.props.closePopup}/>
             </div>
 
             <div className="createJam-button" id="create-button-right">

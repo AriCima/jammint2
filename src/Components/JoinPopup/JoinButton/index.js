@@ -13,6 +13,7 @@ export default class JoinButton extends Component {
       userId: this.props.userID,
 
       showPopup: this.props.showPopup,
+      
       buttonText: this.props.buttonText,
       popupText: this.props.popupText,
       closeButtonText: this.props.closeButtonText,

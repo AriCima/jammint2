@@ -47,4 +47,43 @@ export default class Calculations {
      return code
      
     };
+
+
+    // - - - - - SORTING FUNCTIONS 
+
+    // https://www.sitepoint.com/sort-an-array-of-objects-in-javascript/
+    static sortByDateAsc(x){
+        console.log('info received :', x);
+        function compare(a,b){
+            const varA = new Date(a.createdAt.seconds);
+            const varB = new Date(b.createdAt.seconds);
+        
+            let comparison = 0;
+            if (varA < varB) {
+            comparison = -1;
+            } else if (varA > varB) {
+            comparison = 1;
+            }
+            return comparison;
+        }
+
+        return x.sort(compare)
+    };
+    static sortByDateDesc(x){
+
+        function compare(a,b){
+            const varA = new Date(a.createdAt.seconds);
+            const varB = new Date(b.createdAt.seconds);
+        
+            let comparison = 0;
+            if (varA > varB) {
+            comparison = -1;
+            } else if (varA < varB) {
+            comparison = 1;
+            }
+            return comparison;
+        }
+
+        return x.sort(compare)
+    };
 }

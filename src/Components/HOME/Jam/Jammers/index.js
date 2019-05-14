@@ -12,19 +12,28 @@ export default class Jammers extends React.Component {
     this.state = {
       jamCode: this.props.jamCode,
       jammers: this.props.jammers,
+      jamId: this.props.jamId,
     };
     console.log('props.jammers ', this.props.jammers);
-  }
+  };
 
-    // componentDidMount(){
-    //   DataService.getJammers(this.props.jamId).then(
-    //       (jamsData)=>{
+  // componentDidMount(){
+  //   DataService.getJammers(this.props.jamId).then(
+  //       (jamsData)=>{
 
-    //       this.setState({ jammers: jamsData})
+  //       this.setState({ jammers: jamsData})
 
-    //       }
-    //   )
-    // }
+  //       }
+  //   )
+  // }
+
+  componentDidUpdate(prevProps, prevState){
+    if (prevProps.jammers !== this.props.jammers){
+      this.setState({
+        jammers: this.props.jammers,
+      });
+    };
+  };
 
   _renderJammers() {
     return this.state.jammers.map((user, i) => {

@@ -29,7 +29,7 @@ export default class JamsList extends Component {
   };
 
   updateJamScreenList(jamCode, jamId){
-    console.log('update en el JamsList jamCode, jamId', jamCode, ' / ', jamId)
+    // console.log('update en el JamsList jamCode, jamId', jamCode, ' / ', jamId)
 
     this.setState({
       jamCode: jamCode,

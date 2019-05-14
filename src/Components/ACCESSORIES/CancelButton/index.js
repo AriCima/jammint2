@@ -51,7 +51,7 @@ class CancelButton extends React.Component {
           box-shadow="none"
           type="submit"
           className={classNames(classes.margin, classes.cssRoot)}
-          onSubmit={this.props.fn}
+          onClick={this.props.fn}
         >
         {this.props.text}
         </Button>

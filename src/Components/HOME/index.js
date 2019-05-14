@@ -4,6 +4,7 @@ import React from 'react';
 
 // SERVICE API
 import DataService from '../services/DataService';
+import Calculations from '../services/Calculations';
 
 // COMPONENTS
 import JamsList from './JamsList';
@@ -21,24 +22,27 @@ export default class Home extends React.Component {
             userId      : this.props.userID,
             userJams    : [],
             jamId       : null,
-            jamCode     : this.props.jamCode,
+            // jamCode     : this.props.jamCode,
         };
+
         this.onJoinJam          = this.onJoinJam.bind(this);
         this.updateJamScreen    = this.updateJamScreen.bind(this);
 
-        console.log('state del Home ', this.state)
+        // console.log('state del Home ', this.state)
     };
-
-    unsibscribe = null;
 
     componentDidMount(){
         
-        DataService.getUserInfoBis(this.state.userId)
+        DataService.getUserInfoById(this.state.userId)
         .then(result =>{
-            console.log('result con el snapshot =', result)
+            // console.log('result con el snapshot =', result)
           let userJams = result.userJams;
+          let userJamsSorted = Calculations.sortByDateDesc(userJams)
+          let jamId = result.id;
+
           this.setState({
-            userJams: userJams
+            userJams: userJamsSorted,
+            jamId: jamId,
           })
         })
     };
@@ -60,9 +64,17 @@ export default class Home extends React.Component {
 
         if(this.props.jamId !== prevProps.jamId){
             console.log('new jamId en Home :', this.props.jamId)
-            this.setState({
-                jamId: this.props.jamId,
-            })
+           DataService.getUserInfoById(this.state.userId)
+            .then(result =>{
+                // console.log('result con el snapshot =', result)
+                let userJams = result.userJams;
+                let jamId = result.id;
+                
+                this.setState({
+                    userJams: userJams,
+                    jamId: jamId,
+                });
+            });
         };
 
     };
@@ -104,7 +116,7 @@ export default class Home extends React.Component {
                 })
             
                 DataService.addJamToUser(this.state.userID, this.state.userJams) 
-                console.log('el result.jamId = ', result.jamId) 
+                // console.log('el result.jamId = ', result.jamId) 
                 this.props.joinJam(result.jamId);
             }
           
@@ -116,7 +128,7 @@ export default class Home extends React.Component {
     };
 
     updateJamScreen(jamCode, jamId){
-        console.log('update en el Home, jamCode / jamId = ', jamCode, ' / ', jamId);
+        // console.log('update en el Home, jamCode / jamId = ', jamCode, ' / ', jamId);
         this.setState({
             jamCode: jamCode,
             jamId: jamId,

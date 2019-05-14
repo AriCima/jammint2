@@ -24,7 +24,6 @@ export default class CreatePopup extends Component {
     };
 
     this.onCreateNewJam = this.onCreateNewJam.bind(this);
-    console.log('state del create = ', this.state);
   }
 
   componentDidMount(){
@@ -141,7 +140,7 @@ export default class CreatePopup extends Component {
           <div className="createJam-button-area">
 
             <div className="createJam-button" id="create-button-left">
-              <CancelButton text="Cancel" onClick={this.props.closePopup}/>
+              <CancelButton text="Cancel" fn={this.props.closePopup}/>
             </div>
 
             <div className="createJam-button" id="create-button-right">
