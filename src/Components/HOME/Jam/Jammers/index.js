@@ -9,6 +9,7 @@ export default class Jammers extends Component {
     this.state = {
       jammers: this.props.jammers,
       jamId: this.props.jamId,
+      userId: this.props.userId,
     };
     console.log('props.jammers ', this.props.jammers);
   };

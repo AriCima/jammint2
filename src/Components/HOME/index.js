@@ -19,7 +19,7 @@ export default class Home extends React.Component {
         this.state = { 
             userId      : this.props.userID,
             userJams    : [],
-            jamId       : null,
+            jamId       : this.props.jamID,
         };
         this.updateJamScreen    = this.updateJamScreen.bind(this);
 
@@ -57,17 +57,11 @@ export default class Home extends React.Component {
         };
 
         if(this.props.jamId !== prevProps.jamId){
-            console.log('new jamId en Home :', this.props.jamId)
-           DataService.getJamInfoById(this.props.jamId)
-            .then(result =>{
-                // console.log('result con el snapshot =', result)
-                // let userJams = result.userJams;
-                let jamId = result.id;
-                
-                this.setState({
-                    // userJams: userJams,
-                    jamId: jamId,
-                });
+
+          console.log('CDU new jamId en Home :', this.props.jamId)
+            this.setState({
+                // userJams: userJams,
+                jamId: this.props.jamId,
             });
         };
 
@@ -80,7 +74,7 @@ export default class Home extends React.Component {
     };
 
     updateJamScreen(jamCode, jamId){
-        // console.log('update en el Home, jamCode / jamId = ', jamCode, ' / ', jamId);
+        console.log('update en el Home, jamCode / jamId = ', jamCode, ' / ', jamId);
         this.setState({
             jamCode: jamCode,
             jamId: jamId,
@@ -102,13 +96,13 @@ export default class Home extends React.Component {
             </aside>
 
             <div className="jam-screen">
-                {this.state.jamId === undefined ? <h1>SELECT YOUR JAM</h1> : 
-                    <Jam 
-                        jamCode={this.state.jamCode}
-                        jamId= {this.state.jamId}
-                        userID={this.state.userId}
-                    /> 
-                }
+               
+                <Jam 
+                    jamCode={this.state.jamCode}
+                    jamId= {this.state.jamId}
+                    userID={this.state.userId}
+                /> 
+                
             </div>
         </div>
         

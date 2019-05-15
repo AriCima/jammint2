@@ -7,13 +7,13 @@ export default class Board extends Component {
     super(props);
 
     this.state = {
-      jamId           : this.props.jamID,
-      userId: this.props.userId,
+      jamId   : this.props.jamId,
+      userId  : this.props.userId,
     };
   };
 
   componentDidUpdate(prevProps, prevState){
-
+    console.log('CDU del Board launched ')
     if(this.props.jamId !== prevProps.jamId){
       this.setState({
         jamId: this.props.jamId
@@ -29,7 +29,7 @@ export default class Board extends Component {
 
 
   render() {
-
+    console.log('props received en Board ', this.props)
     return (
 
       <div className="board">

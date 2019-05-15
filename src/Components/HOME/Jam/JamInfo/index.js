@@ -7,9 +7,9 @@ export default class JamInfo extends Component {
     super(props);
 
     this.state = {
-      // jamCode         : this.props.jamCode,
-      jamId:          this.props.jamId,
+      jamId           : this.props.jamId,
       userIsAdmin     : this.props.admin,
+      userId          : this.props.userId,
       messagesInBoard : [],
     };
 

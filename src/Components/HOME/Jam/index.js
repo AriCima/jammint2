@@ -67,6 +67,8 @@ export default class Jam extends Component {
           });
         };
        
+        console.log('el state en el jam luego del CDU ', this.state)
+
       }).catch(function (error) {   
         console.log(error);
       });
@@ -101,61 +103,68 @@ export default class Jam extends Component {
 
   
   render() {
-    console.log('el jamId en Home :', this.state.jamId)
+    console.log('el jamId en Jam :', this.state.jamId)
     return (
-      
-      <div className="jam">
-        <div className="jam-header">
+        
+      <div>
 
-          <div className="jam-header-block">
-            <button onClick={this.showJamInfo}>JamInfo</button>
-          </div>
+        {this.state.jamId === undefined ? <h1>SELECT YOUR JAM</h1> : 
+          
+          <div className="jam">
+            
+            <div className="jam-header">
 
-          <div className="jam-header-block">
-            <button onClick={this.showBoard}>Board</button>
-          </div>
+              <div className="jam-header-block">
+                <button onClick={this.showJamInfo}>JamInfo</button>
+              </div>
 
-          <div className="jam-header-block">
-            <button onClick={this.showJammers}>Jammers</button>
-          </div>
+              <div className="jam-header-block">
+                <button onClick={this.showBoard}>Board</button>
+              </div>
 
-          {this.state.userIsAdmin && 
-            <div className="jam-header-block">
-              <button onClick={this.showJammers}>Settings</button>
+              <div className="jam-header-block">
+                <button onClick={this.showJammers}>Jammers</button>
+              </div>
+
+              {this.state.userIsAdmin && 
+                <div className="jam-header-block">
+                  <button onClick={this.showJammers}>Settings</button>
+                </div>
+              }
+
             </div>
-          }
 
-        </div>
-
-        <div className="jam-field">
-          {this.state.showJamInfo &&
-            <JamInfo 
-              user={this.props.user} 
-              jamId={this.state.jamId}
-              admin={this.state.userIsAdmin}
-            />
-          }
-          {this.state.showBoard &&
-            <Board 
-              user={this.props.user} 
-              jamId={this.state.jamId}
-            />
-          }
-          {this.state.showJammers &&
-            <Jammers 
-              user={this.props.user} 
-              jamId={this.state.jamId}
-              jammers={this.state.jammers}
-            /> 
-          }
+            <div className="jam-field">
+              {this.state.showJamInfo &&
+                <JamInfo 
+                  userId={this.props.user} 
+                  jamId={this.state.jamId}
+                  admin={this.state.userIsAdmin}
+                />
+              }
+              {this.state.showBoard &&
+                <Board 
+                  userId={this.state.userId} 
+                  jamId={this.state.jamId}
+                />
+              }
+              {this.state.showJammers &&
+                <Jammers 
+                  userId={this.props.userId} 
+                  jamId={this.state.jamId}
+                  jammers={this.state.jammers}
+                /> 
+              }
 
 
-        </div>
- 
+            </div>
+          
+          </div>
+        }
       </div>
     );
-  }
-}
+  };
+};
 
 
 
