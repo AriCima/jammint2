@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import StartChat from './StartChat';
+
 import "./index.css";
 
 export default class Jammers extends Component {
@@ -10,6 +12,7 @@ export default class Jammers extends Component {
       jammers: this.props.jammers,
       jamId: this.props.jamId,
       userId: this.props.userId,
+      userJams: this.props.userJams,
     };
     console.log('props.jammers ', this.props.jammers);
   };
@@ -34,7 +37,14 @@ export default class Jammers extends Component {
             <div className="user-info-up">
 
               <div className="user-info-detail">
-                <h4>{user.name}</h4>
+                <h4>{user.name} - {user.userId}</h4>
+              </div>
+
+              <div className="user-info-detail">
+                <StartChat
+                  userId={this.state.userId}
+                  chatterId={user.userId}
+                  />
               </div>
 
             </div>

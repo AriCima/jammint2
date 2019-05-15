@@ -41,7 +41,6 @@ export default class Board extends Component {
         </div>
 
       </div>
-      
 
     );
   }

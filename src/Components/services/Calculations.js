@@ -86,4 +86,22 @@ export default class Calculations {
 
         return x.sort(compare)
     };
+
+    static sortAsc(x){
+        console.log('info received :', x);
+        function compare(a,b){
+            const varA = a[0];
+            const varB = a[1];
+        
+            let comparison = 0;
+            if (varA < varB) {
+            comparison = -1;
+            } else if (varA > varB) {
+            comparison = 1;
+            }
+            return comparison;
+        }
+
+        return x.sort(compare)
+    };
 }
