@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Button from '@material-ui/core/Button';
-import { withStyles, MuiThemeProvider, createMuiTheme, withTheme } from '@material-ui/core/styles';
+import { withStyles} from '@material-ui/core/styles';
 
 // CSS
 import './index.css';

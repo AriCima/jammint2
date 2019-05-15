@@ -19,7 +19,6 @@ export default class DataService {
             .catch((error) => {
                 var errorCode = error.code;
                 console.log('User NOT added: ', errorCode);
-                var errorMessage = error.message;
                 
             })
             
@@ -76,7 +75,6 @@ export default class DataService {
             .catch((error) => {
                 var errorCode = error.code;
                 console.log('Jam could not be created: ', errorCode);
-                var errorMessage = error.message;
                 
             })
             
@@ -128,9 +126,7 @@ export default class DataService {
 
             .catch((error) => {
                 var errorCode = error.code;
-                console.log('Jam NOT joined: ', errorCode);
-                var errorMessage = error.message;
-                
+                console.log('Jam NOT joined: ', errorCode);                
             })
             
         });
@@ -189,7 +185,7 @@ export default class DataService {
             })
             .catch((error) => {
                 var errorCode = error.code;
-                console.log('ERROR Jam NOT added to user: ', error);                
+                console.log('ERROR Jam NOT added to user: ', errorCode);                
             })
             
         });
@@ -225,9 +221,7 @@ export default class DataService {
 
             .catch((error) => {
                 var errorCode = error.code;
-                console.log('Message could not be sent: ', errorCode);
-                var errorMessage = error.message;
-                
+                console.log('Message could not be sent: ', errorCode);                
             })
             
         });
@@ -246,7 +240,6 @@ export default class DataService {
             })
             .catch((error) => {
                console.log('error: ', error);
-                // reject('Usuario no existe', error)
             })
             
         });
@@ -263,9 +256,7 @@ export default class DataService {
 
             .catch((error) => {
                 var errorCode = error.code;
-                console.log('Message NOT added: ', errorCode);
-                var errorMessage = error.message;
-                
+                console.log('Message NOT added: ', errorCode);                
             })
             
         });
@@ -306,9 +297,7 @@ export default class DataService {
             })
 
             .catch((error) => {
-               console.log('error: ', error)
-                // reject('Usuario no existe', error)
-
+               console.log('error: ', error);
             })
             
         });

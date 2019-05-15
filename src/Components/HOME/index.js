@@ -20,10 +20,7 @@ export default class Home extends React.Component {
             userId      : this.props.userID,
             userJams    : [],
             jamId       : null,
-            // jamCode     : this.props.jamCode,
         };
-
-        // this.onJoinJam          = this.onJoinJam.bind(this);
         this.updateJamScreen    = this.updateJamScreen.bind(this);
 
     };
@@ -105,7 +102,7 @@ export default class Home extends React.Component {
             </aside>
 
             <div className="jam-screen">
-                {this.state.jamId === null ? <h1>SELECT YOUR JAM</h1> : 
+                {this.state.jamId === undefined ? <h1>SELECT YOUR JAM</h1> : 
                     <Jam 
                         jamCode={this.state.jamCode}
                         jamId= {this.state.jamId}

@@ -68,7 +68,7 @@ export default class JoinPopup extends Component {
       jamToJoin.jammers = jam.jammers;
 
       console.log('jamToJoin.jammers = ', jamToJoin.jammers)
-      jamToJoin.jammers.push({name: this.state.userName})
+      jamToJoin.jammers.push({name: this.state.userName, userId: this.state.userId})
 
       this.setState({
         jamToJoin : jamToJoin,

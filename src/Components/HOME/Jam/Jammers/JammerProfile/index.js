@@ -1,22 +1,19 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 import Chat from '../../../Chat'
 
 import './index.css';
 
-export default class JammerProfile extends React.Component {
+export default class JammerProfile extends Component {
   constructor(props){
     super(props);
 
     this.state = {
         users : this.props,
-    }
+    };
 
-    // console.log("State en Jammers", this.state.users)
-    // console.log("Props en Jammers", this.state.props)
-
-  }
+    console.log('props del JammerProfile :', this.state);
+  };
 
     render() {
             
@@ -28,7 +25,7 @@ export default class JammerProfile extends React.Component {
 
                     <div className="user-header-left">
                         <div className="user-pic">
-                            <img src={user.image_url}/>
+                            <img src={user.image_url} />
                         </div>
                     </div>
 

@@ -101,7 +101,7 @@ export default class Jam extends Component {
 
   
   render() {
-
+    console.log('el jamId en Home :', this.state.jamId)
     return (
       
       <div className="jam">

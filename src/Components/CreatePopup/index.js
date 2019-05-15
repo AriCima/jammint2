@@ -71,7 +71,7 @@ export default class CreatePopup extends Component {
       jamName: this.state.jamName,
       jamDescription: this.state.jamDescription,
       createdAt: createdAt,
-      jammers: [{name: this.state.userName}]
+      jammers: [{name: this.state.userName, userId: userID}]
     };
 
 
@@ -83,6 +83,8 @@ export default class CreatePopup extends Component {
       let userID = this.state.userId;
 
       newJam.jamId = jamId;
+      newJam.jammers = [userID];
+
       transJams.push(newJam)
 
  

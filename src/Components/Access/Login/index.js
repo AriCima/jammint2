@@ -1,13 +1,8 @@
 import React, { Component } from '../../../../node_modules/react';
 import {Link} from 'react-router-dom';
-import firebase from '../../../../node_modules/firebase';
-
 
 // SERVICES API
-import AuthService from '../../services/AuthService'
-import DataService from '../../services/DataService'
-
-
+import AuthService from '../../services/AuthService';
 
 import './index.css';
 
@@ -42,12 +37,12 @@ class Login extends Component {
         e.preventDefault();
         let error = false;
 
-        if(this.state.email == ''){
+        if(this.state.email === ''){
             this.setState({emailError: true});
             error = true;
         }
 
-        if(this.state.password == ''){
+        if(this.state.password === ''){
             this.setState({passwordError: true});
             error = true;
         }

@@ -45,7 +45,7 @@ export default class CreateJam extends React.Component {
     let jamCode = Calculations.generateCode();
 
     let newJam = {
-      adminId: this.state.userId,
+      adminId: userID,
       jamCode: jamCode,
       jamName: this.state.jamName,
       jamDescription: this.state.jamDescription,
@@ -59,6 +59,7 @@ export default class CreateJam extends React.Component {
     .then((result)=>{
 
       let userID = this.state.userId;
+      
       DataService.updateJamsArrayInUser(userID, transJams);
       this.props.closePopup();
 

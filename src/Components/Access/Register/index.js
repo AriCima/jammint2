@@ -39,21 +39,17 @@ export default class Register extends Component {
   }
   onChangePasswordConfirm(event){
     this.setState({passwordConfirm: event.target.value})
-  }
-
-  onChangePasswordConfirm(event){
-    this.setState({passwordConfirm: event.target.value})
-  }
+  };
 
   register(e){
     e.preventDefault();
     let error = false;
 
-    if(this.state.email == ''){
+    if(this.state.email === ''){
       this.setState({emailError: true});
       error = true;
     }
-    if(this.state.password == ''){
+    if(this.state.password === ''){
       this.setState({passwordError: true});
       error = true;
     }

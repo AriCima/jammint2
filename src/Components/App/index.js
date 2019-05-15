@@ -56,6 +56,7 @@ class App extends Component {
 
   componentDidMount(){
     firebase.auth().onAuthStateChanged((user) => {
+      console.log('user en el App : ', user);
       if (user) {
 
         DataService.getUserInfo(user.uid)
