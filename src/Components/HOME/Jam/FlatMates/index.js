@@ -130,29 +130,9 @@ export default class Jam extends Component {
 
     return (
         
-      <div>
 
-        {this.state.jamId === undefined ? <h1>SELECT YOUR JAM</h1> : 
-          
-          <div className="jam">
+        <div className="jam">  
 
-            {this.state.jamType === 'chat'&& 
-              <Chat 
-                userId={this.state.userId}
-                jamId={this.state.jamId}
-              />
-            }
-            
-            {this.state.jamType === "flatmates" &&
-              <FlatMates
-                userId={this.state.userId} 
-                jamId={this.state.jamId}
-                jammers={this.state.jammers}
-                updateJamIdinJam={this.updateJamIdInJam}
-                userJams={this.state.userJams}
-                admin={this.state.userIsAdmin}
-              />
-            }
             <div className="jam-header">
 
               <div className="jam-header-block">
@@ -176,6 +156,7 @@ export default class Jam extends Component {
             </div>
 
             <div className="jam-field">
+
               {this.state.showJamInfo &&
                 <JamInfo 
                   userId={this.state.userId} 
@@ -183,12 +164,14 @@ export default class Jam extends Component {
                   admin={this.state.userIsAdmin}
                 />
               }
+
               {this.state.showBoard &&
                 <Board 
                   userId={this.state.userId} 
                   jamId={this.state.jamId}
                 />
               }
+              
               {this.state.showJammers &&
                 <Jammers 
                   userId={this.state.userId} 
@@ -202,9 +185,8 @@ export default class Jam extends Component {
 
             </div>
           
-          </div>
-        }
-      </div>
+        </div>
+
     );
   };
 };

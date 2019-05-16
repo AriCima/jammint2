@@ -1,0 +1,45 @@
+.board {
+  box-sizing: border-box;
+  width: 100%;
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; 
+}
+.board .board-title {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  border: 1px solid #32b496;
+  background: linear-gradient(to bottom right, #00e0ff, #0cd5b4); 
+}
+.board .board-title h4 {
+  font-family: helvetica;
+  font-size: 1.2rem;
+  color: white;
+  font-weight: 550; 
+}
+.board .board-content {
+  width: 100%;
+  height: 100%;
+  background-image: url("../../../../assets/images/chatBackground-1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid #32b496; 
+}
+
+.board .board-content .whole-message {
+  background-color: rgba(255, 255, 255, 0.3); 
+}
+.board .board-content .whole-message .jammer {
+  color: blue; 
+}
+.board .board-content .whole-message .board-messages {
+  margin-bottom: 10px;
+  border-bottom: 1px solid lightgray;
+  padding: 5px; 
+}
+

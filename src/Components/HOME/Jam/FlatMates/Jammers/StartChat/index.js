@@ -1,11 +1,11 @@
 import React, {Component} from "react";
 
 // SERVICES
-import DataService from "../../../../services/DataService";
-import Calculations from "../../../../services/Calculations";
+import DataService from "../../../../../services/DataService";
+import Calculations from "../../../../../services/Calculations";
 
 // ACCESSORIES
-import ChatButton from '../../../../ACCESSORIES/ChatButton';
+import ChatButton from '../../../../../ACCESSORIES/ChatButton';
 
 export default class StartChat extends Component {
   constructor(props) {
