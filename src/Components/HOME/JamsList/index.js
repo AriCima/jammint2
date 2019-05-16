@@ -28,14 +28,14 @@ export default class JamsList extends Component {
     };
   };
 
-  updateJamScreenList(jamCode, jamId){
-    // console.log('update en el JamsList jamCode, jamId', jamCode, ' / ', jamId)
+  updateJamScreenList(jamId){
+    console.log('update en el JamsList jamId', jamId)
 
     this.setState({
-      jamCode: jamCode,
+      // jamCode: jamCode,
       jamId: jamId,
     })
-    this.props.updateJamScreenInHome(jamCode, jamId);
+    this.props.updateJamScreenInHome(jamId);
   };
 
   _renderJams() {

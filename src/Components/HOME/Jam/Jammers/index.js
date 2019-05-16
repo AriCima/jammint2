@@ -15,6 +15,7 @@ export default class Jammers extends Component {
       userJams: this.props.userJams,
     };
     console.log('props.jammers ', this.props.jammers);
+    this.updateJamIdInState = this.updateJamIdInState.bind(this);
   };
 
   componentDidUpdate(prevProps, prevState){
@@ -23,6 +24,12 @@ export default class Jammers extends Component {
         jammers: this.props.jammers,
       });
     };
+  };
+
+  updateJamIdInState(x){
+    
+    this.props.updateJamIdInJam(x)
+
   };
 
   _renderJammers() {
@@ -44,7 +51,8 @@ export default class Jammers extends Component {
                 <StartChat
                   userId={this.state.userId}
                   chatterId={user.userId}
-                  />
+                  updateJamIdinJammers={this.updateJamIdInState}
+                />
               </div>
 
             </div>

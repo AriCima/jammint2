@@ -33,9 +33,11 @@ export default class Jam extends Component {
     this.showBoard = this.showBoard.bind(this);
     this.showJammers = this.showJammers.bind(this);
     this.showJamInfo = this.showJamInfo.bind(this);
+    this.updateJamIdInJam = this.updateJamIdInJam.bind(this);
   };
 
   componentDidUpdate(prevProps, prevState) {
+    console.log('CDU JAm prev / this => ', prevProps.jamId, ' / ', this.props.jamId)
     if(this.props.jamId !== prevProps.jamId){
      
       DataService.getJamInfoById(this.props.jamId)
@@ -101,6 +103,13 @@ export default class Jam extends Component {
     })
   };
 
+  updateJamIdInJam(x){
+    console.log('update Jam OK');
+    this.setState({
+      jamId: x,
+    })
+    this.props.updateJamIdInHome(x)
+  };
   
   render() {
     console.log('el jamId en Jam :', this.state.jamId)
@@ -153,6 +162,7 @@ export default class Jam extends Component {
                   userId={this.props.userId} 
                   jamId={this.state.jamId}
                   jammers={this.state.jammers}
+                  updateJamIdinJam={this.updateJamIdInJam}
                 /> 
               }
 

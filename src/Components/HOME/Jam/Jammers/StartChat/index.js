@@ -5,7 +5,7 @@ import DataService from "../../../../services/DataService";
 import Calculations from "../../../../services/Calculations";
 
 // ACCESSORIES
-import SubmitButton from '../ACCESSORIES/SubmitButton';
+import ChatButton from '../../../../ACCESSORIES/ChatButton';
 
 export default class StartChat extends Component {
   constructor(props) {
@@ -25,7 +25,7 @@ export default class StartChat extends Component {
       updatedAt       : '',
     };
 
-    this.StartChat = this.StartChat.bind(this);
+    this.startChat = this.startChat.bind(this);
   }
 
   componentDidMount(){
@@ -44,7 +44,7 @@ export default class StartChat extends Component {
   };
 
 
-  StartChat(e){
+  startChat(e){
     e.preventDefault();
     console.log('userJams en el StartChat', this.state.userJams);
     
@@ -85,70 +85,22 @@ export default class StartChat extends Component {
       DataService.updateJamsArrayInUser(userID, transUserJams);
       DataService.updateJamsArrayInUser(chatterID, transChatterJams);
 
-      this.props.closePopup();
+      this.props.updateJamIdinJammers(jamId);
 
-      // this.props.propsFn.push(`/home/${userId}`)
 
     },(error)=>{
-        console.log('Jam could not be created, error:', error);
+        console.log('Chat could not be created, error:', error);
     });
   };
 
   render() {
     return (
       <div className='popup'>
-        <div className='popup_inner'>
 
-          <div className="popup_inner_title">
-            <h1>CREATE YOUR OWN JAM IN ONE STEP !</h1>
-          </div>
-          
-        <form className="createJam-form-container" onSubmit={this.StartChat}>
-
-          <label id="label-short">
-              <h5>Name</h5>
-              <input
-                  className="input-short"
-                  type="text"
-                  name="jamName"
-                  size="350"
-                  value={this.state.jamName}
-                  onChange={e => {
-                      this.onChangeState("jamName", e.target.value);
-                  }}
-              />
-          </label>
-
-          <label id="label-textarea">
-              <h5>Description</h5>
-              <textarea
-                  className="textarea"
-                  type="text"
-                  name="description"
-                  size="350"
-                  value={this.state.jamDescription}
-                  onChange={e => {
-                      this.onChangeState("jamDescription", e.target.value);
-                  }}
-              />
-          </label>
-
-          <div className="createJam-button-area">
-
-            <div className="createJam-button" id="create-button-left">
-              <CancelButton text="Cancel" fn={this.props.closePopup}/>
-            </div>
-
-            <div className="createJam-button" id="create-button-right">
-              <SubmitButton text={"Create"} fn={this.onNewEvent}/>
-            </div>
-
-          </div>
-            
-        </form>
-
-
+        <div className="createJam-button" id="create-button-right">
+          <ChatButton text={"chat"} fn={this.startChat}/>
         </div>
+
       </div>
     );
   }

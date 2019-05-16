@@ -22,7 +22,6 @@ export default class Home extends React.Component {
             jamId       : this.props.jamID,
         };
         this.updateJamScreen    = this.updateJamScreen.bind(this);
-
     };
 
     componentDidMount(){
@@ -73,12 +72,11 @@ export default class Home extends React.Component {
         this.setState(jamInfo)
     };
 
-    updateJamScreen(jamCode, jamId){
-        console.log('update en el Home, jamCode / jamId = ', jamCode, ' / ', jamId);
+    updateJamScreen(jamId){
+        console.log('update en el Home, jamId = ', jamId);
         this.setState({
-            jamCode: jamCode,
             jamId: jamId,
-        })
+        });
     };
   
   render() {
@@ -101,6 +99,7 @@ export default class Home extends React.Component {
                     jamCode={this.state.jamCode}
                     jamId= {this.state.jamId}
                     userID={this.state.userId}
+                    updateJamIdInHome={this.updateJamScreen}
                 /> 
                 
             </div>
