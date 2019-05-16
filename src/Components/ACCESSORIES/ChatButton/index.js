@@ -47,8 +47,9 @@ class ChatButton extends React.Component {
           variant="contained"
           color="primary"
           box-shadow="none"
-          type="submit"
+          // type="submit"
           className={classNames(classes.margin, classes.cssRoot)}
+          onClick={this.props.fn}
         >
         {this.props.text}
         </Button>

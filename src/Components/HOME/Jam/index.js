@@ -14,9 +14,9 @@ export default class Jam extends Component {
   constructor(props){
     super(props);
     this.state = {
-      userId      : this.props.userID,
+      userId      : this.props.userId,
+      userJams    : this.props.userJams,
 
-      // jamCode     : this.props.jamCode,
       jamId       : this.props.jamId,
       adminId     : '',
       jamName     : '',
@@ -24,11 +24,13 @@ export default class Jam extends Component {
 
       userIsAdmin : false,
       
-
       showBoard   : true,
       showJamInfo : false,
       showJammers : false,
     };
+
+    console.log('userJams en Jam state :', this.state.userJams);
+
 
     this.showBoard = this.showBoard.bind(this);
     this.showJammers = this.showJammers.bind(this);
@@ -37,7 +39,7 @@ export default class Jam extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('CDU JAm prev / this => ', prevProps.jamId, ' / ', this.props.jamId)
+    // console.log('CDU JAm prev / this => ', prevProps.jamId, ' / ', this.props.jamId)
     if(this.props.jamId !== prevProps.jamId){
      
       DataService.getJamInfoById(this.props.jamId)
@@ -75,8 +77,16 @@ export default class Jam extends Component {
         console.log(error);
       });
 
+        
     };
-    
+
+    if(this.props.userJams !== prevProps.userJams){
+
+      this.setState({
+        userJams: this.props.userJams,
+      });
+
+    };  
   };
 
   showJamInfo() {
@@ -104,7 +114,7 @@ export default class Jam extends Component {
   };
 
   updateJamIdInJam(x){
-    console.log('update Jam OK');
+    // console.log('update Jam OK');
     this.setState({
       jamId: x,
     })
@@ -112,7 +122,8 @@ export default class Jam extends Component {
   };
   
   render() {
-    console.log('el jamId en Jam :', this.state.jamId)
+    console.log('userJams en Jam render :', this.state.userJams);
+
     return (
         
       <div>
@@ -159,10 +170,11 @@ export default class Jam extends Component {
               }
               {this.state.showJammers &&
                 <Jammers 
-                  userId={this.props.userId} 
+                  userId={this.state.userId} 
                   jamId={this.state.jamId}
                   jammers={this.state.jammers}
                   updateJamIdinJam={this.updateJamIdInJam}
+                  userJams={this.state.userJams}
                 /> 
               }
 

@@ -43,7 +43,7 @@ export default class DataService {
         return new Promise((resolve, reject) => {
             firebase.firestore().collection('users').doc(userId).onSnapshot(function(doc) {
                 let userInfo = doc.data();
-                console.log("Current data: ", doc.data());
+                // console.log("Current data: ", doc.data());
                 resolve (userInfo)
             });   
         })

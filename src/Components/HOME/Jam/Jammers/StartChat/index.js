@@ -11,7 +11,7 @@ export default class StartChat extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId          : this.props.userID,
+      userId          : this.props.userId,
       chatterId       : this.props.chatterId,
       jamCode         : '',
 
@@ -25,8 +25,9 @@ export default class StartChat extends Component {
       updatedAt       : '',
     };
 
+    console.log('userJams en el startChat: ', this.state.userJams)
     this.startChat = this.startChat.bind(this);
-  }
+  };
 
   componentDidMount(){
     
@@ -46,8 +47,9 @@ export default class StartChat extends Component {
 
   startChat(e){
     e.preventDefault();
-    console.log('userJams en el StartChat', this.state.userJams);
     
+    console.log('start chat state : ', this.state)
+
     let userID = this.state.userId;
     let chatterID = this.state.chatterId;
 
@@ -57,6 +59,7 @@ export default class StartChat extends Component {
 
     let transUserJams = [...this.state.userJams];
     let transChatterJams = [...this.state.chattereJams];
+    console.log('1) transUserJams / transChatterJams antes del push',transUserJams, ' / ', transChatterJams )
 
     let createdAt = new Date();
     
@@ -69,7 +72,7 @@ export default class StartChat extends Component {
     };
 
 
-
+    console.log('Jam Type "chat :', newJam);
     DataService.createJamBeta(newJam)
     .then((result)=>{
       // console.log('el result del create Jam = ', result)
@@ -78,10 +81,12 @@ export default class StartChat extends Component {
 
       newJam.jamId = jamId;
       newJam.jammers = [userID];
+      console.log('transUserJams / transChatterJams antes del push',transUserJams, ' / ', transChatterJams )
 
       transUserJams.push(newJam);
       transChatterJams.push(newJam);
 
+      console.log('transUserJams / transChatterJams ',transUserJams, ' / ', transChatterJams )
       DataService.updateJamsArrayInUser(userID, transUserJams);
       DataService.updateJamsArrayInUser(chatterID, transChatterJams);
 
@@ -95,13 +100,11 @@ export default class StartChat extends Component {
 
   render() {
     return (
-      <div className='popup'>
 
-        <div className="createJam-button" id="create-button-right">
-          <ChatButton text={"chat"} fn={this.startChat}/>
-        </div>
-
+      <div className="chatt-button" id="cchatt-button-right">
+        <ChatButton text={"chat"} fn={this.startChat}/>
       </div>
+
     );
   }
 }

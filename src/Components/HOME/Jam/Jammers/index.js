@@ -14,7 +14,7 @@ export default class Jammers extends Component {
       userId: this.props.userId,
       userJams: this.props.userJams,
     };
-    console.log('props.jammers ', this.props.jammers);
+    console.log('userJams en el JAmmers', this.state.userJams)
     this.updateJamIdInState = this.updateJamIdInState.bind(this);
   };
 
@@ -27,20 +27,20 @@ export default class Jammers extends Component {
   };
 
   updateJamIdInState(x){
-    
     this.props.updateJamIdInJam(x)
-
   };
 
   _renderJammers() {
     return this.state.jammers.map((user, i) => {
       return (
         <div className="room-cover" key={i} >
+
           <div className="user-pic">
             <img src={require("../../../../assets/icons/user.png")} alt="user"/>
           </div>
 
           <div className="user-info">
+
             <div className="user-info-up">
 
               <div className="user-info-detail">
@@ -51,6 +51,7 @@ export default class Jammers extends Component {
                 <StartChat
                   userId={this.state.userId}
                   chatterId={user.userId}
+                  userJams={this.state.userJams}
                   updateJamIdinJammers={this.updateJamIdInState}
                 />
               </div>

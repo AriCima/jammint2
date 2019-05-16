@@ -36,8 +36,9 @@ export default class Home extends React.Component {
           this.setState({
             userJams: userJamsSorted,
             jamId: jamId,
-          })
-        })
+          });
+          console.log('userJams en el Home :', this.state.userJams)
+        });
     };
 
     componentDidUpdate(prevProps, prevState){
@@ -98,8 +99,9 @@ export default class Home extends React.Component {
                 <Jam 
                     jamCode={this.state.jamCode}
                     jamId= {this.state.jamId}
-                    userID={this.state.userId}
+                    userId={this.state.userId}
                     updateJamIdInHome={this.updateJamScreen}
+                    userJams={this.state.userJams}
                 /> 
                 
             </div>
