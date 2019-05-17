@@ -56,7 +56,6 @@ export default class JoinPopup extends Component {
 
       let jamCode = jam.jamCode;
 
-      console.log('result.data = ', result.data)
       let jamToJoin = {};
       jamToJoin.adminId = jam.adminId;
       jamToJoin.jamCode = jamCode;
@@ -67,7 +66,6 @@ export default class JoinPopup extends Component {
       jamToJoin.joineddAt = joinedAt;
       jamToJoin.jammers = jam.jammers;
 
-      console.log('jamToJoin.jammers = ', jamToJoin.jammers)
       jamToJoin.jammers.push({name: this.state.userName, userId: this.state.userId})
 
       this.setState({

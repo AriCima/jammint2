@@ -32,8 +32,6 @@ export default class Jam extends Component {
 
     };
 
-    console.log('userJams en Jam state :', this.state.userJams);
-
     this.updateJamIdInJam = this.updateJamIdInJam.bind(this);
   };
 
@@ -112,7 +110,7 @@ export default class Jam extends Component {
   };
   
   render() {
-    // console.log('userJams en Jam render :', this.state.userJams);
+    console.log('jamId en el render de Jam :', this.state.jamid);
     return (
       <div>
 
@@ -120,7 +118,7 @@ export default class Jam extends Component {
           
           <div className="jam">
 
-            {this.state.jamType === 'chat'&& 
+            {this.state.jamType === 'chat' && 
               <Chat 
                 userId={this.state.userId}
                 jamId={this.state.jamId}
@@ -134,7 +132,7 @@ export default class Jam extends Component {
                 userId={this.state.userId} 
                 jamId={this.state.jamId}
                 jammers={this.state.jammers}
-                updateJamIdinJam={this.updateJamIdInJam}
+                updateJamIdInJam={this.updateJamIdInJam}
                 userJams={this.state.userJams}
                 userIsAdmin={this.state.userIsAdmin}
                 createdAt={this.state.createdAt}

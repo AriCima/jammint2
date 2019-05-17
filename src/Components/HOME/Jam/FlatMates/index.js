@@ -34,12 +34,12 @@ export default class FlatMates extends Component {
       showJammers : false,
     };
 
-    console.log('userJams en Jam state :', this.state.userJams);
 
 
     this.showBoard = this.showBoard.bind(this);
     this.showJammers = this.showJammers.bind(this);
     this.showJamInfo = this.showJamInfo.bind(this);
+
     this.updateJamIdInJam = this.updateJamIdInJam.bind(this);
   };
 
@@ -125,11 +125,11 @@ export default class FlatMates extends Component {
     this.setState({
       jamId: x,
     })
-    this.props.updateJamIdInHome(x)
+    this.props.updateJamIdInJam(x)
   };
   
   render() {
-    console.log('userJams en Jam render :', this.state.userJams);
+    console.log('jamId en FlatMates:', this.state.jamId);
 
     return (
         
@@ -180,7 +180,7 @@ export default class FlatMates extends Component {
                   userId={this.state.userId} 
                   jamId={this.state.jamId}
                   jammers={this.state.jammers}
-                  updateJamIdinJam={this.updateJamIdInJam}
+                  updateJamIdInJam={this.updateJamIdInJam}
                   userJams={this.state.userJams}
                 /> 
               }

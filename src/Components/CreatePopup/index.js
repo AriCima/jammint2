@@ -17,7 +17,7 @@ export default class CreatePopup extends Component {
       userId          : this.props.userID,
       userName        : '',
       userJams        : this.props.userJams,
-      jamId           : "",
+      jamId           : '',
       jamName         : '',
       jamDescription  : '',
       createdAt       : "",
@@ -70,7 +70,9 @@ export default class CreatePopup extends Component {
       jamCode: jamCode,
       jamName: this.state.jamName,
       jamDescription: this.state.jamDescription,
+      jamType: 'flatmates',
       createdAt: createdAt,
+      updatedAt: '',
       jammers: [{name: this.state.userName, userId: userID}]
     };
 
