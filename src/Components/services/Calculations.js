@@ -29,7 +29,7 @@ export default class Calculations {
      };
      for (let l=0; l<4; l++){
         let capital = Math.round(Math.random()*10);
-        let random = Math.round(Math.random()*26);
+        let random = Math.round(Math.random()*25);
 
         if(Number.isInteger(capital/2)){
             codeArrayEnd[l]=(letters[random]).toUpperCase();

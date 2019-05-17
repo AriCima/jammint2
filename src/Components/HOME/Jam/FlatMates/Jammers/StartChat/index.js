@@ -48,6 +48,8 @@ export default class StartChat extends Component {
       jamType       : 'chat',
       updatedAt     : createdAt,
       createdAt     : createdAt,
+      user1         : this.state.userId,
+      usdr2         : this.state.chatterId,
       chatMessages  : [],
     };
 
@@ -58,29 +60,24 @@ export default class StartChat extends Component {
       console.log('chatter name :', result.email, ' chatterJams :', result.userJams)
 
       let transChatterJams = result.userJams;
-      let chatterName      = result.email;
 
-      // ADD THE JAM INTO JAMS
+      // ADD THE JAM INTO JAMS COLLECTION
       DataService.createJamBeta(newJam)
       .then((result)=>{
         let jamId = result.id;
         let userID = this.state.userId;
+        let chatterID = this.state.chatterId;
 
         newJam.jamId = jamId;
-        newJam.admin = [userID];
-        newJam.chatterName = chatterName;
-     
 
+  
         transUserJams.push(newJam);
-
-        newJam.chatterName = 'User'
-        transChatterJams.push(newJam);
-
         DataService.updateJamsArrayInUser(userID, transUserJams);
+
+        transChatterJams.push(newJam);
         DataService.updateJamsArrayInUser(chatterID, transChatterJams);
 
         this.props.updateJamIdinJammers(jamId);
-
 
       },(error)=>{
           console.log('Chat could not be created, error:', error);
