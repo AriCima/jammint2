@@ -36,7 +36,7 @@ export default class Jammers extends Component {
         <div className="room-cover" key={i} >
 
           <div className="user-pic">
-            <img src={require("../../../../assets/icons/user.png")} alt="user"/>
+            <img src={require("../../../../../assets/icons/user.png")} alt="user"/>
           </div>
 
           <div className="user-info">

@@ -1,30 +1,33 @@
 import React, { Component } from 'react';
 
-// COMPONENTS
-import JamInfo from './FlatMates/JamInfo';
-import Board from "./FlatMates/Board";
-import Jammers from './FlatMates/Jammers';
-import Chat from './ChatRoom/Chat';
-
-import './index.css';
 
 // DATA SERVICE
-import DataService from '../../services/DataService';
+import DataService from '../../../services/DataService';
 
-export default class Jam extends Component {
+// COMPONENTS
+import JamInfo from './JamInfo';
+import Board from './Board';
+import Jammers from './Jammers';
+
+// CSS
+import './index.css';
+
+export default class FlatMates extends Component {
   constructor(props){
     super(props);
     this.state = {
       userId      : this.props.userId,
-      userJams    : this.props.userJams,
-
       jamId       : this.props.jamId,
+      jammers     : this.props.jammers,
+      userJams    : this.props.userJams,
+      userIsAdmin : this.props.userIsAdmin,
+    
       adminId     : '',
       jamName     : '',
-      jammers     : [],
+
       jamType     : '',
 
-      userIsAdmin : false,
+
       
       showBoard   : true,
       showJamInfo : false,
