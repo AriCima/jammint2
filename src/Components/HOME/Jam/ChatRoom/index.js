@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+// ACCESSORIES
+import SubmitButton from '../../../ACCESSORIES/SubmitButton';
+
 import './index.css';
 
 export default class ChatRoom extends Component {
@@ -27,17 +30,45 @@ export default class ChatRoom extends Component {
     };
   };
 
+  // renderChatMessages(){
+  //   let messages = this.state.chatMessages;
+
+  //   messages.map((msg, j) => {
+  //   return(
+  //     <div className="single-message" key={j}>
+
+  //       <p>msg.message</p>
+
+  //     </div>
+  //     )
+  //   })
+
+  // };
 
   render() {
-    console.log('props received en Board ', this.props)
+    console.log('props received en chatroom ', this.props)
     return (
 
-      <div className="board">
-
-        <div className="board-content" id="board-content">
-         
+      <div className="chat-jumbo">
           <p>THIS IS THE CHAT : {this.state.jamId} </p>
 
+        <div className="chat-messages-wrapper">
+         
+          {/* {this.renderChatMessages()} */}
+
+          <p>mensajes aquí</p>
+
+        </div>
+
+        <div className="send-chat-area">
+          <form className="chat-form" onSubmit={this.sendMessage}>
+            <textarea className="chat-input"
+            
+            />
+            <div className="chat-send-button-area">
+              <SubmitButton text={'send'}/>
+            </div>
+          </form>
         </div>
 
       </div>
