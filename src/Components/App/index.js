@@ -120,7 +120,7 @@ class App extends Component {
               <Switch>    
                 <Route path="/sign_in" render = {(props) => {return <Login propsFn={props.history}/>}}/>
                 <Route path="/register" render = {(props) => {return <Register propsFn={props.history}/>}}/> 
-                <Route path="/home/:userId" render = {(props) => { return <Home userJams={this.state.userJams} userId={props.match.params.userId}/>}}/> 
+                <Route path="/home/:userId" render = {(props) => { return <Home userId={props.match.params.userId}/>}}/> 
                 {/* <Route path="/home/:userId/jam/:jamId" render = {(props) => { return <Home userJams={this.state.userJams} jamID={props.match.params.jamId} userID={props.match.params.userId}/>}}/> */}
 
               </Switch>

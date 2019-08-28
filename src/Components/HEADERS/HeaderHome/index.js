@@ -1,7 +1,7 @@
 // COOL STYLE https://codepen.io/egoens/pen/NxejgJ
 
 
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import {Link} from 'react-router-dom';
 import * as firebase from 'firebase';
 
@@ -14,7 +14,7 @@ import './index.css';
 
 const HeaderHome = (props) => {
 
-    const { user } = props;
+    const [user, setUser] = useState(props);
 
     const signOut = () => {   //Esta función informa a FireBase sobre el logout y FB automáticamente ejecuta el onAuthStateChange del App
         firebase.auth().signOut()
@@ -26,9 +26,13 @@ const HeaderHome = (props) => {
         });
     };
     
+    useEffect(() => {
+        if(props.user !== user) {
+            setUser(props.user)
+        }
+    },[]);
        
     return (
-        
         <div className="header-HOME">
 
         <div className="header-HOME-left">
@@ -61,8 +65,6 @@ const HeaderHome = (props) => {
         </div>
             
         </div>
-                        
-
     );   
 };
 

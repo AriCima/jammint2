@@ -1,6 +1,4 @@
-import React from 'react';
-
-
+import React, { useState, useEffect } from "react";
 
 // SERVICE API
 import DataService from '../services/DataService';
@@ -14,122 +12,79 @@ import Jam from './Jam';
 // CSS
 import './index.css'; 
 
-export default class Home extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = { 
-            userJams    : [],
-            jamId       : '',
-            user        : {id: this.props.userId, userName: '', email: '' }
-        };
-        console.log('Home props = ', this.props)
-        this.updateJamScreen    = this.updateJamScreen.bind(this);
-    };
+const Home = (props) => {
 
-    componentDidMount(){
-        
-        DataService.getUserInfoById(this.props.userId)
+    const [userJams, setUserJams] = useState([]);
+    const [jamId, setJamId] = useState('');
+    const [user, setUser] = useState({});
+    const { userId } = props;
+
+
+    const fetchData = () => {
+        DataService.getUserInfoById(userId)
         .then(result =>{
-            // console.log('result con el snapshot =', result)
-          const userJams = result.userJams;
-          const userJamsSorted = Calculations.sortByDateDesc(userJams)
-          const jamId = result.id;
-          const userName = result.userName;
-          const email = result.email;
-
-          this.setState({
-            userJams: userJamsSorted,
-            jamId: jamId,
-            user: {id: this.props.userId, name: userName, email: email }
+            console.log('result con el snapshot =', result)
+          setUser({
+            id: userId, 
+            name: result.userName, 
+            email: result.email
           });
-          console.log('userJams en el Home :', this.state.userJams)
+            console.log('result del user ', result)
         });
-        DataService.getUserJams(this.state.user.id)
+
+        DataService.getUserJams(userId)
         .then(result =>{
-
+           // setUserJams(result)
            console.log('userJams received ', result)
+           //const userJamsSorted = Calculations.sortByDateDesc(userJams)
 
-        //   this.setState({
-        //     userJams: userJams,
-        //   });
-        //   console.log('userJams en el Home :', this.state.userJams)
         });
-    };
+    }
 
-    componentDidUpdate(prevProps, prevState){
-        // console.log('CDU launched', this.props.userJams, ' / ', prevProps.userJams);
-        if(this.props.userJams !== prevProps.userJams){
-            this.setState({
-                userJams: this.props.userJams
-            })
-        };
+    useEffect(() => {
+        fetchData()
+        if(props.user !== user) {
+            setUser(props.user)
+        }
+    },[]);
 
-        if(this.props.jamCode !== prevProps.jamCode){
-
-            this.setState({
-                jamCode: this.props.jamCode,
-            })
-        };
-
-        if(this.props.jamId !== prevProps.jamId){
-
-          console.log('CDU new jamId en Home :', this.props.jamId)
-            this.setState({
-                // userJams: userJams,
-                jamId: this.props.jamId,
-            });
-        };
-
-    };
-
-    onChangeState(field, value){
-        let jamInfo = this.state;
-        jamInfo[field] = value;
-        this.setState(jamInfo)
-    };
-
-    updateJamScreen(jamId){
+    const updateJamScreen = (jamId) => {
         console.log('update en el Home, jamId = ', jamId);
-        this.setState({
-            jamId: jamId,
-        });
+        setJamId(jamId)
     };
-  
-  render() {
 
     return (
 
         <div className="home-logged">
             <div className="header-home">
                 <HeaderHome 
-                user= {this.state.user}
+                user= {user} 
                 />
             </div>
             
-            <div className="home">
+            <div className="home-body">
                 <aside className="jams-list">
                     <JamsList 
-                        user={this.state.user} 
-                        updateJamScreenInHome={this.updateJamScreen} 
-                        userJams={this.state.userJams}
+                        user={user} 
+                        updateJamScreenInHome={updateJamScreen} 
+                        userJams={userJams}
                     />
                 </aside>
 
                 <div className="jam-screen">
                 
                     <Jam 
-                        jamCode={this.state.jamCode}
-                        jamId= {this.state.jamId}
-                        user={this.state.user}
-                        updateJamIdInHome={this.updateJamScreen}
-                        userJams={this.state.userJams}
+                        jamId= {jamId}
+                        user={user}
+                        updateJamIdInHome={updateJamScreen}
+                        userJams={userJams}
                     /> 
                     
                 </div>
             </div>
         </div>
         
-       
     );
-  }
 }
+
+export default Home;

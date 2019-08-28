@@ -15,7 +15,7 @@ export default class JamsList extends Component {
       jamCode: '',
       jamId: '',
     };
-
+    console.log('jamsList props = ', this.props)
     this.updateJamScreenList = this.updateJamScreenList.bind(this);
   };
 
@@ -44,6 +44,7 @@ export default class JamsList extends Component {
     return jams.map((jam, j) => {
       return (
         <div className="jamCover-wrapper" key={j}>
+          <p>JamsList</p>
           <JamCover 
             updateJamScreenInList={this.updateJamScreenList} 
             name={jam.jamName} 
