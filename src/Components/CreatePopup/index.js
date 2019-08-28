@@ -1,164 +1,111 @@
-import React, {Component} from "react";
+import React, { useState, useEffect } from "react";
 
 // SERVICES
 import DataService from "../services/DataService";
 import Calculations from "../services/Calculations";
 
-// ACCESSORIES
-import SubmitButton from '../ACCESSORIES/SubmitButton';
-import CancelButton from '../ACCESSORIES/CancelButton';
+// Material UI
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
-export default class CreatePopup extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showPopup       : true,
+const CreatePopup = (props) => {
 
-      userId          : this.props.userID,
-      userName        : '',
-      userJams        : this.props.userJams,
-      jamId           : '',
-      jamName         : '',
-      jamDescription  : '',
-      createdAt       : "",
-    };
-
-    this.onCreateNewJam = this.onCreateNewJam.bind(this);
-  }
-
-  componentDidMount(){
+  const { user } = props;
+  const [open, setOpen] = useState(false);
+  const [jamName, setJamName] = useState('');
+  const [jamDesc, setJamDesc] = useState('');
     
-    DataService.getUserInfo(this.state.userId)
-
-    .then(result =>{
-      console.log('result en el get user info : ', result)
-      let userJams = result.userJams;
-      if (userJams === undefined){
-        userJams.push({
-          jamName: 'sampleJam',
-          jamCode: '0000',
-          jamDescription: 'This is a sample Jam',
-          adminId: this.state.userId,
-          createdAt: new Date(),
-        })
-      };
-      this.setState({
-        userName: result.email,
-        userJams: userJams
-      })
-    })
+  const handleChange = (field) => event => {
+    if (field === 'jamName'){
+      setJamName({ field: event.target.value });
+    } else {
+      setJamDesc({ field: event.target.value });
+    }
   };
 
-  onChangeState(field, value) {
-    let jamInfo = this.state;
-    jamInfo[field] = value;
-    this.setState(jamInfo);
-  };
-
-  onCreateNewJam(e){
+  const onCreateNewJam = (e) => {
     e.preventDefault();
-    console.log('userJams en el create', this.state.userJams)
-    let userID = this.state.userId;
     
-    let transJams = [];
-    transJams = [...this.state.userJams];
     let createdAt = new Date();
     let jamCode = Calculations.generateCode();
     
     let newJam = {
-      adminId: userID,
+      adminId: user.id,
       jamCode: jamCode,
-      jamName: this.state.jamName,
-      jamDescription: this.state.jamDescription,
+      jamName: jamName,
+      jamDescription: jamDesc,
       jamType: 'flatmates',
       createdAt: createdAt,
       updatedAt: '',
-      jammers: [{name: this.state.userName, userId: userID}]
+      jammers: [{user}]
     };
 
-
-
-    DataService.createJamBeta(newJam)
-    .then((result)=>{
-      // console.log('el result del create Jam = ', result)
-      let jamId = result.id;
-      let userID = this.state.userId;
-
-      newJam.jamId = jamId;
-      newJam.jammers = [userID];
-
-      transJams.push(newJam)
-
- 
-      console.log('updateJAm called with: ', userID, '/ ', transJams)
-
-      DataService.updateJamsArrayInUser(userID, transJams);
-      this.props.closePopup();
-
-      // this.props.propsFn.push(`/home/${userId}`)
-
-    },(error)=>{
-        console.log('Jam could not be created, error:', error);
-    });
+    DataService.createJam(newJam)
+    DataService.addJamToUser(user.id);
+      
+    setOpen(false);
   };
 
-  render() {
-    return (
-      <div className='popup'>
-        <div className='popup_inner'>
-
-          <div className="popup_inner_title">
-            <h1>CREATE YOUR OWN JAM IN ONE STEP !</h1>
-          </div>
-          
-        <form className="createJam-form-container" onSubmit={this.onCreateNewJam}>
-
-          <label id="label-short">
-              <h5>Name</h5>
-              <input
-                  className="input-short"
-                  type="text"
-                  name="jamName"
-                  size="350"
-                  value={this.state.jamName}
-                  onChange={e => {
-                      this.onChangeState("jamName", e.target.value);
-                  }}
-              />
-          </label>
-
-          <label id="label-textarea">
-              <h5>Description</h5>
-              <textarea
-                  className="textarea"
-                  type="text"
-                  name="description"
-                  size="350"
-                  value={this.state.jamDescription}
-                  onChange={e => {
-                      this.onChangeState("jamDescription", e.target.value);
-                  }}
-              />
-          </label>
-
-          <div className="createJam-button-area">
-
-            <div className="createJam-button" id="create-button-left">
-              <CancelButton text="Cancel" fn={this.props.closePopup}/>
-            </div>
-
-            <div className="createJam-button" id="create-button-right">
-              <SubmitButton text={"Create"} />
-            </div>
-
-          </div>
-            
-        </form>
-
-
-        </div>
-      </div>
-    );
+  const handleClickOpen = () => {
+    console.log('abrir popup')
+    setOpen(true);
   }
-}
+
+  const handleClose = () => {
+    console.log('cerrar popup')
+    setOpen(false);
+  }
+
+  return ( 
+    <div>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        Create Jam
+      </Button>
+      
+      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">Create you own Jam</DialogTitle>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="jamName"
+            label="JamName"
+            type="text"
+            fullWidth
+            onChange={handleChange('jamName')}
+          />
+
+          <TextField
+            autoFocus
+            margin="dense"
+            id="jamDesc"
+            label="JamDesc"
+            type="text"
+            fullWidth
+            onChange={handleChange('jamDesc')}
+          />
+
+        </DialogContent>
+
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={onCreateNewJam} color="primary">
+            Create
+          </Button>
+
+        </DialogActions>
+      </Dialog>
+    </div>
+    
+  );
+};
+
+export default CreatePopup;
 

@@ -6,26 +6,17 @@ import {Link} from 'react-router-dom';
 import * as firebase from 'firebase';
 
 // COMPONENTS
-import PopUpButton from '../../ACCESSORIES/PopUpBody/PopUpButton';
-import CreateJam from '../../CreateJam';
-import CreateButton from '../../CreatePopup/CreateButton';
-import JoinButton from '../../JoinPopup/JoinButton';
 import JoinPopup from '../../JoinPopup';
+import CreatePopup from '../../CreatePopup';
 
 // CSS
 import './index.css';
 
-export default class HeaderHome extends Component {
-    constructor(props){
-        super(props);
+const HeaderHome = (props) => {
 
-        this.state = {
-            user  : this.props.user,
-        }
-        // this.signOut = this.signOut.bind(this);
-    };
+    const { user } = props;
 
-    signOut = () => {   //Esta función informa a FireBase sobre el logout y FB automáticamente ejecuta el onAuthStateChange del App
+    const signOut = () => {   //Esta función informa a FireBase sobre el logout y FB automáticamente ejecuta el onAuthStateChange del App
         firebase.auth().signOut()
             .then(() => {
                 alert('See you later !') // Sign-out successful.
@@ -35,48 +26,44 @@ export default class HeaderHome extends Component {
         });
     };
     
-    
-    render() {
        
-        return (
+    return (
+        
+        <div className="header-HOME">
+
+        <div className="header-HOME-left">
+            <div className="header-HOME-nav-block">
+                <p>LOGGED MENU</p>
+            </div>
+
+            <div className="header-HOME-nav-block">
+                <CreatePopup
+                    user={user}
+                />
+            </div>
+
+            <div className="header-HOME-nav-block">
+                <JoinPopup
+                    user={user}
+                />
+            </div>
+
+        </div>
+
+        
+
+        <div className="header-HOME-right">
+
+            <div className="header-HOME-nav-block">
+                {!user.id ? <Link to={`/sign_in`}>Sign In</Link> : <span onClick={signOut}><Link to="/login">Sign-out</Link></span>}
+            </div>
+
+        </div>
             
-            <div className="header-HOME">
+        </div>
+                        
 
-            <div className="header-HOME-left">
-                <div className="header-HOME-nav-block">
-                    <p>LOGGED MENU</p>
-                </div>
-
-                <div className="header-HOME-nav-block">
-                    <CreateButton
-                        user={this.state.user}
-                    />
-                </div>
-
-                <div className="header-HOME-nav-block">
-                    <JoinPopup
-                        user={this.state.user}
-                    />
-                </div>
-{/* 
-                <div className="header-HOME-nav-block">
-                    <Link to={`/join-jam/${this.props.userID}`}>JOIN JAM</Link>
-                </div> */}
-            </div>
-
-            
-
-            <div className="header-HOME-right">
-
-                <div className="header-HOME-nav-block">
-                    {!this.props.userID ? <Link to={`/sign_in`}>Sign In</Link> : <span onClick={this.signOut}><Link to="/login">Sign-out</Link></span>}
-                </div>
-
-            </div>
-                
-            </div>
-                            
-
-        );
-    }
+    );   
 };
+
+export default HeaderHome;
