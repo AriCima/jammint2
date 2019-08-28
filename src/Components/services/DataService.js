@@ -43,7 +43,22 @@ export default class DataService {
         return new Promise((resolve, reject) => {
             firebase.firestore().collection('users').doc(userId).onSnapshot(function(doc) {
                 let userInfo = doc.data();
-                // console.log("Current data: ", doc.data());
+                console.log("Current data: ", doc.data());
+                resolve (userInfo)
+            });   
+        })
+        .catch((error) => {
+            var errorCode = error.code;
+            console.log('Usuario No Existe : ', errorCode);
+            
+        });
+    };
+
+    static getUserJams(userId){
+        return new Promise((resolve, reject) => {
+            firebase.firestore().collection('users').doc(userId).colelction('userJams').onSnapshot(function(doc) {
+                let userInfo = doc.data();
+                console.log("UserJams: ", doc.data());
                 resolve (userInfo)
             });   
         })
@@ -55,11 +70,7 @@ export default class DataService {
     };
 
 
-
-
-
     // JAMS
-
     static createJam(jamInfo) {  
 
         console.log('creteJam launched en Dataservice')
@@ -131,6 +142,7 @@ export default class DataService {
             
         });
     };
+
     static getJamInfoByCode(jamCode) {  
 
         return new Promise((resolve, reject) => {
@@ -172,6 +184,23 @@ export default class DataService {
         });
     };
 
+    static addJamtoUser(userID, jamToJoin){
+        return new Promise((resolve, reject) => {
+
+            firebase.firestore().collection(`users`).doc(userID).collection('userJams').add(jamToJoin)
+
+            .then((result) => {
+                console.log("Jam succesfully added to user")
+                resolve(result);
+            })
+            .catch((error) => {
+                var errorCode = error.code;
+                console.log('ERROR Jam NOT added to user: ', errorCode);                
+            })
+            
+        });
+    };
+
     static updateJamsArrayInUser(userID, jamsList){
         return new Promise((resolve, reject) => {
             console.log('inputs en el dataservice ', userID, jamsList);
@@ -190,7 +219,6 @@ export default class DataService {
             
         });
     };
-
     static updateJammersInJam(jamId, jammers){
         return new Promise((resolve, reject) => {
             // console.log('inputs en el dataservice ', jamCode, jammers);

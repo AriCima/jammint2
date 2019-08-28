@@ -7,6 +7,7 @@ import DataService from '../services/DataService';
 import Calculations from '../services/Calculations';
 
 // COMPONENTS
+import HeaderHome from '../HEADERS/HeaderHome';
 import JamsList from './JamsList';
 import Jam from './Jam';
 
@@ -17,27 +18,41 @@ export default class Home extends React.Component {
     constructor(props){
         super(props);
         this.state = { 
-            userId      : this.props.userID,
             userJams    : [],
-            jamId       : this.props.jamID,
+            jamId       : '',
+            user        : {id: this.props.userId, userName: '', email: '' }
         };
+        console.log('Home props = ', this.props)
         this.updateJamScreen    = this.updateJamScreen.bind(this);
     };
 
     componentDidMount(){
         
-        DataService.getUserInfoById(this.state.userId)
+        DataService.getUserInfoById(this.props.userId)
         .then(result =>{
             // console.log('result con el snapshot =', result)
-          let userJams = result.userJams;
-          let userJamsSorted = Calculations.sortByDateDesc(userJams)
-          let jamId = result.id;
+          const userJams = result.userJams;
+          const userJamsSorted = Calculations.sortByDateDesc(userJams)
+          const jamId = result.id;
+          const userName = result.userName;
+          const email = result.email;
 
           this.setState({
             userJams: userJamsSorted,
             jamId: jamId,
+            user: {id: this.props.userId, name: userName, email: email }
           });
           console.log('userJams en el Home :', this.state.userJams)
+        });
+        DataService.getUserJams(this.state.user.id)
+        .then(result =>{
+
+           console.log('userJams received ', result)
+
+        //   this.setState({
+        //     userJams: userJams,
+        //   });
+        //   console.log('userJams en el Home :', this.state.userJams)
         });
     };
 
@@ -84,26 +99,33 @@ export default class Home extends React.Component {
 
     return (
 
-           
-        <div className="home">
-            <aside className="jams-list">
-                <JamsList 
-                    userID={this.state.userId} 
-                    updateJamScreenInHome={this.updateJamScreen} 
-                    userJams={this.state.userJams}
+        <div className="home-logged">
+            <div className="header-home">
+                <HeaderHome 
+                user= {this.state.user}
                 />
-            </aside>
+            </div>
+            
+            <div className="home">
+                <aside className="jams-list">
+                    <JamsList 
+                        user={this.state.user} 
+                        updateJamScreenInHome={this.updateJamScreen} 
+                        userJams={this.state.userJams}
+                    />
+                </aside>
 
-            <div className="jam-screen">
-               
-                <Jam 
-                    jamCode={this.state.jamCode}
-                    jamId= {this.state.jamId}
-                    userId={this.state.userId}
-                    updateJamIdInHome={this.updateJamScreen}
-                    userJams={this.state.userJams}
-                /> 
+                <div className="jam-screen">
                 
+                    <Jam 
+                        jamCode={this.state.jamCode}
+                        jamId= {this.state.jamId}
+                        user={this.state.user}
+                        updateJamIdInHome={this.updateJamScreen}
+                        userJams={this.state.userJams}
+                    /> 
+                    
+                </div>
             </div>
         </div>
         

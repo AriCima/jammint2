@@ -52,16 +52,23 @@ class App extends Component {
     }
 
   }
-
+// Cómo cargar un usuario
+// https://github.com/reduxjs/redux/issues/291
 
   componentDidMount(){
     firebase.auth().onAuthStateChanged((user) => {
       // console.log('user en el App : ', user);
       if (user) {
 
+        const userInfo = () => async (dispatch) => {
+          const response = await DataService.getUserInfo(user.uid)
+        }
+        
+        
+        
         DataService.getUserInfo(user.uid)
         .then(result =>{
-         
+          console.log('result en el app = ', result)
           let userJams = result.userJams;
           
           this.setState({
@@ -97,10 +104,10 @@ class App extends Component {
                 {/* <Route path="/create-new-jam/:userId" exact render = {(props) => { return <HeaderHome userID={props.match.params.userId}/>}}/> */}
 
                 {/* * * *  HOME * * * */}
-                <Route path="/home/:userId" exact render = {(props) => { return <HeaderHome userJams={this.state.userJams} propsFn={props.history} userID={props.match.params.userId} jamID={props.match.params.jamId}/>}}/>
+                {/* <Route path="/home/:userId" exact render = {(props) => { return <HeaderHome userJams={this.state.userJams} propsFn={props.history} userId={props.match.params.userId} jamId={props.match.params.jamId}/>}}/> */}
                 
                 {/* * * *  JAM * * * */}
-                <Route path="/jam/:jamId" exact render = {(props) => { return <HeaderJam propsFn={props.history} patID={props.match.params.patientId} />}}/> 
+                <Route path="/jam/:jamId" exact render = {(props) => { return <HeaderJam propsFn={props.history} jamId={props.match.params.jamId} />}}/> 
 
                 {/* * * *  CHAT * * * */}
 
@@ -113,7 +120,7 @@ class App extends Component {
               <Switch>    
                 <Route path="/sign_in" render = {(props) => {return <Login propsFn={props.history}/>}}/>
                 <Route path="/register" render = {(props) => {return <Register propsFn={props.history}/>}}/> 
-                <Route path="/home/:userId" render = {(props) => { return <Home userJams={this.state.userJams} userID={props.match.params.userId}/>}}/> 
+                <Route path="/home/:userId" render = {(props) => { return <Home userJams={this.state.userJams} userId={props.match.params.userId}/>}}/> 
                 {/* <Route path="/home/:userId/jam/:jamId" render = {(props) => { return <Home userJams={this.state.userJams} jamID={props.match.params.jamId} userID={props.match.params.userId}/>}}/> */}
 
               </Switch>

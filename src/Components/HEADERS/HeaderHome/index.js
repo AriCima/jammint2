@@ -10,6 +10,7 @@ import PopUpButton from '../../ACCESSORIES/PopUpBody/PopUpButton';
 import CreateJam from '../../CreateJam';
 import CreateButton from '../../CreatePopup/CreateButton';
 import JoinButton from '../../JoinPopup/JoinButton';
+import JoinPopup from '../../JoinPopup';
 
 // CSS
 import './index.css';
@@ -19,15 +20,12 @@ export default class HeaderHome extends Component {
         super(props);
 
         this.state = {
-            userId: this.props.userID,
-            jamId   : this.props.jamID,
+            user  : this.props.user,
         }
-
-        this.signOut = this.signOut.bind(this);
-
+        // this.signOut = this.signOut.bind(this);
     };
 
-    signOut(){   //Esta función informa a FireBase sobre el logout y FB automáticamente ejecuta el onAuthStateChange del App
+    signOut = () => {   //Esta función informa a FireBase sobre el logout y FB automáticamente ejecuta el onAuthStateChange del App
         firebase.auth().signOut()
             .then(() => {
                 alert('See you later !') // Sign-out successful.
@@ -46,18 +44,18 @@ export default class HeaderHome extends Component {
 
             <div className="header-HOME-left">
                 <div className="header-HOME-nav-block">
-                    <p>MENU</p>
+                    <p>LOGGED MENU</p>
                 </div>
 
                 <div className="header-HOME-nav-block">
                     <CreateButton
-                        userID={this.state.userId}
+                        user={this.state.user}
                     />
                 </div>
 
                 <div className="header-HOME-nav-block">
-                    <JoinButton
-                        userID={this.state.userId}
+                    <JoinPopup
+                        user={this.state.user}
                     />
                 </div>
 {/* 

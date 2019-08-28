@@ -1,54 +1,43 @@
-import React, {Component} from "react";
+import React, { useState } from "react";
 
 // SERVICES
 import DataService from "../services/DataService";
 import Calculations from "../services/Calculations";
 
-// ACCESSORIES
-import SubmitButton from '../ACCESSORIES/SubmitButton';
-import CancelButton from '../ACCESSORIES/CancelButton';
+// Material UI
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
-export default class JoinPopup extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showPopup : true,
+const JoinPopup = (props) => {
 
-      userId    : this.props.userID,
-      userName  : '',
-      userJams  : this.props.userJams,
-      
-      jamToJoin : {},
-    };
+  const { user } = props;
+  const [open, setOpen] = useState(false);
+  const [jamCode, setjamCode] = useState('');
 
-    this.onJoinJam = this.onJoinJam.bind(this);
-  }
-
-  componentDidMount(){
-    DataService.getUserInfo(this.state.userId)
-    .then(result =>{
-      let userJams = result.userJams;
-      this.setState({
-        userName: result.email,
-        userJams: userJams
-      })
-    })
+  const handleChange = jamCode => event => {
+    console.log('guardar cambios')
+    setjamCode({ jamCode: event.target.value });
   };
 
-  onChangeState(field, value) {
-    let jamInfo = this.state;
-    jamInfo[field] = value;
-    this.setState(jamInfo);
+  const handleClickOpen = () => {
+    console.log('abrir popup')
+    setOpen(true);
   }
 
-  onJoinJam(e){
+  const handleClose = () => {
+    console.log('cerrar popup')
+    setOpen(false);
+  }
+
+  const onJoinJam = (e) => {
     e.preventDefault();
 
-    let transJams = [];
-    transJams = [...this.state.userJams];
-    
-
-    DataService.getJamInfoByCode(this.state.jamCode)
+    DataService.getJamInfoByCode(jamCode)
     .then(result =>{     
       let jam = result.data;
       let jamId = result.id;
@@ -56,83 +45,62 @@ export default class JoinPopup extends Component {
 
       let jamCode = jam.jamCode;
 
-      let jamToJoin = {};
-      jamToJoin.adminId = jam.adminId;
+      const jamToJoin = {};
+      jamToJoin.isAdmin = false;
       jamToJoin.jamCode = jamCode;
       jamToJoin.jamName = jam.jamName;
       jamToJoin.jamId = jamId;
       jamToJoin.jamDescription = jam.jamDescription;
-      jamToJoin.createdAt = jam.createdAt;
       jamToJoin.joineddAt = joinedAt;
-      jamToJoin.jammers = jam.jammers;
 
-      jamToJoin.jammers.push({name: this.state.userName, userId: this.state.userId})
+      DataService.addJamtoUser(user.id, jamToJoin);
 
-      this.setState({
-        jamToJoin : jamToJoin,
-      })
+      const newJammer = ({name: user.userName, userId: user.id})
 
+      DataService.updateJammersInJam(jamId, newJammer);
 
-
-      console.log('this.state.userId, transJams', this.state.userId, ' / ', transJams);
-
-      let transJammers = jamToJoin.jammers
-      DataService.updateJammersInJam(jamId, transJammers);
-
-      transJams.push(this.state.jamToJoin)
-      DataService.updateJamsArrayInUser(this.state.userId, transJams);
-      this.props.closePopup();
+      setOpen(false);
 
     }).catch(function (error) {   
       console.log(error);
     });
-    
   };
 
-  render() {
-    return (
-      <div className='popup'>
-        <div className='popup_inner'>
-
-          <div className="popup_inner_title">
-            <h1>JOIN A JAM  !</h1>
-            <p>Input the jam code</p>
-          </div>
-          
-        <form className="createJam-form-container" onSubmit={this.onJoinJam}>
-
-          <label id="label-short">
-              <h5>Jam Code</h5>
-              <input
-                  className="input-short"
-                  type="text"
-                  name="jamCode"
-                  size="350"
-                  value={this.state.jamCode}
-                  onChange={e => {
-                      this.onChangeState("jamCode", e.target.value);
-                  }}
-              />
-          </label>
-
-          <div className="createJam-button-area">
-
-            <div className="createJam-button" id="create-button-left">
-              <CancelButton text="Cancel" fn={this.props.closePopup}/>
-            </div>
-
-            <div className="createJam-button" id="create-button-right">
-              <SubmitButton text={"Join"}/>
-            </div>
-
-          </div>
-            
-        </form>
-
-
-        </div>
-      </div>
-    );
-  }
+  return ( 
+    <div>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        Join Jam
+      </Button>
+      
+      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">Join</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Input the JamCode.{props.userId}
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="jamCode"
+            label="JamCode"
+            type="text"
+            fullWidth
+            onChange={handleChange('jamCode')}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={onJoinJam} color="primary">
+            Join
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </div>
+    
+  );
 }
+
+export default JoinPopup;
 
