@@ -166,7 +166,7 @@ export default class DataService {
         });
     };
 
-    static addJamtoUser(userID, jamToJoin){
+    static addJamToUser(userID, jamToJoin){
         return new Promise((resolve, reject) => {
 
             firebase.firestore().collection(`users`).doc(userID).collection('userJams').add(jamToJoin)

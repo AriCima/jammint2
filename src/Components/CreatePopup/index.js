@@ -10,7 +10,6 @@ import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 const CreatePopup = (props) => {
@@ -22,9 +21,9 @@ const CreatePopup = (props) => {
     
   const handleChange = (field) => event => {
     if (field === 'jamName'){
-      setJamName({ field: event.target.value });
+      setJamName(event.target.value);
     } else {
-      setJamDesc({ field: event.target.value });
+      setJamDesc(event.target.value);
     }
   };
 
@@ -38,16 +37,20 @@ const CreatePopup = (props) => {
       adminId: user.id,
       jamCode: jamCode,
       jamName: jamName,
-      jamDescription: jamDesc,
+      jamDesc: jamDesc,
       jamType: 'flatmates',
       createdAt: createdAt,
       updatedAt: '',
-      jammers: [{user}]
+      jammers: [user]
     };
 
     DataService.createJam(newJam)
-    DataService.addJamToUser(user.id);
-      
+    .then(res => {
+
+      newJam.jamId = res.id;
+      DataService.addJamToUser(user.id, newJam);
+    })
+    
     setOpen(false);
   };
 

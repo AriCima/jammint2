@@ -21,7 +21,7 @@ const JoinPopup = (props) => {
 
   const handleChange = jamCode => event => {
     console.log('guardar cambios')
-    setjamCode({ jamCode: event.target.value });
+    setjamCode(event.target.value);
   };
 
   const handleClickOpen = () => {
