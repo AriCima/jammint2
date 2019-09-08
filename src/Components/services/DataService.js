@@ -26,6 +26,7 @@ export default class DataService {
     };
     
     static getUserInfo(userId){
+        console.log('user info called with: ', userId)
         return new Promise((resolve, reject) => {
 
             firebase.firestore().collection('users').doc(userId).get()
@@ -56,6 +57,8 @@ export default class DataService {
     };
 
     static getUserJams(userId){
+        console.log('user JAMS called with: ', userId)
+
         return new Promise((resolve, reject) => {
             firebase.firestore().collection('users').doc(userId).colelction('userJams').onSnapshot(function(doc) {
                 let userInfo = doc.data();

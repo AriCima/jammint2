@@ -14,7 +14,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 const CreatePopup = (props) => {
 
-  const { user } = props;
+  const { user } = props
+
   const [open, setOpen] = useState(false);
   const [jamName, setJamName] = useState('');
   const [jamDesc, setJamDesc] = useState('');
@@ -28,6 +29,7 @@ const CreatePopup = (props) => {
   };
 
   const onCreateNewJam = (e) => {
+    console.log(' user en Create = ', user)
     e.preventDefault();
     
     let createdAt = new Date();
@@ -55,7 +57,7 @@ const CreatePopup = (props) => {
   };
 
   const handleClickOpen = () => {
-    console.log('abrir popup')
+    
     setOpen(true);
   }
 
