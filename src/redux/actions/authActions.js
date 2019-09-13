@@ -35,19 +35,21 @@ export const loginAction = (credentials) => {
             console.log('res = ', res, res.user.uid)
             firestore.collection('users').doc(res.user.uid).collection('userJams').get()
             .then(function(querySnapshot) {
+                const userJams = []
                 querySnapshot.forEach(function(doc) {
                     // doc.data() is never undefined for query doc snapshots
-                    console.log(doc.id, " => ", doc.data());
-                    return doc.data()
+                    userJams.push(doc.data())
+                    return userJams
                 });
-                dispatch({type: 'GET_USERJAMS_SUCCESS'})
+                // console.log('doc received', userJams);
+                dispatch({type: 'LOGIN_SUCCESS', userJams})
             })
             .catch(function(error) {
                 console.log("Error getting documents: ", error);
             });
 
             console.log('res del login = ', res)
-            dispatch({type: 'LOGIN_SUCCESS'})
+            // dispatch({type: 'LOGIN_SUCCESS'})
         }).catch((err) =>
         dispatch({type: 'LOGIN_ERROR', err}) )
     }

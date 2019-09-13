@@ -45,6 +45,41 @@ export const addJamToUser = (jam) => {
     }
 };
 
+export const getUserJams = (userId) => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+        
+        const firestore = getFirestore();
+
+        firestore.collection('users').doc(userId).collection('userJams').get()
+        .then(function(querySnapshot) {
+            const userJams = []
+            querySnapshot.forEach(function(doc) {
+                // doc.data() is never undefined for query doc snapshots
+                userJams.push(doc.data())
+                return userJams
+            });
+            console.log('doc received', userJams);
+           dispatch({
+                type: "GET_USER_JAMS", 
+                payload: userJams
+            
+            })
+        })
+        .catch((err) => {
+            dispatch({ type: 'GET_USER_JAMS_ERROR', err })
+        })
+
+    }
+}
+
+// export const getJams = (userId) => async (dispatch) => {
+//     const response = await firestore.collection('user').doc(userId).collection('userJams').get();
+//     dispatch({ 
+//         type: "FETCH_POSTS", 
+//         payload: response.data 
+//     });
+// };
+
 // AÑADIR EL USER ID AL JAMMERS
 export const joinJam = (jam) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {

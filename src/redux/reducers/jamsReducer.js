@@ -1,19 +1,15 @@
-const initState = {
-    jamsList: [
-        {
-        jamId: 1234,
-        jamName: 'Cooles Jam on Earth',
-        createdAt: new Date(),
-        },
-        {
-            jamId: 5678,
-            jamName: 'Second Jam',
-            createdAt: new Date(),
-        }
-    ]
-};
+// const initState = {
+//     userJams: [
+//         {
+//         jamId: 1234,
+//         jamName: 'Cooles Jam on Earth',
+//         createdAt: new Date(),
+//         }
+//     ]
+// };
 
-const jamReducer = (state = initState, action) => {
+
+const jamReducer = (state = [], action) => {
     switch(action.type) {
         case 'CREATE_JAM':
             return {
@@ -35,6 +31,8 @@ const jamReducer = (state = initState, action) => {
             return {
                 ...state
             }
+        case 'GET_USER_JAMS':
+            return action.payload;
         default:
             return state
     }

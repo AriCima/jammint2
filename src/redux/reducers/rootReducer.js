@@ -10,7 +10,7 @@ import { combineReducers } from 'redux';
 // las keys del rootReducer serán las kayes del state
 const rootReducer = combineReducers({
     auth: authReducer,
-    jams: jamsReducer,
+    userJams: jamsReducer,
     
     // el firestoreReducer automáticamente sincronizará la propiedad "firestore"
     // del Obj "state" con nuestra data en la base de datos
