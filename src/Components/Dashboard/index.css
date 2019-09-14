@@ -1,28 +1,19 @@
-.home-logged{
+.dashboard{
     width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.jams-list{
+    width: 30%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
 }
 
-.header-home{
-    width: 100%
-}
-
-.home-body{
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
-.jams-list{
-    margin-top: 60px;
-    width: 30%;
-}
-
 .jam-screen{
-    margin-top: 60px;
     width: 70%;
 }
 

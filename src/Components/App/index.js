@@ -19,12 +19,16 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        {/* <NavBar/> */}
-        <Switch>
-          <Route exact path="/" component={Dashboard} />
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={Register} />
-        </Switch>
+        <div className="navBar">
+          <NavBar/>
+        </div>
+        <div className="app-body">
+          <Switch>
+            <Route exact path="/" component={Dashboard} />
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={Register} />
+          </Switch>
+        </div>
       </div>
     </BrowserRouter>
   );
