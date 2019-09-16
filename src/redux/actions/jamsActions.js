@@ -72,14 +72,6 @@ export const getUserJams = (userId) => {
     }
 }
 
-// export const getJams = (userId) => async (dispatch) => {
-//     const response = await firestore.collection('user').doc(userId).collection('userJams').get();
-//     dispatch({ 
-//         type: "FETCH_POSTS", 
-//         payload: response.data 
-//     });
-// };
-
 // AÑADIR EL USER ID AL JAMMERS
 export const joinJam = (jam) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
@@ -107,6 +99,10 @@ export const joinJam = (jam) => {
 };
 
 export const selectJam = (jamId) => {
-    return {type: 'JAM_SELECTED', jamId}
-}
-
+    return (dispatch) => {
+        dispatch({
+            type: 'JAM_SELECTED', 
+            payload: jamId
+        })
+    }
+};

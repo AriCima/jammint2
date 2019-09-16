@@ -7,11 +7,10 @@ import "./index.css";
 
  const JamCover = (props) => {
 
-  const { name, desc, code, jamId } = props
+  const { name, desc, jamId } = props
 
   const onSelectJam=(jamId)=>{
-    this.props.selectJam(jamId);
-
+    props.selectJam(jamId);
   };
 
   return (
@@ -19,7 +18,8 @@ import "./index.css";
     <button className="jam-container" onClick={onSelectJam}>
 
       <div className="jams-list-content">
-        <h4>{name}, {jamId} </h4>
+        <h4>{name}</h4>
+        <p>{jamId}</p>
       </div>
 
       <div className="jams-list-content">
@@ -40,6 +40,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
+      jamid: state.jams,
       auth: state.firebase.auth
   }
 }

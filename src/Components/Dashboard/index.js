@@ -41,9 +41,9 @@ const Dashboard = ({ auth, profile, userJams, jamId, getUserJams }) => {
 const mapStateToProps = state => {
     console.log('state del dash =', state)
     return { 
-        userJams: state.userJams,
+        userJams: state.jams,
         auth: state.firebase.auth
-     }
+    }
 };
 
 export default connect(mapStateToProps, 

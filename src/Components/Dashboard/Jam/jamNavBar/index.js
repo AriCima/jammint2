@@ -1,22 +1,26 @@
 // COOL STYLE https://codepen.io/egoens/pen/NxejgJ
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+
 // import { NavLink } from 'react-router-dom';
 
 
 // COMPONENTS
-import Board  from '../Board'
-import Jammers  from '../Jammers'
-import MyJam  from '../MyJam'
-import Settings  from '../Settings'
+import Board  from './Board'
+import Jammers  from './Jammers'
+import MyJam  from './MyJam'
+import Settings  from './Settings'
 // import { connect } from 'react-redux';
 
 // CSS
 import './index.css';
 
-const jamNavBar = (props) => {
+const JamNavBar = (props) => {
     
+    const { jamId, jamSection } = props
     // const [user, signOut] = props;
+
 
     return (
 
@@ -43,17 +47,16 @@ const jamNavBar = (props) => {
     );   
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         // signOut: () => dispatch(signOut())
-//     }
-// }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        // signOut: () => dispatch(signOut())
+    }
+}
 
-// const mapStateToProps = (state) => {
-//     console.log('state en el jamNavBar = ', state)
-//     return {
-//         user: state.firebase.auth,
-//     }
-// }
-// export default connect(mapStateToProps, mapDispatchToProps)(jamNavBar);
-export default jamNavBar
+const mapStateToProps = (state) => {
+    console.log('state en el jamNavBar = ', state)
+    return {
+        user: state.firebase.auth,
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(jamNavBar);

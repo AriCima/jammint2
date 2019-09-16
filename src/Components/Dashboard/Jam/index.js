@@ -1,152 +1,90 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 
 // COMPONENTS
-import Chat from './ChatRoom';
+import JamNavBar from './JamNavBar';
+import Board from './JamNavBar/Board';
 import FlatMates from './FlatMates'
+import MyJam from './JamNavBar/MyJam';
+import Settings from './JamNavBar/Settings';
+import { getJamInfoById } from '../../../redux/actions/jamsInfo';
 
 import './index.css';
 
-// DATA SERVICE
-import DataService from '../../services/DataService';
+const Jam = ( props ) => {
 
-export default class Jam extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      userId      : this.props.userId,
-      userJams    : this.props.userJams,
-
-      jamId       : this.props.jamId,
-      adminId     : '',
-      jamType     : '',
-      jamCode     : '',
-
-      //exclusive for flatmates
-      jamName     : '',
-      jammers     : [],
-      userIsAdmin : false,
-      boardMessages: [],
-
-      //exclusive for chat
-      chatMessages: [],
-
-    };
-
-    this.updateJamIdInJam = this.updateJamIdInJam.bind(this);
-  };
+  const [jamId, setJamId] = useState(props.jamId);
+  const [jamSection, setJamSection] = useState(props.jamSection);
 
 
-  componentDidUpdate(prevProps, prevState) {
-    
-    if(this.props.jamId !== prevProps.jamId){
-     
-      DataService.getJamInfoById(this.props.jamId)
-      .then(result => {     
-        
-        let adminId         = result.adminId;
-        let jamType         = result.jamType;
-        let jamName         = result.jamName;
-        let jamDescription  = result.jamDescription;
-        let jammers         = result.jammers;
-        let jamCode         = result.jamCode;
-        let createdAt       = result.createdAt;
-        let updatedAt       = result.updatedAt;
+  useEffect(() => {
+   
+  },[jamSection]);
 
-        if(jamType === "flatmates"){
-          console.log('jamType = flatmates ')
-          let evaluateAdmin   = false;
-
-          // Evalúo si el user es a la vez el admin del Jam
-          if(this.state.userId === adminId){
-            evaluateAdmin = true;
-          };
-
-          this.setState({
-            adminId         : adminId,
-            userIsAdmin     : evaluateAdmin,
-            jamId           : this.props.jamId,
-            jamType         : jamType,
-            jamCode         : jamCode,
-            createdAt       : createdAt,
-            updatedAt       : updatedAt,
-            jamName         : jamName, 
-            jamDescription  : jamDescription,
-            jammers         : jammers,
-
-          });
-        } else if (jamType === "chat"){
-          console.log('jamType = chat ')
-          this.setState({
-            adminId         : adminId,
-            jamId           : this.props.jamId,
-            jamType         : jamType,
-            jamCode         : jamCode,
-            createdAt       : createdAt,
-            updatedAt       : updatedAt,
-          });
-        };
-
-        console.log('el state en el jam luego del CDU ', this.state)
-
-      }).catch(function (error) {   
-        console.log(error);
-      });
-    };
-
-    if(this.props.userJams !== prevProps.userJams){
-      this.setState({
-        userJams: this.props.userJams,
-      });
-    };  
-
-  };
-
-  updateJamIdInJam(x){
-    // console.log('update Jam OK');
-    this.setState({
-      jamId: x,
-    })
-    this.props.updateJamIdInHome(x)
-  };
-  
-  render() {
-    console.log('jamId en el render de Jam :', this.state.jamid);
-    return (
-      <div>
-{/* 
-        {this.state.jamId === undefined ? <h1>SELECT YOUR JAM</h1> : 
-          
-          <div className="jam">
-
-            {this.state.jamType === 'chat' && 
-              <Chat 
-                userId={this.state.userId}
-                jamId={this.state.jamId}
-                createdAt={this.state.createdAt}
-                updatedAt={this.state.updatedAt}
-              />
-            }
-            
-            {this.state.jamType === "flatmates" &&
-              <FlatMates
-                userId={this.state.userId} 
-                jamId={this.state.jamId}
-                jammers={this.state.jammers}
-                updateJamIdInJam={this.updateJamIdInJam}
-                userJams={this.state.userJams}
-                userIsAdmin={this.state.userIsAdmin}
-                createdAt={this.state.createdAt}
-                updatedAt={this.state.updatedAt}
-              />
-            }
-
-          </div>
-        } */}
-        THIS IS A JAM
+  return (
+    <div>
+      <div className="jamNavBar">
+        <JamNavBar 
+          jamId={jamId} 
+          jamSection={jamSection}
+        />
       </div>
-    );
-  };
+
+      {jamId === undefined ? <h1>SELECT YOUR JAM</h1> : 
+      
+        <div className="jam-container">
+          { jamSection === 'board' && 
+            <Board 
+              userId={this.state.userId}
+              jamId={this.state.jamId}
+            />
+          }
+
+          { jamSection === 'flatmates' && 
+            <FlatMates
+              userId={this.state.userId} 
+              jamId={this.state.jamId}
+              jammers={this.state.jammers}
+            />
+          }
+
+          { jamSection === 'myjam' && 
+            <MyJam
+              userId={this.state.userId} 
+              jamId={this.state.jamId}
+            />
+          }
+
+          { jamSection === 'settings' && 
+            <Settings
+              userId={this.state.userId} 
+              jamId={this.state.jamId}
+            />
+          } 
+
+        </div>
+      }
+    </div>
+  );
 };
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+      // nombre de la función que paso como prop: (arg) => dispatch(nombre del action creator(argumento))
+      getJamInfo: (jamId) => dispatch(getJamInfoById(jamId))
+  }
+}
+
+const mapStateToProps = state => {
+  console.log('state del jam =', state)
+  return { 
+      jamId: state.jams,
+      jamSection: state.jamSection,
+      auth: state.firebase.auth
+   }
+};
+
+export default connect(mapStateToProps) (Jam);
 
 
 

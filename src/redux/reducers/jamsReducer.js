@@ -1,14 +1,3 @@
-// const initState = {
-//     userJams: [
-//         {
-//         jamId: 1234,
-//         jamName: 'Cooles Jam on Earth',
-//         createdAt: new Date(),
-//         }
-//     ]
-// };
-
-
 const jamReducer = (state = [], action) => {
     switch(action.type) {
         case 'CREATE_JAM':
@@ -28,10 +17,14 @@ const jamReducer = (state = [], action) => {
                 ...state
             }
         case 'JAM_SELECTED':
-            return {
-                ...state
-            }
+            return action.payload;
+        case 'JAM_SECTION':
+            return action.payload;
         case 'GET_USER_JAMS':
+            return action.payload;
+        case 'GET_JAM_INFO_BY_ID':
+            return action.payload;
+        case 'GET_JAM_INFO_BY_CODE':
             return action.payload;
         default:
             return state
