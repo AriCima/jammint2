@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 
 // COMPONENTS
 import { connect } from 'react-redux';
-import { setJamSection } from '../../../../redux/actions/jamSection';
+import { setJamSection } from '../../../../../redux/actions/jamSection';
 
 // CSS
 import './index.css';
@@ -17,11 +17,9 @@ const Jammers = (props) => {
     },[setJamSection])
 
     return (
-
-        <div className="my-jam" onClick={setJamSection('Jammers')}>
-            <a>Jammers</a>
+        <div className="my-jam">
+           JAMMMMMMERSSSSS
         </div>
-
     );   
 };
 
@@ -32,7 +30,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
-    console.log('state en el jamNavBar = ', state)
     return {
         user: state.firebase.auth,
     }

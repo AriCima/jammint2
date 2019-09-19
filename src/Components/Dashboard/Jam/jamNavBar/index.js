@@ -1,17 +1,9 @@
 // COOL STYLE https://codepen.io/egoens/pen/NxejgJ
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-// import { NavLink } from 'react-router-dom';
-
-
-// COMPONENTS
-import Board  from './Board'
-import Jammers  from './Jammers'
-import MyJam  from './MyJam'
-import Settings  from './Settings'
-// import { connect } from 'react-redux';
+import { setJamSection } from '../../../../redux/actions/jamSection';
 
 // CSS
 import './index.css';
@@ -19,27 +11,30 @@ import './index.css';
 const JamNavBar = (props) => {
     
     const { jamId, jamSection } = props
-    // const [user, signOut] = props;
+
+    useEffect((jamSection) => {
+        setJamSection(jamSection)
+    },[jamSection])
 
 
     return (
 
         <div className="jamNavBar">
 
-            <div className="jamNavBar-item">
-                <Board />
+            <div className="jamNavBar-item" onClick={()=>setJamSection('Board')}>
+                <a>Board</a>
             </div>
 
-            <div className="jamNavBar-item">
-                <Jammers />
+            <div className="jamNavBar-item" onClick={()=>setJamSection('Jammers')}>
+                <a>Jammers</a>
             </div>
 
-            <div className="jamNavBar-item">
-                <MyJam />
+            <div className="jamNavBar-item" onClick={()=>setJamSection('MyJam')}>
+                <a>My Jam</a>
             </div>
 
-            <div className="jamNavBar-item">
-                <Settings />
+            <div className="jamNavBar-item" onClick={()=>setJamSection('Settings')}>
+                <a>Settings</a>
             </div>
             
         </div>
@@ -49,14 +44,14 @@ const JamNavBar = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        // signOut: () => dispatch(signOut())
+        setJamSection: () => dispatch(setJamSection())
     }
 }
 
 const mapStateToProps = (state) => {
-    console.log('state en el jamNavBar = ', state)
+
     return {
         user: state.firebase.auth,
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(jamNavBar);
+export default connect(mapStateToProps, { setJamSection })(JamNavBar);

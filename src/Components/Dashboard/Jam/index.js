@@ -13,53 +13,28 @@ import './index.css';
 
 const Jam = ( props ) => {
 
-  const [jamId, setJamId] = useState(props.jamId);
-  const [jamSection, setJamSection] = useState(props.jamSection);
-
-
-  useEffect(() => {
-   
-  },[jamSection]);
+  const { jamSection, jamId } = props;
 
   return (
     <div>
-      <div className="jamNavBar">
-        <JamNavBar 
-          jamId={jamId} 
-          jamSection={jamSection}
-        />
-      </div>
 
       {jamId === undefined ? <h1>SELECT YOUR JAM</h1> : 
       
         <div className="jam-container">
           { jamSection === 'board' && 
-            <Board 
-              userId={this.state.userId}
-              jamId={this.state.jamId}
-            />
+            <Board />
           }
 
           { jamSection === 'flatmates' && 
-            <FlatMates
-              userId={this.state.userId} 
-              jamId={this.state.jamId}
-              jammers={this.state.jammers}
-            />
+            <FlatMates/>
           }
 
           { jamSection === 'myjam' && 
-            <MyJam
-              userId={this.state.userId} 
-              jamId={this.state.jamId}
-            />
+            <MyJam />
           }
 
           { jamSection === 'settings' && 
-            <Settings
-              userId={this.state.userId} 
-              jamId={this.state.jamId}
-            />
+            <Settings />
           } 
 
         </div>
@@ -67,13 +42,6 @@ const Jam = ( props ) => {
     </div>
   );
 };
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-      // nombre de la función que paso como prop: (arg) => dispatch(nombre del action creator(argumento))
-      getJamInfo: (jamId) => dispatch(getJamInfoById(jamId))
-  }
-}
 
 const mapStateToProps = state => {
   console.log('state del jam =', state)

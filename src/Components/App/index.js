@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
@@ -15,13 +15,16 @@ import Dashboard from '../Dashboard';
 import './index.css';
 
 
+
 function App() {
+
+
   return (
     <BrowserRouter>
       <div className="App">
-        <div className="navBar">
-          <NavBar/>
-        </div>
+          <div className="navBar">
+            <NavBar/>
+          </div>
         <div className="app-body">
           <Switch>
             <Route exact path="/" component={Dashboard} />

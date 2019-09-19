@@ -6,7 +6,7 @@ export const getJamInfoById = (jamId) => {
 
         firestore.collection('jams').doc(jamId).get()
         .then((result) => {
-            // console.log('el result del Bis = ', result);
+            console.log('el result del Bis = ', result);
             const jamInfo = result.data();
             dispatch({
                 type: "GET_JAM_INFO_BY_ID", 

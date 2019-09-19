@@ -18,8 +18,8 @@ const Board = (props) => {
 
     return (
 
-        <div className="my-jam" onClick={setJamSection('board')}>
-            <a>Board</a>
+        <div className="my-jam">
+            THIS IS BOARD
         </div>
 
     );   

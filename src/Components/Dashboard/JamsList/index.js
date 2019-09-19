@@ -3,23 +3,15 @@ import React from "react";
 // COMPONENTS
 import JamCover from './JamCover'
 
-// REDUX
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-
-// REACT-REDUX-FIREBASE
-import { firestoreConnect } from 'react-redux-firebase';
-
 // CSS
 import "./index.css";
-
 
 const JamsList = (props) => {
 
   const { userJams } = props;
+  console.log('userJams = ', userJams);
 
   const _renderJams = () => {
-  
     return userJams.map((jam, j) => {
       return (
         <div className="jamCover-wrapper" key={j}>

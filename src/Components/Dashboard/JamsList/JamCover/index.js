@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from 'react-redux';
-import { selectJam } from '../../../../redux/actions/jamsActions';
+import { selectJam } from '../../../../redux/actions/jamActive';
 
 // CSS
 import "./index.css";
@@ -10,12 +10,13 @@ import "./index.css";
   const { name, desc, jamId } = props
 
   const onSelectJam=(jamId)=>{
+    console.log('jam selected = ', jamId)
     props.selectJam(jamId);
   };
 
   return (
 
-    <button className="jam-container" onClick={onSelectJam}>
+    <button className="jam-container" onClick={()=> onSelectJam(jamId)}>
 
       <div className="jams-list-content">
         <h4>{name}</h4>

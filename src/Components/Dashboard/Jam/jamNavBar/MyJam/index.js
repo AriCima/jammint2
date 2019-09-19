@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 
 // COMPONENTS
 import { connect } from 'react-redux';
-import { setJamSection } from '../../../../redux/actions/jamSection';
+import { setJamSection } from '../../../../../redux/actions/jamSection';
 
 // CSS
 import './index.css';
@@ -18,8 +18,8 @@ const MyJam = (props) => {
 
     return (
 
-        <div className="my-jam" onClick={setJamSection('MyJam')}>
-            <a>MyJam</a>
+        <div className="my-jam">
+            MY MY MY MY JAM
         </div>
 
     );   

@@ -1,9 +1,7 @@
-export const setJamSection = (section) => {
-    return (dispatch) => {
-        dispatch({
-            type: "JAM_SECTION", 
-            payload: section
-        })
-      
+export const setJamSection = (jamSection) => {
+    console.log('section received = ', jamSection)
+    return  {
+        type: "JAM_SECTION", 
+        payload: jamSection
     }
 }

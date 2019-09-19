@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 // COMPONENTS
 import JoinPopup from '../JoinPopup';
 import CreatePopup from '../CreatePopup';
-import jamNavBar from '../Dashboard/Jam/jamNavBar';
+import JamNavBar from '../Dashboard/Jam/JamNavBar';
 import { signOut } from '../../redux/actions/authActions';
 
 import { connect } from 'react-redux';
@@ -55,7 +55,7 @@ const NavBar = ({user, signOut}) => {
             </div>
             
             <div className="navBar-right">
-                <jamNavBar/>
+                <JamNavBar/>
             </div>
 
         </div>
@@ -70,7 +70,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
-    console.log('state en el navBar = ', state)
+    // console.log('state en el navBar = ', state)
     return {
         user: state.firebase.auth,
     }

@@ -7,5 +7,11 @@
 }
 
 .jamNavBar-item{
-    width: 25%;
+    width: 15%;
+    height: 100%;
+    background-color: orange;
+    margin: 0 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

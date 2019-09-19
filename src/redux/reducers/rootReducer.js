@@ -6,14 +6,16 @@ import { firestoreReducer } from 'redux-firestore';
 import { firebaseReducer } from 'react-redux-firebase';
 import { combineReducers } from 'redux';
 import jamSectionReducer from './jamSectionReducer';
-
+import jamInfoReducer from './jamInfoReducer';
+import jamActiveReducer from './jamActiveReducer';
 
 // las keys del rootReducer serán las kayes del state
 const rootReducer = combineReducers({
     auth: authReducer,
     jams: jamsReducer,
+    jamInfo: jamInfoReducer,
     jamSection: jamSectionReducer,
-    
+    jamActive: jamActiveReducer,
     // el firestoreReducer automáticamente sincronizará la propiedad "firestore"
     // del Obj "state" con nuestra data en la base de datos
     // tomará esa data y ésta data dependerá de qué componente 

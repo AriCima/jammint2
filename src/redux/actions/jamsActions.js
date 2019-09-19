@@ -58,7 +58,6 @@ export const getUserJams = (userId) => {
                 userJams.push(doc.data())
                 return userJams
             });
-            console.log('doc received', userJams);
            dispatch({
                 type: "GET_USER_JAMS", 
                 payload: userJams
@@ -98,11 +97,3 @@ export const joinJam = (jam) => {
     }
 };
 
-export const selectJam = (jamId) => {
-    return (dispatch) => {
-        dispatch({
-            type: 'JAM_SELECTED', 
-            payload: jamId
-        })
-    }
-};

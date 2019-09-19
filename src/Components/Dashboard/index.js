@@ -14,13 +14,12 @@ import Jam from '../Dashboard/Jam';
 // CSS
 import './index.css'; 
 
-const Dashboard = ({ auth, profile, userJams, jamId, getUserJams }) => {
+const Dashboard = ({ auth, profile, userJams, jamId, getUserJams, jamSection }) => {
   
     useEffect(() => {
         // if (!auth.uid) return <Redirect to="/login" />
         getUserJams(auth.uid)
-    },[getUserJams, auth]);
-    
+    },[getUserJams, auth, jamSection]);
 
     return (
         <div className="dashboard">
@@ -31,7 +30,7 @@ const Dashboard = ({ auth, profile, userJams, jamId, getUserJams }) => {
             </aside>
 
             <div className="jam-screen">
-               <Jam jamId={jamId}/>
+               <Jam jamId={jamId} jamSection />
             </div>
         </div>
     );
@@ -42,6 +41,9 @@ const mapStateToProps = state => {
     console.log('state del dash =', state)
     return { 
         userJams: state.jams,
+        jamInfo: state.jamInfo,
+        jamSection: state.jamSection,
+        jamActive: state.jamActive,
         auth: state.firebase.auth
     }
 };
