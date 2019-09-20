@@ -10,8 +10,21 @@ import Settings from './JamNavBar/Settings';
 import './index.css';
 
 const Jam = ( props ) => {
+  const [ jamId, setJamId ] = useState(props.jamId);
+  const  [jamSection, setJamSection]  = useState(props.jamSection);
+  
+  useEffect(() => {
 
-  const { jamSection, jamId } = props;
+    setJamId(props.jamId);
+
+    // CDU
+  }, [props.jamId])
+
+  useEffect(() => {
+    setJamSection(props.jamSection);
+
+    // CDU
+  }, [props.jamSection])
 
   return (
     <div>

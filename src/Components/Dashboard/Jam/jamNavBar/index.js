@@ -10,12 +10,6 @@ import './index.css';
 
 const JamNavBar = (props) => {
     
-    const { jamId, jamSection } = props
-
-    // useEffect((jamSection) => {
-    //     setJamSection(jamSection)
-    // },[jamSection])
-
     const onSelectJamSection = (section)=> {
         props.setJamSection(section)
     };
@@ -42,7 +36,8 @@ const JamNavBar = (props) => {
             
         </div>
 
-    );   
+    );
+
 };
 
 const mapDispatchToProps = (dispatch) => {
