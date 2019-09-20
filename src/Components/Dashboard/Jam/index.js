@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 // COMPONENTS
-import JamNavBar from './JamNavBar';
 import Board from './JamNavBar/Board';
 import FlatMates from './FlatMates'
 import MyJam from './JamNavBar/MyJam';
 import Settings from './JamNavBar/Settings';
-import { getJamInfoById } from '../../../redux/actions/jamsInfo';
 
 import './index.css';
 

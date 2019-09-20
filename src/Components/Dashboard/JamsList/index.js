@@ -9,7 +9,6 @@ import "./index.css";
 const JamsList = (props) => {
 
   const { userJams } = props;
-  console.log('userJams = ', userJams);
 
   const _renderJams = () => {
     return userJams.map((jam, j) => {

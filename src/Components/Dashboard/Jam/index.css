@@ -1,6 +1,17 @@
 
+.jam-container{
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid gray;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0;
+  background-color: rgba(170, 170, 170, 0.06);
+}
 
-.jam {
+/* .jam {
   margin-top: 0px;
   width: 100%;
   height: 800px;
@@ -26,8 +37,5 @@
   display: flex;
   align-items: center; 
 }
+ */
 
-.jam-field{
-  margin-top: 0px;
-  width: 100%;
-}

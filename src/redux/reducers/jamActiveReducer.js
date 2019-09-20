@@ -1,6 +1,5 @@
-const jamsReducer = (state = [], action) => {
+const jamActiveReducer = (state = [], action) => {
     switch(action.type) {
-
         case 'JAM_ACTIVE':
             return action.payload;
         default:
@@ -8,4 +7,4 @@ const jamsReducer = (state = [], action) => {
     }
 };
 
-export default jamsReducer;
+export default jamActiveReducer;

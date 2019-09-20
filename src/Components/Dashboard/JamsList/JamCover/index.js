@@ -9,14 +9,14 @@ import "./index.css";
 
   const { name, desc, jamId } = props
 
-  const onSelectJam=(jamId)=>{
+  const onSelectJam = (jamId) => {
     console.log('jam selected = ', jamId)
     props.selectJam(jamId);
   };
 
   return (
 
-    <button className="jam-container" onClick={()=> onSelectJam(jamId)}>
+    <button className="jamsList-jam-container" onClick={()=> onSelectJam(jamId)}>
 
       <div className="jams-list-content">
         <h4>{name}</h4>

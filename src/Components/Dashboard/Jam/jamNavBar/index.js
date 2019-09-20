@@ -12,29 +12,32 @@ const JamNavBar = (props) => {
     
     const { jamId, jamSection } = props
 
-    useEffect((jamSection) => {
-        setJamSection(jamSection)
-    },[jamSection])
+    // useEffect((jamSection) => {
+    //     setJamSection(jamSection)
+    // },[jamSection])
 
+    const onSelectJamSection = (section)=> {
+        props.setJamSection(section)
+    };
 
     return (
 
         <div className="jamNavBar">
 
-            <div className="jamNavBar-item" onClick={()=>setJamSection('Board')}>
-                <a>Board</a>
+            <div className="jamNavBar-item" onClick={() => onSelectJamSection('Board')}>
+                <p>Board</p>   
             </div>
 
-            <div className="jamNavBar-item" onClick={()=>setJamSection('Jammers')}>
-                <a>Jammers</a>
+            <div className="jamNavBar-item" onClick={() => onSelectJamSection('Jammers')}>
+                <p>Jammers</p>
             </div>
 
-            <div className="jamNavBar-item" onClick={()=>setJamSection('MyJam')}>
-                <a>My Jam</a>
+            <div className="jamNavBar-item" onClick={() => onSelectJamSection('MyJam')}>
+                <p>My Jam</p>
             </div>
 
-            <div className="jamNavBar-item" onClick={()=>setJamSection('Settings')}>
-                <a>Settings</a>
+            <div className="jamNavBar-item" onClick={() => onSelectJamSection('Settings')}>
+                <p>Settings</p>
             </div>
             
         </div>
@@ -44,14 +47,15 @@ const JamNavBar = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setJamSection: () => dispatch(setJamSection())
+        setJamSection: (section) => dispatch(setJamSection(section))
     }
 }
 
 const mapStateToProps = (state) => {
-
+    console.log('state en el jamNavBar', state)
     return {
+        jamSection: state.jamSection,
         user: state.firebase.auth,
     }
 }
-export default connect(mapStateToProps, { setJamSection })(JamNavBar);
+export default connect(mapStateToProps, mapDispatchToProps)(JamNavBar);

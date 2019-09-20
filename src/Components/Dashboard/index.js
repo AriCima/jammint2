@@ -19,7 +19,7 @@ const Dashboard = ({ auth, profile, userJams, jamId, getUserJams, jamSection }) 
     useEffect(() => {
         // if (!auth.uid) return <Redirect to="/login" />
         getUserJams(auth.uid)
-    },[getUserJams, auth, jamSection]);
+    },[getUserJams, auth]);
 
     return (
         <div className="dashboard">
@@ -30,7 +30,7 @@ const Dashboard = ({ auth, profile, userJams, jamId, getUserJams, jamSection }) 
             </aside>
 
             <div className="jam-screen">
-               <Jam jamId={jamId} jamSection />
+               <Jam jamId={jamId} jamSection={jamSection} />
             </div>
         </div>
     );
