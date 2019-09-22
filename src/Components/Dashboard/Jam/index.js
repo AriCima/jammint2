@@ -7,45 +7,44 @@ import FlatMates from './FlatMates'
 import MyJam from './JamNavBar/MyJam';
 import Settings from './JamNavBar/Settings';
 
+// import DataService from '../../services/DataService';
+import { getJamInfoById } from '../../../redux/actions/jamsInfo';
+
 import './index.css';
 
 const Jam = ( props ) => {
-  const [ jamId, setJamId ] = useState(props.jamId);
+  const [ jamActive, setJamActive ] = useState(props.jamActive);
   const  [jamSection, setJamSection]  = useState(props.jamSection);
   
   useEffect(() => {
-
-    setJamId(props.jamId);
-
-    // CDU
+    setJamActive(props.jamId);
   }, [props.jamId])
 
   useEffect(() => {
     setJamSection(props.jamSection);
-
-    // CDU
   }, [props.jamSection])
-
+  
+  console.log('props en JAM =', props)
   return (
     <div>
 
-      {jamId === undefined ? <h1>SELECT YOUR JAM</h1> : 
+      {jamActive === undefined ? <h1>SELECT YOUR JAM</h1> : 
       
         <div className="jam-container">
           { jamSection === 'board' && 
-            <Board />
+            <Board jamId={jamActive}/>
           }
 
-          { jamSection === 'flatmates' && 
-            <FlatMates/>
+          { jamSection === 'jammers' && 
+            <FlatMates jamId={jamActive}/>
           }
 
-          { jamSection === 'myjam' && 
-            <MyJam />
+          { jamSection === 'myJam' && 
+            <MyJam jamId={jamActive}/>
           }
 
           { jamSection === 'settings' && 
-            <Settings />
+            <Settings jamId={jamActive}/>
           } 
 
         </div>
@@ -54,16 +53,26 @@ const Jam = ( props ) => {
   );
 };
 
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+      // nombre de la función que paso como prop: (arg) => dispatch(nombre del action creator(argumento))
+      getJamInfoById: (jamId) => dispatch(getJamInfoById(jamId))
+  }
+}
+
 const mapStateToProps = state => {
-  console.log('state del jam =', state)
+  console.log('stat ene el jam = ', state)
   return { 
-      jamId: state.jams,
       jamSection: state.jamSection,
-      auth: state.firebase.auth
+      jams: state.jams,
+      auth: state.firebase.auth,
+      jamActive: state.jamACtive
+
    }
 };
 
-export default connect(mapStateToProps) (Jam);
+export default connect(mapStateToProps, mapDispatchToProps) (Jam);
 
 
 

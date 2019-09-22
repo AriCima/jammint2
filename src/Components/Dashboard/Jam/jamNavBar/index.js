@@ -18,19 +18,19 @@ const JamNavBar = (props) => {
 
         <div className="jamNavBar">
 
-            <div className="jamNavBar-item" onClick={() => onSelectJamSection('Board')}>
+            <div className="jamNavBar-item" onClick={() => onSelectJamSection('board')}>
                 <p>Board</p>   
             </div>
 
-            <div className="jamNavBar-item" onClick={() => onSelectJamSection('Jammers')}>
+            <div className="jamNavBar-item" onClick={() => onSelectJamSection('jammers')}>
                 <p>Jammers</p>
             </div>
 
-            <div className="jamNavBar-item" onClick={() => onSelectJamSection('MyJam')}>
+            <div className="jamNavBar-item" onClick={() => onSelectJamSection('myJam')}>
                 <p>My Jam</p>
             </div>
 
-            <div className="jamNavBar-item" onClick={() => onSelectJamSection('Settings')}>
+            <div className="jamNavBar-item" onClick={() => onSelectJamSection('settings')}>
                 <p>Settings</p>
             </div>
             
@@ -47,7 +47,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
-    console.log('state en el jamNavBar', state)
     return {
         jamSection: state.jamSection,
         user: state.firebase.auth,

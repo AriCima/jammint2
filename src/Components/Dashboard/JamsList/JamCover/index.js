@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from 'react-redux';
 import { selectJam } from '../../../../redux/actions/jamActive';
 
+
 // CSS
 import "./index.css";
 
@@ -10,7 +11,6 @@ import "./index.css";
   const { name, desc, jamId } = props
 
   const onSelectJam = (jamId) => {
-    console.log('jam selected = ', jamId)
     props.selectJam(jamId);
   };
 
@@ -34,8 +34,8 @@ import "./index.css";
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      // nombre de la función que paso como prop: (arg) => dispatch(nombre del action creator(argumento))
-      selectJam: (jamId) => dispatch(selectJam(jamId))
+    // nombre de la función que paso como prop: (arg) => dispatch(nombre del action creator(argumento))
+    selectJam: (jamId) => dispatch(selectJam(jamId))
   }
 }
 

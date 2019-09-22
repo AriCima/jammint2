@@ -18,7 +18,7 @@ const Board = (props) => {
 
     return (
 
-        <div className="my-jam">
+        <div className="jam-board">
             THIS IS BOARD
         </div>
 

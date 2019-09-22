@@ -10,16 +10,18 @@ import { getUserJams } from '../../redux/actions/jamsActions';
 // COMPONENTS
 import JamsList from '../Dashboard/JamsList';
 import Jam from '../Dashboard/Jam';
+import { getJamInfoById } from '../../redux/actions/jamsInfo';
 
 // CSS
 import './index.css'; 
 
-const Dashboard = ({ auth, profile, userJams, jamId, getUserJams, jamSection }) => {
-  
+const Dashboard = ({ auth, userJams, jamId, jamSection, getUserJams }) => {
+
     useEffect(() => {
-        // if (!auth.uid) return <Redirect to="/login" />
-        getUserJams(auth.uid)
-    },[getUserJams, auth]);
+       getUserJams(auth.uid);
+    },[getUserJams, auth.uid]);
+
+    
 
     return (
         <div className="dashboard">
@@ -30,24 +32,34 @@ const Dashboard = ({ auth, profile, userJams, jamId, getUserJams, jamSection }) 
             </aside>
 
             <div className="jam-screen">
-               <Jam jamId={jamId} jamSection={jamSection} />
+               <Jam jamSection={jamSection}/>
             </div>
         </div>
     );
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        // nombre de la función que paso como prop: (arg) => dispatch(nombre del action creator(argumento))
+        getJamInfoById: (jamId) => dispatch(getJamInfoById(jamId)),
+        getUserJams: (userId) => dispatch(getUserJams(userId))
+    }
+
+}
 
 const mapStateToProps = state => {
-    console.log('state del dash =', state)
+    // console.log('state del dash =', state)
     return { 
         userJams: state.jams,
         jamInfo: state.jamInfo,
         jamSection: state.jamSection,
         jamActive: state.jamActive,
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
     }
 };
 
-export default connect(mapStateToProps, 
-    {getUserJams: getUserJams,
-}) (Dashboard);
+// export default connect(mapStateToProps, 
+//     {getUserJams: getUserJams,
+// }) (Dashboard);
+
+export default connect(mapStateToProps, mapDispatchToProps) (Dashboard);

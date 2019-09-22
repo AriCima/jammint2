@@ -1,10 +1,9 @@
+import firebase from 'firebase';
 
 export const getJamInfoById = (jamId) => {
-    return (dispatch, { getFirestore }) => {
+    return (dispatch) => {
         
-        const firestore = getFirestore();
-
-        firestore.collection('jams').doc(jamId).get()
+        firebase.firestore().collection('jams').doc(jamId).get()
         .then((result) => {
             console.log('el result del Bis = ', result);
             const jamInfo = result.data();

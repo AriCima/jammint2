@@ -17,7 +17,7 @@ const Jammers = (props) => {
     },[setJamSection])
 
     return (
-        <div className="my-jam">
+        <div className="jam-jammers">
            JAMMMMMMERSSSSS
         </div>
     );   
@@ -25,7 +25,7 @@ const Jammers = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setJamSection: () => dispatch(setJamSection('Jammers'))
+        setJamSection: () => dispatch(setJamSection('jammers'))
     }
 }
 

@@ -18,7 +18,7 @@ const Settings = (props) => {
 
     return (
 
-        <div className="my-jam">
+        <div className="jam-settings">
             SE TI NG S
         </div>
 
@@ -27,7 +27,7 @@ const Settings = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setJamSection: () => dispatch(setJamSection('Settings'))
+        setJamSection: () => dispatch(setJamSection('settings'))
     }
 }
 

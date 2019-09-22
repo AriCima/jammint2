@@ -54,14 +54,12 @@ export const getUserJams = (userId) => {
         .then(function(querySnapshot) {
             const userJams = []
             querySnapshot.forEach(function(doc) {
-                // doc.data() is never undefined for query doc snapshots
                 userJams.push(doc.data())
                 return userJams
             });
            dispatch({
                 type: "GET_USER_JAMS", 
                 payload: userJams
-            
             })
         })
         .catch((err) => {
