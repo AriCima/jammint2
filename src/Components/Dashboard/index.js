@@ -15,7 +15,7 @@ import { getJamInfoById } from '../../redux/actions/jamsInfo';
 // CSS
 import './index.css'; 
 
-const Dashboard = ({ auth, userJams, jamId, jamSection, getUserJams }) => {
+const Dashboard = ({ auth, userJams, jamId, jamActive, jamSection, getUserJams }) => {
 
     useEffect(() => {
        getUserJams(auth.uid);
@@ -32,7 +32,11 @@ const Dashboard = ({ auth, userJams, jamId, jamSection, getUserJams }) => {
             </aside>
 
             <div className="jam-screen">
-               <Jam jamSection={jamSection}/>
+               <Jam 
+                    jamId={jamId} 
+                    jamActive={jamActive} 
+                    jamSection={jamSection}
+                />
             </div>
         </div>
     );
@@ -48,18 +52,14 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = state => {
-    // console.log('state del dash =', state)
+    console.log('state del dash =', state)
     return { 
-        userJams: state.jams,
+        userJams: state.userJams,
         jamInfo: state.jamInfo,
         jamSection: state.jamSection,
         jamActive: state.jamActive,
         auth: state.firebase.auth,
     }
 };
-
-// export default connect(mapStateToProps, 
-//     {getUserJams: getUserJams,
-// }) (Dashboard);
 
 export default connect(mapStateToProps, mapDispatchToProps) (Dashboard);

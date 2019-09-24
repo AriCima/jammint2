@@ -10,7 +10,7 @@ import './index.css';
 
 const Board = (props) => {
 
-    const { setJamSection } = props;
+    const { setJamSection, jamActive } = props;
     
     useEffect((sectionName) => {
         setJamSection(sectionName)
@@ -19,7 +19,7 @@ const Board = (props) => {
     return (
 
         <div className="jam-board">
-            THIS IS BOARD
+            THIS IS BOARD of {jamActive}
         </div>
 
     );   
@@ -35,6 +35,7 @@ const mapStateToProps = (state) => {
     console.log('state en el jamNavBar = ', state)
     return {
         user: state.firebase.auth,
+        jamActive: state.jamActive
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Board);

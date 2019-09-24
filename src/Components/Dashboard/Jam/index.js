@@ -13,16 +13,18 @@ import { getJamInfoById } from '../../../redux/actions/jamsInfo';
 import './index.css';
 
 const Jam = ( props ) => {
-  const [ jamActive, setJamActive ] = useState(props.jamActive);
-  const  [jamSection, setJamSection]  = useState(props.jamSection);
-  
-  useEffect(() => {
-    setJamActive(props.jamId);
-  }, [props.jamId])
 
-  useEffect(() => {
-    setJamSection(props.jamSection);
-  }, [props.jamSection])
+  const { jamActive, jamSection } = props;
+  // const [ jamActive, setJamActive ] = useState(props.jamActive);
+  // const  [jamSection, setJamSection]  = useState(props.jamSection);
+  
+  // useEffect(() => {
+  //   setJamActive(props.jamId);
+  // }, [props.jamId])
+
+  // useEffect(() => {
+  //   setJamSection(props.jamSection);
+  // }, [props.jamSection])
   
   console.log('props en JAM =', props)
   return (
@@ -65,10 +67,7 @@ const mapStateToProps = state => {
   console.log('stat ene el jam = ', state)
   return { 
       jamSection: state.jamSection,
-      jams: state.jams,
       auth: state.firebase.auth,
-      jamActive: state.jamACtive
-
    }
 };
 

@@ -75,7 +75,6 @@ export default class DataService {
 
 
     // JAMS
-
     static createJam(jamInfo) {  
 
         console.log('creteJam launched en Dataservice')
@@ -127,7 +126,6 @@ export default class DataService {
             
         });
     };
-
     static getJamInfoByCode(jamCode) {  
 
         return new Promise((resolve, reject) => {
@@ -315,6 +313,16 @@ export default class DataService {
             
         });
     }
-
-
+    // AÑADIR EL USER ID AL JAMMERS
+    static joinJam = (jam, userInfo) => {
+        return new Promise((resolve, reject) => {
+            firebase.firestore().collection('jams').doc(jam.id).collection('jammers').add({userInfo})
+            .then((res) => {
+                console.log('user is now a jammer', res);
+            }).catch((err) => {
+                console.log('user not added to jammers: ', err);
+            })
+        });
+    }
+    
 }

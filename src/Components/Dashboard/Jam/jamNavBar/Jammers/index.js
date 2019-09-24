@@ -10,7 +10,7 @@ import './index.css';
 
 const Jammers = (props) => {
 
-    const { setJamSection } = props;
+    const { setJamSection, jamActive } = props;
     
     useEffect((sectionName) => {
         setJamSection(sectionName)
@@ -18,7 +18,7 @@ const Jammers = (props) => {
 
     return (
         <div className="jam-jammers">
-           JAMMMMMMERSSSSS
+           JAMMMMMMERSSSSS of {jamActive}
         </div>
     );   
 };
@@ -32,6 +32,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
     return {
         user: state.firebase.auth,
+        jamActive: state.jamActive
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Jammers);
