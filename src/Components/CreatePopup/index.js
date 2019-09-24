@@ -32,25 +32,30 @@ const CreatePopup = (props) => {
     console.log(' user en Create = ', user)
     e.preventDefault();
     
+    const userId = user.uid;
     let createdAt = new Date();
     let jamCode = Calculations.generateCode();
     
     let newJam = {
-      adminId: user.id,
+      adminId: userId,
       jamCode: jamCode,
       jamName: jamName,
       jamDesc: jamDesc,
-      jamType: 'flatmates',
+      jamType: 'hostel',
       createdAt: createdAt,
       updatedAt: '',
-      jammers: [user]
     };
 
     DataService.createJam(newJam)
     .then(res => {
 
       newJam.jamId = res.id;
-      DataService.addJamToUser(user.id, newJam);
+      const jamId = res.id;
+
+      const userInfo = {userId: userId, name: 'Ari', email: user.email}
+      console.log('userId =', userId)
+      DataService.addJamToUser(userId, newJam);
+      DataService.addUserToJammers(jamId, userInfo )
     })
     
     setOpen(false);

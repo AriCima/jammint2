@@ -170,7 +170,7 @@ export default class DataService {
     static addJamToUser(userID, jamToJoin){
         return new Promise((resolve, reject) => {
 
-            firebase.firestore().collection(`users`).doc(userID).collection('userJams').add(jamToJoin)
+            firebase.firestore().collection(`users`).doc(userID).collection('userJams').doc(jamToJoin.jamId).set(jamToJoin)
 
             .then((result) => {
                 console.log("Jam succesfully added to user")
@@ -313,10 +313,10 @@ export default class DataService {
             
         });
     }
-    // AÑADIR EL USER ID AL JAMMERS
-    static joinJam = (jam, userInfo) => {
+    // AÑADIR EL USER A JAMMERS
+    static addUserToJammers = (jamId, userInfo) => {
         return new Promise((resolve, reject) => {
-            firebase.firestore().collection('jams').doc(jam.id).collection('jammers').add({userInfo})
+            firebase.firestore().collection('jams').doc(jamId).collection('jammers').add({userInfo})
             .then((res) => {
                 console.log('user is now a jammer', res);
             }).catch((err) => {
