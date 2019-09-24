@@ -239,6 +239,26 @@ export default class DataService {
             
         });
     };
+    static getJamSectionInfo(jamId, section) {  
+        return new Promise((resolve, reject) => {
+            // console.log('jamInfoBIS  ID de la jam = ', jamId)
+            firebase.firestore().collection('jams').doc(jamId).collection(section)
+            .get()
+            .then(function(querySnapshot) {
+                querySnapshot.forEach(function(doc) {
+                    console.log(doc.data())
+                    resolve({id: doc.id, data: doc.data()});
+                });
+            })
+            .catch((error) => {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log('Error al cargar la info de ', section, errorMessage);
+            })
+            
+        });
+    };
+
 
     // MESSAGES
     static sendMessage(messageInfo) {  

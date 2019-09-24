@@ -41,7 +41,7 @@ const CreatePopup = (props) => {
       jamCode: jamCode,
       jamName: jamName,
       jamDesc: jamDesc,
-      jamType: 'hostel',
+      jamType: 'standard',
       createdAt: createdAt,
       updatedAt: '',
     };
@@ -51,6 +51,9 @@ const CreatePopup = (props) => {
       case 'hostel':
         sections = ['board', 'myJam', 'settings', 'flatmates']
         break;
+      case 'standard':
+          sections = ['board', 'jammers']
+          break;
       default:
         console.log('no reconoce tipo')
     }

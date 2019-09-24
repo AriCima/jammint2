@@ -1,7 +1,6 @@
 
 .navBar-left{
     height: 100%;
-    background-color: blue;
     width: 30%;
     display: flex;
     justify-content: flex-start;
@@ -27,7 +26,6 @@
 
 .navBar-right{
     height: 100%;
-    background-color: red;
     width: 70%;
     display: flex;
     justify-content: center;

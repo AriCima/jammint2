@@ -12,6 +12,7 @@ import './index.css';
 const JamNavBar = (props) => {
 
     const [jamSections, setJamSections] = useState([]);
+    const [jamName, setJamName] = useState('');
     
     const onSelectJamSection = (section)=> {
         props.setJamSection(section)
@@ -21,7 +22,9 @@ const JamNavBar = (props) => {
         DataService.getJamInfoById(props.jamActive)
         .then((res) => {
             const sectionsArray = res.sections;
+            const jamName = res.jamName;
             setJamSections(sectionsArray)
+            setJamName(jamName)
         })
     },[props.jamActive])
 
@@ -39,7 +42,14 @@ const JamNavBar = (props) => {
     return (
 
         <div className="jamNavBar">
-            {renderNavBar()}
+            <div className="jamNavBar-left">
+                <div className="jamNavBar-jamName">
+                    <p>{jamName}</p>
+                </div>
+            </div>
+            <div className="jamNavBar-right">
+                {renderNavBar()}
+            </div>
         </div>
 
     );
