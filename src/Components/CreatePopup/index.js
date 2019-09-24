@@ -53,9 +53,19 @@ const CreatePopup = (props) => {
       const jamId = res.id;
 
       const userInfo = {userId: userId, name: 'Ari', email: user.email}
-      console.log('userId =', userId)
       DataService.addJamToUser(userId, newJam);
       DataService.addUserToJammers(jamId, userInfo )
+      switch (newJam.jamType ) {
+        case 'hostel':
+
+          DataService.createJamSections(jamId, 'board', {date: new Date(), content: `Hello Board`})
+          DataService.createJamSections(jamId, 'myJam', {date: new Date(), content: `Hello MyJam`})
+          DataService.createJamSections(jamId, 'settings', {date: new Date(), content: `Hello Settings`})
+
+          break;
+        default:
+          console.log('no reconoce tipo')
+      }
     })
     
     setOpen(false);

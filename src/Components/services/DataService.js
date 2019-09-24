@@ -97,6 +97,24 @@ export default class DataService {
             
         });
     };
+    static createJamSections(jamId, section, content ) {
+        return new Promise((resolve, reject) => {
+            firebase.firestore().collection('jams').doc(jamId).collection(section).add(content)
+            .then((doc) => {
+                console.log('section ', section, 'creada correctamente', doc.id)
+                resolve({id: doc.id});
+            })
+
+            .catch((error) => {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log('SECTION could not be created: ', errorCode, errorMessage);
+
+            })
+            
+        });
+        
+    };
     static getJamToJoin(jamCode) {  
         console.log('JamCode recibido en el join del Data =', jamCode);
         return new Promise((resolve, reject) => {
@@ -166,7 +184,6 @@ export default class DataService {
             
         });
     };
-
     static addJamToUser(userID, jamToJoin){
         return new Promise((resolve, reject) => {
 
@@ -183,7 +200,6 @@ export default class DataService {
             
         });
     };
-
     static updateJamsArrayInUser(userID, jamsList){
         return new Promise((resolve, reject) => {
             console.log('inputs en el dataservice ', userID, jamsList);
@@ -315,8 +331,10 @@ export default class DataService {
     }
     // AÑADIR EL USER A JAMMERS
     static addUserToJammers = (jamId, userInfo) => {
+        console.log('userInfo = ', userInfo)
+        const userId = userInfo.userId;
         return new Promise((resolve, reject) => {
-            firebase.firestore().collection('jams').doc(jamId).collection('jammers').add({userInfo})
+            firebase.firestore().collection('jams').doc(jamId).collection('jammers').doc(userId).set(userInfo)
             .then((res) => {
                 console.log('user is now a jammer', res);
             }).catch((err) => {
