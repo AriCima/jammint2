@@ -3,12 +3,12 @@ import React, { useEffect } from 'react';
 
 // COMPONENTS
 import { connect } from 'react-redux';
-import { setJamSection } from '../../../../../redux/actions/jamSection';
+import { setJamSection } from '../../../../../../redux/actions/jamSection';
 
 // CSS
 import './index.css';
 
-const MyJam = (props) => {
+const Board = (props) => {
 
     const { setJamSection, jamActive } = props;
     
@@ -18,9 +18,8 @@ const MyJam = (props) => {
 
     return (
 
-        <div className="jam-myJam">
-            MY MY MY MY JAM
-            <h1>{jamActive}</h1>
+        <div className="jam-board">
+            THIS IS BOARD of {jamActive}
         </div>
 
     );   
@@ -28,7 +27,7 @@ const MyJam = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setJamSection: () => dispatch(setJamSection('myJam'))
+        setJamSection: () => dispatch(setJamSection('board'))
     }
 }
 
@@ -39,4 +38,4 @@ const mapStateToProps = (state) => {
         jamActive: state.jamActive
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(MyJam);
+export default connect(mapStateToProps, mapDispatchToProps)(Board);

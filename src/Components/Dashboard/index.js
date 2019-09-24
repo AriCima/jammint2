@@ -10,7 +10,6 @@ import { getUserJams } from '../../redux/actions/jamsActions';
 // COMPONENTS
 import JamsList from '../Dashboard/JamsList';
 import Jam from '../Dashboard/Jam';
-import { getJamInfoById } from '../../redux/actions/jamsInfo';
 
 // CSS
 import './index.css'; 
@@ -45,7 +44,6 @@ const Dashboard = ({ auth, userJams, jamId, jamActive, jamSection, getUserJams }
 const mapDispatchToProps = (dispatch) => {
     return {
         // nombre de la función que paso como prop: (arg) => dispatch(nombre del action creator(argumento))
-        getJamInfoById: (jamId) => dispatch(getJamInfoById(jamId)),
         getUserJams: (userId) => dispatch(getUserJams(userId))
     }
 

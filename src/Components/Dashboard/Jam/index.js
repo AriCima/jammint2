@@ -1,30 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 // COMPONENTS
-import Board from './JamNavBar/Board';
-import FlatMates from './FlatMates'
-import MyJam from './JamNavBar/MyJam';
-import Settings from './JamNavBar/Settings';
+import Board from '../Jam/Sections/Hostel/Board';
+import FlatMates from '../Jam/Sections/Hostel/Jammers'
+import MyJam from '../Jam/Sections/Hostel/MyJam';
+import Settings from '../Jam/Sections/Hostel/Settings';
 
 // import DataService from '../../services/DataService';
-import { getJamInfoById } from '../../../redux/actions/jamsInfo';
 
 import './index.css';
 
 const Jam = ( props ) => {
 
   const { jamActive, jamSection } = props;
-  // const [ jamActive, setJamActive ] = useState(props.jamActive);
-  // const  [jamSection, setJamSection]  = useState(props.jamSection);
-  
-  // useEffect(() => {
-  //   setJamActive(props.jamId);
-  // }, [props.jamId])
-
-  // useEffect(() => {
-  //   setJamSection(props.jamSection);
-  // }, [props.jamSection])
   
   console.log('props en JAM =', props)
   return (
@@ -56,13 +45,6 @@ const Jam = ( props ) => {
 };
 
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-      // nombre de la función que paso como prop: (arg) => dispatch(nombre del action creator(argumento))
-      getJamInfoById: (jamId) => dispatch(getJamInfoById(jamId))
-  }
-}
-
 const mapStateToProps = state => {
   console.log('stat ene el jam = ', state)
   return { 
@@ -71,7 +53,7 @@ const mapStateToProps = state => {
    }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps) (Jam);
+export default connect(mapStateToProps) (Jam);
 
 
 
