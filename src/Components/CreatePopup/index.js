@@ -46,6 +46,16 @@ const CreatePopup = (props) => {
       updatedAt: '',
     };
 
+    let sections = []
+    switch (newJam.jamType ) {
+      case 'hostel':
+        sections = ['board', 'myJam', 'settings', 'flatmates']
+        break;
+      default:
+        console.log('no reconoce tipo')
+    }
+    newJam.sections = sections;
+
     DataService.createJam(newJam)
     .then(res => {
 
@@ -55,16 +65,10 @@ const CreatePopup = (props) => {
       const userInfo = {userId: userId, name: 'Ari', email: user.email}
       DataService.addJamToUser(userId, newJam);
       DataService.addUserToJammers(jamId, userInfo )
-      switch (newJam.jamType ) {
-        case 'hostel':
-
-          DataService.createJamSections(jamId, 'board', {date: new Date(), content: `Hello Board`})
-          DataService.createJamSections(jamId, 'myJam', {date: new Date(), content: `Hello MyJam`})
-          DataService.createJamSections(jamId, 'settings', {date: new Date(), content: `Hello Settings`})
-
-          break;
-        default:
-          console.log('no reconoce tipo')
+      
+      for (let i=0; i<sections.length; i++){
+        const content = {date: new Date(), content: `Hello ${sections[i]}`}
+        DataService.createJamSections(jamId, sections[i], content)
       }
     })
     

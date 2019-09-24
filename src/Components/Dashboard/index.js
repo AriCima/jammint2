@@ -20,8 +20,6 @@ const Dashboard = ({ auth, userJams, jamId, jamActive, jamSection, getUserJams }
        getUserJams(auth.uid);
     },[getUserJams, auth.uid]);
 
-    
-
     return (
         <div className="dashboard">
             <aside className="jams-list">
@@ -53,7 +51,6 @@ const mapStateToProps = state => {
     console.log('state del dash =', state)
     return { 
         userJams: state.userJams,
-        jamInfo: state.jamInfo,
         jamSection: state.jamSection,
         jamActive: state.jamActive,
         auth: state.firebase.auth,

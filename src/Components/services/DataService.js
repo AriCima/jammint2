@@ -60,7 +60,9 @@ export default class DataService {
         console.log('user JAMS called with: ', userId)
 
         return new Promise((resolve, reject) => {
-            firebase.firestore().collection('users').doc(userId).colelction('userJams').onSnapshot(function(doc) {
+
+            firebase.firestore().collection('users').doc(userId).colelction('userJams')
+            .onSnapshot(function(doc) {
                 let userInfo = doc.data();
                 console.log("UserJams: ", doc.data());
                 resolve (userInfo)
@@ -115,6 +117,7 @@ export default class DataService {
         });
         
     };
+ 
     static getJamToJoin(jamCode) {  
         console.log('JamCode recibido en el join del Data =', jamCode);
         return new Promise((resolve, reject) => {

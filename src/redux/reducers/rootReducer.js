@@ -21,7 +21,7 @@ const rootReducer = combineReducers({
     // está activo en cada momento, y qué data necesita dicho
     // componente y será sincronizada por éste reducer
     
-    // firestore: firestoreReducer,
+    firestore: firestoreReducer,
     
     // sincronizador del auth state de firebase con 
     // nuestro redux state en app y lo almacenará en el 
