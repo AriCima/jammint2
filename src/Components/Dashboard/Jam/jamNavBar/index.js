@@ -18,7 +18,6 @@ const JamNavBar = (props) => {
     };
 
     useEffect(() => {
-        console.log('props.jamActive = ', props.jamActive)
         DataService.getJamInfoById(props.jamActive)
         .then((res) => {
             const sectionsArray = res.sections;
@@ -27,6 +26,7 @@ const JamNavBar = (props) => {
     },[props.jamActive])
 
     const renderNavBar = () => {
+        console.log('JAMNAVBAR RENDERRING')
         return jamSections.map((section, id) => {
             return(
                 <div className="jamNavBar-item" key={id} onClick={() => onSelectJamSection(`${section}`)}>
@@ -36,32 +36,10 @@ const JamNavBar = (props) => {
         })
     };
 
-    console.log('props.jamActive = ', props.jamActive)
-
     return (
 
         <div className="jamNavBar">
-
-            { props.jamActive ? renderNavBar()
-                : ''
-            }
-{/* 
-            <div className="jamNavBar-item" onClick={() => onSelectJamSection('board')}>
-                <p>Board</p>   
-            </div>
-
-            <div className="jamNavBar-item" onClick={() => onSelectJamSection('jammers')}>
-                <p>Jammers</p>
-            </div>
-
-            <div className="jamNavBar-item" onClick={() => onSelectJamSection('myJam')}>
-                <p>My Jam</p>
-            </div>
-
-            <div className="jamNavBar-item" onClick={() => onSelectJamSection('settings')}>
-                <p>Settings</p>
-            </div> */}
-            
+            {renderNavBar()}
         </div>
 
     );

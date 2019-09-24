@@ -14,7 +14,7 @@ import { connect } from 'react-redux';
 // CSS
 import './index.css';
 
-const NavBar = ({user, signOut}) => {
+const NavBar = ({user, signOut, jamActive}) => {
 
     return (
 
@@ -53,10 +53,12 @@ const NavBar = ({user, signOut}) => {
                 </div>
             
             </div>
-            
-            <div className="navBar-right">
-                <JamNavBar/>
-            </div>
+            { jamActive === '' ? '' 
+                :
+                <div className="navBar-right">
+                    <JamNavBar/>
+                </div>
+            }
 
         </div>
 
@@ -73,6 +75,7 @@ const mapStateToProps = (state) => {
     // console.log('state en el navBar = ', state)
     return {
         user: state.firebase.auth,
+        jamActive: state.jamActive
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
