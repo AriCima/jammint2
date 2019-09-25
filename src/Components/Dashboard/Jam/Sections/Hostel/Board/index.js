@@ -1,10 +1,10 @@
-
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 
 // COMPONENTS
 import { connect } from 'react-redux';
 import DataService from '../../../../../services/DataService';
+import BoardContent from './BoardContent';
 
 // CSS
 import './index.css';
@@ -16,36 +16,51 @@ const Board = (props) => {
 
     const [jamAdmin, setJamAdmin] = useState('');
     const userId = props.user.uid;
-    const [sectionInfo, setSectionInfo] = useState({})
+    const [sectionInfo, setSectionInfo] = useState([])
 
     useEffect(() => {
+        let isSubscribed = true
         DataService.getJamInfoById(jamActive)
         .then((res) => {
             console.log('res del getJamID = ', res)
             const jamAdmin = res.adminId;
-            setJamAdmin(jamAdmin)
+            if (isSubscribed) {
+                setJamAdmin(jamAdmin)
+            }
         })
+        return () => isSubscribed = false
+    }, [jamActive])
+
+    useEffect(() => {
         DataService.getJamSectionInfo(jamActive, 'board')
         .then((res) => {
-            console.log('res del Board = ', res.data)
-            setSectionInfo(res.data)
+            setSectionInfo(res)
         })
     }, [jamActive])
 
+    const renderBoardContent = () => {
+        console.log('sectionInfo = ', sectionInfo)
+        return sectionInfo.map((bC, i) => {
+            return (
+                <React.Fragment key={i}>
+                    <BoardContent boardContent={bC} />
+                </React.Fragment>
+            )
+        })
+    }
     const showForm = (jamAdmin === userId);
     return (
 
         <div className="jam-board">
             {jamAdmin !== '' ? 
                 <div className="jam-board-board">
-                    <h3>{sectionInfo.content}</h3>
-                    {/* <p>Time: {moment(sectionInfo.date.seconds.toDate()).fromNow()}</p> */}
+                    {sectionInfo ? renderBoardContent() : <div>LOADING</div>}
                 </div>
                 :
                 <div>LOADING</div>
             }
             { showForm && 
-                <div>
+                <div className="jam-board-form">
                     <p>THIS IS BOARD'S FORM</p>
                 </div>
             }

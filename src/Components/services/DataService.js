@@ -245,10 +245,16 @@ export default class DataService {
             firebase.firestore().collection('jams').doc(jamId).collection(section)
             .get()
             .then(function(querySnapshot) {
+                let result = [];
                 querySnapshot.forEach(function(doc) {
-                    console.log(doc.data())
-                    resolve({id: doc.id, data: doc.data()});
+                    // console.log(doc.data())
+                    const info = doc.data()
+                    result.push(info)
+                    // resolve({id: doc.id, data: doc.data()});
+                    
                 });
+                console.log('board content = ',result)
+                resolve(result)
             })
             .catch((error) => {
                 var errorCode = error.code;
