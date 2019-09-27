@@ -96,20 +96,20 @@ export default class DataService {
                     
                 });
         };
-        static startChat(chatId, jamInfo) {  
-                console.log('creteJam launched en Dataservice')
-                return new Promise((resolve, reject) => {
-                    firebase.firestore().collection('jams').doc(chatId).set(jamInfo)
-                    .then((doc) => {
-                        resolve({id: doc.id});
-                    })
 
-                    .catch((error) => {
-                        var errorCode = error.code;
-                        var errorMessage = error.message;
-                        console.log('Jam could not be created: ', errorCode, errorMessage);
-                    })
-                });
+        static startChat(chatId, jamInfo) {  
+            console.log('chatId y jamInfo = ', chatId, " / ", jamInfo)
+            return new Promise((resolve, reject) => {
+                firebase.firestore().collection('jams').doc(chatId).set(jamInfo)
+                .then(
+                   console.log('chat created correctly')
+                )
+                .catch((error) => {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    console.log('Jam could not be created: ', errorCode, errorMessage);
+                })
+            });
         };
         static createJamSections(jamId, section, content ) {
                 return new Promise((resolve, reject) => {

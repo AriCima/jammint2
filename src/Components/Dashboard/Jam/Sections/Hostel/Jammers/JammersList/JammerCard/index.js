@@ -11,9 +11,12 @@ import { selectJam } from "../../../../../../../../redux/actions/jamActive";
 
  const JammerCard = (props) => {
 
-  const { name, email, url, jammerId, user, userJams, jI} = props
+  const { user, userJams, jI} = props
+  console.log('props en el jammerCard = ', props)
+  const userId = user.uid;
+  const jammerId = jI.userId;
 
-  const onContactJammer = (jammerId, userId) => {
+  const onContactJammer = () => {
 
     const chatId = userId + jammerId;
     const reverseChatId = jammerId + userId;
@@ -41,7 +44,7 @@ import { selectJam } from "../../../../../../../../redux/actions/jamActive";
     <button className="jammer-card-container" onClick={()=> onContactJammer(user.id, jammerId)}>
 
       <div className="jammer-img">
-        <img src={`/${url}`} alt="userIMG" />
+        <img src={"/"} alt="img" />
       </div>
 
       <div className="jammer-name">
