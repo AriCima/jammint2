@@ -3,268 +3,281 @@ import firebase from 'firebase';
 export default class DataService {
 
     // USERS 
-    static saveUserInfoInFirestore(userId, userToSave){
-        //registro en Firebase
-        // console.log("el user recibido en el registro firestore es:", userId)
-        // console.log("el userToSave recibido en firestore es: ", userToSave)
-        return new Promise((resolve, reject) => {
+        static saveUserInfoInFirestore(userId, userToSave){
+            //registro en Firebase
+            // console.log("el user recibido en el registro firestore es:", userId)
+            // console.log("el userToSave recibido en firestore es: ", userToSave)
+            return new Promise((resolve, reject) => {
 
-            firebase.firestore().collection('users').doc(userId).set(userToSave)
-            .then((result) => {
+                firebase.firestore().collection('users').doc(userId).set(userToSave)
+                .then((result) => {
+                    
+                    console.log("User information succesfully saved !")
+                    resolve(result);
+                })
+
+                .catch((error) => {
+                    var errorCode = error.code;
+                    console.log('User NOT added: ', errorCode);
+                    
+                })
                 
-                console.log("User information succesfully saved !")
-                resolve(result);
-            })
+            });
+        };
+        static getUserInfo(userId){
+            console.log('user info called with: ', userId)
+            return new Promise((resolve, reject) => {
 
+                firebase.firestore().collection('users').doc(userId).get()
+
+                .then((result) => {
+                    resolve(result.data());   // OBTENGO TODO LO QUE TENGO ALMACENADO DE ÉSTE USUARIO
+                })
+                .catch((error) => {
+                    reject('Usuario no existe');
+                })
+                
+            });
+        };
+        static getUserInfoById(userId){
+            return new Promise((resolve, reject) => {
+                firebase.firestore().collection('users').doc(userId).onSnapshot(function(doc) {
+                    let userInfo = doc.data();
+                    console.log("Current data: ", doc.data());
+                    resolve (userInfo)
+                });   
+            })
             .catch((error) => {
                 var errorCode = error.code;
-                console.log('User NOT added: ', errorCode);
+                console.log('Usuario No Existe : ', errorCode);
                 
-            })
-            
-        });
-    };
-    
-    static getUserInfo(userId){
-        console.log('user info called with: ', userId)
-        return new Promise((resolve, reject) => {
+            });
+        };
+        static getUserJams(userId){
+            console.log('user JAMS called with: ', userId)
 
-            firebase.firestore().collection('users').doc(userId).get()
+            return new Promise((resolve, reject) => {
 
-            .then((result) => {
-                resolve(result.data());   // OBTENGO TODO LO QUE TENGO ALMACENADO DE ÉSTE USUARIO
+                firebase.firestore().collection('users').doc(userId).colelction('userJams')
+                .onSnapshot(function(doc) {
+                    let userInfo = doc.data();
+                    console.log("UserJams: ", doc.data());
+                    resolve (userInfo)
+                });   
             })
             .catch((error) => {
-                reject('Usuario no existe');
-            })
-            
-        });
-    };
-
-    static getUserInfoById(userId){
-        return new Promise((resolve, reject) => {
-            firebase.firestore().collection('users').doc(userId).onSnapshot(function(doc) {
-                let userInfo = doc.data();
-                console.log("Current data: ", doc.data());
-                resolve (userInfo)
-            });   
-        })
-        .catch((error) => {
-            var errorCode = error.code;
-            console.log('Usuario No Existe : ', errorCode);
-            
-        });
-    };
-
-    static getUserJams(userId){
-        console.log('user JAMS called with: ', userId)
-
-        return new Promise((resolve, reject) => {
-
-            firebase.firestore().collection('users').doc(userId).colelction('userJams')
-            .onSnapshot(function(doc) {
-                let userInfo = doc.data();
-                console.log("UserJams: ", doc.data());
-                resolve (userInfo)
-            });   
-        })
-        .catch((error) => {
-            var errorCode = error.code;
-            console.log('Usuario No Existe : ', errorCode);
-            
-        });
-    };
-
+                var errorCode = error.code;
+                console.log('Usuario No Existe : ', errorCode);
+                
+            });
+        };
 
     // JAMS
-    static createJam(jamInfo) {  
+        // Create
+        static createJam(jamInfo) {  
 
-        console.log('creteJam launched en Dataservice')
-        return new Promise((resolve, reject) => {
+                console.log('creteJam launched en Dataservice')
+                return new Promise((resolve, reject) => {
 
-            firebase.firestore().collection('jams').add(jamInfo)
+                    firebase.firestore().collection('jams').add(jamInfo)
 
-            .then((doc) => {
-               
-                resolve({id: doc.id});
-                
-            })
+                    .then((doc) => {
+                        
+                        resolve({id: doc.id});
+                        
+                    })
 
-            .catch((error) => {
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                console.log('Jam could not be created: ', errorCode, errorMessage);
+                    .catch((error) => {
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+                        console.log('Jam could not be created: ', errorCode, errorMessage);
 
-            })
-            
-        });
-    };
-    static createJamSections(jamId, section, content ) {
-        return new Promise((resolve, reject) => {
-            firebase.firestore().collection('jams').doc(jamId).collection(section).add(content)
-            .then((doc) => {
-                console.log('section ', section, 'creada correctamente', doc.id)
-                resolve({id: doc.id});
-            })
-
-            .catch((error) => {
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                console.log('SECTION could not be created: ', errorCode, errorMessage);
-
-            })
-            
-        });
-        
-    };
- 
-    static getJamToJoin(jamCode) {  
-        console.log('JamCode recibido en el join del Data =', jamCode);
-        return new Promise((resolve, reject) => {
-
-            firebase.firestore().collection('jams').where('jamCode', '==', jamCode).get()
-
-            // .then((result) => {
-            //     console.log('el result del join = ', result);
-            //     resolve(result.data());
-            // })
-            .then(function(querySnapshot) {
-                querySnapshot.forEach(function(doc) {
-                    // doc.data() is never undefined for query doc snapshots
-
-                    let reply = doc.data();
-                    reply.jamId = doc.id;
-
-                    resolve(reply)
-                });
-                
-            })
-
-            .catch((error) => {
-                var errorCode = error.code;
-                console.log('Jam NOT joined: ', errorCode);                
-            })
-            
-        });
-    };
-    static getJamInfoByCode(jamCode) {  
-
-        return new Promise((resolve, reject) => {
-            console.log('el ID con el que se pide la info de la jam = ', jamCode)
-            firebase.firestore().collection('jams').where('jamCode', '==', jamCode)
-            .get()
-            .then(function(querySnapshot) {
-                querySnapshot.forEach(function(doc) {
-                    // doc.data() is never undefined for query doc snapshots
-                    resolve({id: doc.id, data: doc.data()});
-                });
-            })
-
-            .catch((error) => {
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                console.log('Error al cargar la JamInfo: ', errorCode, errorMessage);
-            })
-            
-        });
-    };
-    static getJamInfoById(jamId) {  
-        console.log('jamID en DS =', jamId)
-        return new Promise((resolve, reject) => {
-            // console.log('jamInfoBIS  ID de la jam = ', jamId)
-            firebase.firestore().collection('jams').doc(jamId)
-            .get()
-            .then((result) => {
-                // console.log('el result del Bis = ', result);
-                resolve(result.data());
-            })
-
-            .catch((error) => {
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                console.log('Error al cargar la JamInfo: ', errorCode, errorMessage);
-            })
-            
-        });
-    };
-    static addJamToUser(userID, jamToJoin){
-        return new Promise((resolve, reject) => {
-
-            firebase.firestore().collection(`users`).doc(userID).collection('userJams').doc(jamToJoin.jamId).set(jamToJoin)
-
-            .then((result) => {
-                console.log("Jam succesfully added to user")
-                resolve(result);
-            })
-            .catch((error) => {
-                var errorCode = error.code;
-                console.log('ERROR Jam NOT added to user: ', errorCode);                
-            })
-            
-        });
-    };
-    static updateJamsArrayInUser(userID, jamsList){
-        return new Promise((resolve, reject) => {
-            console.log('inputs en el dataservice ', userID, jamsList);
-
-            firebase.firestore().collection(`users`).doc(userID).update({
-                userJams : jamsList})
-
-            .then((result) => {
-                console.log("Jam succesfully UPDATED")
-                resolve(result);
-            })
-            .catch((error) => {
-                var errorCode = error.code;
-                console.log('ERROR Jam NOT added to user: ', errorCode);                
-            })
-            
-        });
-    };
-    static updateJammersInJam(jamId, jammers){
-        return new Promise((resolve, reject) => {
-            // console.log('inputs en el dataservice ', jamCode, jammers);
-
-            firebase.firestore().collection(`jams`).doc(jamId).update({
-                jammers : jammers})
-
-            .then((result) => {
-                console.log("Jammers succesfully UPDATED")
-                resolve(result);
-            })
-            .catch((error) => {
-                var errorCode = error.code;
-                console.log('ERROR Jam NOT added to user: ', errorCode);                
-            })
-            
-        });
-    };
-    static getJamSectionInfo(jamId, section) {  
-        return new Promise((resolve, reject) => {
-            // console.log('jamInfoBIS  ID de la jam = ', jamId)
-            firebase.firestore().collection('jams').doc(jamId).collection(section)
-            .get()
-            .then(function(querySnapshot) {
-                let result = [];
-                querySnapshot.forEach(function(doc) {
-                    // console.log(doc.data())
-                    const info = doc.data()
-                    result.push(info)
-                    // resolve({id: doc.id, data: doc.data()});
+                    })
                     
                 });
-                console.log('board content = ',result)
-                resolve(result)
-            })
-            .catch((error) => {
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                console.log('Error al cargar la info de ', section, errorMessage);
-            })
-            
-        });
-    };
+        };
+        static startChat(chatId, jamInfo) {  
+                console.log('creteJam launched en Dataservice')
+                return new Promise((resolve, reject) => {
+                    firebase.firestore().collection('jams').doc(chatId).set(jamInfo)
+                    .then((doc) => {
+                        resolve({id: doc.id});
+                    })
 
+                    .catch((error) => {
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+                        console.log('Jam could not be created: ', errorCode, errorMessage);
+                    })
+                });
+        };
+        static createJamSections(jamId, section, content ) {
+                return new Promise((resolve, reject) => {
+                    firebase.firestore().collection('jams').doc(jamId).collection(section).add(content)
+                    .then((doc) => {
+                        console.log('section ', section, 'creada correctamente', doc.id)
+                        resolve({id: doc.id});
+                    })
+
+                    .catch((error) => {
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+                        console.log('SECTION could not be created: ', errorCode, errorMessage);
+
+                    })
+                    
+                });
+                
+        };
+
+        // GET INFO
+
+        static getJamToJoin(jamCode) {  
+                console.log('JamCode recibido en el join del Data =', jamCode);
+                return new Promise((resolve, reject) => {
+
+                    firebase.firestore().collection('jams').where('jamCode', '==', jamCode).get()
+
+                    // .then((result) => {
+                    //     console.log('el result del join = ', result);
+                    //     resolve(result.data());
+                    // })
+                    .then(function(querySnapshot) {
+                        querySnapshot.forEach(function(doc) {
+                            // doc.data() is never undefined for query doc snapshots
+
+                            let reply = doc.data();
+                            reply.jamId = doc.id;
+
+                            resolve(reply)
+                        });
+                        
+                    })
+
+                    .catch((error) => {
+                        var errorCode = error.code;
+                        console.log('Jam NOT joined: ', errorCode);                
+                    })
+                    
+                });
+        };
+        static getJamInfoByCode(jamCode) {  
+
+                return new Promise((resolve, reject) => {
+                    console.log('el ID con el que se pide la info de la jam = ', jamCode)
+                    firebase.firestore().collection('jams').where('jamCode', '==', jamCode)
+                    .get()
+                    .then(function(querySnapshot) {
+                        querySnapshot.forEach(function(doc) {
+                            // doc.data() is never undefined for query doc snapshots
+                            resolve({id: doc.id, data: doc.data()});
+                        });
+                    })
+
+                    .catch((error) => {
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+                        console.log('Error al cargar la JamInfo: ', errorCode, errorMessage);
+                    })
+                    
+                });
+        };
+        static getJamInfoById(jamId) {  
+                console.log('jamID en DS =', jamId)
+                return new Promise((resolve, reject) => {
+                    // console.log('jamInfoBIS  ID de la jam = ', jamId)
+                    firebase.firestore().collection('jams').doc(jamId)
+                    .get()
+                    .then((result) => {
+                        // console.log('el result del Bis = ', result);
+                        resolve(result.data());
+                    })
+                    
+                    .catch((error) => {
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+                        console.log('Error al cargar la JamInfo: ', errorCode, errorMessage);
+                    })
+                    
+                });
+        };
+        static getJamSectionInfo(jamId, section) {  
+            return new Promise((resolve, reject) => {
+                // console.log('jamInfoBIS  ID de la jam = ', jamId)
+                firebase.firestore().collection('jams').doc(jamId).collection(section)
+                .get()
+                .then(function(querySnapshot) {
+                    let result = [];
+                    querySnapshot.forEach(function(doc) {
+                        // console.log(doc.data())
+                        const info = doc.data()
+                        result.push(info)
+                        // resolve({id: doc.id, data: doc.data()});
+                        
+                    });
+                    console.log(`${section} content = `,result)
+                    resolve(result)
+                })
+                .catch((error) => {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    console.log('Error al cargar la info de ', section, errorMessage);
+                })
+                
+            });
+        };
+
+        // ADMIN INFO
+        static addJamToUser(userID, jamToJoin){
+                return new Promise((resolve, reject) => {
+                    firebase.firestore().collection(`users`).doc(userID).collection('userJams').doc(jamToJoin.jamId).set(jamToJoin)
+                    .then((result) => {
+                        console.log("Jam succesfully added to user")
+                        resolve(result);
+                    })
+                    .catch((error) => {
+                        var errorCode = error.code;
+                        console.log('ERROR Jam NOT added to user: ', errorCode);                
+                    })
+                    
+                });
+        };
+        static updateJamsArrayInUser(userID, jamsList){
+                return new Promise((resolve, reject) => {
+                    console.log('inputs en el dataservice ', userID, jamsList);
+
+                    firebase.firestore().collection(`users`).doc(userID).update({
+                        userJams : jamsList})
+
+                    .then((result) => {
+                        console.log("Jam succesfully UPDATED")
+                        resolve(result);
+                    })
+                    .catch((error) => {
+                        var errorCode = error.code;
+                        console.log('ERROR Jam NOT added to user: ', errorCode);                
+                    })
+                    
+                });
+        };
+        static updateJammersInJam(jamId, jammers){
+                return new Promise((resolve, reject) => {
+                    // console.log('inputs en el dataservice ', jamCode, jammers);
+
+                    firebase.firestore().collection(`jams`).doc(jamId).update({
+                        jammers : jammers})
+
+                    .then((result) => {
+                        console.log("Jammers succesfully UPDATED")
+                        resolve(result);
+                    })
+                    .catch((error) => {
+                        var errorCode = error.code;
+                        console.log('ERROR Jam NOT added to user: ', errorCode);                
+                    })
+                    
+                });
+        };
 
     // MESSAGES
     static sendMessage(messageInfo) {  
@@ -340,7 +353,7 @@ export default class DataService {
 
         return new Promise((resolve, reject) => {
 
-            firebase.firestore().collection('users').where(`jams.${jamId}`,`==`, true).get() // Where me devuelve todos los users que tengan ese jamId
+            firebase.firestore().collection('jams').doc(jamId).collection('jammers').get() 
             .then((result) => {
                 let jammers=[];
                 result.docs.forEach((d) => {
@@ -349,7 +362,25 @@ export default class DataService {
                     jammers.push(j);
                 })
                 resolve(jammers);  
+            })
 
+            .catch((error) => {
+               console.log('error: ', error);
+            })
+            
+        });
+    }
+    static getJammersMessages(jamId){
+        return new Promise((resolve, reject) => {
+            firebase.firestore().collection('jams').doc(jamId).collection('jammersMessages').get() 
+            .then((result) => {
+                let messages=[];
+                result.docs.forEach((d) => {
+                    let j = d.data();
+                    j.id=d.id;
+                    messages.push(j);
+                })
+                resolve(messages);  
             })
 
             .catch((error) => {

@@ -1,0 +1,39 @@
+.jammer-card-container{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: white;
+    border: 0.5px solid lightgrey;
+    margin-bottom: 2px;
+}
+
+.jammer-img{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.jammer-name{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.jammer-name p{
+    font-size: 14px;
+    font-weight: 600
+}
+.jammer-country{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.jammer-country p{
+    font-size: 14px;
+    font-weight: 500
+}

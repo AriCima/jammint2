@@ -10,12 +10,10 @@ import BoardContent from './BoardContent';
 import './index.css';
 
 const Board = (props) => {
-    console.log('props en el Board = ', props)
 
     const {jamActive} = props
-
-    const [jamAdmin, setJamAdmin] = useState('');
     const userId = props.user.uid;
+    const [jamAdmin, setJamAdmin] = useState('');
     const [sectionInfo, setSectionInfo] = useState([])
 
     useEffect(() => {
@@ -48,9 +46,8 @@ const Board = (props) => {
             )
         })
     }
-    const showForm = (jamAdmin === userId);
+    const isAdmin = (jamAdmin === userId);
     return (
-
         <div className="jam-board">
             {jamAdmin !== '' ? 
                 <div className="jam-board-board">
@@ -59,13 +56,11 @@ const Board = (props) => {
                 :
                 <div>LOADING</div>
             }
-            { showForm && 
+            { isAdmin && 
                 <div className="jam-board-form">
                     <p>THIS IS BOARD'S FORM</p>
                 </div>
             }
-
-            
         </div>
 
     );   

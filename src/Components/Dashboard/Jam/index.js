@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 // COMPONENTS
 import Board from '../Jam/Sections/Hostel/Board';
-import FlatMates from '../Jam/Sections/Hostel/Jammers'
+import Jammers from '../Jam/Sections/Hostel/Jammers'
 import MyJam from '../Jam/Sections/Hostel/MyJam';
 import Settings from '../Jam/Sections/Hostel/Settings';
 
@@ -27,7 +27,7 @@ const Jam = ( props ) => {
           }
 
           { jamSection === 'jammers' && 
-            <FlatMates jamId={jamActive}/>
+            <Jammers jamId={jamActive}/>
           }
 
           { jamSection === 'myJam' && 
