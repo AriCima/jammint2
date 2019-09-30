@@ -19,6 +19,8 @@ const JamsList = (props) => {
             desc={jam.jamDescription}
             code={jam.jamCode}
             jamId={jam.jamId}
+            jamType={jam.jamType}
+            user2Name={jam.user2Name}
             />
         </div>
       )

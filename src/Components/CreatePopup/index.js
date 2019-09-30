@@ -79,7 +79,6 @@ const CreatePopup = (props) => {
   };
 
   const handleClickOpen = () => {
-    
     setOpen(true);
   }
 

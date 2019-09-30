@@ -11,10 +11,11 @@ import { selectJam } from "../../../../../../../../redux/actions/jamActive";
 
  const JammerCard = (props) => {
 
-  const { user, userJams, jI} = props
+  const { user, userJams, jI } = props
   console.log('props en el jammerCard = ', props)
   const userId = user.uid;
   const jammerId = jI.userId;
+  const jammerName= jI.userName;
 
   const onContactJammer = () => {
 
@@ -29,7 +30,15 @@ import { selectJam } from "../../../../../../../../redux/actions/jamActive";
       return selectJam(reverseChatId)
     }
 
-    const chatInfo = { createdAt: new Date(), adminId: userId, jamId: chatId }
+    const chatInfo = { 
+      createdAt: new Date(), 
+      adminId: userId, 
+      user2Id: jammerId,
+      user2Name: jammerName,
+      jamId: chatId, 
+      jamType: 'chat', 
+      messages: [] 
+    }
 
     DataService.startChat(chatId, chatInfo)
     .then(res => {

@@ -12,7 +12,10 @@ export const getUserJams = (userId) => {
             .then(function(querySnapshot) {
                 const userJams = []
                 querySnapshot.forEach(function(doc) {
-                    userJams.push(doc.data())
+                    let j = doc.id;
+                    let newData = doc.data();
+                    newData.jamId = j;
+                    userJams.push(newData)
                     return userJams
                 });
             dispatch({
@@ -27,7 +30,6 @@ export const getUserJams = (userId) => {
         }
     }
 }
-
 
 
 

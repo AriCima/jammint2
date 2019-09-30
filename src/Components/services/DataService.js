@@ -75,40 +75,18 @@ export default class DataService {
     // JAMS
         // Create
         static createJam(jamInfo) {  
-
-                console.log('creteJam launched en Dataservice')
-                return new Promise((resolve, reject) => {
-
-                    firebase.firestore().collection('jams').add(jamInfo)
-
-                    .then((doc) => {
-                        
-                        resolve({id: doc.id});
-                        
-                    })
-
-                    .catch((error) => {
-                        var errorCode = error.code;
-                        var errorMessage = error.message;
-                        console.log('Jam could not be created: ', errorCode, errorMessage);
-
-                    })
-                    
-                });
-        };
-
-        static startChat(chatId, jamInfo) {  
-            console.log('chatId y jamInfo = ', chatId, " / ", jamInfo)
+            console.log('creteJam launched en Dataservice')
             return new Promise((resolve, reject) => {
-                firebase.firestore().collection('jams').doc(chatId).set(jamInfo)
-                .then(
-                   console.log('chat created correctly')
-                )
+                firebase.firestore().collection('jams').add(jamInfo)
+                .then((doc) => {
+                    resolve({id: doc.id}); 
+                })
                 .catch((error) => {
                     var errorCode = error.code;
                     var errorMessage = error.message;
                     console.log('Jam could not be created: ', errorCode, errorMessage);
                 })
+                
             });
         };
         static createJamSections(jamId, section, content ) {
@@ -129,15 +107,27 @@ export default class DataService {
                 });
                 
         };
+        static startChat(chatId, jamInfo) {  
+            console.log('chatId y jamInfo = ', chatId, " / ", jamInfo)
+            return new Promise((resolve, reject) => {
+                firebase.firestore().collection('jams').doc(chatId).set(jamInfo)
+                .then(
+                   console.log('chat created correctly')
+                )
+                .catch((error) => {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    console.log('Jam could not be created: ', errorCode, errorMessage);
+                })
+            });
+        };
 
         // GET INFO
-
         static getJamToJoin(jamCode) {  
                 console.log('JamCode recibido en el join del Data =', jamCode);
                 return new Promise((resolve, reject) => {
 
                     firebase.firestore().collection('jams').where('jamCode', '==', jamCode).get()
-
                     // .then((result) => {
                     //     console.log('el result del join = ', result);
                     //     resolve(result.data());
@@ -226,7 +216,21 @@ export default class DataService {
                 
             });
         };
-
+        static getChatContent(jamId) {
+            return new Promise((resolve, reject) => {
+                firebase.firestore().collection('jams').doc(jamId).doc('messages').orderBy('date', 'desc').limit(50)
+                .get()
+                .then((result) => {
+                    console.log('result = ', result);
+                    resolve(result.data());
+                })
+                .catch((error) => {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    console.log('Error al cargar los mensajes: ', errorCode, errorMessage);
+                })
+            });
+        };
         // ADMIN INFO
         static addJamToUser(userID, jamToJoin){
                 return new Promise((resolve, reject) => {

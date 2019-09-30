@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import { connect } from 'react-redux';
 import { selectJam } from '../../../../redux/actions/jamActive';
 import { setJamSection } from '../../../../redux/actions/jamSection';
@@ -9,20 +9,34 @@ import "./index.css";
 
  const JamCover = (props) => {
 
-  const { name, desc, jamId } = props
+  const { name, desc, jamId, jamType, user2 = '', user2Name = '' } = props
 
   const onSelectJam = (jamId) => {
     props.selectJam(jamId);
     props.setJamSection('board');
   };
 
+  console.log('jamType = ', jamType)
   return (
 
     <button className="jamsList-jam-container" onClick={()=> onSelectJam(jamId)}>
 
+
       <div className="jams-list-content">
-        <h4>{name}</h4>
-        <p>{jamId}</p>
+        { jamType === 'chat' ?
+          <Fragment>
+            <h4>{user2Name}</h4>
+            <p>{jamId}</p>
+            <p>{jamType}</p>
+          </Fragment>
+          :
+           <Fragment>
+            <h4>{name}</h4>
+            <p>{jamId}</p>
+            <p>{jamType}</p>
+           </Fragment>
+
+        }
       </div>
 
       <div className="jams-list-content">
