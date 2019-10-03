@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 // CSS
 import "./index.css";
 import { selectJam } from "../../../../../../../../redux/actions/jamActive";
-
+import {setJamSection} from "../../../../../../../../redux/actions/jamSection"
  const JammerCard = (props) => {
 
   const { user, userJams, jI } = props
@@ -43,9 +43,10 @@ import { selectJam } from "../../../../../../../../redux/actions/jamActive";
     DataService.startChat(chatId, chatInfo)
     .then(res => {
       console.log('res del startChat = ', res)
-      DataService.addJamToUser(userId, chatInfo);
-      DataService.addJamToUser(jammerId, chatInfo);
     })
+    DataService.addJamToUser(userId, chatInfo);
+    DataService.addJamToUser(jammerId, chatInfo);
+    props.setJamSection('chat')
   }
 
   return (
@@ -69,6 +70,12 @@ import { selectJam } from "../../../../../../../../redux/actions/jamActive";
   
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // nombre de la función que paso como prop: (arg) => dispatch(nombre del action creator(argumento))
+    setJamSection: () => dispatch(setJamSection('chat'))
+  }
+}
 
 
 const mapStateToProps = (state) => {
@@ -78,4 +85,4 @@ const mapStateToProps = (state) => {
       userJams: state.userJams,
   }
 }
-export default connect(mapStateToProps)(JammerCard);
+export default connect(mapStateToProps, mapDispatchToProps)(JammerCard);

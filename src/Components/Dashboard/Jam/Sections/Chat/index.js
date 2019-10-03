@@ -3,7 +3,7 @@ import moment from 'moment';
 
 // COMPONENTS
 import { connect } from 'react-redux';
-import DataService from '../../../../../services/DataService';
+import DataService from '../../../../services/DataService';
 import ChatContent from './ChatContent';
 import MessageForm from '../../../../UI/MessageForm';
 // CSS

@@ -6,6 +6,7 @@ import Board from '../Jam/Sections/Hostel/Board';
 import Jammers from '../Jam/Sections/Hostel/Jammers'
 import MyJam from '../Jam/Sections/Hostel/MyJam';
 import Settings from '../Jam/Sections/Hostel/Settings';
+import Chat from '../Jam/Sections/Chat';
 
 // import DataService from '../../services/DataService';
 
@@ -24,6 +25,9 @@ const Jam = ( props ) => {
         <div className="jam-container">
           { jamSection === 'board' && 
             <Board jamId={jamActive}/>
+          }
+          { jamSection === 'chat' && 
+            <Chat jamId={jamActive}/>
           }
 
           { jamSection === 'jammers' && 

@@ -14,7 +14,7 @@ import Jam from '../Dashboard/Jam';
 // CSS
 import './index.css'; 
 
-const Dashboard = ({ auth, userJams, jamId, jamActive, jamSection, getUserJams }) => {
+const Dashboard = ({ auth, userJams, jamId, jamActive, jamSection, getUserJams, jamType }) => {
 
     useEffect(() => {
        getUserJams(auth.uid);
@@ -30,7 +30,8 @@ const Dashboard = ({ auth, userJams, jamId, jamActive, jamSection, getUserJams }
 
             <div className="jam-screen">
                <Jam 
-                    jamId={jamId} 
+                    jamId={jamId}
+                    jamType={jamType}
                     jamActive={jamActive} 
                     jamSection={jamSection}
                 />
@@ -41,7 +42,8 @@ const Dashboard = ({ auth, userJams, jamId, jamActive, jamSection, getUserJams }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        // nombre de la función que paso como prop: (arg) => dispatch(nombre del action creator(argumento))
+        // nombre de la función que paso como prop: (arg) => 
+        // dispatch(nombre del action creator(argumento))
         getUserJams: (userId) => dispatch(getUserJams(userId))
     }
 

@@ -1,6 +1,6 @@
 // COOL STYLE https://codepen.io/egoens/pen/NxejgJ
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import DataService from '../../../services/DataService';
 
 import { connect } from 'react-redux';
@@ -13,7 +13,7 @@ const JamNavBar = (props) => {
 
     const [jamSections, setJamSections] = useState([]);
     const [jamName, setJamName] = useState('');
-    
+   
     const onSelectJamSection = (section)=> {
         props.setJamSection(section)
     };
@@ -21,37 +21,51 @@ const JamNavBar = (props) => {
     useEffect(() => {
         DataService.getJamInfoById(props.jamActive)
         .then((res) => {
-            const sectionsArray = res.sections;
-            const jamName = res.jamName;
-            setJamSections(sectionsArray)
-            setJamName(jamName)
+            setJamSections(res.sections)
+            setJamName(res.jamName)
         })
     },[props.jamActive])
 
-    const renderNavBar = () => {
-        console.log('JAMNAVBAR RENDERRING')
+
+    const renderJamNavBar = () => {
         return jamSections.map((section, id) => {
-            return(
-                <div className="jamNavBar-item" key={id} onClick={() => onSelectJamSection(`${section}`)}>
-                    <p>{section}</p>   
-                </div>
-            )
+
+            return section !== 'chat' ? 
+                 
+            <div className="jamNavBar-item" key={id} onClick={() => onSelectJamSection(`${section}`)}>
+                <p>{section}</p>   
+            </div>
+            
+            : 
+            <Fragment key={id} >
+                <p>{section}</p>   
+            </Fragment>
+
         })
     };
 
-    return (
-
+    console.log('jamSection before rendering = ', jamSections)
+    return ( 
         <div className="jamNavBar">
-            <div className="jamNavBar-left">
-                <div className="jamNavBar-jamName">
-                    <p>{jamName}</p>
+        {jamSections[0] !== 'chat' ? 
+            (
+                <Fragment>
+                    <div className="jamNavBar-left">
+                        <div className="jamNavBar-jamName">
+                            <p>{jamName}</p>
+                        </div>
+                    </div>
+                    <div className="jamNavBar-right">
+                        {renderJamNavBar()}
+                    </div>
+                </Fragment>
+            ) : (
+                <div className="jamNavBar-chat">
+                    {renderJamNavBar()}
                 </div>
-            </div>
-            <div className="jamNavBar-right">
-                {renderNavBar()}
-            </div>
+            )
+        }
         </div>
-
     );
 
 };
@@ -60,7 +74,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         setJamSection: (section) => dispatch(setJamSection(section))
     }
-}
+};
 
 const mapStateToProps = (state) => {
     return {
@@ -68,5 +82,6 @@ const mapStateToProps = (state) => {
         jamActive: state.jamActive,
         user: state.firebase.auth,
     }
-}
+};
+
 export default connect(mapStateToProps, mapDispatchToProps)(JamNavBar);

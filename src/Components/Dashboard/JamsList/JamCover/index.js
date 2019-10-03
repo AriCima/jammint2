@@ -9,14 +9,14 @@ import "./index.css";
 
  const JamCover = (props) => {
 
-  const { name, desc, jamId, jamType, user2 = '', user2Name = '' } = props
+  const { name, desc, jamId, jamType, user2Name = '' } = props
 
+  console.log('jamCover props = ', props)
   const onSelectJam = (jamId) => {
     props.selectJam(jamId);
     props.setJamSection('board');
   };
 
-  console.log('jamType = ', jamType)
   return (
 
     <button className="jamsList-jam-container" onClick={()=> onSelectJam(jamId)}>
@@ -56,11 +56,10 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-      jamid: state.jams,
-      auth: state.firebase.auth
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     auth: state.firebase.auth
+//   }
+// }
 //mapStateToProps = null
-export default connect(mapStateToProps, mapDispatchToProps)(JamCover)
+export default connect(null, mapDispatchToProps)(JamCover)

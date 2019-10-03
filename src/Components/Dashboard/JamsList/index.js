@@ -14,6 +14,7 @@ const JamsList = (props) => {
     return userJams.map((jam, j) => {
       return (
         <div className="jamCover-wrapper" key={j}>
+         
           <JamCover 
             name={jam.jamName} 
             desc={jam.jamDescription}

@@ -112,7 +112,7 @@ export default class DataService {
             return new Promise((resolve, reject) => {
                 firebase.firestore().collection('jams').doc(chatId).set(jamInfo)
                 .then(
-                   console.log('chat created correctly')
+                    console.log('chat succesfully added')
                 )
                 .catch((error) => {
                     var errorCode = error.code;
@@ -231,6 +231,9 @@ export default class DataService {
                 })
             });
         };
+
+
+        
         // ADMIN INFO
         static addJamToUser(userID, jamToJoin){
                 return new Promise((resolve, reject) => {

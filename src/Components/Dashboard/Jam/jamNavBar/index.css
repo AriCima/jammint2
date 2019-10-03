@@ -1,7 +1,8 @@
 .jamNavBar{
     position: fixed;
     top: 0;
-    width: 100%;
+    left: 30%;
+    right: 0;
     height: 60px;
     display: flex;
     justify-content: space-around;
@@ -14,14 +15,8 @@
     align-items: center;
 }
 
-.jamNavBar-left{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.jamNavBar-left:hover >p {
+.jamNavBar-left:hover {
     background-color:rgba(255, 255, 0, 1);
-
 }
 
 .jamNavBar-right{
@@ -39,10 +34,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
 
-.jamNavBar-item:hover > p{
+.jamNavBar-chat{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.jamNavBar-item:hover, .jamNavBar-chat-item:hover{
     background-color:rgba(255, 255, 0, 1);
 
 }
