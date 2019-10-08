@@ -1,4 +1,4 @@
-const jamSectionReducer = (state = ['board'], action) => {    
+const jamSectionReducer = (state = [''], action) => {    
     switch(action.type) {
         case 'JAM_SECTION':
             return action.payload;

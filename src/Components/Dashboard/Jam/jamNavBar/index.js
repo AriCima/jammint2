@@ -10,22 +10,12 @@ import { setJamSection } from '../../../../redux/actions/jamSection';
 import './index.css';
 
 const JamNavBar = (props) => {
-
-    const [jamSections, setJamSections] = useState([]);
-    const [jamName, setJamName] = useState('');
    
     const onSelectJamSection = (section)=> {
         props.setJamSection(section)
     };
 
-    useEffect(() => {
-        DataService.getJamInfoById(props.jamActive)
-        .then((res) => {
-            setJamSections(res.sections)
-            setJamName(res.jamName)
-        })
-    },[props.jamActive])
-
+    const { jamName, JamActiveSection, jamSections } = props;
 
     const renderJamNavBar = () => {
         return jamSections.map((section, id) => {

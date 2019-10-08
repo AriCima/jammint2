@@ -20,6 +20,16 @@ const Dashboard = ({ auth, userJams, jamId, jamActive, jamSection, getUserJams, 
        getUserJams(auth.uid);
     },[getUserJams, auth.uid]);
 
+    // EJEMPLO DE USE EFFECT EN FLAIX-BAC
+    // useEffect(() => {
+    //     (async () => {
+    //       const { ip = '' } = await checkIp();
+    //       const localData = JSON.parse(localStorage.getItem(ip));
+    
+    //       setState({ ip, localData });
+    //     })();
+    //   }, []);
+    
     return (
         <div className="dashboard">
             <aside className="jams-list">
@@ -31,9 +41,9 @@ const Dashboard = ({ auth, userJams, jamId, jamActive, jamSection, getUserJams, 
             <div className="jam-screen">
                <Jam 
                     jamId={jamId}
-                    jamType={jamType}
-                    jamActive={jamActive} 
-                    jamSection={jamSection}
+                    // jamType={jamType}
+                    // jamActive={jamActive} 
+                    // jamSection={jamSection}
                 />
             </div>
         </div>

@@ -11,15 +11,20 @@ import "./index.css";
 
   const { name, desc, jamId, jamType, user2Name = '' } = props
 
-  console.log('jamCover props = ', props)
-  const onSelectJam = (jamId) => {
+  const onSelectJam = (jamId, jamType) => {
     props.selectJam(jamId);
-    props.setJamSection('board');
+
+    // if (jamType === 'chat') {
+    //   console.log('entró en chat')
+    //   props.setJamSection('chat')
+    //   return
+    // }
+    // props.setJamSection('chat');
   };
 
   return (
 
-    <button className="jamsList-jam-container" onClick={()=> onSelectJam(jamId)}>
+    <button className="jamsList-jam-container" onClick={()=> onSelectJam(jamId, jamType)}>
 
 
       <div className="jams-list-content">

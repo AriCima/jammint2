@@ -53,12 +53,6 @@ const NavBar = ({user, signOut, jamActive}) => {
                 </div>
             
             </div>
-            { jamActive === '' ? '' 
-                :
-                <div className="navBar-right">
-                    <JamNavBar/>
-                </div>
-            }
 
         </div>
 

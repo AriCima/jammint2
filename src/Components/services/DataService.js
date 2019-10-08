@@ -173,7 +173,7 @@ export default class DataService {
                 });
         };
         static getJamInfoById(jamId) {  
-                console.log('jamID en DS =', jamId)
+                // console.log('jamID en DS =', jamId)
                 return new Promise((resolve, reject) => {
                     // console.log('jamInfoBIS  ID de la jam = ', jamId)
                     firebase.firestore().collection('jams').doc(jamId)

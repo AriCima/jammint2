@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 // import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 // COMPONENTS
-import NavBar from '../layout/NavBar'
+import NavBar from '../NavBar/NavBar'
 import Login from '../Auth/Login';
 import Register from '../Auth/Register';
 import Dashboard from '../Dashboard';
