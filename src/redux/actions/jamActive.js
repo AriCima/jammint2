@@ -1,7 +1,7 @@
 export const selectJam = (jamId) => {
     
     return {
-        type: 'JAM_ACTIVE', 
+        type: 'JAM_ID', 
         payload: jamId
     }
 };

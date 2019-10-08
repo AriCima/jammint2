@@ -14,7 +14,7 @@ import DataService from '../../services/DataService';
 import './index.css';
 
 const Jam = ( props ) => {
-
+  console.log('props en el Jam = ', props)
   const { jamId } = props;
   const [jamInfo, setJamInfo ] = useState({});
   const [ jamActiveSection, setJamActiveSection ] = useState('')
@@ -22,6 +22,7 @@ const Jam = ( props ) => {
   const [ jamName, setJamName ] = useState('')
 
   useEffect(() => {
+    if (jamId === undefined) return
     DataService.getJamInfoById(jamId)
     .then((res) => {
       setJamInfo(res);

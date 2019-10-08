@@ -1,7 +1,7 @@
 import authReducer from './authReducer';
 import userJamsReducer from './userJamsReducer';
 import jamSectionReducer from './jamSectionReducer';
-import jamActiveReducer from './jamActiveReducer';
+import jamIdReducer from './jamIdReducer';
 // sincronizador del firestore data y nuestro state
 // en el background
 import { firestoreReducer } from 'redux-firestore';
@@ -12,7 +12,7 @@ import { combineReducers } from 'redux';
 const rootReducer = combineReducers({
     auth: authReducer,
     userJams: userJamsReducer,
-    jamActive: jamActiveReducer,
+    jamId: jamIdReducer,
 
     jamSection: jamSectionReducer,
     // el firestoreReducer automáticamente sincronizará la propiedad "firestore"

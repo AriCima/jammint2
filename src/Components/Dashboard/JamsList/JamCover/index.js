@@ -14,12 +14,6 @@ import "./index.css";
   const onSelectJam = (jamId, jamType) => {
     props.selectJam(jamId);
 
-    // if (jamType === 'chat') {
-    //   console.log('entró en chat')
-    //   props.setJamSection('chat')
-    //   return
-    // }
-    // props.setJamSection('chat');
   };
 
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 
 import { connect } from 'react-redux';
 // import { firestoreConnect } from 'react-redux-firebase';
@@ -14,11 +14,16 @@ import Jam from '../Dashboard/Jam';
 // CSS
 import './index.css'; 
 
-const Dashboard = ({ auth, userJams, jamId, jamActive, jamSection, getUserJams, jamType }) => {
+const Dashboard = ({ auth, userJams, jamId, jamSection, getUserJams, jamType }) => {
 
+    const [ jamActive, setJamActive ] = useState(jamId)
     useEffect(() => {
        getUserJams(auth.uid);
     },[getUserJams, auth.uid]);
+
+    useEffect(() => {
+        setJamActive(jamId)
+    }, [jamId])
 
     // EJEMPLO DE USE EFFECT EN FLAIX-BAC
     // useEffect(() => {
@@ -39,12 +44,17 @@ const Dashboard = ({ auth, userJams, jamId, jamActive, jamSection, getUserJams, 
             </aside>
 
             <div className="jam-screen">
-               <Jam 
-                    jamId={jamId}
+                { jamId ?
+                    <Jam 
+                    jamId={jamActive}
                     // jamType={jamType}
                     // jamActive={jamActive} 
                     // jamSection={jamSection}
-                />
+                    />
+                    :
+                    <Fragment></Fragment>
+                }
+              
             </div>
         </div>
     );
@@ -56,7 +66,6 @@ const mapDispatchToProps = (dispatch) => {
         // dispatch(nombre del action creator(argumento))
         getUserJams: (userId) => dispatch(getUserJams(userId))
     }
-
 }
 
 const mapStateToProps = state => {
@@ -64,7 +73,7 @@ const mapStateToProps = state => {
     return { 
         userJams: state.userJams,
         jamSection: state.jamSection,
-        jamActive: state.jamActive,
+        jamId: state.jamId,
         auth: state.firebase.auth,
     }
 };
