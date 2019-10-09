@@ -18,7 +18,7 @@ export const getUserJams = (userId) => {
                     userJams.push(newData)
                     return userJams
                 });
-            dispatch({
+                dispatch({
                     type: "GET_USER_JAMS", 
                     payload: userJams
                 });
