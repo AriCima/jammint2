@@ -13,60 +13,45 @@ import DataService from '../../services/DataService';
 
 import './index.css';
 
-const Jam = ({ jamInfo} ) => {
-
-
-  const [ jamActiveSection, setJamActiveSection ] = useState('')
-  const [ jamSections, setJamSections ] = useState('')
-  const [ jamName, setJamName ] = useState('')
-  const [ jamType, setJamType ] = useState('')
-  const [jamId, setJamId ] = useState(jamInfo.jamId)
-
-  useEffect(() => {
-    
-    setJamName(jamInfo.jamName)
-    setJamType(jamInfo.jamType)
-    setJamSections(jamInfo.jamSections)
-    setJamId(jamInfo.jamId)
-
-  }, [jamInfo]);
-
+const Jam = ({ jamId, jamInfo } ) => {
+  console.log('jamId, jamInfo NAVBAR: ', jamId, ' / ', jamInfo);
 
   return (
     <div className="jam-wrapper">
 
       <div className="jam-header">
-        {jamId === undefined ? <Fragment></Fragment>: 
+        {jamInfo === [] ? <Fragment></Fragment>: 
           <JamNavBar 
-            jamName={jamName}
-            // jamSections={jamSections}
-            jamActiveSection={jamActiveSection}
+            jamName={jamInfo.jamName}
+            jamSections={jamInfo.sections}
+            jamActiveSection={jamInfo.jamActiveSection}
+            jamType={jamInfo.jamType}
           />
         }
       </div>
 
-      {jamId === undefined ? <h1>SELECT YOUR JAM</h1> : 
-        <div className="jam-container">
-          { jamActiveSection === 'board' && 
-            <Board jamId={jamId}/>
-          }
-          { jamActiveSection === 'chat' && 
-            <Chat jamId={jamId}/>
-          }
+      <div className="jam-container">
+  
+        { jamInfo.jamActiveSection === 'board' && 
+          <Board jamId={jamId}/>
+        }
+        { jamInfo.jamActiveSection === 'chat' && 
+          <Chat jamId={jamId}/>
+        }
 
-          { jamActiveSection === 'jammers' && 
-            <Jammers jamId={jamId}/>
-          }
+        { jamInfo.jamActiveSection === 'jammers' && 
+          <Jammers jamId={jamId}/>
+        }
 
-          { jamActiveSection === 'myJam' && 
-            <MyJam jamId={jamId}/>
-          }
+        { jamInfo.jamActiveSection === 'myJam' && 
+          <MyJam jamId={jamId}/>
+        }
 
-          { jamActiveSection === 'settings' && 
-            <Settings jamId={jamId}/>
-          } 
-        </div>
-      }
+        { jamInfo.jamActiveSection === 'settings' && 
+          <Settings jamId={jamId}/>
+        } 
+      </div>
+      
 
     </div>
    
@@ -75,7 +60,7 @@ const Jam = ({ jamInfo} ) => {
 
 
 const mapStateToProps = state => {
-  console.log('stat ene el jam = ', state)
+  console.log('state ene el jam = ', state)
   return { 
     jamInfo: state.jamInfo,
     auth: state.firebase.auth,

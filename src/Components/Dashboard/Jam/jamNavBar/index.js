@@ -9,18 +9,18 @@ import { setJamSection } from '../../../../redux/actions/jamSection';
 // CSS
 import './index.css';
 
-const JamNavBar = (props) => {
+const JamNavBar = ({ setJamSection, jamName, jamSections, jamActiveSection, jamType}) => {
+    
+    console.log('jamSections NAVBAR: ', jamSections);
    
     const onSelectJamSection = (section)=> {
-        props.setJamSection(section)
+        setJamSection(section)
     };
-
-    const { jamName, JamActiveSection, jamSections } = props;
 
     const renderJamNavBar = () => {
         return jamSections.map((section, id) => {
 
-            return section !== 'chat' ? 
+            return jamType !== 'chat' ? 
                  
             <div className="jamNavBar-item" key={id} onClick={() => onSelectJamSection(`${section}`)}>
                 <p>{section}</p>   
@@ -34,27 +34,30 @@ const JamNavBar = (props) => {
         })
     };
 
-    console.log('jamSection before rendering = ', jamSections)
     return ( 
         <div className="jamNavBar">
-        {jamSections[0] !== 'chat' ? 
-            (
+            {jamSections === undefined ? <p>NO JAM SELECTED</p> : 
                 <Fragment>
-                    <div className="jamNavBar-left">
-                        <div className="jamNavBar-jamName">
-                            <p>{jamName}</p>
+                {jamSections[0] !== 'chat' ? 
+                    (
+                        <Fragment>
+                            <div className="jamNavBar-left">
+                                <div className="jamNavBar-jamName">
+                                    <p>{jamName}</p>
+                                </div>
+                            </div>
+                            <div className="jamNavBar-right">
+                                {renderJamNavBar()}
+                            </div>
+                        </Fragment>
+                    ) : (
+                        <div className="jamNavBar-chat">
+                            {renderJamNavBar()}
                         </div>
-                    </div>
-                    <div className="jamNavBar-right">
-                        {renderJamNavBar()}
-                    </div>
+                    )
+                }
                 </Fragment>
-            ) : (
-                <div className="jamNavBar-chat">
-                    {renderJamNavBar()}
-                </div>
-            )
-        }
+            }
         </div>
     );
 

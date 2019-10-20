@@ -15,21 +15,17 @@ import Jam from '../Dashboard/Jam';
 // CSS
 import './index.css'; 
 
-const Dashboard = ({ auth, userJams, jamId, getUserJams, getJamInfo, jamInfo }) => {
+const Dashboard = ({ auth, userJams, getUserJams, getJamInfo, jamId, jamInfo }) => {
+    console.log('jamId: ', jamId);
+    console.log('jamInfo: ', jamInfo);
 
-
-
-    
     useEffect(() => {
        getUserJams(auth.uid);
-
-    },[getUserJams, auth.uid]);
+    },[auth.uid, getUserJams]);
 
     useEffect(() => {
-        console.log('jamId = ', jamId);
         jamId && getJamInfo(jamId)
-
-    }, [jamId, getJamInfo, jamInfo.jamName, jamInfo.jamType, jamInfo.jamSections]);
+    }, [getJamInfo, jamId]);
 
     
     return (
@@ -41,11 +37,13 @@ const Dashboard = ({ auth, userJams, jamId, getUserJams, getJamInfo, jamInfo }) 
             </aside>
 
             <div className="jam-screen">
-                { jamId ?
-                    <Jam />
-                    :
-                    <p>LOADING !</p> 
+                { jamInfo === [] ? <p>SELECT YOUR JAM</p> :
+                    <Jam 
+                        jamId={jamId}
+                        jamInfo={jamInfo}
+                    />
                 }
+                {/* {jamInfo.jamName} */}
               
             </div>
         </div>
