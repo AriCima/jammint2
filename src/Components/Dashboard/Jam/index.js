@@ -12,9 +12,6 @@ import JamNavBar from '../Jam/JamNavBar';
 import './index.css';
 
 const Jam = ({ jamId, jamInfo, jamActiveSection } ) => {
-  console.log('jamSection en JAM: ', jamActiveSection);
-
-
 
   return (
     <div className="jam-wrapper">
@@ -33,27 +30,22 @@ const Jam = ({ jamId, jamInfo, jamActiveSection } ) => {
       <div className="jam-container">
   
         { jamActiveSection === 'board' && 
-          <p>this is {jamId }board</p>
-          // <Board jamId={jamId}/>
+          <Board jamId={jamId}/>
         }
         { jamActiveSection === 'chat' && 
-           <p>this is {jamId } chat</p>
-          // <Chat jamId={jamId}/>
+          <Chat jamId={jamId}/>
         }
 
         { jamActiveSection === 'jammers' && 
-          <p>this is {jamId } jammers</p>
-          // <Jammers jamId={jamId}/>
+          <Jammers jamId={jamId}/>
         }
 
         { jamActiveSection === 'myJam' && 
-          <p>this is {jamId } myJam</p>
-          // <MyJam jamId={jamId}/>
+          <MyJam jamId={jamId}/>
         }
 
         { jamActiveSection === 'settings' && 
-          <p>this is {jamId } settings</p>
-          // <Settings jamId={jamId}/>
+          <Settings jamId={jamId}/>
         } 
       </div>
       

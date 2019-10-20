@@ -11,19 +11,19 @@ import './index.css';
 
 const Chat = (props) => {
 
-    const {jamActive} = props
+    const {jamId} = props
     const userId = props.user.uid;
     const [jamAdmin, setJamAdmin] = useState('');
     const [messages, setMessages] = useState([])
 
     useEffect(() => {
-        DataService.getChatContent(jamActive)
+        DataService.getChatContent(jamId)
         .then((res) => {
             console.log('res del chat =', res);
             setMessages(messages);
             setJamAdmin(jamAdmin);
         })
-    }, [jamActive, jamAdmin, messages])
+    }, [jamId, jamAdmin, messages])
 
     const renderChatContent = () => {
         console.log('sectionInfo = ', messages)

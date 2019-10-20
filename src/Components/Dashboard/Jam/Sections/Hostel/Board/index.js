@@ -11,14 +11,14 @@ import './index.css';
 
 const Board = (props) => {
 
-    const {jamActive} = props
+    const {jamId} = props
     const userId = props.user.uid;
     const [jamAdmin, setJamAdmin] = useState('');
     const [sectionInfo, setSectionInfo] = useState([])
 
     useEffect(() => {
         let isSubscribed = true
-        DataService.getJamInfoById(jamActive)
+        DataService.getJamInfoById(jamId)
         .then((res) => {
             console.log('res del getJamID = ', res)
             const jamAdmin = res.adminId;
@@ -27,14 +27,14 @@ const Board = (props) => {
             }
         })
         return () => isSubscribed = false
-    }, [jamActive])
+    }, [jamId])
 
     useEffect(() => {
-        DataService.getJamSectionInfo(jamActive, 'board')
+        DataService.getJamSectionInfo(jamId, 'board')
         .then((res) => {
             setSectionInfo(res)
         })
-    }, [jamActive])
+    }, [jamId])
 
     const renderBoardContent = () => {
         console.log('sectionInfo = ', sectionInfo)

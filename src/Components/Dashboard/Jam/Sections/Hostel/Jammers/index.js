@@ -13,7 +13,7 @@ import './index.css';
 
 const Jammers = (props) => {
 
-    const {jamActive} = props
+    const {jamId} = props
     const userId = props.user.uid;
 
     const [jamAdmin, setJamAdmin] = useState('');
@@ -21,17 +21,17 @@ const Jammers = (props) => {
     const [jammersMessages, setJammersMessages] = useState([])
 
     useEffect(() => {
-        DataService.getJammers(jamActive)
+        DataService.getJammers(jamId)
         .then((res) => {
             console.log('jammers = ', res)
             setJammers(res)
         })
-        DataService.getJammersMessages(jamActive)
+        DataService.getJammersMessages(jamId)
         .then((res) => {
             console.log('jammers msgs = ', res)
             setJammersMessages(res)
         })
-    }, [jamActive])
+    }, [jamId])
 
     const isAdmin = (jamAdmin === userId);
     return (
@@ -76,7 +76,7 @@ const Jammers = (props) => {
 const mapStateToProps = (state) => {
     return {
         user: state.firebase.auth,
-        jamActive: state.jamActive
+        jamId: state.jamId
     }
 }
 export default connect(mapStateToProps)(Jammers);

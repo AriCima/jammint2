@@ -10,7 +10,7 @@ import './index.css';
 
 const Settings = (props) => {
 
-    const { setJamSection, jamActive } = props;
+    const { setJamSection, jamId } = props;
     
     useEffect((sectionName) => {
         setJamSection(sectionName)
@@ -20,7 +20,7 @@ const Settings = (props) => {
 
         <div className="jam-settings">
             SE TI NG S
-            <h1>{jamActive}</h1>
+            <h1>{jamId}</h1>
         </div>
 
     );   
@@ -36,7 +36,7 @@ const mapStateToProps = (state) => {
     console.log('state en el jamNavBar = ', state)
     return {
         user: state.firebase.auth,
-        jamActive: state.jamActive
+        jamId: state.jamId
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Settings);
