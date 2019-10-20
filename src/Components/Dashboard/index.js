@@ -17,11 +17,7 @@ import './index.css';
 
 const Dashboard = ({ auth, userJams, jamId, getUserJams, getJamInfo, jamInfo }) => {
 
-    // const [ jamActive, setJamActive ] = useState(jamId)
-    // const [ jamActiveSection, setJamActiveSection ] = useState('')
-    // const [ jamSections, setJamSections ] = useState('')
-    // const [ jamName, setJamName ] = useState('')
-    // const [ jamType, setJamType ] = useState('')
+
 
     
     useEffect(() => {
@@ -30,20 +26,11 @@ const Dashboard = ({ auth, userJams, jamId, getUserJams, getJamInfo, jamInfo }) 
     },[getUserJams, auth.uid]);
 
     useEffect(() => {
-         getJamInfo(jamId)
-        //  setJamName(jamInfo.jamName)
-        //  setJamType(jamInfo.jamType)
-        //  setJamActive(jamId)
-     },[getJamInfo, jamId]);
+        console.log('jamId = ', jamId);
+        jamId && getJamInfo(jamId)
 
-    // EJEMPLO DE USE EFFECT EN FLAIX-BAC
-    // useEffect(() => {
-    //     (async () => {
-    //       const { ip = '' } = await checkIp();
-    //       const localData = JSON.parse(localStorage.getItem(ip))
-    //       setState({ ip, localData });
-    //     })();
-    //   }, []);
+    }, [jamId, getJamInfo, jamInfo.jamName, jamInfo.jamType, jamInfo.jamSections]);
+
     
     return (
         <div className="dashboard">
@@ -55,13 +42,7 @@ const Dashboard = ({ auth, userJams, jamId, getUserJams, getJamInfo, jamInfo }) 
 
             <div className="jam-screen">
                 { jamId ?
-                    <Jam 
-                     jamId={jamId}
-                     jamName={jamInfo.jamName}
-                     jamType={jamInfo.jamType}
-                     jamSections={jamInfo.jamSections}
-                     jamActiveSection={jamInfo.jamActiveSection}
-                    />
+                    <Jam />
                     :
                     <p>LOADING !</p> 
                 }

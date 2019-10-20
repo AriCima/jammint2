@@ -13,9 +13,24 @@ import DataService from '../../services/DataService';
 
 import './index.css';
 
-const Jam = ({ jamId, jamType, jamName, jamSections, jamActiveSection} ) => {
+const Jam = ({ jamInfo} ) => {
 
-  console.log('jamActiveSection en Jam = ', jamActiveSection)
+
+  const [ jamActiveSection, setJamActiveSection ] = useState('')
+  const [ jamSections, setJamSections ] = useState('')
+  const [ jamName, setJamName ] = useState('')
+  const [ jamType, setJamType ] = useState('')
+  const [jamId, setJamId ] = useState(jamInfo.jamId)
+
+  useEffect(() => {
+    
+    setJamName(jamInfo.jamName)
+    setJamType(jamInfo.jamType)
+    setJamSections(jamInfo.jamSections)
+    setJamId(jamInfo.jamId)
+
+  }, [jamInfo]);
+
 
   return (
     <div className="jam-wrapper">
@@ -24,7 +39,7 @@ const Jam = ({ jamId, jamType, jamName, jamSections, jamActiveSection} ) => {
         {jamId === undefined ? <Fragment></Fragment>: 
           <JamNavBar 
             jamName={jamName}
-            jamSections={jamSections}
+            // jamSections={jamSections}
             jamActiveSection={jamActiveSection}
           />
         }
@@ -62,9 +77,9 @@ const Jam = ({ jamId, jamType, jamName, jamSections, jamActiveSection} ) => {
 const mapStateToProps = state => {
   console.log('stat ene el jam = ', state)
   return { 
-      jamActiveSection: state.jamActiveSection,
-      auth: state.firebase.auth,
-   }
+    jamInfo: state.jamInfo,
+    auth: state.firebase.auth,
+  }
 };
 
 export default connect(mapStateToProps) (Jam);
