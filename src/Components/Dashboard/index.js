@@ -16,8 +16,8 @@ import Jam from '../Dashboard/Jam';
 import './index.css'; 
 
 const Dashboard = ({ auth, userJams, getUserJams, getJamInfo, jamId, jamInfo }) => {
-    console.log('jamId: ', jamId);
-    console.log('jamInfo: ', jamInfo);
+
+    console.log('jamInfo dashboard: ', jamInfo);
 
     useEffect(() => {
        getUserJams(auth.uid);
@@ -43,7 +43,6 @@ const Dashboard = ({ auth, userJams, getUserJams, getJamInfo, jamId, jamInfo }) 
                         jamInfo={jamInfo}
                     />
                 }
-                {/* {jamInfo.jamName} */}
               
             </div>
         </div>

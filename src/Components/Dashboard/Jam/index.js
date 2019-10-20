@@ -9,12 +9,12 @@ import Settings from '../Jam/Sections/Hostel/Settings';
 import Chat from '../Jam/Sections/Chat';
 import JamNavBar from '../Jam/JamNavBar';
 
-import DataService from '../../services/DataService';
-
 import './index.css';
 
-const Jam = ({ jamId, jamInfo } ) => {
-  console.log('jamId, jamInfo NAVBAR: ', jamId, ' / ', jamInfo);
+const Jam = ({ jamId, jamInfo, jamActiveSection } ) => {
+  console.log('jamSection en JAM: ', jamActiveSection);
+
+
 
   return (
     <div className="jam-wrapper">
@@ -32,23 +32,28 @@ const Jam = ({ jamId, jamInfo } ) => {
 
       <div className="jam-container">
   
-        { jamInfo.jamActiveSection === 'board' && 
-          <Board jamId={jamId}/>
+        { jamActiveSection === 'board' && 
+          <p>this is {jamId }board</p>
+          // <Board jamId={jamId}/>
         }
-        { jamInfo.jamActiveSection === 'chat' && 
-          <Chat jamId={jamId}/>
-        }
-
-        { jamInfo.jamActiveSection === 'jammers' && 
-          <Jammers jamId={jamId}/>
+        { jamActiveSection === 'chat' && 
+           <p>this is {jamId } chat</p>
+          // <Chat jamId={jamId}/>
         }
 
-        { jamInfo.jamActiveSection === 'myJam' && 
-          <MyJam jamId={jamId}/>
+        { jamActiveSection === 'jammers' && 
+          <p>this is {jamId } jammers</p>
+          // <Jammers jamId={jamId}/>
         }
 
-        { jamInfo.jamActiveSection === 'settings' && 
-          <Settings jamId={jamId}/>
+        { jamActiveSection === 'myJam' && 
+          <p>this is {jamId } myJam</p>
+          // <MyJam jamId={jamId}/>
+        }
+
+        { jamActiveSection === 'settings' && 
+          <p>this is {jamId } settings</p>
+          // <Settings jamId={jamId}/>
         } 
       </div>
       
@@ -64,6 +69,7 @@ const mapStateToProps = state => {
   return { 
     jamInfo: state.jamInfo,
     auth: state.firebase.auth,
+    jamActiveSection: state.jamSection
   }
 };
 
