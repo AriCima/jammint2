@@ -20,7 +20,6 @@ const Jam = ({ jamId, jamInfo, jamActiveSection } ) => {
         {jamInfo === [] ? <Fragment></Fragment>: 
           <JamNavBar 
             jamName={jamInfo.jamName}
-            jamSections={jamInfo.sections}
             jamActiveSection={jamInfo.jamActiveSection}
             jamType={jamInfo.jamType}
           />
@@ -36,7 +35,7 @@ const Jam = ({ jamId, jamInfo, jamActiveSection } ) => {
           <Chat jamId={jamId}/>
         }
 
-        { jamActiveSection === 'jammers' && 
+        { (jamActiveSection === 'jammers' || jamActiveSection === 'flatmates') && 
           <Jammers jamId={jamId}/>
         }
 

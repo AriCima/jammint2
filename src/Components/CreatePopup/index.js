@@ -46,22 +46,10 @@ const CreatePopup = (props) => {
       updatedAt: '',
     };
 
-    let sections = []
-    switch (newJam.jamType ) {
-      case 'hostel':
-        sections = ['board', 'myJam', 'settings', 'flatmates']
-        break;
-      case 'standard':
-          sections = ['board', 'jammers']
-          break;
-      default:
-        console.log('no reconoce tipo')
-    }
-    newJam.sections = sections;
+    let sections = Calculations.getJamSections(newJam.jamType)
 
     DataService.createJam(newJam)
     .then(res => {
-
       newJam.jamId = res.id;
       const jamId = res.id;
 
@@ -74,7 +62,6 @@ const CreatePopup = (props) => {
         DataService.createJamSections(jamId, sections[i], content)
       }
     })
-    
     setOpen(false);
   };
 

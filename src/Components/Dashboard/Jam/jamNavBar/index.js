@@ -1,7 +1,8 @@
 // COOL STYLE https://codepen.io/egoens/pen/NxejgJ
 
 import React, { useState, useEffect, Fragment } from 'react';
-import DataService from '../../../services/DataService';
+import Calculations from '../../../services/Calculations';
+
 
 import { connect } from 'react-redux';
 import { setJamSection } from '../../../../redux/actions/jamSection';
@@ -9,13 +10,18 @@ import { setJamSection } from '../../../../redux/actions/jamSection';
 // CSS
 import './index.css';
 
-const JamNavBar = ({ setJamSection, jamName, jamSections, jamActiveSection, jamType}) => {
+const JamNavBar = ({ setJamSection, jamName, jamType}) => {
     
-    console.log('jamSections NAVBAR: ', jamSections);
+    const [jamSections, setJamSections] = useState([])
    
     const onSelectJamSection = (section)=> {
         setJamSection(section)
     };
+
+    useEffect(() => {
+        const sections = Calculations.getJamSections(jamType)
+        setJamSections(sections)
+    }, [jamType, setJamSections])
 
     const renderJamNavBar = () => {
         return jamSections.map((section, id) => {
@@ -38,7 +44,7 @@ const JamNavBar = ({ setJamSection, jamName, jamSections, jamActiveSection, jamT
         <div className="jamNavBar">
             {jamSections === undefined ? <p>NO JAM SELECTED</p> : 
                 <Fragment>
-                {jamSections[0] !== 'chat' ? 
+                {jamType !== 'chat' ? 
                     (
                         <Fragment>
                             <div className="jamNavBar-left">

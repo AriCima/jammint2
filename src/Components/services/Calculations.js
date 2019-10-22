@@ -48,6 +48,24 @@ export default class Calculations {
      
     };
 
+    static getJamSections(type){
+        console.log('get Jam Sections launched')
+        let sections = [];
+        switch (type) {
+            case 'accommodation':
+              sections = ['board', 'myJam', 'settings', 'flatmates']
+              break;
+            case 'standard':
+                sections = ['board', 'jammers']
+                break;
+            case 'chat': 
+                sections = ['Chat']
+                break;
+            default:
+              console.log('no reconoce tipo')
+        }
+       return sections;
+    };
 
     // - - - - - SORTING FUNCTIONS 
 
