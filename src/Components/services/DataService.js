@@ -196,18 +196,19 @@ export default class DataService {
                 // console.log('jamInfoBIS  ID de la jam = ', jamId)
                 firebase.firestore().collection('jams').doc(jamId).collection(section)
                 .get()
-                .then(function(querySnapshot) {
-                    let result = [];
-                    querySnapshot.forEach(function(doc) {
-                        // console.log(doc.data())
-                        const info = doc.data()
-                        result.push(info)
-                        // resolve({id: doc.id, data: doc.data()});
+                .then(console.log('hello'))
+                // .then(function(querySnapshot) {
+                //     let result = [];
+                //     querySnapshot.forEach(function(doc) {
+                //         // console.log(doc.data())
+                //         const info = doc.data()
+                //         result.push(info)
+                //         // resolve({id: doc.id, data: doc.data()});
                         
-                    });
-                    console.log(`${section} content = `,result)
-                    resolve(result)
-                })
+                //     });
+                //     console.log(`${section} content = `,result)
+                //     resolve(result)
+                // })
                 .catch((error) => {
                     var errorCode = error.code;
                     var errorMessage = error.message;
@@ -287,6 +288,23 @@ export default class DataService {
         };
 
     // MESSAGES
+
+    static saveMessage(jamId, section, messageInfo){
+        console.log('save message launched with: ', jamId,' / ', section, ' / ',messageInfo)
+        return new Promise((resolve, reject) => {
+            firebase.firestore().collection('jam').doc(jamId).collection(section).add(messageInfo)
+            .then((result) => {
+                console.log("message succesfully sent !")
+                resolve(result);
+            })
+
+            .catch((error) => {
+                var errorCode = error.code;
+                console.log('Message could not be sent: ', errorCode);                
+            })
+            
+        });
+    };
     static sendMessage(messageInfo) {  
         return new Promise((resolve, reject) => {
             firebase.firestore().collection('messages').add(messageInfo)
@@ -411,3 +429,4 @@ export default class DataService {
     }
     
 }
+

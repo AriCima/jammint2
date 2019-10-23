@@ -29,22 +29,34 @@ const Jam = ({ jamId, jamInfo, jamActiveSection } ) => {
       <div className="jam-container">
   
         { jamActiveSection === 'board' && 
-          <Board jamId={jamId}/>
+          <Board 
+            jamId={jamId}
+            jamInfo={jamInfo}
+          />
         }
         { jamActiveSection === 'chat' && 
           <Chat jamId={jamId}/>
         }
 
         { (jamActiveSection === 'jammers' || jamActiveSection === 'flatmates') && 
-          <Jammers jamId={jamId}/>
+          <Jammers 
+            jamId={jamId}
+            jamInfo={jamInfo}
+          />
         }
 
         { jamActiveSection === 'myJam' && 
-          <MyJam jamId={jamId}/>
+          <MyJam 
+            jamId={jamId}
+            jamInfo={jamInfo}
+          />
         }
 
         { jamActiveSection === 'settings' && 
-          <Settings jamId={jamId}/>
+          <Settings 
+            jamId={jamId}
+            jamInfo={jamInfo}
+          />
         } 
       </div>
       

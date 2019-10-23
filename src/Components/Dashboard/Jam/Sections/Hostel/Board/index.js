@@ -5,29 +5,31 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import DataService from '../../../../../services/DataService';
 import BoardContent from './BoardContent';
+import MessageForm from '../../../../../UI/MessageForm';
 
 // CSS
 import './index.css';
 
 const Board = (props) => {
 
-    const {jamId} = props
-    const userId = props.user.uid;
-    const [jamAdmin, setJamAdmin] = useState('');
+    const { jamId, jamActiveSection, jamInfo } = props
+    const userId = props.auth.uid;
+    const jamAdmin = jamInfo.adminId;
     const [sectionInfo, setSectionInfo] = useState([])
 
-    useEffect(() => {
-        let isSubscribed = true
-        DataService.getJamInfoById(jamId)
-        .then((res) => {
-            console.log('res del getJamID = ', res)
-            const jamAdmin = res.adminId;
-            if (isSubscribed) {
-                setJamAdmin(jamAdmin)
-            }
-        })
-        return () => isSubscribed = false
-    }, [jamId])
+    // useEffect(() => {
+    //     let isSubscribed = true
+    //     DataService.getJamInfoById(jamId)
+    //     .then((res) => {
+    //         console.log('res del getJamID = ', res)
+    //         const jamAdmin = res.adminId;
+    //         if (isSubscribed) {
+    //             setJamAdmin(jamAdmin)
+    //         }
+    //     })
+    //     return () => isSubscribed = false
+    // }, [jamId])
+
 
     useEffect(() => {
         DataService.getJamSectionInfo(jamId, 'board')
@@ -45,7 +47,8 @@ const Board = (props) => {
                 </React.Fragment>
             )
         })
-    }
+    };
+
     const isAdmin = (jamAdmin === userId);
     return (
         <div className="jam-board">
@@ -58,7 +61,15 @@ const Board = (props) => {
             }
             { isAdmin && 
                 <div className="jam-board-form">
-                    <p>THIS IS BOARD'S FORM</p>
+                    <MessageForm 
+                        userId={userId}
+                        jamId={jamId}
+                        inputId='boardMessage'
+                        jamSection={jamActiveSection}
+                        section='board'
+                        buttonText='send'
+                        placeholder='type here'
+                    />
                 </div>
             }
         </div>
@@ -71,8 +82,9 @@ const Board = (props) => {
 const mapStateToProps = (state) => {
     console.log('state en el jamNavBar = ', state)
     return {
-        user: state.firebase.auth,
-        jamActive: state.jamActive
+        auth: state.firebase.auth,
+        jamActive: state.jamActive,
+        jamActiveSection: state.jamSection,
     }
 }
 export default connect(mapStateToProps)(Board);
