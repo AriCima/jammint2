@@ -1,9 +1,6 @@
 
 import React, { Fragment } from 'react';
 
-// COMPONENTS
-import JamMessageCard from './JamMessageCard';
-
 // CSS
 import './index.css';
 
@@ -14,9 +11,14 @@ const JammersMessages = (props) => {
     const renderJammMessagesList = () => {
         return jm.map((item, i) => {
             return (
-                <React.Fragment key={i}>
-                    <JamMessageCard msg={item} />
-                </React.Fragment>
+                <div className="jammers-message-container">
+                    <div className="message-author">
+                        <p>{item.userId}</p>
+                    </div>
+                    <div className="jammers-message-content">
+                        <p>{item.messageContent}</p>
+                    </div>
+                </div>
             )
         })
     }

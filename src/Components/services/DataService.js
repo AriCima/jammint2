@@ -218,7 +218,7 @@ export default class DataService {
         };
         static getChatContent(jamId) {
             return new Promise((resolve, reject) => {
-                firebase.firestore().collection('jams').doc(jamId).doc('messages').orderBy('date', 'desc').limit(50)
+                firebase.firestore().collection('jams').doc(jamId).collection('messages').orderBy('date', 'desc').limit(50)
                 .get()
                 .then((result) => {
                     console.log('result = ', result);
@@ -337,23 +337,6 @@ export default class DataService {
             
         });
     };
-    static saveNewMessage (messageId, messageToSave){
-        return new Promise((resolve, reject) => {
-
-            firebase.firestore().collection('boardMessages').doc(messageId).set(messageToSave)
-            .then((result) => {
-                
-                console.log("New Board Message succesfully saved !")
-                resolve(result);
-            })
-
-            .catch((error) => {
-                var errorCode = error.code;
-                console.log('Message NOT added: ', errorCode);                
-            })
-            
-        });
-    };
     static getBoardMessages(jamId){
 
         return new Promise((resolve, reject) => {
@@ -396,7 +379,8 @@ export default class DataService {
     }
     static getJammersMessages(jamId){
         return new Promise((resolve, reject) => {
-            firebase.firestore().collection('jams').doc(jamId).collection('jammersMessages').get() 
+            firebase.firestore().collection('jams').doc(jamId).collection('jammersMessages').orderBy('createdAt', 'asc')
+            .get() 
             .then((result) => {
                 let messages=[];
                 result.docs.forEach((d) => {

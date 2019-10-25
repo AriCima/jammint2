@@ -20,6 +20,30 @@ const Jammers = (props) => {
     const [jammers, setJammers] = useState([])
     const [jammersMessages, setJammersMessages] = useState([])
 
+    const [message, setMessage] = useState('');
+    
+    const onSubmit = (message) => {
+        const date = new Date()
+        const messageInfo = {
+            messageContent: message,
+            userId: userId,
+            jamId: jamId,
+            section: 'jammers',
+            createdAt: date,
+            messageType: 'message'
+        }
+        DataService.saveMessage(jamId, jammers, messageInfo)
+    }
+
+    const renderJammersContent = () => {
+        return jammersMessages.map((jC, i) => {
+            console.log('jC = ', jC)
+            return (
+                <JammersMessages key={i} jm={jammersMessages}/>
+            )
+        })
+    }
+
     useEffect(() => {
         DataService.getJammers(jamId)
         .then((res) => {
@@ -42,10 +66,33 @@ const Jammers = (props) => {
 
                     <div className="jam-jammers-chat">
                         <div className="jam-jammers-messages-area">
-                            {jammersMessages ? <JammersMessages jm={jammersMessages}/> : <p>Loading</p>}
+                            {jammersMessages ? renderJammersContent()
+                            : 
+                            <p>Loading</p>}
                         </div>
                         <div className="jam-jammers-form-area">
-                            <p>FORM AREA</p>
+                            <form className="input-form" onSubmit={onSubmit}>
+                                <div className="message-input-area">
+                                    <input 
+                                        type="text" 
+                                        id="jammers-post" 
+                                        placeholder={`type here`}
+                                        onChange={id => {
+                                            console.log('mensaje = ', id.target.value)
+                                        setMessage(id.target.value);
+                                        }}
+                                    />
+                                </div>
+
+                                <div className="button-area">
+                                    <button className="submit-button"
+                                        onClick={() => onSubmit(message)}
+                                    >
+                                        Send Message
+                                    </button>
+                                </div>
+
+                            </form>
                         </div>
                     </div>
 
