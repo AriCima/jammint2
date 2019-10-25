@@ -17,20 +17,6 @@ const Board = (props) => {
     const jamAdmin = jamInfo.adminId;
     const [sectionInfo, setSectionInfo] = useState([])
 
-    // useEffect(() => {
-    //     let isSubscribed = true
-    //     DataService.getJamInfoById(jamId)
-    //     .then((res) => {
-    //         console.log('res del getJamID = ', res)
-    //         const jamAdmin = res.adminId;
-    //         if (isSubscribed) {
-    //             setJamAdmin(jamAdmin)
-    //         }
-    //     })
-    //     return () => isSubscribed = false
-    // }, [jamId])
-
-
     useEffect(() => {
         DataService.getJamSectionInfo(jamId, 'board')
         .then((res) => {
@@ -41,37 +27,35 @@ const Board = (props) => {
     const renderBoardContent = () => {
         console.log('sectionInfo = ', sectionInfo)
         return sectionInfo.map((bC, i) => {
+            console.log('bC = ', bC)
             return (
-                <React.Fragment key={i}>
-                    <BoardContent boardContent={bC} />
-                </React.Fragment>
+                <BoardContent 
+                    key={i} 
+                    boardContent={bC}
+                />
             )
         })
     };
 
-    const isAdmin = (jamAdmin === userId);
+    // const isAdmin = (jamAdmin === userId);
+    
     return (
         <div className="jam-board">
-            {jamAdmin !== '' ? 
-                <div className="jam-board-board">
-                    {sectionInfo ? renderBoardContent() : <div>LOADING</div>}
-                </div>
-                :
-                <div>LOADING</div>
-            }
-            { isAdmin && 
-                <div className="jam-board-form">
-                    <MessageForm 
-                        userId={userId}
-                        jamId={jamId}
-                        inputId='boardMessage'
-                        jamSection={jamActiveSection}
-                        section='board'
-                        buttonText='send'
-                        placeholder='type here'
-                    />
-                </div>
-            }
+            <div className="jam-board-board">
+                <p>{jamInfo.jamName}</p>
+                {renderBoardContent()}
+            </div>
+            <div className="jam-board-form">
+                <MessageForm 
+                    userId={userId}
+                    jamId={jamId}
+                    inputId='boardMessage'
+                    jamSection={jamActiveSection}
+                    section='board'
+                    buttonText='send'
+                    placeholder='type here'
+                />
+            </div>
         </div>
 
     );   

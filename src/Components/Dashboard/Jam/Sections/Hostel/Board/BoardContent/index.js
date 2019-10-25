@@ -1,30 +1,27 @@
 import React from 'react';
 
-
-
-
 // CSS
 import './index.css';
 
 const BoardContent = (props) => {
 
     const { boardContent } = props
-
+    console.log('boardContent = ', boardContent)
     return (
 
         <div className="board-content-item">
-        { boardContent.type === 'message' &&
+        { boardContent.messageType === 'message' &&
             <div className="board-message">
-                <p>{boardContent.title}</p>
+                <p>User ID: {boardContent.userId}</p>
             </div>
         }
-        { boardContent.type === 'post' &&
+        { boardContent.messageType === 'post' &&
             <div className="board-post">
                <div className="board-post-image">
-                    <h4>{boardContent.title}</h4>
+                    <h4>user Id: {boardContent.userId}</h4>
                </div>
                <div className="board-post-text">
-                    <p>{boardContent.content}</p>
+                    <p>{boardContent.messageContent}</p>
                </div>
             </div>
         }
