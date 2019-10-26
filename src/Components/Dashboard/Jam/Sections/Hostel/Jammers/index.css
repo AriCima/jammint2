@@ -3,21 +3,23 @@
     background-color: rgb(188, 218, 20);
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .jam-jammers-chat{
-    width: 70%;
+    width: 85%;
     height: 600px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    background-color: white;
 }
 
 .jam-jammers-messages-area{
-    width: 100%;
+    width: 90%;
     height: 80%;
+    padding-top: 5px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

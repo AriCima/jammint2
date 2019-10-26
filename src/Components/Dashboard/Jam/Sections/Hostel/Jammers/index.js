@@ -15,7 +15,6 @@ const Jammers = (props) => {
 
     const {jamId} = props
     const userId = props.user.uid;
-
     const [jamAdmin, setJamAdmin] = useState('');
     const [jammers, setJammers] = useState([])
     const [jammersMessages, setJammersMessages] = useState([])
@@ -33,15 +32,6 @@ const Jammers = (props) => {
             messageType: 'message'
         }
         DataService.saveMessage(jamId, jammers, messageInfo)
-    }
-
-    const renderJammersContent = () => {
-        return jammersMessages.map((jC, i) => {
-            console.log('jC = ', jC)
-            return (
-                <JammersMessages key={i} jm={jammersMessages}/>
-            )
-        })
     }
 
     useEffect(() => {
@@ -66,7 +56,7 @@ const Jammers = (props) => {
 
                     <div className="jam-jammers-chat">
                         <div className="jam-jammers-messages-area">
-                            {jammersMessages ? renderJammersContent()
+                            {jammersMessages ? <JammersMessages jm={jammersMessages} />
                             : 
                             <p>Loading</p>}
                         </div>
