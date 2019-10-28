@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 // COMPONENTS
 import { connect } from 'react-redux';
 import { setJamSection } from '../../../../../../redux/actions/jamSection';
-
+import InviteForm from '../../../../../UI/NewJammerForms/InviteForm'
 // CSS
 import './index.css';
 
@@ -16,11 +16,20 @@ const Settings = (props) => {
         setJamSection(sectionName)
     },[setJamSection])
 
+    const invite = () => {
+        console.log('need to send the invite')
+    };
+
     return (
 
         <div className="jam-settings">
             SE TI NG S
             <h1>{jamId}</h1>
+            <form className="invite" onSubmit={invite}>
+                <div className="invite-form-header">
+
+                </div>
+            </form>
         </div>
 
     );   
