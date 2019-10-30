@@ -53,76 +53,60 @@ const AccommodationForm = () => {
                 
                 <div className="form-section homeAddress">
 
-                    <div className="input-block">
-                        <input 
-                            type="text" 
-                            id={`street`} 
-                            placeholder={`Street`}
-                            onChange={id => {
-                                setInputValue(id.target.value);
-                            }}
-                        />
-                    </div>
-                    <div className="input-block">
-                        <input 
-                            type="text" 
-                            id={`houseNr`} 
-                            placeholder={`House Nr`}
-                            onChange={id => {
-                                setInputValue(id.target.value);
-                            }}
-                        />
-                    </div>
-                    <div className="input-block">
-                        <input 
-                            type="text" 
-                            id={`floor`} 
-                            placeholder={`Floor`}
-                            onChange={id => {
-                                setInputValue(id.target.value);
-                            }}
-                        />
-                    </div>
-                    <div className="input-block">
-                        <input 
-                            type="text" 
-                            id={`door`} 
-                            placeholder={`Door`}
-                            onChange={id => {
-                                setInputValue(id.target.value);
-                            }}
-                        />
-                    </div>
-                    <div className="input-block">
-                        <input 
-                            type="text" 
-                            id={`zipCodedoor`} 
-                            placeholder={`Zip-code`}
-                            onChange={id => {
-                                setInputValue(id.target.value);
-                            }}
-                        />
-                    </div>
-                    <div className="input-block">
-                        <input 
-                            type="text" 
-                            id={`city`} 
-                            placeholder={`City`}
-                            onChange={id => {
-                                setInputValue(id.target.value);
-                            }}
-                        />
-                    </div>
-                    <div className="input-block">
-                        <input 
-                            type="text" 
-                            id={`country`} 
-                            placeholder={`Country`}
-                            onChange={id => {
-                                setInputValue(id.target.value);
-                            }}
-                        />
-                    </div>
+                <div className="input-block">
+                    <input 
+                        type="text" 
+                        id={`houseNr`} 
+                        placeholder={`House Nr`}
+                        value={inputValue.houserNr}
+                        onChange={handleInputChange} 
+                    />
+                </div>
+                <div className="input-block">
+                    <input 
+                        type="text" 
+                        id={`floor`} 
+                        placeholder={`Floor`}
+                        value={inputValue.floor}
+                        onChange={handleInputChange} 
+                    />
+                </div>
+                <div className="input-block">
+                    <input 
+                        type="text" 
+                        id={`door`} 
+                        placeholder={`Door`}
+                        value={inputValue.door}
+                        onChange={handleInputChange} 
+                    />
+                </div>
+                <div className="input-block">
+                    <input 
+                        type="text" 
+                        id={`zipCode`} 
+                        placeholder={`Zip-code`}
+                        value={inputValue.zipCode}
+                        onChange={handleInputChange} 
+                    />
+                </div>
+                <div className="input-block">
+                    <input 
+                        type="text" 
+                        id={`city`} 
+                        placeholder={`City`}
+                        value={inputValue.city}
+                        onChange={handleInputChange} 
+                    />
+                </div>
+                <div className="input-block">
+                    <input 
+                        type="text" 
+                        id={`country`} 
+                        placeholder={`Country`}
+                        value={inputValue.country}
+                        onChange={handleInputChange} 
+                    />
+                </div>
 
                 </div>
                 
