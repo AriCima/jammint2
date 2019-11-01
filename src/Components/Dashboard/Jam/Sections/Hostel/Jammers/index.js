@@ -47,6 +47,8 @@ const Jammers = (props) => {
         })
     }, [jamId])
 
+    
+
     const isAdmin = (jamAdmin === userId);
     return (
 

@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 import StandardInputField from '../../UI/StandardInputField';
 
+// CSS
+import './index.css'; 
 
 const NewAccommodationForm = () => {
 
     const [inputValue, setInputValue] = useState({});
     
     const handleInputChange = (event) => {
+        console.log('event = ', event)
         event.persist();
+        console.log(`${event.target.id} = `,event.target.value)
         setInputValue(inputValue => ({...inputValue, [event.target.id]: event.target.value}));
+        console.log('inputValue: ', inputValue);
+
     }
 
     const handleSubmit = (event) => {
@@ -23,13 +29,13 @@ const NewAccommodationForm = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="new-apartment-form" onSubmit={handleSubmit}>
             
             <div className="form-header">
-                <div className="form-header-title">
-                    <p>New Accommodation Form</p>
+                <div className="form-header-line">
+                    <h3>New Accommodation Form</h3>
                 </div>
-                <div className="form-header-text">
+                <div className="form-header-line">
                     <p>Apartment Info</p>
                 </div>
             </div>
@@ -57,6 +63,14 @@ const NewAccommodationForm = () => {
                        />
                     </div>
                     <div className="input-block">
+                       <StandardInputField
+                        id={`houseNr`} 
+                        placeholder={`House Nr`}
+                        value={inputValue.houseNr}
+                        onChange={handleInputChange} 
+                       />
+                    </div>
+                    {/* <div className="input-block">
                         <input 
                             type="text" 
                             id={`houseNr`} 
@@ -64,8 +78,8 @@ const NewAccommodationForm = () => {
                             value={inputValue.houserNr}
                             onChange={handleInputChange} 
                         />
-                    </div>
-                    <div className="input-block">
+                    </div> */}
+                    {/* <div className="input-block">
                         <input 
                             type="text" 
                             id={`floor`} 
@@ -109,10 +123,10 @@ const NewAccommodationForm = () => {
                             value={inputValue.country}
                             onChange={handleInputChange} 
                         />
-                    </div>
+                    </div> */}
 
                 </div>
-                <div className="form-section roomsInfo">
+                {/* <div className="form-section roomsInfo">
                     <div className="input-block">
                         <input 
                             type="text" 
@@ -122,7 +136,7 @@ const NewAccommodationForm = () => {
                             onChange={handleInputChange} 
                         />
                     </div>
-                </div>                
+                </div>                 */}
             </div>
         </form>
     )

@@ -4,6 +4,10 @@ import React, { useState } from "react";
 import DataService from "../services/DataService";
 import Calculations from "../services/Calculations";
 
+// FONTAWESOME
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
+
 // Material UI
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -68,9 +72,9 @@ const JoinPopup = (props) => {
 
   return ( 
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Join Jam
-      </Button>
+      <button  onClick={handleClickOpen}>
+        <FontAwesomeIcon icon={faCheck} />
+      </button>
       
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Join</DialogTitle>

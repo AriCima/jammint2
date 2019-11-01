@@ -3,6 +3,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
 
+// FONTAWESOME
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSignOutAlt, faBars } from '@fortawesome/free-solid-svg-icons'
+
 // COMPONENTS
 import JoinPopup from '../JoinPopup';
 import CreatePopup from '../CreatePopup';
@@ -24,7 +28,7 @@ const NavBar = ({user, signOut, jamActive}) => {
 
                 <div className="navBar-menu">
                     <div className="navBar-item">
-                        menu
+                    <FontAwesomeIcon icon={faBars} />
                     </div>
                 </div>
                
@@ -47,7 +51,7 @@ const NavBar = ({user, signOut, jamActive}) => {
                         </div> :
                         
                         <div className="navBar-item" onClick={signOut}>
-                            Log out
+                            <FontAwesomeIcon icon={faSignOutAlt} />
                         </div>
                     }
                 </div>

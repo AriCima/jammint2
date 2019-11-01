@@ -1,26 +1,30 @@
 
 .navBar-left{
     height: 100%;
-    width: 30%;
+    width: 100%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-items: center;
+    
 }
 
 .navBar-menu{
+    height: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
 .navBar-actions{
+    height: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-around;
     align-items: center;
 }
 
 .navBar-item{
     width: 20%;
     margin: 0 5px;
+    font-size: 24px;
 }
 
 .navBar-right{

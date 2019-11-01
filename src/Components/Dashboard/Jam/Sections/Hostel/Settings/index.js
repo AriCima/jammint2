@@ -23,7 +23,6 @@ const Settings = (props) => {
             SE TI NG S
             <h1>{jamId}</h1>
             <NewAccommodationForm />
-
         </div>
 
     );   
