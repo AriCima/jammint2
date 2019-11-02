@@ -5,6 +5,8 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { setJamSection } from '../../../../../../redux/actions/jamSection';
 import NewAccommodationForm from '../../../../../UI/NewAccommodationForm'
+import CustomInputField from '../../../../../UI/CustomInputField';
+
 
 // CSS
 import './index.css';
@@ -23,6 +25,14 @@ const Settings = (props) => {
             SE TI NG S
             <h1>{jamId}</h1>
             <NewAccommodationForm />
+            <CustomInputField 
+                label='input custom test'
+                placeholder='input info'
+                type="text"
+                id='inputTest'
+                size='23px'
+                onChange = {id => { console.log(id) }}
+            />
         </div>
 
     );   
