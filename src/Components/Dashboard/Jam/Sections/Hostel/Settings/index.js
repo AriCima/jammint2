@@ -30,7 +30,7 @@ const Settings = (props) => {
                 placeholder='input info'
                 type="text"
                 id='inputTest'
-                size='23px'
+                divWidth="140px"
                 onChange = {id => { console.log(id) }}
             />
         </div>

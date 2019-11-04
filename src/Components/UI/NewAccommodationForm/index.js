@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import StandardInputField from '../../UI/StandardInputField';
+import CustomInputField from '../../UI/CustomInputField';
 
 // CSS
 import './index.css'; 
@@ -11,9 +12,9 @@ const NewAccommodationForm = () => {
     const handleInputChange = (event) => {
         console.log('event = ', event)
         event.persist();
-        console.log(`${event.target.id} = `,event.target.value)
-        setInputValue(inputValue => ({...inputValue, [event.target.id]: event.target.value}));
+        console.log('event.id / event.value = ',`${event.target.id} = `,event.target.value)
         console.log('inputValue: ', inputValue);
+        setInputValue(inputValue => ({...inputValue, [event.target.id]: event.target.value}));
 
     }
 
@@ -43,6 +44,16 @@ const NewAccommodationForm = () => {
             <div className="form-body">
                
                 <div className="form-section homeAddress">
+
+                    <CustomInputField 
+                        label='cumple'
+                        placeholder='cumple'
+                        type="text"
+                        id='cumple'
+                        width='120px'
+                        value={inputValue.cumple}
+                        changeControl={handleInputChange} 
+                    />
 
                     <div className="input-block">
                         <input 
