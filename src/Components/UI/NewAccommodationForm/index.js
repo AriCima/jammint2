@@ -113,6 +113,35 @@ const NewAccommodationForm = ( props ) => {
                         changeControl={handleInputChange} 
                     />
 
+                    <CustomInputField 
+                        width='120px'
+                        label="bathrooms"
+                        type="text" 
+                        id={`bathrooms`} 
+                        placeholder={`bathrooms`}
+                        value={accInfo.bathrooms}
+                        changeControl={handleInputChange} 
+                    />
+                    <CustomInputField 
+                        width='120px'
+                        label="sqm"
+                        type="text" 
+                        id={`sqm`} 
+                        placeholder={`sqm`}
+                        value={accInfo.sqm}
+                        changeControl={handleInputChange} 
+                    />
+                    <CustomInputField 
+                        width='120px'
+                        label="toilets"
+                        type="text" 
+                        id={`toilets`} 
+                        placeholder={`toilets`}
+                        value={accInfo.toilets}
+                        changeControl={handleInputChange} 
+                    />
+                    
+
                     {/* <CountrySelect 
                         width='120px'
                         label="country"

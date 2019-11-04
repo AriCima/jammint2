@@ -49,6 +49,7 @@ const CreatePopup = (props) => {
       jamType: 'standard',
       createdAt: createdAt,
       updatedAt: '',
+      needToAskQuestion: true
     };
 
     let sections = Calculations.getJamSections(newJam.jamType)
