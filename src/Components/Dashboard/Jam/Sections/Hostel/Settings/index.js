@@ -25,14 +25,6 @@ const Settings = (props) => {
             SE TI NG S
             <h1>{jamId}</h1>
             <NewAccommodationForm />
-            <CustomInputField 
-                label='input custom test'
-                placeholder='input info'
-                type="text"
-                id='inputTest'
-                divWidth="140px"
-                onChange = {id => { console.log(id) }}
-            />
         </div>
 
     );   

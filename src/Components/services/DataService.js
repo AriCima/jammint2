@@ -285,6 +285,25 @@ export default class DataService {
                     
                 });
         };
+        static updateJamInfo(jamId, jamInfo){
+            return new Promise((resolve, reject) => {
+                // console.log('inputs en el dataservice ', jamCode, jammers);
+
+                firebase.firestore().collection(`jams`).doc(jamId).update({
+                    accommodationInfo : jamInfo})
+
+                .then((result) => {
+                    console.log("jamInfo succesfully UPDATED")
+                    resolve(result);
+                })
+                .catch((error) => {
+                    var errorCode = error.code;
+                    console.log('ERROR jamInfo could NOT be updated: ', errorCode);                
+                })
+                
+            });
+        };
+
 
     // MESSAGES
 

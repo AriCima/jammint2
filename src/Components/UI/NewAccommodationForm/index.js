@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
-import StandardInputField from '../../UI/StandardInputField';
+import DataService from '../../services/DataService';
+// import CountrySelect from '../../UI/CountrySelection';
 import CustomInputField from '../../UI/CustomInputField';
+import ButtonPlain from '../../UI/ButtonPlain';
+import { connect } from 'react-redux';
 
 // CSS
 import './index.css'; 
 
-const NewAccommodationForm = () => {
-
-    const [inputValue, setInputValue] = useState({});
+const NewAccommodationForm = ( props ) => {
+    const { jamId } = props;
+    const [accInfo, setaccInfo] = useState({});
     
     const handleInputChange = (event) => {
-        console.log('event = ', event)
         event.persist();
-        console.log('event.id / event.value = ',`${event.target.id} = `,event.target.value)
-        console.log('inputValue: ', inputValue);
-        setInputValue(inputValue => ({...inputValue, [event.target.id]: event.target.value}));
+        setaccInfo(accInfo => ({...accInfo, [event.target.id]: event.target.value}));
 
     }
 
@@ -22,11 +22,7 @@ const NewAccommodationForm = () => {
         if (event) {
           event.preventDefault();
         }
-        console.log('submitted')
-    }
-
-    const renderRoomsInputs = () => {
-        return renderRoomsInputs.map
+        DataService.updateJamInfo(jamId, accInfo)
     }
 
     return (
@@ -43,114 +39,107 @@ const NewAccommodationForm = () => {
 
             <div className="form-body">
                
-                <div className="form-section homeAddress">
-
+                <div className="form-row">
+                    
                     <CustomInputField 
-                        label='cumple'
-                        placeholder='cumple'
-                        type="text"
-                        id='cumple'
-                        width='120px'
-                        value={inputValue.cumple}
+                        width='400px'
+                        label="street"
+                        type="text" 
+                        id={`street`} 
+                        placeholder={`Street`}
+                        value={accInfo.street}
                         changeControl={handleInputChange} 
                     />
 
-                    <div className="input-block">
-                        <input 
-                            type="text" 
-                            id={`street`} 
-                            placeholder={`Street`}
-                            value={inputValue.street}
-                            onChange={handleInputChange} 
-                        />
-                    </div>
-
-                    <div className="input-block">
-                       <StandardInputField
-                        id={`street`} 
-                        placeholder={`Street`}
-                        value={inputValue.street}
-                        onChange={handleInputChange} 
-                       />
-                    </div>
-                    <div className="input-block">
-                       <StandardInputField
+                    <CustomInputField 
+                        width='60px'
+                        label="House Nr"
                         id={`houseNr`} 
                         placeholder={`House Nr`}
-                        value={inputValue.houseNr}
-                        onChange={handleInputChange} 
-                       />
-                    </div>
-                    {/* <div className="input-block">
-                        <input 
-                            type="text" 
-                            id={`houseNr`} 
-                            placeholder={`House Nr`}
-                            value={inputValue.houserNr}
-                            onChange={handleInputChange} 
-                        />
-                    </div> */}
-                    {/* <div className="input-block">
-                        <input 
-                            type="text" 
-                            id={`floor`} 
-                            placeholder={`Floor`}
-                            value={inputValue.floor}
-                            onChange={handleInputChange} 
-                        />
-                    </div>
-                    <div className="input-block">
-                        <input 
-                            type="text" 
-                            id={`door`} 
-                            placeholder={`Door`}
-                            value={inputValue.door}
-                            onChange={handleInputChange} 
-                        />
-                    </div>
-                    <div className="input-block">
-                        <input 
-                            type="text" 
-                            id={`zipCode`} 
-                            placeholder={`Zip-code`}
-                            value={inputValue.zipCode}
-                            onChange={handleInputChange} 
-                        />
-                    </div>
-                    <div className="input-block">
-                        <input 
-                            type="text" 
-                            id={`city`} 
-                            placeholder={`City`}
-                            value={inputValue.city}
-                            onChange={handleInputChange} 
-                        />
-                    </div>
-                    <div className="input-block">
-                        <input 
-                            type="text" 
-                            id={`country`} 
-                            placeholder={`Country`}
-                            value={inputValue.country}
-                            onChange={handleInputChange} 
-                        />
-                    </div> */}
+                        value={accInfo.houseNr}
+                        changeControl={handleInputChange} 
+                    />
+                   
+                    <CustomInputField 
+                        width='60px'
+                        label="Floor"
+                        type="text" 
+                        id={`floor`} 
+                        placeholder={`Floor`}
+                        value={accInfo.floor}
+                        changeControl={handleInputChange} 
+                    />
 
                 </div>
-                {/* <div className="form-section roomsInfo">
-                    <div className="input-block">
-                        <input 
-                            type="text" 
-                            id={`numberOfRooms`} 
-                            placeholder={`number of rooms`}
-                            value={inputValue.numberOfRooms}
-                            onChange={handleInputChange} 
-                        />
-                    </div>
-                </div>                 */}
+                <div className="form-row">
+
+                    <CustomInputField 
+                        width='60px'
+                        label="Door"
+                        type="text" 
+                        id={`door`} 
+                        placeholder={`Door`}
+                        value={accInfo.door}
+                        changeControl={handleInputChange} 
+                    />
+
+                    <CustomInputField 
+                        width='80px'
+                        label="Zip-Code"
+                        type="text" 
+                        id={`zipCode`} 
+                        placeholder={`Zip-code`}
+                        value={accInfo.zipCode}
+                        changeControl={handleInputChange} 
+                    />
+
+                    <CustomInputField 
+                        width='400px'
+                        label="City"
+                        type="text" 
+                        id={`city`} 
+                        placeholder={`City`}
+                        value={accInfo.city}
+                        changeControl={handleInputChange} 
+                    />
+
+                    <CustomInputField 
+                        width='120px'
+                        label="country"
+                        type="text" 
+                        id={`country`} 
+                        placeholder={`Country`}
+                        value={accInfo.country}
+                        changeControl={handleInputChange} 
+                    />
+
+                    {/* <CountrySelect 
+                        width='120px'
+                        label="country"
+                        type="text" 
+                        id={`country`} 
+                        placeholder={`Country`}
+                        value={accInfo.country}
+                        changeControl={handleInputChange} 
+                    /> */}
+
+                </div>
+                <div className="button-area">
+                    <ButtonPlain  
+                        type="submit"
+                        buttonText='Submit'
+                    />
+                </div>
+
             </div>
         </form>
     )
 }
 
-export default NewAccommodationForm
+const mapStateToProps = (state) => {
+    return {
+        user: state.firebase.auth,
+        jamId: state.jamId
+    }
+}
+export default connect(mapStateToProps, null)(NewAccommodationForm);
