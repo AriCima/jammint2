@@ -65,15 +65,12 @@ const mapDispatchToProps = (dispatch) => {
     return {
         // nombre de la función que paso como prop: (arg) => 
         // dispatch(nombre del action creator(argumento))
-        getUserJams: (userId) => dispatch(getUserJams(userId)),
         getJamInfo: (jamId) => dispatch(getJamInfo(jamId))
     }
 }
 
 const mapStateToProps = state => {
-    console.log('state del dash =', state)
     return { 
-        userJams: state.userJams,
         jamId: state.jamId,
         jamInfo: state.jamInfo,
         auth: state.firebase.auth,
