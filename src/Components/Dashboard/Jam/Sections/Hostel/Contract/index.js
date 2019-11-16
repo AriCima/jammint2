@@ -238,8 +238,46 @@ const Contract = (props) => {
                     f&#41; &nbsp;&nbsp;La introducción y/o permanencia en la habitación cuyo uso exclusivo se atribuye o en los 
                     espacios comunes, de una o más personas ajenas al inmueble durante uno o más días, u ocupación de 
                     una habitación ajena sin consentimiento del arrendatario que tenga el derecho de uso exclusivo.<br/>
-  
                     El arrendatario no tendrá derecho a indemnización de clase alguna a la extinción del contrato, renunciando expresamente a los derechos que confiere el art. 34 de la LAU.
+                </p>
+                <div className="contract-body-section-content-agreements">
+                    <p>Décimo segundo.- Otras obligaciones del arrendatario:</p>
+                </div>
+                <p>
+                    a&#41; &nbsp;&nbsp;    A no instalar transmisiones, motores, máquinas, etc., que produzcan vibraciones o
+                     ruidos molestos para los demás ocupantes del inmueble o de los colindantes de la propiedad, o que pueda 
+                     afectar la consistencia, solidez o conservación del inmueble
+                    b&#41; &nbsp;&nbsp;    A no almacenar manipular en la finca materias explosivas, inflamables, incómodas o 
+                    insalubres, y observar en todo momento las disposiciones vigentes.
+                    ca&#41; &nbsp;&nbsp;     A permitir el acceso en la finca, al propietario, administrador y a los operarios 
+                    o industriales mandados por cualesquiera de ambos, para la realización, inspección y comprobación de 
+                    cualquier clase de obras o reparaciones que afectan inmueble.
+                    da&#41; &nbsp;&nbsp;    A cumplir el todo momento las normas estatutarias reglamentadas y los acuerdos que 
+                    la comunidad de propietarios tenga establecidos o establezcan, en orden a la utilización de los servicios, 
+                    elementos comunes y buen régimen de convivencia
+                </p>
+                <div className="contract-body-section-content-agreements">
+                    <p>Décimo tercero.- cesión de datos:</p>
+                </div>
+                <p>
+                    La parte arrendataria autoriza a la arrendadora para que pueda ceder los datos personales que constan 
+                    en este contrato a terceras entidades o personas jurídicas para que oferten al arrendatario servicios 
+                    realizados con la finca y que pueda recabar de las mismas la información relativa al cumplimiento o 
+                    incumplimiento de lo que al arrendatario corresponda para el adecuado mantenimiento de la finca 
+                    arrendada y que pueda afectar a los demás ocupantes del inmueble.
+                </p>
+                <div className="contract-body-section-content-agreements">
+                    <p>Décimo cuarto.- Notificaciones y sumisión judicial.</p>
+                </div>
+                <p>A efectos de recibir cualquier notificación vinculada con los derechos y obligaciones dimanantes de 
+                    este contrato, así como a los efectos de emplazamiento o citación judicial se designa como domicilio 
+                    de las partes el de la arrendadora el que consta indicado en el encabezamiento del presente escrito y 
+                    para el arrendatario el de la finca arrendada.<br/>
+                    Para cualquier diferencia en la interpretación y ejecución del presente contrato, las partes se someten 
+                    a los Juzgados y Tribunales de la ciudad de Barcelona, con renuncia a su fuero propio, si existiere.<br/>
+                    Y en prueba de conformidad con el contenido de todas y cada una de las presentes cláusulas, las partes 
+                    concurrentes firman el presente contrato, por duplicado y a todos los efectos, en la ciudad y fecha 
+                    arriba indicadas.
                 </p>
             </div>
         </div>
