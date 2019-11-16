@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 
 // COMPONENTS
 import Board from '../Jam/Sections/Hostel/Board';
-import Jammers from '../Jam/Sections/Hostel/Jammers'
-import MyJam from '../Jam/Sections/Hostel/MyJam';
+import JammersAdmin from '../JamAdmin/Sections/Hostel/JammersAdmin'
+import MyJamAdmin from '../JamAdmin/Sections/Hostel/MyJamAdmin'
+
 import Settings from '../Jam/Sections/Hostel/Settings';
 import Chat from '../Jam/Sections/Chat';
-import JamNavBar from '../Jam/JamNavBar';
+import JamAdminNavBar from '../Jam/JamNavBar';
 import CustomizeJamForm from '../../UI/CustomizeJamForm';
 
 import './index.css';
@@ -21,7 +22,7 @@ const Jam = ({ jamId, jamInfo, jamActiveSection } ) => {
 
       <div className="jam-header">
         {jamInfo === [] ? <Fragment></Fragment>: 
-          <JamNavBar 
+          <JamAdminNavBar 
             jamName={jamInfo.jamName}
             jamActiveSection={jamInfo.jamActiveSection}
             jamType={jamInfo.jamType}
@@ -40,16 +41,15 @@ const Jam = ({ jamId, jamInfo, jamActiveSection } ) => {
         { jamActiveSection === 'chat' && 
           <Chat jamId={jamId}/>
         }
-
-        { (jamActiveSection === 'jammers' || jamActiveSection === 'flatmates') && 
-          <Jammers 
+        { (jamActiveSection === 'myJam') && +ç
+          <MyJamAdmin 
             jamId={jamId}
             jamInfo={jamInfo}
           />
         }
 
-        { jamActiveSection === 'myJam' && 
-          <MyJam 
+        { (jamActiveSection === 'jammers' || jamActiveSection === 'flatmates') && 
+          <JammersAdmin 
             jamId={jamId}
             jamInfo={jamInfo}
           />

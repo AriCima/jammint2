@@ -22,7 +22,9 @@ const NewAccommodationForm = ( props ) => {
         if (event) {
           event.preventDefault();
         }
-        DataService.updateJamInfo(jamId, accInfo)
+
+        const jamField = 'accommodationInfo';
+        DataService.updateJamInfo(jamId, jamField, accInfo)
     }
 
     return (

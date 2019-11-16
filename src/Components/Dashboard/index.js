@@ -11,7 +11,7 @@ import DataService from '../services/DataService';
 // COMPONENTS
 import JamsList from '../Dashboard/JamsList';
 import Jam from '../Dashboard/Jam';
-
+import JamAdmin from '../Dashboard/Jam';
 // CSS
 import './index.css'; 
 
@@ -27,7 +27,9 @@ const Dashboard = ({ auth, userJams, getUserJams, getJamInfo, jamId, jamInfo }) 
         jamId && getJamInfo(jamId)
     }, [getJamInfo, jamId]);
 
-    
+    const userId  = auth.uid;
+    const adminId  = jamInfo.adminId;
+    const isAdmin = userId && adminId;
     return (
         <div className="dashboard">
             <aside className="jams-list">
@@ -36,15 +38,25 @@ const Dashboard = ({ auth, userJams, getUserJams, getJamInfo, jamId, jamInfo }) 
             }
             </aside>
 
-            <div className="jam-screen">
-                { jamInfo === [] ? <p>SELECT YOUR JAM</p> :
-                    <Jam 
+            { isAdmin ? (
+                <div className="jam-admin-screen">
+                    <JamAdmin 
                         jamId={jamId}
                         jamInfo={jamInfo}
                     />
-                }
-              
-            </div>
+
+                </div>
+            ) : (
+                <div className="jam-screen">
+                    { jamInfo === [] ? <p>SELECT YOUR JAM</p> :
+                        <Jam 
+                            jamId={jamId}
+                            jamInfo={jamInfo}
+                        />
+                    }
+                
+                </div>
+            )}
         </div>
     );
 }

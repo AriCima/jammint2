@@ -1,0 +1,41 @@
+
+.jam-container{
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid gray;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0;
+  background-color: rgba(170, 170, 170, 0.06);
+}
+
+/* .jam {
+  margin-top: 0px;
+  width: 100%;
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center; 
+}
+
+.jam .jam-header{
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: red;
+}
+
+.jam-header-block{
+  width: 15%;
+  height: 40px;
+  margin-left: 20px;
+  display: flex;
+  align-items: center; 
+}
+ */
+

@@ -285,12 +285,12 @@ export default class DataService {
                     
                 });
         };
-        static updateJamInfo(jamId, jamInfo){
+        static updateJamInfo(jamId, jamField, newInfo){
             return new Promise((resolve, reject) => {
                 // console.log('inputs en el dataservice ', jamCode, jammers);
 
                 firebase.firestore().collection(`jams`).doc(jamId).update({
-                    accommodationInfo : jamInfo})
+                    jamField : newInfo})
 
                 .then((result) => {
                     console.log("jamInfo succesfully UPDATED")

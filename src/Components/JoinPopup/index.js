@@ -42,11 +42,10 @@ const JoinPopup = (props) => {
     e.preventDefault();
 
     DataService.getJamInfoByCode(jamCode)
-    .then(result =>{     
+    .then(result =>{
       let jam = result.data;
       let jamId = result.id;
       let joinedAt = new Date();
-
       let jamCode = jam.jamCode;
 
       const jamToJoin = {};
@@ -56,6 +55,8 @@ const JoinPopup = (props) => {
       jamToJoin.jamId = jamId;
       jamToJoin.jamDescription = jam.jamDescription;
       jamToJoin.joineddAt = joinedAt;
+
+
 
       DataService.addJamtoUser(user.id, jamToJoin);
 

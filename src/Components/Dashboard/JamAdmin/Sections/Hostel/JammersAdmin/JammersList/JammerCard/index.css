@@ -1,0 +1,49 @@
+.jammer-card-container{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border: 0.5px solid lightgrey;
+    margin-bottom: 2px;
+    opacity: 0.7;
+    transition: 0.3s;
+    
+}
+
+.jammer-card-container:hover{
+    cursor: pointer;
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+
+.jammer-img{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.jammer-name{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.jammer-name p{
+    font-size: 14px;
+    font-weight: 600
+}
+.jammer-country{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.jammer-country p{
+    font-size: 14px;
+    font-weight: 500
+}

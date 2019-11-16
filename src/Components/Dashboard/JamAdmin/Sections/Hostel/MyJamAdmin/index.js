@@ -4,13 +4,11 @@ import React, { useEffect } from 'react';
 // COMPONENTS
 import { connect } from 'react-redux';
 import { setJamSection } from '../../../../../../redux/actions/jamSection';
-import NewAccommodationForm from '../../../../../UI/NewAccommodationForm'
-
 
 // CSS
 import './index.css';
 
-const Settings = (props) => {
+const MyJam = (props) => {
 
     const { setJamSection, jamId } = props;
     
@@ -20,10 +18,9 @@ const Settings = (props) => {
 
     return (
 
-        <div className="jam-settings">
-            SE TI NG S
+        <div className="jam-myJam">
+            MY MY MY MY JAM
             <h1>{jamId}</h1>
-            <NewAccommodationForm />
         </div>
 
     );   
@@ -31,7 +28,7 @@ const Settings = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setJamSection: () => dispatch(setJamSection('settings'))
+        setJamSection: () => dispatch(setJamSection('myJam'))
     }
 }
 
@@ -42,4 +39,4 @@ const mapStateToProps = (state) => {
         jamId: state.jamId
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Settings);
+export default connect(mapStateToProps, mapDispatchToProps)(MyJam);
