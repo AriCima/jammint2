@@ -13,7 +13,7 @@ import CustomizeJamForm from '../../UI/CustomizeJamForm';
 
 import './index.css';
 
-const Jam = ({ jamId, jamInfo, jamActiveSection } ) => {
+const JamAdmin = ({ jamId, jamInfo, jamActiveSection } ) => {
 
   return (
     <div className="jam-wrapper">
@@ -41,7 +41,7 @@ const Jam = ({ jamId, jamInfo, jamActiveSection } ) => {
         { jamActiveSection === 'chat' && 
           <Chat jamId={jamId}/>
         }
-        { (jamActiveSection === 'myJam') && +ç
+        { (jamActiveSection === 'myJam') && 
           <MyJamAdmin 
             jamId={jamId}
             jamInfo={jamInfo}
@@ -79,7 +79,7 @@ const mapStateToProps = state => {
   }
 };
 
-export default connect(mapStateToProps) (Jam);
+export default connect(mapStateToProps) (JamAdmin);
 
 
 

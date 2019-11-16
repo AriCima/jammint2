@@ -9,9 +9,10 @@ import { connect } from 'react-redux';
 import "./index.css";
 import { selectJam } from "../../../../../../../../redux/actions/jamActive";
 import {setJamSection} from "../../../../../../../../redux/actions/jamSection"
- const JammerCard = (props) => {
 
-  const { user, userJams, jI } = props
+const JammerCardAdmin = (props) => {
+
+  const { user, userJams, jI, jamInfo } = props
   console.log('props en el jammerCard = ', props)
   const userId = user.uid;
   const jammerId = jI.userId;
@@ -85,4 +86,4 @@ const mapStateToProps = (state) => {
       userJams: state.userJams,
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(JammerCard);
+export default connect(mapStateToProps, mapDispatchToProps)(JammerCardAdmin);

@@ -2,21 +2,21 @@
 import React, { Fragment } from 'react';
 
 // COMPONENTS
-import JammerCard from './JammerCard';
+import JammerCardAdmin from './JammerCardAdmin';
 
 
 // CSS
 import './index.css';
 
-const JammersList = (props) => {
+const JammersListAdmin = (props) => {
 
-    const { jammers } = props
+    const { jammers, jamInfo } = props;
 
     const renderJammersList = () => {
         return jammers.map((jammerInfo, i) => {
             return (
                 <React.Fragment key={i}>
-                    <JammerCard jI={jammerInfo} />
+                    <JammerCardAdmin jamInfo={jamInfo} jI={jammerInfo} />
                 </React.Fragment>
             )
         })
@@ -31,4 +31,4 @@ const JammersList = (props) => {
     );   
 };
 
-export default JammersList;
+export default JammersListAdmin;

@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect } from './node_modules/react';
+import { connect } from './node_modules/react-redux';
 
 import './index.css';
 
-const Contract = (props) => {
+const ContractES = (props) => {
 
     const { 
         jamId,
         userId,
         roomNr,
-        jammerInfo
+        jammerInfo,
         landlordTitle,
         landlordName, 
         landlordSurname, 
@@ -52,10 +52,6 @@ const Contract = (props) => {
         roomPrivateBathroom,
         RoomSize
     } = props;
-
-    useEffect(() => {
-        userId && getJamInfo(jamId)
-    }, []);
 
     return (
         <div className="contract-wrapper">
@@ -295,5 +291,5 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps) (Contract);
+export default connect(mapStateToProps) (ContractES);
 

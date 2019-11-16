@@ -4,36 +4,19 @@ import React, { useState, useEffect, Fragment } from 'react';
 // COMPONENTS
 import { connect } from 'react-redux';
 import DataService from '../../../../../services/DataService';
-import JammersList from './JammersList';
-import JammersMessages from './JammersMessages';
-
+import JammersListAdmin from './JammersListAdmin';
+import JammerInfo from './JammerInfo';
 
 // CSS
 import './index.css';
 
-const Jammers = (props) => {
+const JammersAdmin = (props) => {
 
-    const {jamId} = props
+    const {jamId, jamInfo} = props
     const userId = props.user.uid;
     const [jamAdmin, setJamAdmin] = useState('');
     const [jammers, setJammers] = useState([])
-    const [jammersMessages, setJammersMessages] = useState([])
-
-    const [message, setMessage] = useState('');
     
-    const onSubmit = (message) => {
-        const date = new Date()
-        const messageInfo = {
-            messageContent: message,
-            userId: userId,
-            jamId: jamId,
-            section: 'jammers',
-            createdAt: date,
-            messageType: 'message'
-        }
-        DataService.saveMessage(jamId, jammers, messageInfo)
-    }
-
     useEffect(() => {
         DataService.getJammers(jamId)
         .then((res) => {
@@ -47,70 +30,30 @@ const Jammers = (props) => {
         })
     }, [jamId])
 
-    
-
-    const isAdmin = (jamAdmin === userId);
     return (
 
-        <div className="jam-jammers">
-            {jammers ? 
-                <Fragment>
+        <div className="jam-jammers-admin">
 
-                    <div className="jam-jammers-chat">
-                        <div className="jam-jammers-messages-area">
-                            {jammersMessages ? <JammersMessages jm={jammersMessages} />
-                            : 
-                            <p>Loading</p>}
-                        </div>
-                        <div className="jam-jammers-form-area">
-                            <form className="input-form" onSubmit={onSubmit}>
-                                <div className="message-input-area">
-                                    <input 
-                                        type="text" 
-                                        id="jammers-post" 
-                                        placeholder={`type here`}
-                                        onChange={id => {
-                                            console.log('mensaje = ', id.target.value)
-                                        setMessage(id.target.value);
-                                        }}
-                                    />
-                                </div>
+            <div className="jam-jammers-admin-info">
+                {jammers && <JammerInfo />}
+            </div>
+           
+            <div className="jam-jammers-admin-list">
+                {jammers ? 
+                    <JammersListAdmin 
+                        jamInfo={jamInfo} 
+                        jammers={jammers} 
+                    /> 
+                    : 
+                    <p>Loading</p>
+                }
+            </div>
 
-                                <div className="button-area">
-                                    <button className="submit-button"
-                                        onClick={() => onSubmit(message)}
-                                    >
-                                        Send Message
-                                    </button>
-                                </div>
-
-                            </form>
-                        </div>
-                    </div>
-
-                    <div className="jam-jammers-list">
-                        {jammers ? <JammersList jammers={jammers} /> : <p>Loading</p>}
-                    </div>
-
-                </Fragment>
-                :
-                <Fragment>
-                    <div className="jam-jammers-list">
-                        LOADING LIST
-                    </div>
-                    <div className="jam-jammers-chat">
-                        LOADING CHAT
-                    </div>
-                </Fragment>
-            }
            
         </div>
 
     );   
 };
-
-
-
 
 const mapStateToProps = (state) => {
     return {
@@ -118,4 +61,4 @@ const mapStateToProps = (state) => {
         jamId: state.jamId
     }
 }
-export default connect(mapStateToProps)(Jammers);
+export default connect(mapStateToProps)(JammersAdmin);
