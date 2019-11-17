@@ -1,56 +1,36 @@
-import React, { useState } from 'react';
-import DataService from '../../services/DataService';
-// import CountrySelect from '../../UI/CountrySelection';
-import CustomInputField from '../CustomInputField';
-import CustomSelectInputField from '../CustomSelectInputField';
-import ButtonPlain from '../ButtonPlain';
-import { connect } from 'react-redux';
+import React from "react";
+import CustomInputField from '../../../CustomInputField'
+const RoomInput = (props) => {
 
-// CSS
-import './index.css'; 
-
-const NewRoomForm = ( props ) => {
-    const { jamId } = props;
-    const [roomInfo, setroomInfo] = useState({});
-    
-    const handleInputChange = (event) => {
-        event.persist();
-        setroomInfo(roomInfo => ({...roomInfo, [event.target.id]: event.target.value}));
-    }
-
-    const handleSubmit = (event) => {
-        if (event) {
-          event.preventDefault();
-        }
-        const jamField = 'accommodationInfo';
-        DataService.updateJamInfo(jamId, jamField, roomInfo)
-    }
-    
-    return (
-        <form className="new-apartment-form" onSubmit={handleSubmit}>
-            
-            <div className="form-header">
-                <div className="form-header-line">
-                    <h3>New Room Form</h3>
-                </div>
-                <div className="form-header-line">
-                    <p>Room Info</p>
-                </div>
-            </div>
-
-            <div className="form-body">
-               
-                <div className="form-row">
+  return (
+    props.cats.map((val, i)=> {
+      let catId = `cat-${i}`, ageId = `age-${i}`
+      
+      return (
+        <div key={i}>
+          
+          <input
+            type="text"
+            name={catId}
+            data-id={i}
+            id={catId}
+            value={props.rooms[i].name} 
+            className="name"
+          />
+            <div className="form-row">
                     
-                    <CustomInputField 
-                        width='400px'
-                        label="roomName"
-                        type="text" 
-                        id={`roomName`} 
-                        placeholder={`room name or ID`}
-                        value={roomInfo.roomName}
-                        changeControl={handleInputChange} 
-                    />
+                <CustomInputField 
+                    type="text" 
+                    name={catId}
+                    data-id={i}
+                    id={`roomName`} 
+                    value={props.roomsInfo[i].roomName}
+                    className="roomName"
+                    width='400px'
+                    label="roomName"
+                    placeholder={`room name or ID`}
+                    changeControl={handleInputChange} 
+                />
 
                     <CustomInputField 
                         width='60px'
@@ -129,15 +109,17 @@ const NewRoomForm = ( props ) => {
                     />
                 </div>
 
-            </div>
-        </form>
-    )
+          <input
+            type="text"
+            name={ageId}
+            data-id={i}
+            id={ageId}
+            value={props.rooms[i].age} 
+            className="age"
+          />
+        </div>
+      )
+    })
+  )
 }
-
-const mapStateToProps = (state) => {
-    return {
-        user: state.firebase.auth,
-        jamId: state.jamId
-    }
-}
-export default connect(mapStateToProps, null)(NewRoomForm);
+export default RoomInput

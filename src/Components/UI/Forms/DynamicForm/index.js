@@ -1,62 +1,106 @@
-import React, { useState } from 'react';
-import DataService from '../../services/DataService';
-// import CountrySelect from '../../UI/CountrySelection';
-import CustomInputField from '../../UI/CustomInputField';
-import CustomSelectInputField from '../CustomSelectInputField';
-import ButtonPlain from '../../UI/ButtonPlain';
-import { connect } from 'react-redux';
+import React from "react"
+import RoomInput from "./RoomInput"
 
-// CSS
-import './index.css'; 
+import CustomInputField from '../../CustomInputField';
+import CustomSelectInputField from '../../CustomSelectInputField';
 
-const NewAccommodationForm = ( props ) => {
-    const { jamId } = props;
-    const [accInfo, setaccInfo] = useState({});
-    
-    const handleInputChange = (event) => {
-        event.persist();
-        setaccInfo(accInfo => ({...accInfo, [event.target.id]: event.target.value}));
 
-    }
+// REFERENCE
+// https://itnext.io/building-a-dynamic-controlled-form-in-react-together-794a44ee552c
+// https://gist.github.com/MostlyFocusedMike/e57f9f4b54d306da704f4857e85d2b1b
 
-    const handleSubmit = (event) => {
-        if (event) {
-          event.preventDefault();
+class DynamicApartmentForm extends React.Component {
+  state = {
+    accInfo: [{
+        landlordTitle:"", 
+        landlordName:"",
+        landlordSurname: "",
+        landlordIdNumber: "",
+        landlordStreet: "",
+        landlordHouseNr: "",
+        landlordFloor: "",
+        landlordDoor:"",
+        landlordZipCode: "",
+        landlordCountry: "",
+        houseName: "",
+        houseStreet:"",
+        houseNr:"",
+        houseFloor: "",
+        door:"",
+        city: "",
+        country: "",
+    }],
+    roomsInfo: [{
+        roomName: "",
+        roomSize: "",
+        roomLocation: "",
+        roomBalcony: "",
+        privateBathroom: "",
+        roomRent: "",
+        roomDeposit: ""
+    }]
+  };
+
+    handleChange = (e) => {
+
+        const roomParameters = [
+            "roomName",
+            "roomSize",
+            "roomLocation",
+            "roomBalcony",
+            "privateBathroom",
+            "roomRent",
+            "roomDeposit"
+        ];
+
+        if (roomParameters.includes(e.target.className) ) {
+        let accInfo = [...this.state.accInfo]
+        accInfo[e.target.dataset.id][e.target.className] = e.target.value.toUpperCase()
+        this.setState({ accInfo }, () => console.log(this.state.accInfo))
+        } else {
+        this.setState({ [e.target.name]: e.target.value.toUpperCase() })
         }
-        const jamField = 'accommodationInfo';
-        DataService.updateJamInfo(jamId, jamField, accInfo)
     }
+    addRoom = (e) => {
+        this.setState((prevState) => ({
+            accInfo: [...prevState.accInfo, {name:"", age:""}],
+        }));
+    }
+    
+    handleSubmit = (e) => { e.preventDefault() }
 
-    return (
-        <form className="new-apartment-form" onSubmit={handleSubmit}>
-            
-            <div className="form-header">
-                <div className="form-header-line">
-                    <h3>New Accommodation Form</h3>
-                </div>
-                <div className="form-header-line">
-                    <p>Apartment and Contract Information</p>
-                </div>
-            </div>
-
-            <div className="form-body">
-               
-                <div className="form-row">
-                    <div className="form-row-title">
-                        <h3>Landlord Information</h3>
+    render() {
+        let { roomsInfo } = this.state
+        return (
+            <form className="new-apartment-form" onSubmit={this.handleSubmit} onChange={this.handleChange} >
+                <div className="form-header">
+                    <div className="form-header-line">
+                        <h3>New Accommodation Form</h3>
                     </div>
+                    <div className="form-header-line">
+                        <p>Apartment and Contract Information</p>
+                    </div>
+                </div>
 
-                    <CustomSelectInputField
-                        width='120px'
-                        placeholder='title'
-                        id='landlordTitle'
-                        onChange = {handleInputChange}
-                        value={accInfo.landlordTitle}
-                        options={[ 
-                            {value: 'Mrs.', text:'Mrs.'},
-                            {value: 'Mr.', text:'MR.'}
-                        ]}
-                    /> 
+                <div className="form-body">
+                    <div className="form-row">
+                        <div className="form-row-title">
+                            <h3>Landlord Information</h3>
+                        </div>
+
+
+
+                        <CustomSelectInputField
+                            width='120px'
+                            placeholder='title'
+                            id='accInfo.landlordTitle'
+                            onChange = {handleInputChange}
+                            value={accInfo.landlordTitle}
+                            options={[ 
+                                {value: 'Mrs.', text:'Mrs.'},
+                                {value: 'Mr.', text:'MR.'}
+                            ]}
+                        /> 
 
                     <CustomInputField 
                         width='400px'
@@ -95,18 +139,18 @@ const NewAccommodationForm = ( props ) => {
                         width='400px'
                         label="street"
                         type="text" 
-                        id={`landlordStreet`} 
+                        id={`LandlordStreet`} 
                         placeholder={`Street`}
-                        value={accInfo.landlordStreet}
+                        value={accInfo.LandlordStreet}
                         changeControl={handleInputChange} 
                     />
 
                     <CustomInputField 
                         width='60px'
                         label="House Nr"
-                        id={`landlordHouseNr`} 
+                        id={`LandlordHouseNr`} 
                         placeholder={`House Nr`}
-                        value={accInfo.landlordHouseNr}
+                        value={accInfo.LandlordHouseNr}
                         changeControl={handleInputChange} 
                     />
                    
@@ -114,30 +158,31 @@ const NewAccommodationForm = ( props ) => {
                         width='60px'
                         label="Floor"
                         type="text" 
-                        id={`landlordFloor`} 
+                        id={`LandlordFloor`} 
                         placeholder={`Floor`}
-                        value={accInfo.landlordFloor}
+                        value={accInfo.LandlordFloor}
                         changeControl={handleInputChange} 
                     />
                 </div>
+
                 <div className="form-row">
                     <CustomInputField 
                         width='60px'
-                        label="landlordDoor"
+                        label="LandlordDoor"
                         type="text" 
-                        id={`landlordDoor`} 
+                        id={`Landlorddoor`} 
                         placeholder={`Door`}
-                        value={accInfo.landlordDoor}
+                        value={accInfo.LandlordDoor}
                         changeControl={handleInputChange} 
                     />
 
                     <CustomInputField 
                         width='80px'
-                        label="landlordZip-Code"
+                        label="LandlordZip-Code"
                         type="text" 
-                        id={`landlordZipCode`} 
+                        id={`LandlordZipCode`} 
                         placeholder={`Zip-code`}
-                        value={accInfo.landlordZipCode}
+                        value={accInfo.LandlordZipCode}
                         changeControl={handleInputChange} 
                     />
 
@@ -153,14 +198,17 @@ const NewAccommodationForm = ( props ) => {
 
                     <CustomInputField 
                         width='120px'
-                        label="landlordCountry"
+                        label="LandlordCountry"
                         type="text" 
-                        id={`landlordCountry`} 
+                        id={`LandlordCountry`} 
                         placeholder={`Country`}
-                        value={accInfo.landlordCountry}
-                        changeControl={handleInputChange} 
+                        value={accInfo.LandlordCountry}
+                        // changeControl={handleInputChange} 
                     />
                 </div>
+
+                </div>
+
                 <div className="form-row">
 
                     <div className="form-row-title">
@@ -179,11 +227,11 @@ const NewAccommodationForm = ( props ) => {
                     
                     <CustomInputField 
                         width='400px'
-                        label="houseStreet"
+                        label="street"
                         type="text" 
-                        id={`houseStreet`} 
+                        id={`street`} 
                         placeholder={`Street`}
-                        value={accInfo.houseStreet}
+                        value={accInfo.street}
                         changeControl={handleInputChange} 
                     />
 
@@ -198,14 +246,15 @@ const NewAccommodationForm = ( props ) => {
                    
                     <CustomInputField 
                         width='60px'
-                        label="houseFloor"
+                        label="Floor"
                         type="text" 
-                        id={`houseFloor`} 
-                        placeholder={`houseFloor`}
-                        value={accInfo.houseFloor}
+                        id={`floor`} 
+                        placeholder={`Floor`}
+                        value={accInfo.floor}
                         changeControl={handleInputChange} 
                     />
                 </div>
+
                 <div className="form-row">
                     <CustomInputField 
                         width='60px'
@@ -247,6 +296,7 @@ const NewAccommodationForm = ( props ) => {
                         changeControl={handleInputChange} 
                     />
                 </div>
+
                 <div className="form-row">
 
                     <CustomInputField 
@@ -256,6 +306,16 @@ const NewAccommodationForm = ( props ) => {
                         id={`sqm`} 
                         placeholder={`sqm`}
                         value={accInfo.sqm}
+                        changeControl={handleInputChange} 
+                    />
+
+                    <CustomInputField 
+                        width='120px'
+                        label="totalRooms"
+                        type="text" 
+                        id={`totalRooms`} 
+                        placeholder={`Total rooms`}
+                        value={accInfo.totalRooms}
                         changeControl={handleInputChange} 
                     />
 
@@ -280,22 +340,24 @@ const NewAccommodationForm = ( props ) => {
 
 
                 </div>
+                
+
+               
+                
+                <button onClick={this.addRoom}>Add a room</button>
+                
+                <RoomInput rooms={roomsInfo} />
+                
+
                 <div className="button-area">
                     <ButtonPlain  
                         type="submit"
                         buttonText='Submit'
+                        value="submit"
                     />
                 </div>
-
-            </div>
-        </form>
-    )
-}
-
-const mapStateToProps = (state) => {
-    return {
-        user: state.firebase.auth,
-        jamId: state.jamId
+            </form>
+        )
     }
 }
-export default connect(mapStateToProps, null)(NewAccommodationForm);
+export default DynamicApartmentForm
