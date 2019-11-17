@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import DataService from '../../services/DataService';
 // import CountrySelect from '../../UI/CountrySelection';
 import CustomInputField from '../../UI/CustomInputField';
+import CustomSelectInputField from '../CustomSelectInputField';
 import ButtonPlain from '../../UI/ButtonPlain';
 import { connect } from 'react-redux';
 
@@ -34,13 +35,141 @@ const NewAccommodationForm = ( props ) => {
                     <h3>New Accommodation Form</h3>
                 </div>
                 <div className="form-header-line">
-                    <p>Apartment Info</p>
+                    <p>Apartment and Contract Information</p>
                 </div>
             </div>
 
             <div className="form-body">
                
                 <div className="form-row">
+                    <div className="form-row-title">
+                        <h3>Landlord Information</h3>
+                    </div>
+
+                    <CustomSelectInputField
+                        width='120px'
+                        placeholder='title'
+                        id='landlordTitle'
+                        onChange = {handleInputChange}
+                        value={accInfo.landlordTitle}
+                        options={[ 
+                            {value: 'Mrs.', text:'Mrs.'},
+                            {value: 'Mr.', text:'MR.'}
+                        ]}
+                    /> 
+
+                    <CustomInputField 
+                        width='400px'
+                        label="Name"
+                        type="text" 
+                        id={`landlordName`} 
+                        placeholder={`Name`}
+                        value={accInfo.landlordName}
+                        changeControl={handleInputChange} 
+                    />
+
+                    <CustomInputField 
+                        width='400px'
+                        label="Surname"
+                        type="text" 
+                        id={`landlordSurname`} 
+                        placeholder={`Surnames`}
+                        value={accInfo.landlordName}
+                        changeControl={handleInputChange} 
+                    />
+
+                    <CustomInputField 
+                        width='400px'
+                        label="IdNumber"
+                        type="text" 
+                        id={`landlordIdNumber`} 
+                        placeholder={`ID number`}
+                        value={accInfo.landlordIdNumber}
+                        changeControl={handleInputChange} 
+                    />
+                    <div className="form-row-title">
+                        <h3>Landlord legal residence</h3>
+                    </div>
+
+                    <CustomInputField 
+                        width='400px'
+                        label="street"
+                        type="text" 
+                        id={`LandlordStreet`} 
+                        placeholder={`Street`}
+                        value={accInfo.LandlordStreet}
+                        changeControl={handleInputChange} 
+                    />
+
+                    <CustomInputField 
+                        width='60px'
+                        label="House Nr"
+                        id={`LandlordHouseNr`} 
+                        placeholder={`House Nr`}
+                        value={accInfo.LandlordHouseNr}
+                        changeControl={handleInputChange} 
+                    />
+                   
+                    <CustomInputField 
+                        width='60px'
+                        label="Floor"
+                        type="text" 
+                        id={`LandlordFloor`} 
+                        placeholder={`Floor`}
+                        value={accInfo.LandlordFloor}
+                        changeControl={handleInputChange} 
+                    />
+                </div>
+
+                <div className="form-row">
+                    <CustomInputField 
+                        width='60px'
+                        label="LandlordDoor"
+                        type="text" 
+                        id={`Landlorddoor`} 
+                        placeholder={`Door`}
+                        value={accInfo.LandlordDoor}
+                        changeControl={handleInputChange} 
+                    />
+
+                    <CustomInputField 
+                        width='80px'
+                        label="LandlordZip-Code"
+                        type="text" 
+                        id={`LandlordZipCode`} 
+                        placeholder={`Zip-code`}
+                        value={accInfo.LandlordZipCode}
+                        changeControl={handleInputChange} 
+                    />
+
+                    <CustomInputField 
+                        width='400px'
+                        label="LandlordCity"
+                        type="text" 
+                        id={`LandlordCity`} 
+                        placeholder={`City`}
+                        value={accInfo.LandlordCity}
+                        changeControl={handleInputChange} 
+                    />
+
+                    <CustomInputField 
+                        width='120px'
+                        label="LandlordCountry"
+                        type="text" 
+                        id={`LandlordCountry`} 
+                        placeholder={`Country`}
+                        value={accInfo.LandlordCountry}
+                        changeControl={handleInputChange} 
+                    />
+                </div>
+
+                </div>
+
+                <div className="form-row">
+
+                    <div className="form-row-title">
+                        <h3>Apartment Information</h3>
+                    </div>
 
                     <CustomInputField 
                         width='400px'
