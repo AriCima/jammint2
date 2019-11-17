@@ -107,175 +107,178 @@ const ContractEN = (props) => {
                     III.‑ And both parties being interested in the partial lease of the property indicated in the preceding exhibitions, in accordance with the terms that are subsequently agreed, 
                     sign the present <span>lease agreement</span>, and by mutual agreement establish the following.</p>
                 </div>
-                
+
                 <div className="contract-body-section-title">
-                    <br/><br/><h4>P A C T O S </h4><br/><br/>
+                    <br/><br/><h4>A G R E E M E N T S</h4><br/><br/>
                 </div>
                 <div className="contract-body-section-content">
                     <div className="contract-body-section-content-agreements">
-                        <p>Primero.- Objeto del contrato de arrendamiento.</p>
+                        <p>First.- Object of the lease contract.</p>
                     </div>
-                    <p>El objeto del presente contrato consiste en la cesión del uso de {jamDivisions} indivisa de la finca, 
-                    que le concede el derecho de uso exclusivo de una habitación de {RoomSize}m2 {roomLocation},</p>
-                    {roomBalcony === 'yes' && <p>con balcón propio</p>}, 
-                    <p>y que</p> 
-                    {roomPrivateBathroom === 'yes' ? <p>posee baño privado, </p> : <p>no posee baño privado,</p>}
-                    <p>con derecho además, al uso de los servicios comunes y suministros (agua, gas, electricidad e internet), y ello para ser ocupadas como vivienda. 
-                    Se prohíbe la tenencia de cualquier animal en la finca arrendada.
+                    <p>The purpose of this contract is the transfer of the use of {jamDivisions} undivided of the property, 
+                    which grants the right of exclusive use of a single room of {RoomSize}m2 {roomLocation},</p>
+                    {roomBalcony === 'yes' && <p>with balcony</p>}, 
+                    <p>and that has</p> 
+                    {roomPrivateBathroom === 'yes' ? <p>private bathroom, </p> : <p>no private bathroom,</p>}
+                    <p>with the right, in addition, to the use of common services and supplies (water, gas, electricity 
+                        and internet), and this to be used as housing. The possession of any animal on the leased farm 
+                        is prohibited.
                     </p>
                     <div className="contract-body-section-content-agreements">
-                        <p>Segundo- Duración del contrato.</p>
+                        <p>Second- Duration of the contract.</p>
                     </div>
-                    <p>El contrato comenzará a regir el {jammerInfo.checkIn} y finalizará el {jammerInfo.checkOut}. 
-                    Una vez finalizado el plazo pactado, podrá prorrogarse por acuerdo previo de ambas partes, 
-                    si bien necesariamente deberá documentarse por escrito, entendiendo que en caso contrario no existe acuerdo con la prórroga.
-                    La duración del subarrendamiento comporta que de conformidad a lo convenido en el art. 3.2 de la Ley de Arrendamientos Urbanos, 
-                    la naturaleza jurídica de este contrato sea para uso distinto del de vivienda, a pesar de que es intención del arrendatario que la 
-                    finca arrendada constituya su residencia habitual durante la vigencia del contrato.
+                    <p>The term of this contract will be effective from {jammerInfo.checkIn} to {jammerInfo.checkOut}. 
+                    Once the agreed term has expired, it may be extended by prior agreement of both parties, although 
+                    it must necessarily be documented in writing, understanding that otherwise there is no agreement 
+                    with the extension. The duration of the sublease implies that in accordance with the provisions of art. 3.2 of the Urban Leasing Law, 
+                    the legal nature of this contract is for use other than housing, although it is the tenant's intention that the 
+                    leased property constitutes his habitual residence during the term of the contract.
+
                     </p>
                     <div className="contract-body-section-content-agreements">
-                        <p>Tercero.- Precio del arrendamiento y actualización de la renta.</p>
+                        <p>Third.- Lease price and rent update.</p>
                     </div>
-                    <p>Se conviene por ambas partes que el precio del arrendamiento se fije en la cantidad de 
-                        {roomInfo.rent} EUROS MENSUALES, más {roomInfo.expenses} EUROS MENSUALES en concepto de gastos por suministros, 
-                        cuotas de IBI y Comunidad de Propietarios, pagaderos por meses anticipados dentro de los cinco primeros días de cada mes,
-                        decir un total de {roomInfo.TotalRent} EUROS MENSUALES.<br/>
-                        El pago de la renta y conceptos asimilados se realizará por el arrendatario al arrendador en la cuenta bancaria titularidad del mismo, 
-                        indicada a continuación:<br/>
-                        Banco: {jamInfo.bankName}, <br/>
-                        IBAN:  {jamInfo.iban}, <br/>
-                        SWIFT: {jamInfo.swiftCode} <br/>
-                        EL pago de la misma deberá hacerse durante los 5 primeros días de cada mes, 
-                        expidiendo el arrendador la correspondiente factura/recibo mensualmente, 
-                        y sirviendo el documento bancario acreditativo de la realización del cargo como recibo de dichos conceptos.
-                        Ambas partes acuerdan que en el supuesto de que el arrendamiento se extinguiera mediante desistimiento
-                        unilateral del arrendatario, éste deberá abonar al arrendador en concepto de daños y perjuicios el total 
-                        de la renta convenida durante la duración del presente contrato de arrendamiento. 
+                    <p>It is agreed by both parties that the price of the lease will be set at the amount of 
+                        {roomInfo.rent} EUROS MONTHLY, plus {roomInfo.expenses} EUROS MONTHLY for expenses, for supplies, 
+                        IBI fees and Community of Owners, making a total of {roomInfo.TotalRent}, EUROS payable for months 
+                        in advance within the first five days of each month.
+
+                        The payment of the rent and assimilated items will be made by the Tenant to the Landlord in the bank account owned by 
+                        the tenant and detailed belowe<br/>
+                        &nbsp;&nbsp;Bank: {jamInfo.bankName}, <br/>
+                        &nbsp;&nbsp;IBAN:  {jamInfo.iban}, <br/>
+                        &nbsp;&nbsp;SWIFT: {jamInfo.swiftCode} <br/>
+                        the payment must be effective during the first 5 days of each month, the Landlord
+                         issuing the corresponding invoice / receipt monthly, and serving the bank document evidencing
+                          the performance of the charge as a receipt of said concepts. Both parties agree that in the 
+                          event that the lease is terminated by unilateral withdrawal of the Tenant, it must pay the 
+                          Landlord for damages and losses the total amount of the agreed rent during the duration of 
+                          this lease.  
                     </p>
                 </div>
                 <div className="contract-body-section-content-agreements">
-                    <p>Cuarto.- Arrendamiento y cesión del contrato. </p>
+                    <p>Fourth.- Leasing and ending of the contract.</p>
                 </div>
-                <p>Ambas partes acuerdan una total y absoluta prohibición, con expresa renuncia a lo dispuesto en el art. 32
-                    de la LAU, a subarrendar, ceder o traspasar los derechos de este contrato a terceros.
-                    En el supuesto de que el arrendatario incumpliera esta obligación, podrá el arrendador resolver el presente contrato.
+                <p>Both parties agree to a total and absolute prohibition, with the express waiver of the provisions of 
+                    art. 32 of the LAU, to sublet, assign or transfer the rights of this contract to third parties. In the 
+                    event that the Tenant fails on this obligation, the Landlord may terminate this contract.
                 </p>
                 <div className="contract-body-section-content-agreements">
-                    <p>Quinto.- Derecho de adquisición preferente.</p>
+                    <p>Fifth.- Right of preferential acquisition.</p>
                 </div>
-                <p>El arrendatario renuncia expresamente al derecho de adquisición preferente sobre la parte de la finca 
-                    arrendada y a los derechos de tanteo y retracto, de conformidad a lo prevenido en los artículos 25, 31 y 
-                    concordantes de la LAU, así como a los derechos correspondientes del resto de arrendamientos parciales de 
-                    la finca.
+                <p>The Tenant expressly waives the right of preferential acquisition over the part of the leased property 
+                    and the rights of first refusal and retraction, in accordance with the provisions of articles 25, 31 
+                    and in concordant of the LAU, as well as the corresponding rights of the rest of the partial leases of 
+                    the farm.
                 </p>
                 <div className="contract-body-section-content-agreements">
-                    <p>Sexto.-  Estado físico de la finca:</p>
+                    <p>Sixth.- Physical state of the property:</p>
                 </div>
-                <p>El arrendatario reconoce recibir la parte indivisa de la finca arrendada en perfecto estado de 
-                    conservación y a su entera satisfacción, siendo por tanto de su cuenta los desperfectos y deterioros 
-                    que en la misma se ocasionen, así como las reparaciones necesarias a fin de conservarla en estado de servir 
-                    para el uso convenido, ya que hace renuncia expresa a lo dispuesto en el artículo 30 de la LAU, en relación 
-                    con el artículo 21. No teniendo derecho a la suspensión del contrato o a desistir del mismo, ni indemnización alguna, 
-                    así como tampoco a disminuir o paralizar el pago de la renta.
-                    El arrendatario considera apta y adecuada la parte de la finca arrendada  para el destino pactado que va a dedicarla.
+                <p>The Tenant acknowledges receiving the undivided part of the leased property in perfect condition and to his 
+                    satisfaction, being therefore of his account the damages and deteriorations that occur therein, as well as 
+                    the necessary repairs in order to keep it in a state of function for the agreed use, since it expressly waives 
+                    the provisions of article 30 of the LAU, in relation to article 21. Not having the right to the suspension of 
+                    the contract or to withdraw from it, nor any compensation, nor to decrease or paralyze the payment of rent. 
+                    The Tenant considers the part of the leased property suitable and suitable for the agreed destination that will 
+                    be dedicated.
                 </p>
                 <div className="contract-body-section-content-agreements">
-                    <p>Séptimo.- Obras en la finca objeto de arrendamiento.</p>
+                    <p>Seventh.- Works on the Farm object of leasing.</p>
                 </div>
-                <p>Los contratantes convienen expresamente, que quedará prohibida la ejecución de cualquier tipo de obras 
-                    por el arrendatario, tanto en la habitación arrendada de uso exclusivo como en los elementos de uso común. 
-                    Será causa de resolución del presente contrato la ejecución por el arrendatario de obras no autorizadas por el arrendador.
+                <p>The contractors expressly agree that the execution of any type of works by the Tenant will be prohibited, 
+                    both in the leased room for exclusive use and in the elements of common use. The execution by the 
+                    Tenant of works not authorized by the Landlord will be cause for termination of this contract.
+
                 </p>
                 <div className="contract-body-section-content-agreements">
-                    <p>Octavo.- Reparaciones.</p>
+                    <p>Eighth.- Repairs.</p>
                 </div>
-                <p>El arrendatario, con renuncia expresa a lo dispuesto en artículo 30 de la LAU, en relación con el
-                     artículo 21 de la misma ley, se obliga a hacer a su cargo en el local objeto del contrato, todas las 
-                     reparaciones necesarias a fin de conservarlo en estado de servir para el caso convenido, en el supuesto 
-                     de que los daños o deterioros se hayan producido por su culpa o negligencia; y sin que durante la ejecución de 
-                     las mismas tenga derecho a suspender el contrato o desistir del mismo, ni a indemnización alguna, así como 
-                     tampoco a disminuir o paralizar el pago de la renta. El resto de obras serán de cuenta y cargo del arrendador.
+                <p>The Tenant, expressly waiving the provisions of article 30 of the LAU, in relation to article 21 of 
+                    the same law, is obliged to make all necessary repairs in order to keep it in place state of serving 
+                    for the agreed case, in the event that the damages or deteriorations have been caused by their fault 
+                    or negligence; and without the right to suspend the contract or withdraw from it during the execution 
+                    thereof, nor to any compensation, nor to decrease or paralyze the payment of the rent. The rest of the 
+                    works will be paid by the Landlord.
                 </p>
                 <div className="contract-body-section-content-agreements">
-                    <p>Noveno.- Fianza y garantías.</p>
+                    <p>Ninth.- Deposit and guarantees.</p>
                 </div>
-                <p>El arrendatario entrega en este acto, en concepto de fianza, la suma de 
-                     {roomInfo.deposit} EUROS Ambas partes acuerdan la restitución íntegra de la misma a la parte arrendataria, 
-                        en el momento de la finalización del contrato, previa verificación del estado en el que se 
-                        encuentre el inmueble.
+                <p>The tenant delivers in this act, as a deposit, the sum of  
+                     {roomInfo.deposit} EUROS. Both parties agree to the restitution of the same to the Tenant party, 
+                     at the time of termination of the contract, after verification of the state in which the property 
+                     is located. The amount of 20 EUROS will be deducted as cleaning fee.
                 </p>
                 <div className="contract-body-section-content-agreements">
-                    <p>Décimo.- Gastos e impuestos derivados de la propiedad.</p>
+                    <p>Tenth.- Expenses and taxes derived from the property.</p>
                 </div>
-                <p>El arrendador vendrá obligado a abonar los gastos, cargas o responsabilidades que no sean susceptibles 
-                    de individualización y que correspondan a la finca arrendada o a sus accesorios si los tuviere, así 
-                    como a las cuotas por gastos extraordinarios de conservación y mantenimiento de la finca. 
-                    También estará obligado a satisfacer las contribuciones especiales que imponga la administración. 
-                    Correrán por cuenta y cargo del arrendatario los gastos generales u ordinarios para el adecuado sostenimiento del inmueble, 
-                    así como sus servicios y la cuota íntegra del Impuesto sobre Bienes Inmuebles (IBI) que satisfaga la propiedad, 
-                    así como la de cualquier otro que grave la propiedad urbana, siendo pagaderos por mensualidades anticipadas dentro 
-                    de los siete primeros días de cada mes, ya que están incluidos en el coste de la renta.
+                <p>The Landlord will be obliged to pay the expenses, charges or responsibilities that are not susceptible 
+                    to individualization and that correspond to the leased property or its accessories if it has them, as 
+                    well as to the fees for extraordinary expenses of conservation and maintenance of the property. 
+                    He will also be obliged to meet the special contributions imposed by the administration. The general 
+                    or ordinary expenses for the adequate maintenance of the property, as well as its services and the full 
+                    fee of the Property Tax (IBI) that satisfies the property, as well as of any other property that is 
+                    serious for the property, shall be borne by the Tenant urban, being payable for anticipated monthly 
+                    payments within the first seven days of each month, since they are included in the cost of rent.
                 </p>
                 <div className="contract-body-section-content-agreements">
-                    <p>Décimo primero.- Causas de extinción del contrato.</p>
+                    <p>Eleventh.- Causes of contract termination.</p>
                 </div>
-                <p>Sin perjuicio de los supuestos de resolución del contrato contenidos en las anteriores cláusulas, 
-                    el presente contrato de arrendamiento quedará extinguido por las siguientes causas:<br/>
+                <p>Without prejudice to the cases of termination of the contract contained in the previous clauses, 
+                    this lease will be terminated for the following reasons:<br/>
  
-                    a&#41; &nbsp;&nbsp;Falta de pago de la renta, gastos y suministros y de su actualización, así como contraviniendo todo lo que haya convenido para la limpieza y 
-                    conservación del inmueble arrendado, incluso con terceras personas o entidades.<br/>
-                    b&#41; &nbsp;&nbsp;Falta de pago de la fianza y de su actualización.<br/>
-                    c&#41; &nbsp;&nbsp;Cuando en la finca tengan lugar actividades molestas, insalubres, nocivas, peligrosas o 
-                    ilícitas.<br/>
-                    d&#41; &nbsp;&nbsp;El no uso o cierre de la finca durante seis meses o más en el curso de un año, 
-                    aunque dicho plazo no fuere continuado.<br/>
-                    e&#41; &nbsp;&nbsp;La ruina del inmueble declarada con expediente administrativo tramitado conforme a lo que 
-                    establece la Ley del Suelo y también la pérdida o destrucción del inmueble, considerándose como tal 
-                    la necesidad de realizar obras de reparación que tengan un coste igual o superior al 50% del valor de 
-                    la construcción sin contar el valor del suelo.<br/>
-                    f&#41; &nbsp;&nbsp;La introducción y/o permanencia en la habitación cuyo uso exclusivo se atribuye o en los 
-                    espacios comunes, de una o más personas ajenas al inmueble durante uno o más días, u ocupación de 
-                    una habitación ajena sin consentimiento del arrendatario que tenga el derecho de uso exclusivo.<br/>
-                    El arrendatario no tendrá derecho a indemnización de clase alguna a la extinción del contrato, renunciando expresamente a los derechos que confiere el art. 34 de la LAU.
+                    a&#41; &nbsp;&nbsp;Failure to pay the rent, expenses and supplies and their updating, as well as 
+                    contravening everything that has been agreed for the cleaning and conservation of the leased property, 
+                    even with third parties or entities.<br/>
+                    b&#41; &nbsp;&nbsp;Failure to pay the deposit and its update.<br/>
+                    c&#41; &nbsp;&nbsp;When annoying, unhealthy, harmful, dangerous or illegal activities take place on the farm.<br/>
+                    d&#41; &nbsp;&nbsp;The non-use or closure of the property for six months or more in the course of a year, even if 
+                    said period is not continued.<br/>
+                    e&#41; &nbsp;&nbsp;The ruin of the property declared with an administrative file processed in accordance 
+                    with the provisions of the Land Law and also the loss or destruction of the property, considering as such 
+                    the need to carry out repair works that have a cost equal to or greater than 50% of the value of the 
+                    construction without counting the value of the land.<br/>
+                    f&#41; &nbsp;&nbsp;The introduction and / or permanence in the room whose exclusive use is attributed or 
+                    in the common spaces, of one or more persons outside the property for one or more days, or occupation of a 
+                    third-party room without the consent of the tenant who has the right for exclusive use. <br/>
+                    The Tenant shall not be entitled to compensation of any kind to the termination of the contract, expressly waiving the 
+                    rights conferred by art. 34 of the LAU.
                 </p>
                 <div className="contract-body-section-content-agreements">
-                    <p>Décimo segundo.- Otras obligaciones del arrendatario:</p>
+                    <p>Tenth second.- Other obligations of the Tenant:</p>
                 </div>
                 <p>
-                    a&#41; &nbsp;&nbsp;    A no instalar transmisiones, motores, máquinas, etc., que produzcan vibraciones o
-                     ruidos molestos para los demás ocupantes del inmueble o de los colindantes de la propiedad, o que pueda 
-                     afectar la consistencia, solidez o conservación del inmueble
-                    b&#41; &nbsp;&nbsp;    A no almacenar manipular en la finca materias explosivas, inflamables, incómodas o 
-                    insalubres, y observar en todo momento las disposiciones vigentes.
-                    ca&#41; &nbsp;&nbsp;     A permitir el acceso en la finca, al propietario, administrador y a los operarios 
-                    o industriales mandados por cualesquiera de ambos, para la realización, inspección y comprobación de 
-                    cualquier clase de obras o reparaciones que afectan inmueble.
-                    da&#41; &nbsp;&nbsp;    A cumplir el todo momento las normas estatutarias reglamentadas y los acuerdos que 
-                    la comunidad de propietarios tenga establecidos o establezcan, en orden a la utilización de los servicios, 
-                    elementos comunes y buen régimen de convivencia
+                    a&#41; &nbsp;&nbsp; Not to install transmissions, engines, machines, etc., that produce vibrations or 
+                    annoying noises for the other occupants of the property or the adjoining ones of the property, 
+                    or that can affect the consistency, solidity or conservation of the property.
+                    b&#41; &nbsp;&nbsp;	To not store, manipulate explosive, flammable, uncomfortable or unhealthy materials 
+                    on the farm, and always observe the provisions in force.
+                    ca&#41; &nbsp;&nbsp;To allow access to the property, to the owner, administrator and to the operators 
+                    or industrialists sent by any of both, for the realization, inspection and verification of any 
+                    kind of works or repairs that affect real estate.
+                    da&#41; &nbsp;&nbsp;To comply at all times with the regulated statutory regulations and the agreements 
+                    that the community of owners has established or founded, in order to use the services, common elements 
+                    and a good coexistence regime.
                 </p>
                 <div className="contract-body-section-content-agreements">
-                    <p>Décimo tercero.- cesión de datos:</p>
+                    <p>Thirteenth.- transfer of personal data: </p>
                 </div>
-                <p>
-                    La parte arrendataria autoriza a la arrendadora para que pueda ceder los datos personales que constan 
-                    en este contrato a terceras entidades o personas jurídicas para que oferten al arrendatario servicios 
-                    realizados con la finca y que pueda recabar de las mismas la información relativa al cumplimiento o 
-                    incumplimiento de lo que al arrendatario corresponda para el adecuado mantenimiento de la finca 
-                    arrendada y que pueda afectar a los demás ocupantes del inmueble.
+                <p>The Tenant party authorizes the Landlord so that it can transfer the personal data contained in this 
+                    contract to third parties or legal entities so that they offer the Tenant services performed with the 
+                    estate and that they can collect from them the information related to the fulfillment or breach of what 
+                    corresponds to the Tenant for the proper maintenance of the leased property and that may affect the other 
+                    occupants of the property.
                 </p>
                 <div className="contract-body-section-content-agreements">
-                    <p>Décimo cuarto.- Notificaciones y sumisión judicial.</p>
+                    <p>Fourteenth.- Notifications and judicial submission.</p>
                 </div>
-                <p>A efectos de recibir cualquier notificación vinculada con los derechos y obligaciones dimanantes de 
-                    este contrato, así como a los efectos de emplazamiento o citación judicial se designa como domicilio 
-                    de las partes el de la arrendadora el que consta indicado en el encabezamiento del presente escrito y 
-                    para el arrendatario el de la finca arrendada.<br/>
-                    Para cualquier diferencia en la interpretación y ejecución del presente contrato, las partes se someten 
-                    a los Juzgados y Tribunales de la ciudad de Barcelona, con renuncia a su fuero propio, si existiere.<br/>
-                    Y en prueba de conformidad con el contenido de todas y cada una de las presentes cláusulas, las partes 
-                    concurrentes firman el presente contrato, por duplicado y a todos los efectos, en la ciudad y fecha 
-                    arriba indicadas.
+                <p>For the purpose of receiving any notification related to the rights and obligations arising from 
+                    this contract, as well as for the purposes of placement or subpoena, the Landlord's address is 
+                    designated as the domicile of the parties, which is indicated in the heading of this document and 
+                    for the tenant of the leased property. For any difference in the interpretation and execution of this 
+                    contract, the parties submit to the Courts and Tribunals of the city of Barcelona, waiving their own 
+                    jurisdiction, if it exists. And in proof of conformity with the content of each and every one of these 
+                    clauses, the concurring parties sign this contract, in duplicate and for all purposes, in the city and 
+                    date indicated above.
                 </p>
             </div>
         </div>
