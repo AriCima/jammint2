@@ -53,6 +53,13 @@ const ContractEN = (props) => {
         RoomSize
     } = props;
 
+    const apartmentDivisions = {eng: '', esp:''};
+    switch (accInfo.totalRooms){
+        case '2':
+            apartmentDivisions = {eng: 'one half part (1/2)', esp: 'una media parte (1/2'}
+
+    }
+
     return (
         <div className="contract-wrapper">
             <div className="contract-header">
@@ -115,13 +122,13 @@ const ContractEN = (props) => {
                     <div className="contract-body-section-content-agreements">
                         <p>First.- Object of the lease contract.</p>
                     </div>
-                    <p>The purpose of this contract is the transfer of the use of {jamDivisions} undivided of the property, 
-                    which grants the right of exclusive use of a single room of {RoomSize}m2 {roomLocation},</p>
+                    <p>The purpose of this contract is the transfer of the use of {apartmentDivisions} undivided of the property, 
+                    which grants the right of exclusive use of a single room of {roomSize}m2 {roomLocation},</p>
                     {roomBalcony === 'yes' && <p>with balcony</p>}, 
                     <p>and that has</p> 
-                    {roomPrivateBathroom === 'yes' ? <p>private bathroom, </p> : <p>no private bathroom,</p>}
+                    {privateBathroom === 'yes' ? <p>private bathroom, </p> : <p>no private bathroom,</p>}
                     <p>with the right, in addition, to the use of common services and supplies (water, gas, electricity 
-                        and internet), and this to be used as housing. The possession of any animal on the leased farm 
+                        and internet), and this to be used as housing. The possession of any animal on the leased property 
                         is prohibited.
                     </p>
                     <div className="contract-body-section-content-agreements">
@@ -169,7 +176,7 @@ const ContractEN = (props) => {
                 <p>The Tenant expressly waives the right of preferential acquisition over the part of the leased property 
                     and the rights of first refusal and retraction, in accordance with the provisions of articles 25, 31 
                     and in concordant of the LAU, as well as the corresponding rights of the rest of the partial leases of 
-                    the farm.
+                    the property.
                 </p>
                 <div className="contract-body-section-content-agreements">
                     <p>Sixth.- Physical state of the property:</p>
@@ -183,7 +190,7 @@ const ContractEN = (props) => {
                     be dedicated.
                 </p>
                 <div className="contract-body-section-content-agreements">
-                    <p>Seventh.- Works on the Farm object of leasing.</p>
+                    <p>Seventh.- Works on the property object of leasing.</p>
                 </div>
                 <p>The contractors expressly agree that the execution of any type of works by the Tenant will be prohibited, 
                     both in the leased room for exclusive use and in the elements of common use. The execution by the 
@@ -230,7 +237,7 @@ const ContractEN = (props) => {
                     contravening everything that has been agreed for the cleaning and conservation of the leased property, 
                     even with third parties or entities.<br/>
                     b&#41; &nbsp;&nbsp;Failure to pay the deposit and its update.<br/>
-                    c&#41; &nbsp;&nbsp;When annoying, unhealthy, harmful, dangerous or illegal activities take place on the farm.<br/>
+                    c&#41; &nbsp;&nbsp;When annoying, unhealthy, harmful, dangerous or illegal activities take place on the property.<br/>
                     d&#41; &nbsp;&nbsp;The non-use or closure of the property for six months or more in the course of a year, even if 
                     said period is not continued.<br/>
                     e&#41; &nbsp;&nbsp;The ruin of the property declared with an administrative file processed in accordance 
@@ -251,7 +258,7 @@ const ContractEN = (props) => {
                     annoying noises for the other occupants of the property or the adjoining ones of the property, 
                     or that can affect the consistency, solidity or conservation of the property.
                     b&#41; &nbsp;&nbsp;	To not store, manipulate explosive, flammable, uncomfortable or unhealthy materials 
-                    on the farm, and always observe the provisions in force.
+                    on the property, and always observe the provisions in force.
                     ca&#41; &nbsp;&nbsp;To allow access to the property, to the owner, administrator and to the operators 
                     or industrialists sent by any of both, for the realization, inspection and verification of any 
                     kind of works or repairs that affect real estate.
@@ -284,7 +291,6 @@ const ContractEN = (props) => {
         </div>
     )
 }
-
 
 const mapStateToProps = state => {
     console.log('state del dash =', state)

@@ -122,4 +122,42 @@ export default class Calculations {
 
         return x.sort(compare)
     };
+
+    static getApartmentDivisions = (totalRooms) => {
+        let divisions = {eng: '', esp:''}
+        
+        switch (totalRooms){
+            case '2':
+                divisions = {eng: 'one half part (1/2)', esp: 'una media parte (1/2'};
+                break;
+            case '3':
+                    divisions = {eng: 'one third part (1/3)', esp: 'una tercera parte (1/3'};
+                    break;
+            case '4':
+                    divisions = {eng: 'one fourth part (1/4)', esp: 'una cuarta parte (1/4'};
+                    break;
+            case '5':
+                    divisions = {eng: 'one fifth part (1/5)', esp: 'una quinta parte (1/5'};
+                    break;
+            case '6':
+                    divisions = {eng: 'one sixth part (1/6)', esp: 'una sexta parte (1/6'};
+                    break;
+            case '7':
+                    divisions = {eng: 'one seventh part (1/7)', esp: 'una séptima parte (1/7'};
+                    break;
+            case '8':
+                    divisions = {eng: 'one eigth part (1/8)', esp: 'una octava parte (1/8)'};
+                    break;
+            case '9':
+                    divisions = {eng: 'one nineth part (1/9)', esp: 'una novena parte (1/9)'};
+                    break;
+            case '10':
+                    divisions = {eng: 'one tenth part (1/10)', esp: 'una decima parte (1/10)'};
+                    break;
+            default:
+                console.log('el apartamento tiene más de 10 habitaciones')
+        };
+
+        return divisions
+    }
 }

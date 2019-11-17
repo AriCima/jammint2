@@ -22,7 +22,6 @@ const NewAccommodationForm = ( props ) => {
         if (event) {
           event.preventDefault();
         }
-
         const jamField = 'accommodationInfo';
         DataService.updateJamInfo(jamId, jamField, accInfo)
     }
@@ -42,6 +41,16 @@ const NewAccommodationForm = ( props ) => {
             <div className="form-body">
                
                 <div className="form-row">
+
+                    <CustomInputField 
+                        width='400px'
+                        label="houseName"
+                        type="text" 
+                        id={`houseName`} 
+                        placeholder={`House Name / ID`}
+                        value={accInfo.houseName}
+                        changeControl={handleInputChange} 
+                    />
                     
                     <CustomInputField 
                         width='400px'
@@ -71,10 +80,9 @@ const NewAccommodationForm = ( props ) => {
                         value={accInfo.floor}
                         changeControl={handleInputChange} 
                     />
-
                 </div>
-                <div className="form-row">
 
+                <div className="form-row">
                     <CustomInputField 
                         width='60px'
                         label="Door"
@@ -114,6 +122,29 @@ const NewAccommodationForm = ( props ) => {
                         value={accInfo.country}
                         changeControl={handleInputChange} 
                     />
+                </div>
+
+                <div className="form-row">
+
+                    <CustomInputField 
+                        width='120px'
+                        label="sqm"
+                        type="text" 
+                        id={`sqm`} 
+                        placeholder={`sqm`}
+                        value={accInfo.sqm}
+                        changeControl={handleInputChange} 
+                    />
+
+                    <CustomInputField 
+                        width='120px'
+                        label="totalRooms"
+                        type="text" 
+                        id={`totalRooms`} 
+                        placeholder={`Total rooms`}
+                        value={accInfo.totalRooms}
+                        changeControl={handleInputChange} 
+                    />
 
                     <CustomInputField 
                         width='120px'
@@ -126,15 +157,6 @@ const NewAccommodationForm = ( props ) => {
                     />
                     <CustomInputField 
                         width='120px'
-                        label="sqm"
-                        type="text" 
-                        id={`sqm`} 
-                        placeholder={`sqm`}
-                        value={accInfo.sqm}
-                        changeControl={handleInputChange} 
-                    />
-                    <CustomInputField 
-                        width='120px'
                         label="toilets"
                         type="text" 
                         id={`toilets`} 
@@ -142,17 +164,7 @@ const NewAccommodationForm = ( props ) => {
                         value={accInfo.toilets}
                         changeControl={handleInputChange} 
                     />
-                    
 
-                    {/* <CountrySelect 
-                        width='120px'
-                        label="country"
-                        type="text" 
-                        id={`country`} 
-                        placeholder={`Country`}
-                        value={accInfo.country}
-                        changeControl={handleInputChange} 
-                    /> */}
 
                 </div>
                 <div className="button-area">

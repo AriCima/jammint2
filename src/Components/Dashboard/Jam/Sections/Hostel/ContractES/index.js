@@ -1,6 +1,8 @@
 import React, { useEffect } from './node_modules/react';
 import { connect } from './node_modules/react-redux';
 
+import Calculations from '../../../../../services/Calculations';
+
 import './index.css';
 
 const ContractES = (props) => {
@@ -8,51 +10,55 @@ const ContractES = (props) => {
     const { 
         jamId,
         userId,
-        roomNr,
+        userInfo,
+        // landlordTitle,
+        // landlordName, 
+        // landlordSurname, 
+        // landlordIdNr, 
+        // landlordStreet, 
+        // landlordHouseNr, 
+        // landlordFloor,
+        // landlordDoor, 
+        // landlordZipCode, 
+        // landlordCity, 
         jammerInfo,
-        landlordTitle,
-        landlordName, 
-        landlordSurname, 
-        landlordIdNr, 
-        landlordStreet, 
-        landlordHouseNr, 
-        landlordFloor,
-        landlordDoor, 
-        landlordZipCode, 
-        landlordCity, 
-        jammerCity,
-        jammerCondition,
-        jammerCountry,
-        jammerDocument,
-        jammerDoor,
-        jammerFloor,
-        jammerHouseNr,
-        jammerIdNr,
-        jammerName,
-        jammerSchool,
-        jammerStreet,
-        jammerSurname,
-        jammerTitle,
-        jammerZipCode,
-        jammerEmail,
-        jammerHomeTel,
-        jammerMobile,
-        jammerCourse, 
-        jammerCompany,
-        jamCity,
-        jamDivisions,
-        jamDoor,
-        jamFloor,
-        jamHouseNr,
-        jamStreet,
-        jamStreetType,
-        jamZipCode,
-        roomBalcony,
-        roomLocation,
-        roomPrivateBathroom,
-        RoomSize
+        // jammerCity,
+        // jammerCondition,
+        // jammerCountry,
+        // jammerDocument,
+        // jammerDoor,
+        // jammerFloor,
+        // jammerHouseNr,
+        // jammerIdNr,
+        // jammerName,
+        // jammerSchool,
+        // jammerStreet,
+        // jammerSurname,
+        // jammerTitle,
+        // jammerZipCode,
+        // jammerEmail,
+        // jammerHomeTel,
+        // jammerMobile,
+        // jammerCourse, 
+        // jammerCompany,
+        accInfo,
+        // accInfo.City,
+        // accInfo.Divisions,
+        // accInfo.Door,
+        // accInfo.Floor,
+        // accInfo.HouseNr,
+        // accInfo.Street,
+        // accInfo.StreetType,
+        // accInfo.ZipCode,
+        roomInfo,
+        // roomBalcony,
+        // roomLocation,
+        // roomPrivateBathroom,
+        // RoomSize    
     } = props;
 
+    const divisions = Calculations.getApartmentDivisions(accInfo.totalRooms)
+    const divisiones = divisions.esp;
     return (
         <div className="contract-wrapper">
             <div className="contract-header">
@@ -103,7 +109,7 @@ const ContractES = (props) => {
                     {jamHouseNr}, 
                     {jamZipCode}, 
                     de {jamCity} <br/>
-                    II.-  <span>{jammerTitle} {jammerName} {jammerSurname}</span>  está interesado en arrendar {jamDivisions} indivisa de la finca.
+                    II.-  <span>{jammerTitle} {jammerName} {jammerSurname}</span>  está interesado en arrendar {divisiones} indivisa de la finca.
                     III.‑ Y estando ambas partes interesadas en el arrendamiento parcial del bien indicado en los expositivos precedentes, de conformidad a los términos que seguidamente se convienen, suscriben el presente <span>contrato de arrendamiento</span>, y de mutuo acuerdo establecen los siguientes.
                 </div>
                 <div className="contract-body-section-title">
@@ -113,7 +119,7 @@ const ContractES = (props) => {
                     <div className="contract-body-section-content-agreements">
                         <p>Primero.- Objeto del contrato de arrendamiento.</p>
                     </div>
-                    <p>El objeto del presente contrato consiste en la cesión del uso de {jamDivisions} indivisa de la finca, 
+                    <p>El objeto del presente contrato consiste en la cesión del uso de {divisiones} indivisa de la finca, 
                     que le concede el derecho de uso exclusivo de una habitación de {RoomSize}m2 {roomLocation},</p>
                     {roomBalcony === 'yes' && <p>con balcón propio</p>}, 
                     <p>y que</p> 

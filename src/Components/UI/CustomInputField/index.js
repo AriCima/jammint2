@@ -10,7 +10,6 @@ const CustomInputField = ({ size, placeholder, type, id, value, changeControl, w
        changeControl(event)
     }
 
-    console.log('width = ', width)
     return (
      
         <div className="input-unit" style={{width: width}}>
