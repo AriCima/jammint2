@@ -38,6 +38,7 @@ const Jammers = (props) => {
         DataService.getJammers(jamId)
         .then((res) => {
             console.log('jammers = ', res)
+            
             setJammers(res)
         })
         DataService.getJammersMessages(jamId)

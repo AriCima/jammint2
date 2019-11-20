@@ -1,6 +1,6 @@
 
 export const getUserJams = (userId) => {
-
+  
     if(!userId){
         return 
     } else { 
@@ -8,20 +8,22 @@ export const getUserJams = (userId) => {
             
             const firestore = getFirestore();
 
-            firestore.collection('users').doc(userId).collection('userJams').get()
-            .then(function(querySnapshot) {
-                const userJams = []
-                querySnapshot.forEach(function(doc) {
-                    let j = doc.id;
-                    let newData = doc.data();
-                    newData.jamId = j;
-                    userJams.push(newData)
-                    return userJams
-                });
-                dispatch({
-                    type: "GET_USER_JAMS", 
-                    payload: userJams
-                });
+            return new Promise((resolve, reject) => {
+
+                getFirestore().collection('users').doc(userId).collection('userJams').get()
+                .then(result => {
+                    let userJams = [];
+                    result.docs.forEach(d => {
+                      let j = d.data();
+                      j.id = d.id;
+                      userJams.push(j);
+                    });
+                    resolve(userJams);
+                    dispatch({
+                        type: "GET_USER_JAMS", 
+                        payload: userJams
+                    });
+                })
             })
             .catch((err) => {
                 dispatch({ type: 'GET_USER_JAMS_ERROR', err })

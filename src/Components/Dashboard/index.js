@@ -17,11 +17,18 @@ import './index.css';
 
 const Dashboard = ({ auth, userJams, getUserJams, getJamInfo, jamId, jamInfo }) => {
 
+    const [ jamsList, setJamsList ] = useState([]);
+
     console.log('jamInfo dashboard: ', jamInfo);
 
     useEffect(() => {
-       getUserJams(auth.uid);
-    },[auth.uid, getUserJams]);
+        const userId = auth.uid;
+        //getUserJams(userId);
+       DataService.getUserJams(userId).then(result=>{
+        setJamsList(result);
+       });
+
+    },[auth.uid, getUserJams, userJams]);
 
     useEffect(() => {
         jamId && getJamInfo(jamId)
@@ -30,33 +37,26 @@ const Dashboard = ({ auth, userJams, getUserJams, getJamInfo, jamId, jamInfo }) 
     const userId  = auth.uid;
     const adminId  = jamInfo.adminId;
     const isAdmin = userId && adminId;
+    console.log('jamsList = ', jamsList)
     return (
         <div className="dashboard">
             <aside className="jams-list">
-            {!userJams ? <p>LOADING !</p> : 
-                <JamsList userJams={userJams}/>
+
+            {jamsList === undefined ? <p>LOADING !</p> : 
+                <JamsList userJams={jamsList}/>
             }
             </aside>
 
-            { isAdmin ? (
-                <div className="jam-admin-screen">
-                    <JamAdmin 
+            <div className="jam-screen">
+                { jamInfo === [] ? <p>SELECT YOUR JAM</p> :
+                    <Jam 
                         jamId={jamId}
                         jamInfo={jamInfo}
                     />
-
-                </div>
-            ) : (
-                <div className="jam-screen">
-                    { jamInfo === [] ? <p>SELECT YOUR JAM</p> :
-                        <Jam 
-                            jamId={jamId}
-                            jamInfo={jamInfo}
-                        />
-                    }
-                
-                </div>
-            )}
+                }
+            
+            </div>
+            
         </div>
     );
 }
@@ -65,6 +65,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         // nombre de la función que paso como prop: (arg) => 
         // dispatch(nombre del action creator(argumento))
+        getUserJams: (userId) => dispatch(getUserJams(userId)),
+
         getJamInfo: (jamId) => dispatch(getJamInfo(jamId))
     }
 }

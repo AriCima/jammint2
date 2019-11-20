@@ -9,8 +9,7 @@ export default class Calculations {
         let currentMonth = months[monthNr]
        
         return currentMonth
-    }
-
+    };
     static generateCode(){
      // GENERATE BOOKING CODE
      const letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
@@ -47,7 +46,6 @@ export default class Calculations {
      return code
      
     };
-
     static getJamSections(type){
         console.log('get Jam Sections launched')
         let sections = [];
@@ -104,7 +102,6 @@ export default class Calculations {
 
         return x.sort(compare)
     };
-
     static sortAsc(x){
         console.log('info received :', x);
         function compare(a,b){
@@ -123,9 +120,9 @@ export default class Calculations {
         return x.sort(compare)
     };
 
+    // - - - - - - - CONTRATO
     static getApartmentDivisions = (totalRooms) => {
         let divisions = {eng: '', esp:''}
-        
         switch (totalRooms){
             case '2':
                 divisions = {eng: 'one half part (1/2)', esp: 'una media parte (1/2'};
@@ -159,5 +156,13 @@ export default class Calculations {
         };
 
         return divisions
-    }
+    };
+    
+    static getgetMyJammers = (totalRooms) => {
+        let divisions = {eng: '', esp:''}
+
+    };
+
+    
+
 }

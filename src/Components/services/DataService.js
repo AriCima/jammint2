@@ -58,19 +58,23 @@ export default class DataService {
 
             return new Promise((resolve, reject) => {
 
-                firebase.firestore().collection('users').doc(userId).colelction('userJams')
-                .onSnapshot(function(doc) {
-                    let userInfo = doc.data();
-                    console.log("UserJams: ", doc.data());
-                    resolve (userInfo)
-                });   
+                firebase.firestore().collection('users').doc(userId).collection('userJams').get()
+                .then(result => {
+                    let jams = [];
+                    result.docs.forEach(d => {
+                      let j = d.data();
+                      j.id = d.id;
+                      jams.push(j);
+                    });
+                    resolve(jams);
+                })
             })
             .catch((error) => {
                 var errorCode = error.code;
                 console.log('Usuario No Existe : ', errorCode);
                 
             });
-        };
+        }
 
     // JAMS
         // Create

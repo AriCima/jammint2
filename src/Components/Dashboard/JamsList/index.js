@@ -30,7 +30,7 @@ const JamsList = (props) => {
 
   return (
     <div className="jams-list-wrapper">
-      {!userJams ? <p>loading </p> : 
+      {
       _renderJams()
       }
     </div>

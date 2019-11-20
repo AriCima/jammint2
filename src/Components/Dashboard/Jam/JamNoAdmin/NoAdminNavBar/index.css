@@ -1,0 +1,49 @@
+.jamNavBar{
+    position: fixed;
+    top: 0;
+    left: 30%;
+    right: 0;
+    height: 60px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.jamNavBar-left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.jamNavBar-left:hover {
+    background-color:rgba(255, 255, 0, 1);
+}
+
+.jamNavBar-right{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.jamNavBar-item{
+    /* width: 15%; */
+    height: 100%;
+    padding: 5px;
+    background-color:rgba(255, 255, 0, 0.2);
+    margin: 0 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.jamNavBar-chat{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.jamNavBar-item:hover, .jamNavBar-chat-item:hover{
+    background-color:rgba(255, 255, 0, 1);
+
+}
