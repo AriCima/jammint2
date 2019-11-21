@@ -10,7 +10,7 @@ import "./index.css";
 
  const JamCover = (props) => {
 
-  const { name, desc, jamId, jamType, user2Name = '' } = props
+  const { jamName, jamId, jamType, jamDesc, user2Name = '' } = props
 
   const onSelectJam = (jamId) => {
     props.selectJam(jamId);
@@ -22,24 +22,22 @@ import "./index.css";
 
 
       <div className="jams-list-content">
-        { jamType === 'chat' ?
-          <Fragment>
-            <h4>{user2Name}</h4>
-            <p>{jamId}</p>
-            <p>{jamType}</p>
-          </Fragment>
-          :
-           <Fragment>
-            <h4>{name}</h4>
-            <p>{jamId}</p>
-            <p>{jamType}</p>
-           </Fragment>
+        <div className="jams-list-content-line">
+          { jamType === 'chat' ?
+            <Fragment>
+              <h4>{user2Name}</h4>
+            </Fragment>
+            :
+            <Fragment>
+              <h4>{jamName}</h4>
+            </Fragment>
 
-        }
+          }
+        </div>
       </div>
 
-      <div className="jams-list-content">
-        <p>{desc}</p>
+      <div className="jams-list-content-line">
+        <p>{jamDesc}</p>
       </div>
 
     </button>

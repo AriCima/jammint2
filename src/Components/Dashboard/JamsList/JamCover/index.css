@@ -1,7 +1,7 @@
 
 .jamsList-jam-container{
     width: 100%;
-    height: 90px;
+    height: 70px;
     border-bottom: 1px solid gray;
     display: flex;
     flex-direction: column;
@@ -14,20 +14,28 @@
 .jams-list-content{
     width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: flex-start;
 }
 
-.jams-list-content h4{
+.jams-list-content-line{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.jams-list-content-line h4{
     font-size: 16px;
     font-weight: 700;
     color: black;
     margin: 0 20px;;
 }
 
-.jams-list-content p{
+.jams-list-content-line p{
     font-size: 16px;
     font-weight: 400;
-    color: rgba(170, 170, 170, 1);
+    color:black;
     margin: 0 20px;;
 }

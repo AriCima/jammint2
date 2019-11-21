@@ -10,7 +10,6 @@ import { faSignOutAlt, faBars } from '@fortawesome/free-solid-svg-icons'
 // COMPONENTS
 import JoinPopup from '../JoinPopup';
 import CreatePopup from '../CreatePopup';
-import JamNavBar from '../Dashboard/Jam/JamNavBar';
 import { signOut } from '../../redux/actions/authActions';
 
 import { connect } from 'react-redux';
