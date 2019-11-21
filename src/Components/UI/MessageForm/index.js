@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import DataService from '../../services/DataService';
+import CustomInputField from '../CustomInputField';
+
+// CSS
+import './index.css';
 
 export default function MessagesForm(props) {
 
@@ -10,6 +14,10 @@ export default function MessagesForm(props) {
     // const renderRedirect = () => {
     //     return <Redirect to='/login' />
     // }
+
+    const handleChange = (x) => {
+        setMessage(XMLHttpRequestUpload)
+    }
 
     const onSubmit = (message) => {
         const date = new Date()
@@ -28,15 +36,15 @@ export default function MessagesForm(props) {
         <form className="input-form" onSubmit={onSubmit}>
 
             <div className="message-input-area">
-                <input 
-                    type="text" 
-                    id={`${inputId}`} 
-                    placeholder={`${placeholder}`}
-                    onChange={id => {
-                        console.log('mensaje = ', id.target.value)
-                       setMessage(id.target.value);
-                    }}
+                <CustomInputField
+                    width='5000px'
+                    label='input custom test'
+                    placeholder='input info'
+                    type="text"
+                    id={inputId} 
+                    onChange = {id => handleChange(id)}
                 />
+
             </div>
 
             <div className="button-area">

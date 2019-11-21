@@ -41,7 +41,7 @@ class DynamicApartmentForm extends React.Component {
     }]
   };
 
-    handleChange = (e) => {
+    handlenputChange = (e) => {
 
         const roomParameters = [
             "roomName",

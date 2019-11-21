@@ -27,7 +27,7 @@ const NavBar = ({user, signOut, jamActive}) => {
 
                 <div className="navBar-menu">
                     <div className="navBar-item">
-                    <FontAwesomeIcon icon={faBars} />
+                        <FontAwesomeIcon className="navBar-menu-style" icon={faBars} />
                     </div>
                 </div>
                
@@ -50,7 +50,7 @@ const NavBar = ({user, signOut, jamActive}) => {
                         </div> :
                         
                         <div className="navBar-item" onClick={signOut}>
-                            <FontAwesomeIcon icon={faSignOutAlt} />
+                            <FontAwesomeIcon className="signOut-icon-style" icon={faSignOutAlt} />
                         </div>
                     }
                 </div>

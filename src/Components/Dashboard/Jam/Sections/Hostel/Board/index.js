@@ -6,17 +6,18 @@ import { connect } from 'react-redux';
 import DataService from '../../../../../services/DataService';
 import BoardContent from './BoardContent';
 import MessageForm from '../../../../../UI/MessageForm';
-
+import CustomInputField from '../../../../../UI/CustomInputField'
 // CSS
 import './index.css';
 
 const Board = (props) => {
 
-    const { jamId, jamActiveSection, jamInfo } = props
+    const { jamId, jamActiveSection, jamInfo } = props;
     const userId = props.auth.uid;
     const jamAdmin = jamInfo.adminId;
-    const [sectionInfo, setSectionInfo] = useState([])
-
+    const [sectionInfo, setSectionInfo] = useState([]);
+    const [messageContent, setMessageContent ] = useSate([]);
+   
     useEffect(() => {
         DataService.getJamSectionInfo(jamId, 'board')
         .then((res) => {
@@ -37,25 +38,56 @@ const Board = (props) => {
         })
     };
 
+    const handleInputChange = (event) => {
+        event.persist();
+        setaccInfo(boardMessage.text => ({...boardMessage, [event.target.id]: event.target.value}));
+        setMessageContent(event.target.value)
+    
+    }
+
+    const onSubmit = (message) => {
+        const date = new Date()
+        const messageInfo = {
+            messageContent: message,
+            userId: userId,
+            jamId: jamId,
+            section: section,
+            createdAt: date,
+            messageType: 'post'
+        }
+        DataService.saveMessage(jamId, section, messageInfo)
+    }
+
     // const isAdmin = (jamAdmin === userId);
     
     return (
         <div className="jam-board">
             <div className="jam-board-board">
-                <p>{jamInfo.jamName}</p>
                 {renderBoardContent()}
             </div>
-            <div className="jam-board-form">
-                <MessageForm 
-                    userId={userId}
-                    jamId={jamId}
-                    inputId='boardMessage'
-                    jamSection={jamActiveSection}
-                    section='board'
-                    buttonText='send'
-                    placeholder='type here'
+            <form className="input-form" onSubmit={onSubmit}>
+
+            <div className="message-input-area">
+                <CustomInputField
+                    width='5000px'
+                    label='input custom test'
+                    placeholder='input info'
+                    type="text"
+                    value={text}
+                    id='text' 
+                    onChange = {handleInputChange}
                 />
             </div>
+
+            <div className="button-area">
+                <button className="submit-button"
+                    onClick={() => onSubmit(message)}
+                >
+                    {buttonText}
+                </button>
+            </div>
+
+        </form>
         </div>
 
     );   

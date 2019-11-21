@@ -17,6 +17,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+// CSS
+import './index.css';
+
 const JoinPopup = (props) => {
 
   const { user } = props;
@@ -73,8 +76,8 @@ const JoinPopup = (props) => {
 
   return ( 
     <div>
-      <button  onClick={handleClickOpen}>
-        <FontAwesomeIcon icon={faCheck} />
+      <button  className="join-button" onClick={handleClickOpen}>
+        <FontAwesomeIcon className="join-icon-style" icon={faCheck} />
       </button>
       
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">

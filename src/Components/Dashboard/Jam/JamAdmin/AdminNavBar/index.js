@@ -56,7 +56,7 @@ const JamNavBar = ({ setJamSection, jamName, jamType}) => {
                         <Fragment>
                             <div className="jamAdminNavBar-left">
                                 <div className="jamAdminNavBar-jamName">
-                                    <p>Admin {jamName}</p>
+                                    <p>{jamName}</p>
                                 </div>
                             </div>
                             <div className="jamAdminNavBar-right">
