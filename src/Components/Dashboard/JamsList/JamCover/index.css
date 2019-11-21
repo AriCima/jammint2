@@ -11,6 +11,11 @@
     background-color: rgba(170, 170, 170, 0.06);
 }
 
+.jamsList-jam-container:hover{
+    border: 1px solid blue;   
+    background-color: white;
+}
+
 .jams-list-content{
     width: 100%;
     display: flex;
@@ -19,21 +24,21 @@
     justify-content: flex-start;
 }
 
-.jams-list-content-line{
+.jams-list-container-line{
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-start;
 }
 
-.jams-list-content-line h4{
+.jams-list-container-line h4{
     font-size: 16px;
     font-weight: 700;
     color: black;
     margin: 0 20px;;
 }
 
-.jams-list-content-line p{
+.jams-list-container-line p{
     font-size: 16px;
     font-weight: 400;
     color:black;

@@ -19,24 +19,21 @@ import "./index.css";
   return (
 
     <button className="jamsList-jam-container" onClick={()=> onSelectJam(jamId)}>
+      
+      <div className="jams-list-container-line">
+        { jamType === 'chat' ?
+          <Fragment>
+            <h4>{user2Name}</h4>
+          </Fragment>
+          :
+          <Fragment>
+            <h4>{jamName}</h4>
+          </Fragment>
 
-
-      <div className="jams-list-content">
-        <div className="jams-list-content-line">
-          { jamType === 'chat' ?
-            <Fragment>
-              <h4>{user2Name}</h4>
-            </Fragment>
-            :
-            <Fragment>
-              <h4>{jamName}</h4>
-            </Fragment>
-
-          }
-        </div>
+        }
       </div>
 
-      <div className="jams-list-content-line">
+      <div className="jams-list-container-line">
         <p>{jamDesc}</p>
       </div>
 
