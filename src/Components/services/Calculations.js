@@ -1,4 +1,7 @@
+import React from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChalkboard, faComments, faUsers, faUserLock, faCog} from '@fortawesome/free-solid-svg-icons'
 
 export default class Calculations {
 
@@ -51,13 +54,13 @@ export default class Calculations {
         let sections = [];
         switch (type) {
             case 'accommodation':
-              sections = ['board', 'myJam', 'settings', 'flatmates']
+              sections = ['board', 'jammers', 'myJam', 'settings']
               break;
             case 'standard':
                 sections = ['board', 'jammers']
                 break;
             case 'chat': 
-                sections = ['Chat']
+                sections = ['chat']
                 break;
             default:
               console.log('no reconoce tipo')
@@ -118,6 +121,34 @@ export default class Calculations {
         }
 
         return x.sort(compare)
+    };
+
+
+    // HEADER ICONS
+
+    static getHeaderIcon = (section) => {
+        let icon = ''
+        switch (section){
+            case 'board':
+                icon = <p><FontAwesomeIcon className="navBar-icon-style" icon={faChalkboard} /></p>  
+                break;
+            case 'jammers':
+                icon = <p><FontAwesomeIcon className="navBar-icon-style" icon={faUsers} /></p>  
+                    break;
+            case 'settings':
+                icon = <p><FontAwesomeIcon className="navBar-icon-style" icon={faCog} /></p>  
+                    break;
+            case 'myJam':
+                icon = <p><FontAwesomeIcon className="navBar-icon-style" icon={faUserLock} /></p>  
+                    break;
+            case 'chat':
+                icon = <p><FontAwesomeIcon className="navBar-icon-style" icon={faComments} /></p>  
+                break;
+            default:
+                console.log('no navbar item matched')
+        };
+
+        return icon
     };
 
     // - - - - - - - CONTRATO

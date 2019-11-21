@@ -1,49 +1,58 @@
-.jamNavBar{
+.jamAdminNavBar{
     position: fixed;
     top: 0;
     left: 30%;
     right: 0;
     height: 60px;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
+    border-bottom: 1px solid grey;
+    border-left: 1px solid grey;
 }
 
-.jamNavBar-left{
+.jamAdminNavBar-left{
+    margin-left: 15px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
-.jamNavBar-left:hover {
-    background-color:rgba(255, 255, 0, 1);
-}
-
-.jamNavBar-right{
+.jamAdminNavBar-right{
+    position: absolute;
+    right: 20px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
 
-.jamNavBar-item{
-    /* width: 15%; */
+.jamAdminNavBar-item{
     height: 100%;
     padding: 5px;
-    background-color:rgba(255, 255, 0, 0.2);
     margin: 0 15px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.jamNavBar-chat{
+.navBar-icon-style{
+    color: gray;
+    padding: 0;
+    margin: 0 20px;
+    font-size: 30px;
+    transition: 0.066s;
+}
+
+.navBar-icon-style:hover{
+    color: blue;
+}
+
+.jamAdminNavBar-item:hover{
+    color: blue;
+}
+
+.jamAdminNavBar-chat{
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-
-.jamNavBar-item:hover, .jamNavBar-chat-item:hover{
-    background-color:rgba(255, 255, 0, 1);
-
 }

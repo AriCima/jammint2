@@ -40,23 +40,23 @@ const JamNavBar = ({ setJamSection, jamName, jamType}) => {
     };
 
     return ( 
-        <div className="jamNavBar">
+        <div className="jamNoAdminNavBar">
             {jamSections === undefined ? <p>NO JAM SELECTED</p> : 
                 <Fragment>
                 {jamType !== 'chat' ? 
                     (
                         <Fragment>
-                            <div className="jamNavBar-left">
-                                <div className="jamNavBar-jamName">
+                            <div className="jamNoAdminNavBar-left">
+                                <div className="jamNoAdminNavBar-jamName">
                                     <p>No ADMIN {jamName}</p>
                                 </div>
                             </div>
-                            <div className="jamNavBar-right">
+                            <div className="jamNoAdminNavBar-right">
                                 {renderJamNavBar()}
                             </div>
                         </Fragment>
                     ) : (
-                        <div className="jamNavBar-chat">
+                        <div className="jamNoAdminNavBar-chat">
                             {renderJamNavBar()}
                         </div>
                     )

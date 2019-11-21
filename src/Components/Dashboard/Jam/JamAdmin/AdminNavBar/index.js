@@ -6,6 +6,10 @@ import { connect } from 'react-redux';
 import Calculations from '../../../../services/Calculations';
 import { setJamSection } from '../../../../../redux/actions/jamSection';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faComments} from '@fortawesome/free-solid-svg-icons'
+
+
 // CSS
 import './index.css';
 
@@ -14,6 +18,7 @@ const JamNavBar = ({ setJamSection, jamName, jamType}) => {
     const [jamSections, setJamSections] = useState([])
    
     const onSelectJamSection = (section)=> {
+        console.log('section = ', section);
         setJamSection(section)
     };
 
@@ -24,39 +29,48 @@ const JamNavBar = ({ setJamSection, jamName, jamType}) => {
 
     const renderJamNavBar = () => {
         return jamSections.map((section, id) => {
+            
+            const fontIcon = Calculations.getHeaderIcon(section);
 
-            return jamType !== 'chat' ? 
-                 
-            <div className="jamNavBar-item" key={id} onClick={() => onSelectJamSection(`${section}`)}>
-                <p>{section}</p>   
+            return jamType === 'chat' ? 
+            
+            <div 
+                className="jamAdminNavBar-item" 
+                key={id} 
+                onClick={() => onSelectJamSection(`${section}`)}>
+                <FontAwesomeIcon className="navBar-icon-style" icon={faComments} />
             </div>
             
             : 
-            <Fragment key={id} >
-                <p>{section}</p>   
-            </Fragment>
 
+            <div 
+            className="jamAdminNavBar-item" 
+            key={id} 
+            onClick={() => onSelectJamSection(`${section}`)}>
+                {fontIcon}
+            </div>
+            
         })
     };
 
     return ( 
-        <div className="jamNavBar">
+        <div className="jamAdminNavBar">
             {jamSections === undefined ? <p>NO JAM SELECTED</p> : 
                 <Fragment>
                 {jamType !== 'chat' ? 
                     (
                         <Fragment>
-                            <div className="jamNavBar-left">
-                                <div className="jamNavBar-jamName">
+                            <div className="jamAdminNavBar-left">
+                                <div className="jamAdminNavBar-jamName">
                                     <p>Admin {jamName}</p>
                                 </div>
                             </div>
-                            <div className="jamNavBar-right">
+                            <div className="jamAdminNavBar-right">
                                 {renderJamNavBar()}
                             </div>
                         </Fragment>
                     ) : (
-                        <div className="jamNavBar-chat">
+                        <div className="jamAdminNavBar-chat">
                             {renderJamNavBar()}
                         </div>
                     )
