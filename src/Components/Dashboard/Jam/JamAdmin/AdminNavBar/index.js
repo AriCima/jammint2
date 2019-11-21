@@ -34,19 +34,13 @@ const JamNavBar = ({ setJamSection, jamName, jamType}) => {
 
             return jamType === 'chat' ? 
             
-            <div 
-                className="jamAdminNavBar-item" 
-                key={id} 
-                onClick={() => onSelectJamSection(`${section}`)}>
-                <FontAwesomeIcon className="navBar-icon-style" icon={faComments} />
+            <div className="jamAdminNavBar-item" key={id} onClick={() => onSelectJamSection(`${section}`)}>
+                    <FontAwesomeIcon className="navBar-icon-style" icon={faComments} />
             </div>
             
             : 
 
-            <div 
-            className="jamAdminNavBar-item" 
-            key={id} 
-            onClick={() => onSelectJamSection(`${section}`)}>
+            <div className="jamAdminNavBar-item" key={id} onClick={() => onSelectJamSection(`${section}`)}>
                 {fontIcon}
             </div>
             

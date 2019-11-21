@@ -51,7 +51,7 @@
     justify-content: flex-start;
     align-items: center;
     margin: 10px 5px;
-    background-color: lightgray;
+    background-color: rgb(79, 86,109);
 }
 .board-post-text p{
     font-size: 14px;

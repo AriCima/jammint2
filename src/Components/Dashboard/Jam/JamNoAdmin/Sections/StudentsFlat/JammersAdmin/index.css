@@ -1,6 +1,6 @@
 .jam-jammers{
     width: 100%;
-    background-color: rgb(188, 218, 20);
+    background-color: rgba(40, 108,192, 0.3);
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -34,7 +34,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: blue;
+    background-color: rgb(61,158,247);
 }
 
 .jam-jammers-list{
@@ -45,5 +45,5 @@
     justify-content: flex-start;
     align-items: center;
     overflow-y: scroll;
-    background-color: green;
+    background-color: rgba(40, 108,192, 0.2);
 }

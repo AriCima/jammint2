@@ -35,8 +35,9 @@
     align-items: center;
 }
 
+
 .navBar-icon-style{
-    color: gray;
+    color: rgb(79, 86,109);
     padding: 0;
     margin: 0 20px;
     font-size: 30px;
@@ -44,11 +45,11 @@
 }
 
 .navBar-icon-style:hover{
-    color: blue;
+    color: rgb(61,158,247);
 }
 
 .jamAdminNavBar-item:hover{
-    color: blue;
+    color: rgb(61,158,247);
 }
 
 .jamAdminNavBar-chat{
