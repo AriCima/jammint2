@@ -1,0 +1,47 @@
+.landlord-jam-board{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.landlord-jam-board-board{
+    width: 95%;
+    height: 600px;
+    overflow-y: scroll;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: white;
+}
+
+.landlord-jam-board-input-form{
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    position: fixed;
+    bottom: 0;
+    left: 30%;
+}
+
+.landlord-board-button-area{
+    width: 100%;
+    background-color: green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.landlord-board-submit-button{
+    background-color:yellow;
+}
+
+

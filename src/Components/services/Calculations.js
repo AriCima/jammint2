@@ -50,7 +50,7 @@ export default class Calculations {
      
     };
     static getJamSections(type){
-        console.log('get Jam Sections launched')
+        //console.log('get Jam Sections launched')
         let sections = [];
         switch (type) {
             case 'accommodation':
@@ -63,7 +63,7 @@ export default class Calculations {
                 sections = ['chat']
                 break;
             default:
-              console.log('no reconoce tipo')
+              //console.log('no reconoce tipo')
         }
        return sections;
     };
@@ -72,7 +72,7 @@ export default class Calculations {
 
     // https://www.sitepoint.com/sort-an-array-of-objects-in-javascript/
     static sortByDateAsc(x){
-        console.log('info received :', x);
+        //console.log('info received :', x);
         function compare(a,b){
             const varA = new Date(a.createdAt.seconds);
             const varB = new Date(b.createdAt.seconds);
@@ -106,7 +106,7 @@ export default class Calculations {
         return x.sort(compare)
     };
     static sortAsc(x){
-        console.log('info received :', x);
+        //console.log('info received :', x);
         function compare(a,b){
             const varA = a[0];
             const varB = a[1];
@@ -145,7 +145,7 @@ export default class Calculations {
                 icon = <p><FontAwesomeIcon className="navBar-icon-style" icon={faComments} /></p>  
                 break;
             default:
-                console.log('no navbar item matched')
+                //console.log('no navbar item matched')
         };
 
         return icon
@@ -183,7 +183,7 @@ export default class Calculations {
                     divisions = {eng: 'one tenth part (1/10)', esp: 'una decima parte (1/10)'};
                     break;
             default:
-                console.log('el apartamento tiene más de 10 habitaciones')
+                //console.log('el apartamento tiene más de 10 habitaciones')
         };
 
         return divisions

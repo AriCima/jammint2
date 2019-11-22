@@ -69,7 +69,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
-    // console.log('state en el navBar = ', state)
+    // //console.log('state en el navBar = ', state)
     return {
         user: state.firebase.auth,
         jamActive: state.jamActive

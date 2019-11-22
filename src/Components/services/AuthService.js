@@ -9,12 +9,12 @@ export default class AuthService {
             firebase.auth().signInWithEmailAndPassword(email, password)
             .then((result) =>{
                 resolve(result);
-                // console.log('El result del LOGIN en Auth es: ', result)
+                // //console.log('El result del LOGIN en Auth es: ', result)
             })
 
             .catch((error) => {
                 var errorCode = error.code;
-                console.log('AUTH SERVICE::::errorCode: ', errorCode);
+                //console.log('AUTH SERVICE::::errorCode: ', errorCode);
                 // var errorMessage = error.message;
                 
                 if(errorCode === "auth/wrong-password"){
@@ -31,12 +31,12 @@ export default class AuthService {
 
             firebase.auth().createUserWithEmailAndPassword(email, password)
             .then((result) => {
-                console.log("REGISTER", result);
+                //console.log("REGISTER", result);
                 resolve(result);  
             })
             .catch((error) => {
                 var errorCode = error.code;
-                console.log('AUTH SERVICE::::errorCode: ', errorCode);
+                //console.log('AUTH SERVICE::::errorCode: ', errorCode);
                 var errorMessage = error.message;
                 reject(errorMessage)
             })

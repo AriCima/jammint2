@@ -6,7 +6,7 @@ import "./index.css";
 const CustomInputField = ({ size, placeholder, type, id, value, changeControl, width}) => {
 
     const handleChange = (event) => {
-        console.log('handle change launched');
+        //console.log('handle change launched');
        changeControl(event)
     }
 

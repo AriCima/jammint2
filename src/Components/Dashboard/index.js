@@ -19,8 +19,6 @@ const Dashboard = ({ auth, userJams, getUserJams, getJamInfo, jamId, jamInfo }) 
 
     const [ jamsList, setJamsList ] = useState([]);
 
-    console.log('jamInfo dashboard: ', jamInfo);
-
     useEffect(() => {
         const userId = auth.uid;
         //getUserJams(userId);
@@ -37,7 +35,6 @@ const Dashboard = ({ auth, userJams, getUserJams, getJamInfo, jamId, jamInfo }) 
     const userId  = auth.uid;
     const adminId  = jamInfo.adminId;
     const isAdmin = userId && adminId;
-    console.log('jamsList = ', jamsList)
     return (
         <div className="dashboard">
             <aside className="jams-list">

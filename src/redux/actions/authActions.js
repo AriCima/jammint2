@@ -7,7 +7,7 @@ export const registerAction = (newUser) => {
             newUser.email,
             newUser.password
         ).then((resp) => {
-            // console.log('new user id', resp.user.uid);
+            // //console.log('new user id', resp.user.uid);
             return firestore.collection('users').doc(resp.user.uid).set({
                 firstName: newUser.firstName,
                 lastName: newUser.lastName,
@@ -16,7 +16,7 @@ export const registerAction = (newUser) => {
                 dispatch({type: 'SIGNUP_SUCCESS'})
             })
         }).catch(err => {
-            console.log('error')
+            //console.log('error')
             dispatch({type: 'SIGNUP_ERROR', err})
         })
 
@@ -32,7 +32,7 @@ export const loginAction = (credentials) => {
             credentials.email,
             credentials.password
         ).then((res) => {
-            console.log('res = ', res, res.user.uid)
+            //console.log('res = ', res, res.user.uid)
             firestore.collection('users').doc(res.user.uid).collection('userJams').get()
             .then(function(querySnapshot) {
                 const userJams = []
@@ -41,14 +41,14 @@ export const loginAction = (credentials) => {
                     userJams.push(doc.data())
                     return userJams
                 });
-                // console.log('doc received', userJams);
+                // //console.log('doc received', userJams);
                 dispatch({type: 'LOGIN_SUCCESS', userJams})
             })
             .catch(function(error) {
-                console.log("Error getting documents: ", error);
+                //console.log("Error getting documents: ", error);
             });
 
-            console.log('res del login = ', res)
+            //console.log('res del login = ', res)
             // dispatch({type: 'LOGIN_SUCCESS'})
         }).catch((err) =>
         dispatch({type: 'LOGIN_ERROR', err}) )

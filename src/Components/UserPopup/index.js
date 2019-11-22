@@ -30,7 +30,7 @@ export default class UserPopup extends Component {
     DataService.getUserInfo(this.state.userId)
 
     .then(result =>{
-      // console.log('result en el get user info : ', result)
+      // //console.log('result en el get user info : ', result)
       // let userJams = result.userJams;
       // if (userJams === undefined){
       //   userJams.push({
@@ -50,7 +50,7 @@ export default class UserPopup extends Component {
 
   onStartChat(e){
     e.preventDefault();
-    console.log('userJams en el create', this.state.userJams)
+    //console.log('userJams en el create', this.state.userJams)
     let userID = this.state.userId;
     
     let userId = this.state.userId;
@@ -78,7 +78,7 @@ export default class UserPopup extends Component {
 
     DataService.createJamBeta(newJam)
     .then((result)=>{
-      // console.log('el result del create Jam = ', result)
+      // //console.log('el result del create Jam = ', result)
       let jamId = result.id;
       let userID = this.state.userId;
 
@@ -88,7 +88,7 @@ export default class UserPopup extends Component {
       transJams.push(newJam)
 
  
-      console.log('updateJAm called with: ', userID, '/ ', transJams)
+      //console.log('updateJAm called with: ', userID, '/ ', transJams)
 
       DataService.updateJamsArrayInUser(userID, transJams);
       this.props.closePopup();
@@ -96,7 +96,7 @@ export default class UserPopup extends Component {
       // this.props.propsFn.push(`/home/${userId}`)
 
     },(error)=>{
-        console.log('Jam could not be created, error:', error);
+        //console.log('Jam could not be created, error:', error);
     });
   };
 

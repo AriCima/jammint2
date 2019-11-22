@@ -18,3 +18,11 @@ const ButtonPlain = ({text, type}) => {
 
 
 export default ButtonPlain;
+
+
+// IMPLEMENTATION
+
+{/* <ButtonPlain 
+  type='submit'
+  text='submit'
+/> */}

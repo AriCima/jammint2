@@ -1,0 +1,48 @@
+.student-jammer-card-container{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border: 0.5px solid lightgrey;
+    opacity: 0.7;
+    transition: 0.3s;
+    background-color: rgba(197, 208, 212, 0.2);
+
+}
+
+.student-jammer-card-container:hover{
+    cursor: pointer;
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+
+.student-jammer-img{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.student-jammer-name{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.student-jammer-name p{
+    font-size: 14px;
+    font-weight: 600
+}
+.student-jammer-country{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.student-jammer-country p{
+    font-size: 14px;
+    font-weight: 500
+}

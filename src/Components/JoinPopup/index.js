@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // SERVICES
 import DataService from "../services/DataService";
@@ -23,55 +23,75 @@ import './index.css';
 const JoinPopup = (props) => {
 
   const { user } = props;
+  console.log('user: ', user);
+  const userId = user.uid;
+ 
   const [open, setOpen] = useState(false);
   const [jamCode, setjamCode] = useState('');
 
+
+  // const [jamId, setJamId] = useState('');
+  // const [jamToJoin, setJamToJoin] = useState({});
+  // const [newJammer, setNewJammer] = useState({});
+  
+
+  // useEffect((jamId) => {
+  //   if (jamId !== '' && jamId !== undefined){
+  //     DataService.addJamToUser(userId, jamToJoin);
+  //     DataService.updateJammersInJam(jamId, newJammer);
+  //   }
+  // }, [jamId])
+
+
   const handleChange = jamCode => event => {
-    console.log('guardar cambios')
+    //console.log('guardar cambios')
     setjamCode(event.target.value);
   };
-
   const handleClickOpen = () => {
-    console.log('abrir popup')
+    //console.log('abrir popup')
     setOpen(true);
-  }
-
+  };
   const handleClose = () => {
-    console.log('cerrar popup')
+    //console.log('cerrar popup')
     setOpen(false);
-  }
-
+  };
   const onJoinJam = (e) => {
     e.preventDefault();
 
     DataService.getJamInfoByCode(jamCode)
     .then(result =>{
+      
       let jam = result.data;
       let jamId = result.id;
       let joinedAt = new Date();
       let jamCode = jam.jamCode;
 
-      const jamToJoin = {};
-      jamToJoin.isAdmin = false;
-      jamToJoin.jamCode = jamCode;
-      jamToJoin.jamName = jam.jamName;
-      jamToJoin.jamId = jamId;
-      jamToJoin.jamDescription = jam.jamDescription;
-      jamToJoin.joineddAt = joinedAt;
-
-
-
-      DataService.addJamtoUser(user.id, jamToJoin);
-
-      const newJammer = ({name: user.userName, userId: user.id})
-
-      DataService.updateJammersInJam(jamId, newJammer);
-
-      setOpen(false);
-
+      const jamToJoin = {
+        isAdmin : false,
+        jamCode : jamCode,
+        jamName : jam.jamName,
+        jamId   : jamId,
+        jamDescription : jam.jamDesc,
+        joinedAt : joinedAt
+      }
+      DataService.addJamToUser(userId, jamToJoin)
+      .then(result =>{
+        console.log('result del addJamToUser', result)
+      }).catch(function (error) {   
+        console.log(error);
+      });
+      const newJammer = {userId: userId}
+      DataService.updateJammersInJam(jamId, newJammer).then(result =>{
+        console.log('result del updatJammers', result)
+      }).catch(function (error) {   
+        console.log(error);
+      });
+      
     }).catch(function (error) {   
       console.log(error);
     });
+
+    setOpen(false);
   };
 
   return ( 

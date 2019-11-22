@@ -1,5 +1,5 @@
 // export const getJamInfo = (jamId) => {
-//     console.log('getJamInfo triggered with: ', jamId)
+//     //console.log('getJamInfo triggered with: ', jamId)
 //     if(!jamId){
 //         return 
 //     } else { 
@@ -11,7 +11,7 @@
 //             let jamInfo = {}
 //             .then((res) => {
 //                 jamInfo = res;
-//                 console.log('res = ', res)
+//                 //console.log('res = ', res)
 //                 return jamInfo
 //                 // setJamActiveSection(res.sections[0]);
 //                 // setJamSections(res.sections);

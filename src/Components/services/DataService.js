@@ -5,27 +5,27 @@ export default class DataService {
     // USERS 
         static saveUserInfoInFirestore(userId, userToSave){
             //registro en Firebase
-            // console.log("el user recibido en el registro firestore es:", userId)
-            // console.log("el userToSave recibido en firestore es: ", userToSave)
+            // //console.log("el user recibido en el registro firestore es:", userId)
+            // //console.log("el userToSave recibido en firestore es: ", userToSave)
             return new Promise((resolve, reject) => {
 
                 firebase.firestore().collection('users').doc(userId).set(userToSave)
                 .then((result) => {
                     
-                    console.log("User information succesfully saved !")
+                    //console.log("User information succesfully saved !")
                     resolve(result);
                 })
 
                 .catch((error) => {
                     var errorCode = error.code;
-                    console.log('User NOT added: ', errorCode);
+                    //console.log('User NOT added: ', errorCode);
                     
                 })
                 
             });
         };
         static getUserInfo(userId){
-            console.log('user info called with: ', userId)
+            //console.log('user info called with: ', userId)
             return new Promise((resolve, reject) => {
 
                 firebase.firestore().collection('users').doc(userId).get()
@@ -43,18 +43,18 @@ export default class DataService {
             return new Promise((resolve, reject) => {
                 firebase.firestore().collection('users').doc(userId).onSnapshot(function(doc) {
                     let userInfo = doc.data();
-                    console.log("Current data: ", doc.data());
+                    //console.log("Current data: ", doc.data());
                     resolve (userInfo)
                 });   
             })
             .catch((error) => {
                 var errorCode = error.code;
-                console.log('Usuario No Existe : ', errorCode);
+                //console.log('Usuario No Existe : ', errorCode);
                 
             });
         };
         static getUserJams(userId){
-            console.log('user JAMS called with: ', userId)
+            //console.log('user JAMS called with: ', userId)
 
             return new Promise((resolve, reject) => {
 
@@ -71,7 +71,7 @@ export default class DataService {
             })
             .catch((error) => {
                 var errorCode = error.code;
-                console.log('Usuario No Existe : ', errorCode);
+                //console.log('Usuario No Existe : ', errorCode);
                 
             });
         }
@@ -79,7 +79,7 @@ export default class DataService {
     // JAMS
         // Create
         static createJam(jamInfo) {  
-            console.log('creteJam launched en Dataservice')
+            //console.log('creteJam launched en Dataservice')
             return new Promise((resolve, reject) => {
                 firebase.firestore().collection('jams').add(jamInfo)
                 .then((doc) => {
@@ -88,7 +88,7 @@ export default class DataService {
                 .catch((error) => {
                     var errorCode = error.code;
                     var errorMessage = error.message;
-                    console.log('Jam could not be created: ', errorCode, errorMessage);
+                    //console.log('Jam could not be created: ', errorCode, errorMessage);
                 })
                 
             });
@@ -97,14 +97,14 @@ export default class DataService {
                 return new Promise((resolve, reject) => {
                     firebase.firestore().collection('jams').doc(jamId).collection(section).add(content)
                     .then((doc) => {
-                        console.log('section ', section, 'creada correctamente', doc.id)
+                        //console.log('section ', section, 'creada correctamente', doc.id)
                         resolve({id: doc.id});
                     })
 
                     .catch((error) => {
                         var errorCode = error.code;
                         var errorMessage = error.message;
-                        console.log('SECTION could not be created: ', errorCode, errorMessage);
+                        //console.log('SECTION could not be created: ', errorCode, errorMessage);
 
                     })
                     
@@ -112,28 +112,28 @@ export default class DataService {
                 
         };
         static startChat(chatId, jamInfo) {  
-            console.log('chatId y jamInfo = ', chatId, " / ", jamInfo)
+            //console.log('chatId y jamInfo = ', chatId, " / ", jamInfo)
             return new Promise((resolve, reject) => {
                 firebase.firestore().collection('jams').doc(chatId).set(jamInfo)
                 .then(
-                    console.log('chat succesfully added')
+                    //console.log('chat succesfully added')
                 )
                 .catch((error) => {
                     var errorCode = error.code;
                     var errorMessage = error.message;
-                    console.log('Jam could not be created: ', errorCode, errorMessage);
+                    //console.log('Jam could not be created: ', errorCode, errorMessage);
                 })
             });
         };
 
         // GET INFO
         static getJamToJoin(jamCode) {  
-                console.log('JamCode recibido en el join del Data =', jamCode);
+                //console.log('JamCode recibido en el join del Data =', jamCode);
                 return new Promise((resolve, reject) => {
 
                     firebase.firestore().collection('jams').where('jamCode', '==', jamCode).get()
                     // .then((result) => {
-                    //     console.log('el result del join = ', result);
+                    //     //console.log('el result del join = ', result);
                     //     resolve(result.data());
                     // })
                     .then(function(querySnapshot) {
@@ -150,7 +150,7 @@ export default class DataService {
 
                     .catch((error) => {
                         var errorCode = error.code;
-                        console.log('Jam NOT joined: ', errorCode);                
+                        //console.log('Jam NOT joined: ', errorCode);                
                     })
                     
                 });
@@ -158,7 +158,7 @@ export default class DataService {
         static getJamInfoByCode(jamCode) {  
 
                 return new Promise((resolve, reject) => {
-                    console.log('el ID con el que se pide la info de la jam = ', jamCode)
+                    //console.log('el ID con el que se pide la info de la jam = ', jamCode)
                     firebase.firestore().collection('jams').where('jamCode', '==', jamCode)
                     .get()
                     .then(function(querySnapshot) {
@@ -171,51 +171,51 @@ export default class DataService {
                     .catch((error) => {
                         var errorCode = error.code;
                         var errorMessage = error.message;
-                        console.log('Error al cargar la JamInfo: ', errorCode, errorMessage);
+                        //console.log('Error al cargar la JamInfo: ', errorCode, errorMessage);
                     })
                     
                 });
         };
         static getJamInfoById(jamId) {  
-                // console.log('jamID en DS =', jamId)
+                // //console.log('jamID en DS =', jamId)
                 return new Promise((resolve, reject) => {
-                    // console.log('jamInfoBIS  ID de la jam = ', jamId)
+                    // //console.log('jamInfoBIS  ID de la jam = ', jamId)
                     firebase.firestore().collection('jams').doc(jamId)
                     .get()
                     .then((result) => {
-                        // console.log('el result del Bis = ', result);
+                        // //console.log('el result del Bis = ', result);
                         resolve(result.data());
                     })
                     
                     .catch((error) => {
                         var errorCode = error.code;
                         var errorMessage = error.message;
-                        console.log('Error al cargar la JamInfo: ', errorCode, errorMessage);
+                        //console.log('Error al cargar la JamInfo: ', errorCode, errorMessage);
                     })
                     
                 });
         };
         static getJamSectionInfo(jamId, section) {  
             return new Promise((resolve, reject) => {
-                // console.log('jamInfoBIS  ID de la jam = ', jamId)
+                // //console.log('jamInfoBIS  ID de la jam = ', jamId)
                 firebase.firestore().collection('jams').doc(jamId).collection(section).orderBy("createdAt", "asc")
                 .get()
                 .then(function(querySnapshot) {
                     let result = [];
                     querySnapshot.forEach(function(doc) {
-                        // console.log(doc.data())
+                        // //console.log(doc.data())
                         const info = doc.data()
                         result.push(info)
                         // resolve({id: doc.id, data: doc.data()});
                      
                     });
-                    console.log(`${section} content = `,result)
+                    //console.log(`${section} content = `,result)
                     resolve(result)
                 })
                 .catch((error) => {
                     var errorCode = error.code;
                     var errorMessage = error.message;
-                    console.log('Error al cargar la info de ', section, errorMessage);
+                    //console.log('Error al cargar la info de ', section, errorMessage);
                 })
                 
             });
@@ -225,59 +225,58 @@ export default class DataService {
                 firebase.firestore().collection('jams').doc(jamId).collection('messages').orderBy('date', 'desc').limit(50)
                 .get()
                 .then((result) => {
-                    console.log('result = ', result);
+                    //console.log('result = ', result);
                     resolve(result.data());
                 })
                 .catch((error) => {
                     var errorCode = error.code;
                     var errorMessage = error.message;
-                    console.log('Error al cargar los mensajes: ', errorCode, errorMessage);
+                    //console.log('Error al cargar los mensajes: ', errorCode, errorMessage);
                 })
             });
         };
 
-
-        
         // ADMIN INFO
-        static addJamToUser(userID, jamToJoin){
-                return new Promise((resolve, reject) => {
-                    firebase.firestore().collection(`users`).doc(userID).collection('userJams').doc(jamToJoin.jamId).set(jamToJoin)
-                    .then((result) => {
-                        console.log("Jam succesfully added to user")
-                        resolve(result);
-                    })
-                    .catch((error) => {
-                        var errorCode = error.code;
-                        console.log('ERROR Jam NOT added to user: ', errorCode);                
-                    })
-                    
-                });
+        static addJamToUser(userId, jamToJoin){
+            return new Promise((resolve, reject) => {
+                firebase.firestore().collection(`users`)
+                .doc(userId)
+                .collection('userJams')
+                .add(jamToJoin)
+                .then((result) => {
+                    console.log("Jam succesfully added to user")
+                    resolve(result);
+                })
+                .catch((error) => {
+                    var errorCode = error.code;
+                    console.log('ERROR Jam NOT added to user: ', errorCode);                
+                })
+            });
         };
         static updateJamsArrayInUser(userID, jamsList){
-                return new Promise((resolve, reject) => {
-                    console.log('inputs en el dataservice ', userID, jamsList);
 
-                    firebase.firestore().collection(`users`).doc(userID).update({
-                        userJams : jamsList})
+            return new Promise((resolve, reject) => {
+                //console.log('inputs en el dataservice ', userID, jamsList);
 
-                    .then((result) => {
-                        console.log("Jam succesfully UPDATED")
-                        resolve(result);
-                    })
-                    .catch((error) => {
-                        var errorCode = error.code;
-                        console.log('ERROR Jam NOT added to user: ', errorCode);                
-                    })
-                    
-                });
+                firebase.firestore().collection(`users`).doc(userID).update({
+                    userJams : jamsList})
+
+                .then((result) => {
+                    //console.log("Jam succesfully UPDATED")
+                    resolve(result);
+                })
+                .catch((error) => {
+                    var errorCode = error.code;
+                    //console.log('ERROR Jam NOT added to user: ', errorCode);                
+                })
+                
+            });
         };
-        static updateJammersInJam(jamId, jammers){
+        static updateJammersInJam(jamId, newJammer){
                 return new Promise((resolve, reject) => {
-                    // console.log('inputs en el dataservice ', jamCode, jammers);
+                    // //console.log('inputs en el dataservice ', jamCode, jammers);
 
-                    firebase.firestore().collection(`jams`).doc(jamId).update({
-                        jammers : jammers})
-
+                    firebase.firestore().collection(`jams`).doc(jamId).add(newJammer)
                     .then((result) => {
                         console.log("Jammers succesfully UPDATED")
                         resolve(result);
@@ -291,18 +290,18 @@ export default class DataService {
         };
         static updateJamInfo(jamId, jamField, newInfo){
             return new Promise((resolve, reject) => {
-                // console.log('inputs en el dataservice ', jamCode, jammers);
+                // //console.log('inputs en el dataservice ', jamCode, jammers);
 
                 firebase.firestore().collection(`jams`).doc(jamId).update({
                     jamField : newInfo})
 
                 .then((result) => {
-                    console.log("jamInfo succesfully UPDATED")
+                    //console.log("jamInfo succesfully UPDATED")
                     resolve(result);
                 })
                 .catch((error) => {
                     var errorCode = error.code;
-                    console.log('ERROR jamInfo could NOT be updated: ', errorCode);                
+                    //console.log('ERROR jamInfo could NOT be updated: ', errorCode);                
                 })
                 
             });
@@ -312,17 +311,17 @@ export default class DataService {
     // MESSAGES
 
     static saveMessage(jamId, section, messageInfo){
-        console.log('save message launched with: ', jamId,' / ', section, ' / ',messageInfo)
+        //console.log('save message launched with: ', jamId,' / ', section, ' / ',messageInfo)
         return new Promise((resolve, reject) => {
             firebase.firestore().collection('jams').doc(jamId).collection(section).add(messageInfo)
             .then((result) => {
-                console.log("message succesfully sent !")
+                //console.log("message succesfully sent !")
                 resolve(result);
             })
 
             .catch((error) => {
                 var errorCode = error.code;
-                console.log('Message could not be sent: ', errorCode);                
+                //console.log('Message could not be sent: ', errorCode);                
             })
             
         });
@@ -331,13 +330,13 @@ export default class DataService {
         return new Promise((resolve, reject) => {
             firebase.firestore().collection('messages').add(messageInfo)
             .then((result) => {
-                console.log("message succesfully sent !")
+                //console.log("message succesfully sent !")
                 resolve(result);
             })
 
             .catch((error) => {
                 var errorCode = error.code;
-                console.log('Message could not be sent: ', errorCode);                
+                //console.log('Message could not be sent: ', errorCode);                
             })
             
         });
@@ -355,7 +354,7 @@ export default class DataService {
                 resolve(chts);  
             })
             .catch((error) => {
-               console.log('error: ', error);
+               //console.log('error: ', error);
             })
             
         });
@@ -395,7 +394,7 @@ export default class DataService {
             })
 
             .catch((error) => {
-               console.log('error: ', error);
+               //console.log('error: ', error);
             })
             
         });
@@ -415,21 +414,21 @@ export default class DataService {
             })
 
             .catch((error) => {
-               console.log('error: ', error);
+               //console.log('error: ', error);
             })
             
         });
     }
     // AÑADIR EL USER A JAMMERS
     static addUserToJammers = (jamId, userInfo) => {
-        console.log('userInfo = ', userInfo)
+        //console.log('userInfo = ', userInfo)
         const userId = userInfo.userId;
         return new Promise((resolve, reject) => {
             firebase.firestore().collection('jams').doc(jamId).collection('jammers').doc(userId).set(userInfo)
             .then((res) => {
-                console.log('user is now a jammer', res);
+                //console.log('user is now a jammer', res);
             }).catch((err) => {
-                console.log('user not added to jammers: ', err);
+                //console.log('user not added to jammers: ', err);
             })
         });
     }

@@ -13,7 +13,7 @@ const AccommodationInviteForm = () => {
         if (event) {
           event.preventDefault();
         }
-        console.log('submitted')
+        //console.log('submitted')
     }
 
     return (

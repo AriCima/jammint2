@@ -56,7 +56,7 @@ class DynamicApartmentForm extends React.Component {
         if (roomParameters.includes(e.target.className) ) {
         let accInfo = [...this.state.accInfo]
         accInfo[e.target.dataset.id][e.target.className] = e.target.value.toUpperCase()
-        this.setState({ accInfo }, () => console.log(this.state.accInfo))
+        this.setState({ accInfo }, () => //console.log(this.state.accInfo))
         } else {
         this.setState({ [e.target.name]: e.target.value.toUpperCase() })
         }

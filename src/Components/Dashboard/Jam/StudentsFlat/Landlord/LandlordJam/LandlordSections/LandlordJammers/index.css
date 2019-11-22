@@ -1,0 +1,27 @@
+.landlord-jam-jammers{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.landlord-jam-jammers-admin-info{
+    width: 85%;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.landlord-jam-jammers-admin-list{
+    min-width: 30%;
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: scroll;
+    border-left: 1px solid gray;
+    
+}

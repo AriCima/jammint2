@@ -37,7 +37,6 @@ const CreatePopup = (props) => {
   };
 
   const onCreateNewJam = (e) => {
-    console.log(' user en Create = ', user)
     e.preventDefault();
     
     const userId = user.uid;
@@ -79,7 +78,6 @@ const CreatePopup = (props) => {
   }
 
   const handleClose = () => {
-    console.log('cerrar popup')
     setOpen(false);
   }
 

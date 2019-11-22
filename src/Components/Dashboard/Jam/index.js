@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // COMPONENTS
-import JamAdmin from './JamAdmin';
-import JamNoAdmin from './JamNoAdmin';
+import LandlordJam from './StudentsFlat/Landlord/LandlordJam';
+import StudentJam from './StudentsFlat/Student/StudentJam';
 
 
 import './index.css';
@@ -11,13 +11,17 @@ import './index.css';
 const Jam = ({ jamId, jamInfo, auth } ) => {
 
   const isAdmin = jamInfo.adminId === auth.uid;
+  
+  console.log('auth.uid: ', auth.uid);
+  
+  console.log('jamInfo.adminId: ', jamInfo.adminId);
 
   return (
     <div className="jam-wrapper">
       { isAdmin ? 
-          <JamAdmin jamId={jamId}/>
+          <LandlordJam jamId={jamId}/>
         :
-          <JamNoAdmin jamId={jamId}/>
+          <StudentJam jamId={jamId}/>
       }
     </div>
    
@@ -26,7 +30,6 @@ const Jam = ({ jamId, jamInfo, auth } ) => {
 
 
 const mapStateToProps = state => {
-  console.log('state ene el jam = ', state)
   return { 
     jamInfo: state.jamInfo,
     auth: state.firebase.auth,
