@@ -81,7 +81,8 @@ const JoinPopup = (props) => {
         console.log(error);
       });
       const newJammer = {userId: userId}
-      DataService.updateJammersInJam(jamId, newJammer).then(result =>{
+      DataService.updateJammersInJam(jamId, newJammer)
+      .then(result =>{
         console.log('result del updatJammers', result)
       }).catch(function (error) {   
         console.log(error);

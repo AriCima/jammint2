@@ -276,7 +276,7 @@ export default class DataService {
                 return new Promise((resolve, reject) => {
                     // //console.log('inputs en el dataservice ', jamCode, jammers);
 
-                    firebase.firestore().collection(`jams`).doc(jamId).add(newJammer)
+                    firebase.firestore().collection(`jams`).doc(jamId).collection('jammers').add(newJammer)
                     .then((result) => {
                         console.log("Jammers succesfully UPDATED")
                         resolve(result);
