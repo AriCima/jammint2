@@ -23,38 +23,39 @@ import './index.css';
 const JoinPopup = (props) => {
 
   const { user } = props;
-  console.log('user: ', user);
   const userId = user.uid;
  
   const [open, setOpen] = useState(false);
   const [jamCode, setjamCode] = useState('');
-
-
-  // const [jamId, setJamId] = useState('');
-  // const [jamToJoin, setJamToJoin] = useState({});
-  // const [newJammer, setNewJammer] = useState({});
-  
-
-  // useEffect((jamId) => {
-  //   if (jamId !== '' && jamId !== undefined){
-  //     DataService.addJamToUser(userId, jamToJoin);
-  //     DataService.updateJammersInJam(jamId, newJammer);
-  //   }
-  // }, [jamId])
-
+  const [userJamIds, setUserJamIds] = useState([])
 
   const handleChange = jamCode => event => {
-    //console.log('guardar cambios')
     setjamCode(event.target.value);
   };
+
   const handleClickOpen = () => {
-    //console.log('abrir popup')
+    DataService.getUserJams(userId)
+    .then(result =>{
+      let jamIds = [];
+     
+      for (let i = 0; i<result.length; i++) {
+        console.log(result[i].jamId)
+        jamIds[i] = result[i].jamId;
+      }
+
+      setUserJamIds(userJamIds)
+      console.log('UserJamCodes = ', userJamIds)
+    
+    }).catch(function (error) {   
+      console.log(error);
+    })
     setOpen(true);
   };
+
   const handleClose = () => {
-    //console.log('cerrar popup')
     setOpen(false);
   };
+
   const onJoinJam = (e) => {
     e.preventDefault();
 
@@ -74,12 +75,19 @@ const JoinPopup = (props) => {
         jamDescription : jam.jamDesc,
         joinedAt : joinedAt
       }
+
+      if( userJamIds.includes(jamId) ) {
+        alert('YA ESTÁS EN EL JAM')
+        return
+      }
+
       DataService.addJamToUser(userId, jamToJoin)
       .then(result =>{
         console.log('result del addJamToUser', result)
       }).catch(function (error) {   
         console.log(error);
       });
+
       const newJammer = {userId: userId}
       DataService.updateJammersInJam(jamId, newJammer)
       .then(result =>{

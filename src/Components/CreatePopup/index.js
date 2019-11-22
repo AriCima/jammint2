@@ -50,8 +50,7 @@ const CreatePopup = (props) => {
       jamDesc: jamDesc,
       jamType: 'standard',
       createdAt: createdAt,
-      updatedAt: '',
-      needToAskQuestion: true
+      updatedAt: ''
     };
 
     let sections = Calculations.getJamSections(newJam.jamType)
@@ -63,7 +62,7 @@ const CreatePopup = (props) => {
 
       const userInfo = {userId: userId, name: 'Ari', email: user.email}
       DataService.addJamToUser(userId, newJam);
-      DataService.addUserToJammers(jamId, userInfo )
+      DataService.updateJammersInJam(jamId, userInfo);
       
       for (let i=0; i<sections.length; i++){
         const content = {date: new Date(), content: `Hello ${sections[i]}`}

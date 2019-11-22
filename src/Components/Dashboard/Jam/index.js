@@ -12,10 +12,6 @@ const Jam = ({ jamId, jamInfo, auth } ) => {
 
   const isAdmin = jamInfo.adminId === auth.uid;
   
-  console.log('auth.uid: ', auth.uid);
-  
-  console.log('jamInfo.adminId: ', jamInfo.adminId);
-
   return (
     <div className="jam-wrapper">
       { isAdmin ? 

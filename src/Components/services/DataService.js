@@ -236,7 +236,6 @@ export default class DataService {
             });
         };
 
-        // ADMIN INFO
         static addJamToUser(userId, jamToJoin){
             return new Promise((resolve, reject) => {
                 firebase.firestore().collection(`users`)
@@ -253,28 +252,8 @@ export default class DataService {
                 })
             });
         };
-        static updateJamsArrayInUser(userID, jamsList){
-
-            return new Promise((resolve, reject) => {
-                //console.log('inputs en el dataservice ', userID, jamsList);
-
-                firebase.firestore().collection(`users`).doc(userID).update({
-                    userJams : jamsList})
-
-                .then((result) => {
-                    //console.log("Jam succesfully UPDATED")
-                    resolve(result);
-                })
-                .catch((error) => {
-                    var errorCode = error.code;
-                    //console.log('ERROR Jam NOT added to user: ', errorCode);                
-                })
-                
-            });
-        };
         static updateJammersInJam(jamId, newJammer){
                 return new Promise((resolve, reject) => {
-                    // //console.log('inputs en el dataservice ', jamCode, jammers);
 
                     firebase.firestore().collection(`jams`).doc(jamId).collection('jammers').add(newJammer)
                     .then((result) => {
@@ -419,19 +398,7 @@ export default class DataService {
             
         });
     }
-    // AÑADIR EL USER A JAMMERS
-    static addUserToJammers = (jamId, userInfo) => {
-        //console.log('userInfo = ', userInfo)
-        const userId = userInfo.userId;
-        return new Promise((resolve, reject) => {
-            firebase.firestore().collection('jams').doc(jamId).collection('jammers').doc(userId).set(userInfo)
-            .then((res) => {
-                //console.log('user is now a jammer', res);
-            }).catch((err) => {
-                //console.log('user not added to jammers: ', err);
-            })
-        });
-    }
+
     
 }
 
