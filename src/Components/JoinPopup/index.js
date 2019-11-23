@@ -27,7 +27,7 @@ const JoinPopup = (props) => {
  
   const [open, setOpen] = useState(false);
   const [jamCode, setjamCode] = useState('');
-  const [userJamIds, setUserJamIds] = useState([])
+  const [jamIds, setJamIds] = useState([])
 
   const handleChange = jamCode => event => {
     setjamCode(event.target.value);
@@ -36,16 +36,15 @@ const JoinPopup = (props) => {
   const handleClickOpen = () => {
     DataService.getUserJams(userId)
     .then(result =>{
-      let jamIds = [];
      
       for (let i = 0; i<result.length; i++) {
         console.log(result[i].jamId)
         jamIds[i] = result[i].jamId;
       }
+      
+      setJamIds(jamIds)
+      console.log('jamIds = ', jamIds)
 
-      setUserJamIds(userJamIds)
-      console.log('UserJamCodes = ', userJamIds)
-    
     }).catch(function (error) {   
       console.log(error);
     })
@@ -76,8 +75,8 @@ const JoinPopup = (props) => {
         joinedAt : joinedAt
       }
 
-      if( userJamIds.includes(jamId) ) {
-        alert('YA ESTÁS EN EL JAM')
+      if( jamIds.includes(jamId) ) {
+        alert(`You are already jammer in ${jamToJoin.jamName}`)
         return
       }
 
