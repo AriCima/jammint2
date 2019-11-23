@@ -15,9 +15,9 @@ const StudentJam = ({ jamId, jamInfo, jamActiveSection } ) => {
 
   return (
 
-    <Fragment>
+    <div className="student-jam-wrapper">
 
-      <div className="jam-header">
+      <div className="student-jam-header">
         {jamInfo === [] ? <Fragment></Fragment>: 
           <StudentNavBar 
             jamName={jamInfo.jamName}
@@ -27,7 +27,7 @@ const StudentJam = ({ jamId, jamInfo, jamActiveSection } ) => {
         }
       </div>
 
-      <div className="jam-container">
+      <div className="student-jam-container">
   
         { jamActiveSection === 'board' && 
           <StudentBoard 
@@ -58,7 +58,7 @@ const StudentJam = ({ jamId, jamInfo, jamActiveSection } ) => {
         } 
       </div>
       
-    </Fragment>
+    </div>
 
   );
 };

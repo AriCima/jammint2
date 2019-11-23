@@ -1,3 +1,6 @@
+.jam-wrapper{
+  height: 100%;
+}
 
 .jam-container{
   width: 100%;
@@ -10,32 +13,3 @@
   padding: 0;
   background-color: rgba(170, 170, 170, 0.06);
 }
-
-/* .jam {
-  margin-top: 0px;
-  width: 100%;
-  height: 800px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center; 
-}
-
-.jam .jam-header{
-  width: 100%;
-  height: 60px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  background-color: red;
-}
-
-.jam-header-block{
-  width: 15%;
-  height: 40px;
-  margin-left: 20px;
-  display: flex;
-  align-items: center; 
-}
- */
-

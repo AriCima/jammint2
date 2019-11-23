@@ -44,44 +44,50 @@ const LandlordBoard = (props) => {
     }
 
     const onSubmit = (message) => {
+        message.preventDefault();
+
         const date = new Date()
+
         const messageInfo = {
-            messageText: message,
+            messageText: messageText,
             userId: userId,
             jamId: jamId,
             section: 'board',
             createdAt: date,
             messageType: 'post'
         }
+
         DataService.saveMessage(jamId, 'board', messageInfo)
     }
     
     return (
-        <div className="landlord-jam-board">
+        <div className="landlord-board-wrapper">
 
-            <div className="landlord-jam-board-board">
+            <div className="landlord-board">
                 <p>Landlord Board</p>
                 {renderLandlordBoardContent()}
             </div>
             
-            <form className="landlord-jam-board-input-form" onSubmit={onSubmit}>
+            <form className="landlord-board-input-form" onSubmit={onSubmit}>
                
-                <CustomInputField
-                    width='500px'
-                    label='input custom test'
-                    placeholder='input info'
-                    type="text"
-                    value={messageText}
-                    id='text' 
-                    onChange = {handleInputChange}
-                />
-            
+               <div className="landlord-board-input-field">
+                    <CustomInputField
+                        width='500px'
+                        label='input custom test'
+                        placeholder='input info'
+                        type="text"
+                        value={messageText}
+                        id='text' 
+                        changeControl = {handleInputChange}
+                    />
+                </div>
 
             <div className="landlord-board-button-area">
                 <ButtonSubmit/>
             </div>
 
             </form>
+        
         </div>
 
     );   

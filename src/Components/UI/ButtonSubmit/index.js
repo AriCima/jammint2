@@ -7,7 +7,7 @@ const ButtonPlain = () => {
 
   return (
     <button 
-      id="plain"
+      id="submit"
       type='submit'
       >
       submit

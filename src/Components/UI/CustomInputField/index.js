@@ -37,5 +37,5 @@ export default CustomInputField;
     placeholder='input info'
     type="text"
     id='inputTest'
-    onChange = {handleChange}
+    changeControl = {handleChange}
 /> */}

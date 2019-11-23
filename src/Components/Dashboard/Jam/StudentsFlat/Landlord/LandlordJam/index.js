@@ -13,9 +13,9 @@ import './index.css';
 const LandlordJam = ({ jamId, jamInfo, jamActiveSection } ) => {
 
   return (
-    <div className="jam-wrapper">
+    <div className="landlord-jam-wrapper">
 
-      <div className="jam-header">
+      <div className="landlord-jam-header">
         {jamInfo === [] ? <Fragment></Fragment>: 
           <LandlordNavBar 
             jamName={jamInfo.jamName}
@@ -25,7 +25,7 @@ const LandlordJam = ({ jamId, jamInfo, jamActiveSection } ) => {
         }
       </div>
 
-      <div className="jam-container">
+      <div className="landlord-jam-container">
   
         { jamActiveSection === 'board' && 
           <LandlordBoard 

@@ -1,4 +1,4 @@
-.jamNoAdminNavBar{
+.jam-student-NavBar{
     position: fixed;
     top: 0;
     left: 30%;
@@ -9,23 +9,23 @@
     align-items: center;
 }
 
-.jamNoAdminNavBar-left{
+.jam-student-NavBar-left{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.jamNoAdminNavBar-left:hover {
+.jam-student-NavBar-left:hover {
     color: rgb(61,158,247);
 }
 
-.jamNoAdminNavBar-right{
+.jam-student-NavBar-right{
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
 
-.jamNoAdminNavBar-item{
+.jam-student-NavBar-item{
     /* width: 15%; */
     height: 100%;
     background-color:rgba(255, 255, 0, 0.2);
@@ -35,14 +35,14 @@
     align-items: center;
 }
 
-.jamNoAdminNavBar-chat{
+.jam-student-NavBar-chat{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 
-.jamNoAdminNavBar-item:hover, .jamNavBar-chat-item:hover{
+.jam-student-NavBar-item:hover, .jamNavBar-chat-item:hover{
     background-color: rgb(165, 161, 157)
 
 }

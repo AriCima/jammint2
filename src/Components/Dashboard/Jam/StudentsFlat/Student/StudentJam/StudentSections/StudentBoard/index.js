@@ -26,7 +26,7 @@ const StudentBoard = (props) => {
         })
     }, [jamId])
 
-    const renderBoardContent = () => {
+    const renderStudentBoardContent = () => {
         //console.log('sectionInfo = ', sectionInfo)
         return sectionInfo.map((bC, i) => {
             //console.log('bC = ', bC)
@@ -60,30 +60,30 @@ const StudentBoard = (props) => {
     }
     
     return (
-        <div className="student-jam-board">
+        <div className="student-board-wrapper">
 
-            <div className="student-jam-board-board">
-                {renderBoardContent()}
+            <div className="student-board">
+                {renderStudentBoardContent()}
             </div>
             
-            <form className="student-jam-board-input-form" onSubmit={onSubmit}>
-                <p>Student Board</p>
-                <CustomInputField
-                    width='500px'
-                    label='input custom test'
-                    placeholder='input info'
-                    type="text"
-                    value={messageText}
-                    id='text' 
-                    onChange = {handleInputChange}
-                />
-            
+            {/* <form className="student-board-input-form" onSubmit={onSubmit}>
+                <div className="student-board-input-field">
+                    <CustomInputField
+                        width='500px'
+                        label='input custom test'
+                        placeholder='input info'
+                        type="text"
+                        value={messageText}
+                        id='text' 
+                        onChange = {handleInputChange}
+                    />
+                </div>
 
             <div className="student-board-button-area">
                 <ButtonSubmit/>
             </div>
 
-            </form>
+            </form> */}
         </div>
 
     );   
