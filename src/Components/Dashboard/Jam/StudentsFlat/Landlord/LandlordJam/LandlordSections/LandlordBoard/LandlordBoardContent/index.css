@@ -9,51 +9,33 @@
     border-radius: 5px;
     background-color: rgba(27,82,178,0.08);
     box-shadow: 0px 10px 1px #ddd, 0 10px 20px #ccc;
+    border-radius: 5px;
 }
 
-.board-message{
+.board-message-info{
     width: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     margin: 10px 5px;
-
+    border-bottom: 1px solid rgba(197, 208, 212, 0.2);;
 }
 
-.board-message p{
+.board-message-info p{
+    margin: 0 0 0 20px;
+    padding: 0;
     font-size: 14px;
-    color: black;
+    font-style: italic; 
 }
-
-.board-post{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 10px 5px;
-}
-
-.board-post-image{
-    padding: 5px;
-    background-color: pink
-}
-
-.board-post-image h4{
-    color: white;
+.board-message-info h6{
+    margin: 0 0 0 15px;
+    padding: 0;
+    font-size: 14px;
     font-weight: 700;
 }
-
-.board-post-text{
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 10px 5px;
-    background-color: rgba(27,82,178,0.08);
-
-}
-.board-post-text p{
+.board-message p{
+    margin: 0 10px 20px 20px;
     font-size: 14px;
     color: black;
 }
+

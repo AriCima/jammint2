@@ -54,7 +54,7 @@ const LandlordBoard = (props) => {
             jamId: jamId,
             section: 'board',
             createdAt: date,
-            messageType: 'post'
+            messageType: 'message'
         }
 
         DataService.saveMessage(jamId, 'board', messageInfo)
