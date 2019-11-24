@@ -9,6 +9,6 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   background-color: rgba(170, 170, 170, 0.06);
 }

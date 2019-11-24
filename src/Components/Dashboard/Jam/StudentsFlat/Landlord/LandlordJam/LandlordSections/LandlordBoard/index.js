@@ -16,7 +16,7 @@ const LandlordBoard = (props) => {
     const userId = props.auth.uid;
     const jamAdmin = jamInfo.adminId;
     const [sectionInfo, setSectionInfo] = useState([]);
-    const [messageText, setMessageText ] = useState([]);
+    const [messageText, setMessageText ] = useState('');
    
     useEffect(() => {
         DataService.getJamSectionInfo(jamId, 'board')
@@ -47,6 +47,11 @@ const LandlordBoard = (props) => {
         message.preventDefault();
 
         const date = new Date()
+        console.log(messageText)
+        if (messageText === '') {
+            alert('the message is empty')
+            return
+        }
 
         const messageInfo = {
             messageText: messageText,
