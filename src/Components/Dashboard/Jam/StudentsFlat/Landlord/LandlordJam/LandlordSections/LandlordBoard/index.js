@@ -64,7 +64,6 @@ const LandlordBoard = (props) => {
         <div className="landlord-board-wrapper">
 
             <div className="landlord-board">
-                <p>Landlord Board</p>
                 {renderLandlordBoardContent()}
             </div>
             
