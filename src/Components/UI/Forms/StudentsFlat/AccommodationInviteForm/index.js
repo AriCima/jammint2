@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 
 const AccommodationInviteForm = () => {
 
-    const [inputValue, setInputValue] = useState({});
+    const [jammerInfo, setJammerInfo] = useState({});
     
     const handleInputChange = (event) => {
         event.persist();
-        setInputValue(inputValue => ({...inputValue, [event.target.id]: event.target.value}));
+        setJammerInfo(jammerInfo => ({...jammerInfo, [event.target.id]: event.target.value}));
     }
 
     const handleSubmit = (event) => {
@@ -34,36 +34,54 @@ const AccommodationInviteForm = () => {
                     <div className="input-block">
                         <input 
                             type="text" 
-                            id={`name`} 
+                            id={`jammerName`} 
                             placeholder={`Name`}
-                            value={inputValue.name}
+                            value={jammerInfo.jammerName}
                             onChange={handleInputChange} 
                         />
                     </div>
                     <div className="input-block">
                         <input 
                             type="text" 
-                            id={`surname`} 
+                            id={`jammerSurname`} 
                             placeholder={`Surname`}
-                            value={inputValue.surname}
+                            value={jammerInfo.jammerSurname}
                             onChange={handleInputChange} 
                         />
                     </div>
                     <div className="input-block">
                         <input 
                             type="text" 
-                            id={`email`} 
+                            id={`jammerEmail`} 
                             placeholder={`email`}
-                            value={inputValue.email}
+                            value={jammerInfo.jammerEmail}
+                            onChange={handleInputChange} 
+                        />
+                    </div>
+                    <div className="input-block">
+                            <input 
+                                type="text" 
+                                id={`jammerHomeTel`} 
+                                placeholder={`email`}
+                                value={jammerInfo.jammerHomeTel}
+                                onChange={handleInputChange} 
+                            />
+                        </div>
+                    <div className="input-block">
+                        <input 
+                            type="text" 
+                            id={`jammerMogbile`} 
+                            placeholder={`email`}
+                            value={jammerInfo.jammerMobile}
                             onChange={handleInputChange} 
                         />
                     </div>
                     <div className="input-block">
                         <input 
                             type="text" 
-                            id={`passportNr`} 
+                            id={`jammerPassportNr`} 
                             placeholder={`Passport Nr`}
-                            value={inputValue.passportNr}
+                            value={jammerInfo.jammerPassportNr}
                             onChange={handleInputChange} 
                         />
                     </div>
@@ -74,57 +92,75 @@ const AccommodationInviteForm = () => {
                     <div className="input-block">
                         <input 
                             type="text" 
-                            id={`houseNr`} 
+                            id={`jammerHouseNr`} 
                             placeholder={`House Nr`}
-                            value={inputValue.houserNr}
+                            value={jammerInfo.jammerHouserNr}
                             onChange={handleInputChange} 
                         />
                     </div>
                     <div className="input-block">
                         <input 
                             type="text" 
-                            id={`floor`} 
+                            id={`jammerFloor`} 
                             placeholder={`Floor`}
-                            value={inputValue.floor}
+                            value={jammerInfo.jammerFloor}
                             onChange={handleInputChange} 
                         />
                     </div>
                     <div className="input-block">
                         <input 
                             type="text" 
-                            id={`door`} 
+                            id={`jammerDoor`} 
                             placeholder={`Door`}
-                            value={inputValue.door}
+                            value={jammerInfo.jammerDoor}
                             onChange={handleInputChange} 
                         />
                     </div>
                     <div className="input-block">
                         <input 
                             type="text" 
-                            id={`zipCode`} 
+                            id={`jammerZipCode`} 
                             placeholder={`Zip-code`}
-                            value={inputValue.zipCode}
+                            value={jammerInfo.jammerZipCode}
                             onChange={handleInputChange} 
                         />
                     </div>
                     <div className="input-block">
                         <input 
                             type="text" 
-                            id={`city`} 
+                            id={`jammerCity`} 
                             placeholder={`City`}
-                            value={inputValue.city}
+                            value={jammerInfo.jammerCity}
                             onChange={handleInputChange} 
                         />
                     </div>
                     <div className="input-block">
-                            <input 
-                                type="text" 
-                                id={`country`} 
-                                placeholder={`Country`}
-                                value={inputValue.country}
-                                onChange={handleInputChange} 
-                            />
-                        </div>
+                        <input 
+                            type="text" 
+                            id={`jammerCountry`} 
+                            placeholder={`Country`}
+                            value={jammerInfo.jammerCountry}
+                            onChange={handleInputChange} 
+                        />
+                    </div>
+                    <div className="input-block">
+                        <input 
+                            type="text" 
+                            id={`jammerStudy`} 
+                            placeholder={`Study`}
+                            value={jammerInfo.jammerStudy}
+                            onChange={handleInputChange} 
+                        />
+                    </div>
+                    <div className="input-block">
+                        <input 
+                            type="text" 
+                            id={`jammerSchool`} 
+                            placeholder={`School`}
+                            value={jammerInfo.jammerSchool}
+                            onChange={handleInputChange} 
+                        />
+                    </div>
 
                 </div>
 
@@ -135,7 +171,7 @@ const AccommodationInviteForm = () => {
                             type="date" 
                             id={`checkIn`} 
                             placeholder={`Check-In Date`}
-                            value={inputValue.checkIn}
+                            value={jammerInfo.checkIn}
                             onChange={handleInputChange} 
                         />
                     </div>
@@ -144,7 +180,7 @@ const AccommodationInviteForm = () => {
                             type="date" 
                             id={`checkOut`} 
                             placeholder={`Check-Out Date`}
-                            value={inputValue.checkOut}
+                            value={jammerInfo.checkOut}
                             onChange={handleInputChange} 
                         />
                     </div>
@@ -153,7 +189,7 @@ const AccommodationInviteForm = () => {
                             type="text" 
                             id={`roomNr`} 
                             placeholder={`Room Nr`}
-                            value={inputValue.roomNr}
+                            value={jammerInfo.roomNr}
                             onChange={handleInputChange} 
                         />
                     </div>

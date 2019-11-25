@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import DataService from '../../services/DataService';
+import DataService from '../../../../services/DataService';
 // import CountrySelect from '../../UI/CountrySelection';
-import CustomInputField from '../../UI/CustomInputField';
-import CustomSelectInputField from '../CustomSelectInputField';
-import ButtonPlain from '../../UI/ButtonPlain';
+import CustomInputField from '../../../CustomInputField';
+import CustomSelectInputField from '../../../CustomSelectInputField';
+import ButtonPlain from '../../../ButtonPlain';
 import { connect } from 'react-redux';
 
 // CSS

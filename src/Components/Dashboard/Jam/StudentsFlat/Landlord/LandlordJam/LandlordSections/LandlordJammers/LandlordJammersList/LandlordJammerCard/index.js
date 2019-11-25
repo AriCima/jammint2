@@ -1,58 +1,27 @@
 import React from "react";
 
-import DataService from "../../../../../../../../../services/DataService";
+// import DataService from "../../../../../../../../../services/DataService";
 
 import { connect } from 'react-redux';
 
-
 // CSS
 import "./index.css";
-import { selectJam } from "../../../../../../../../../../redux/actions/jamActive";
-import {setJamSection} from "../../../../../../../../../../redux/actions/jamSection"
+import {setJammerId} from "../../../../../../../../../../redux/actions/jamersActions"
 
 const LandlordJammerCard = (props) => {
+  console.log('props jammer Card: ', props);
 
-  const { user, userJams, jI, jamInfo } = props
-  //console.log('props en el jammerCard = ', props)
-  const userId = user.uid;
+  const { jI  } = props
+  
   const jammerId = jI.userId;
-  const jammerName= jI.userName;
 
-  const onContactJammer = () => {
-
-    const chatId = userId + jammerId;
-    const reverseChatId = jammerId + userId;
-
-    if(userJams.includes(chatId)){
-      return selectJam(chatId)
-    };
-    
-    if(userJams.includes(reverseChatId)){
-      return selectJam(reverseChatId)
-    }
-
-    const chatInfo = { 
-      createdAt: new Date(), 
-      adminId: userId, 
-      user2Id: jammerId,
-      user2Name: jammerName,
-      jamId: chatId, 
-      jamType: 'chat', 
-      messages: [] 
-    }
-
-    DataService.startChat(chatId, chatInfo)
-    .then(res => {
-      //console.log('res del startChat = ', res)
-    })
-    DataService.addJamToUser(userId, chatInfo);
-    DataService.addJamToUser(jammerId, chatInfo);
-    props.setJamSection('chat')
+  const onShowJammerInfo = (jammerId) => {
+    props.setJammerId(jammerId)
   }
 
   return (
 
-    <button className="landlord-jammer-card-container" onClick={()=> onContactJammer(user.id, jammerId)}>
+    <button className="landlord-jammer-card-container" onClick={()=> onShowJammerInfo(jammerId)}>
 
       <div className="landlord-jammer-img">
         <img src={"/"} alt="img" />
@@ -62,12 +31,12 @@ const LandlordJammerCard = (props) => {
 
         <div className="landlord-student-info-upperLine">
           <div className="landlord-student-info-upperLine-block">
-            <p>{jI.userName} - {jI.country}</p>
+            <p>{jI.jammerName} - {jI.jammerCountry}</p>
           </div>
         </div>
         <div className="landlord-student-info-lowerLine">
           <div className="landlord-student-info-lowerLine-block">
-            <p>{jI.study}, {jI.school}</p>
+            <p>{jI.jammerStudy}, {jI.jammerSchool}</p>
           </div>
         </div>
       </div>
@@ -79,8 +48,9 @@ const LandlordJammerCard = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // nombre de la función que paso como prop: (arg) => dispatch(nombre del action creator(argumento))
-    setJamSection: () => dispatch(setJamSection('chat'))
+      // nombre de la función que paso como prop: (arg) => 
+      // dispatch(nombre del action creator(argumento))
+      setJammerId: (jammerId) => dispatch(setJammerId(jammerId)),
   }
 }
 

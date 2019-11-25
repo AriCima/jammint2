@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // COMPONENTS
 import { connect } from 'react-redux';
@@ -11,36 +11,34 @@ import LandlordJammerInfo from './LandlordJammerInfo';
 import './index.css';
 
 const LandlordJammers = (props) => {
+    console.log('props en Jammers: ', props);
 
-    const {jamId, jamInfo} = props
-    const userId = props.user.uid;
-    const [jamAdmin, setJamAdmin] = useState('');
-    const [jammers, setJammers] = useState([]);
-    const [jammersMessages, setJammersMessages] = useState([])
+    const { jamId } = props
+    const [jammers, setJammers] = useState([])
+
     
     useEffect(() => {
+        console.log('USE EFFECT LAUNCHED')
         DataService.getJammers(jamId)
         .then((res) => {
+            console.log('res = ', res)
             setJammers(res)
         })
-        DataService.getJammersMessages(jamId)
-        .then((res) => {
-            setJammersMessages(res)
-        })
+       
     }, [jamId])
 
-    return (
 
+    return (
         <div className="landlord-jam-jammers">
 
-            <div className="landlord-jam-jammers-admin-info">
-                {jammers && <LandlordJammerInfo />}
+            <div className="landlord-jam-jammers-info">
+                {jammers !==[] ? <LandlordJammerInfo jamId={jamId} /> : <div>LOADING !</div>}
             </div>
            
-            <div className="landlord-jam-jammers-admin-list">
-                {jammers ? 
+            <div className="landlord-jam-jammers-list">
+                {jammers !==[] ? 
                     <LandlordJammersList
-                        jamInfo={jamInfo} 
+                        // jamInfo={jamInfo} 
                         jammers={jammers} 
                     /> 
                     : 
@@ -54,10 +52,13 @@ const LandlordJammers = (props) => {
     );   
 };
 
+
+
 const mapStateToProps = (state) => {
     return {
         user: state.firebase.auth,
-        jamId: state.jamId
+        jamId: state.jamId,
+        jamActiveSection: state.jamSection,
     }
 }
 export default connect(mapStateToProps)(LandlordJammers);

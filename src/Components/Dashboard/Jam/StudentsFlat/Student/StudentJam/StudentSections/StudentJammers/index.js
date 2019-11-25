@@ -14,6 +14,7 @@ import CustomInputField from '../../../../../../../UI/CustomInputField'
 import './index.css';
 
 const StudentJammers = (props) => {
+    
 
     const {jamId, jamInfo} = props
     const userId = props.user.uid;
@@ -26,7 +27,7 @@ const StudentJammers = (props) => {
     useEffect(() => {
         DataService.getJammers(jamId)
         .then((res) => {
-            //console.log('jammers = ', res)
+            console.log('jammers = ', res)
             setJammers(res)
         })
         DataService.getJammersMessages(jamId)

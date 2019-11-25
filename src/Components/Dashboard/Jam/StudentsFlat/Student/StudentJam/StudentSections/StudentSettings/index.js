@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 // COMPONENTS
 import { connect } from 'react-redux';
 import { setJamSection } from '../../../../../../../../redux/actions/jamSection';
-import NewAccommodationForm from '../../../../../../../UI/NewAccommodationForm';
+import NewAccommodationForm from '../../../../../../../UI/Forms/StudentsFlat/NewAccommodationForm';
 
 
 // CSS

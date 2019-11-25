@@ -9,6 +9,7 @@ import LandlordJammerCard from './LandlordJammerCard';
 import './index.css';
 
 const LandlordJammersList = (props) => {
+    console.log('props jammers List: ', props);
 
     const { jammers, jamInfo } = props;
 

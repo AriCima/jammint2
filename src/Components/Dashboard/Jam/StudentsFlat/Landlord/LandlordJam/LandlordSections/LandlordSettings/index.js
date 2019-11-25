@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 // COMPONENTS
 import { connect } from 'react-redux';
 import { setJamSection } from '../../../../../../../../redux/actions/jamSection';
-import NewAccommodationForm from '../../../../../../../UI/NewAccommodationForm';
+// import NewAccommodationForm from '../../../../../UI/Forms/StudentsFlat/NewAccommodationForm';
 
 // CSS
 import './index.css';
@@ -22,7 +22,7 @@ const LandlordSettings = (props) => {
         <div className="landlord-jam-settings">
             SE TI NG S
             <h1>{jamId}</h1>
-            <NewAccommodationForm />
+            {/* <NewAccommodationForm /> */}
         </div>
 
     );   

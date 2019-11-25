@@ -3,6 +3,7 @@ import userJamsReducer from './userJamsReducer';
 import jamSectionReducer from './jamSectionReducer';
 import jamIdReducer from './jamIdReducer';
 import jamInfoReducer from './jamInfoReducer';
+import jammerIdReducer from './jammerIdReducer';
 
 // sincronizador del firestore data y nuestro state
 // en el background
@@ -17,21 +18,19 @@ const rootReducer = combineReducers({
     jamId: jamIdReducer,
     jamInfo: jamInfoReducer,
     jamSection: jamSectionReducer,
+    jammerId: jammerIdReducer,
     // el firestoreReducer automáticamente sincronizará la propiedad "firestore"
     // del Obj "state" con nuestra data en la base de datos
     // tomará esa data y ésta data dependerá de qué componente 
     // está activo en cada momento, y qué data necesita dicho
     // componente y será sincronizada por éste reducer
-    
     firestore: firestoreReducer,
-    
     // sincronizador del auth state de firebase con 
     // nuestro redux state en app y lo almacenará en el 
     // "firebase" state que defino a continuación
     // éste state lo conectaré en el NavBar ya que allí es donde
     // mostraré una u otra info dependiendo de si el user está
     // logueado o no
-    
     firebase: firebaseReducer
 })
 
