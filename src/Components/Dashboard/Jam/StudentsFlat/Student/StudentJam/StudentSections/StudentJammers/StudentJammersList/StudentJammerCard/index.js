@@ -10,7 +10,7 @@ import "./index.css";
 import { selectJam } from "../../../../../../../../../../redux/actions/jamActive";
 import {setJamSection} from "../../../../../../../../../../redux/actions/jamSection"
 
-const StudentJammerCard = (props) => {
+const LandlordJammerCard = (props) => {
 
   const { user, userJams, jI, jamInfo } = props
   //console.log('props en el jammerCard = ', props)
@@ -58,12 +58,18 @@ const StudentJammerCard = (props) => {
         <img src={"/"} alt="img" />
       </div>
 
-      <div className="student-jammer-name">
-        <p>{jI.name}</p>
-      </div>
+      <div className="student-jammer-info">
 
-      <div className="student-jammer-country">
-        <p>{jI.country}</p>
+        <div className="student-jammer-info-upperLine">
+          <div className="student-jammer-info-upperLine-block">
+            <p>{jI.userName} - {jI.country}</p>
+          </div>
+        </div>
+        <div className="student-jammer-info-lowerLine">
+          <div className="student-jammer-info-lowerLine-block">
+            <p>{jI.study}, {jI.school}</p>
+          </div>
+        </div>
       </div>
 
     </button>
@@ -86,4 +92,4 @@ const mapStateToProps = (state) => {
       userJams: state.userJams,
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(StudentJammerCard);
+export default connect(mapStateToProps, mapDispatchToProps)(LandlordJammerCard);

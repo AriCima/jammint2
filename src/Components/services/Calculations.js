@@ -1,5 +1,6 @@
 import React from 'react';
 
+import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChalkboard, faComments, faUsers, faUserLock, faCog} from '@fortawesome/free-solid-svg-icons'
 
@@ -13,6 +14,19 @@ export default class Calculations {
        
         return currentMonth
     };
+
+    static getMessageDate(timestamp){
+        const currentDate = moment(new Date()).format('DD/MM/YYYY');
+        const messageDate =  moment(timestamp.toDate()).format('DD/MM/YYYY');
+        let messageTime = '';
+        
+        if( messageDate === currentDate ){
+            messageTime = 'today at ' + moment(timestamp.toDate()).format('h:mm');
+        } else {
+            messageTime = moment(timestamp.toDate()).format('DD/MM');
+        }
+        return messageTime
+    }
     static generateCode(){
      // GENERATE BOOKING CODE
      const letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']

@@ -1,4 +1,6 @@
 import React from 'react';
+import Calculations from '../../../../../../../../services/Calculations';
+
 import moment from 'moment';
 
 // CSS
@@ -8,17 +10,7 @@ const BoardContent = (props) => {
 
     const { boardContent } = props;
 
-    const currentDate = moment(new Date()).format('DD/MM/YYYY');
-    const messageDate =  moment(boardContent.createdAt.toDate()).format('DD/MM/YYYY');
-    
-    let messageTime = '';
-    if( messageDate === currentDate ){
-        messageTime = 'today at ' + moment(boardContent.createdAt.toDate()).format('h:mm');
-    } else {
-        messageTime = moment(boardContent.createdAt.toDate()).format('DD/MM');
-    }
-    
-    console.log('messageTime', messageTime);
+    const messageTime = Calculations.getMessageDate(boardContent.createdAt)
 
     return (
 
