@@ -24,12 +24,12 @@ const StudentInfoForm = (props) => {
         <div className="student-info-wrapper">
             <form onSubmit={handleSubmit}>
                 
-                <div className="form-body">
+                <div className="student-form-body">
                     <div className="student-form-section">
                         <div className="student-form-row">
                             <CustomInputFieldWithLabel
                                 type="text"
-                                width='600px'
+                                width='200px'
                                 label='Nombre'
                                 placeholder='name'
                                 id='jammerName'
@@ -39,7 +39,7 @@ const StudentInfoForm = (props) => {
 
                             <CustomInputFieldWithLabel
                                 type="text"
-                                width='600px'
+                                width='200px'
                                 label='Surname'
                                 placeholder='surname'
                                 id='jammerSurname'
@@ -81,7 +81,7 @@ const StudentInfoForm = (props) => {
                             
                             <CustomInputFieldWithLabel
                                 type="text"
-                                width='120px'
+                                width='150px'
                                 label='Passport Nr:'
                                 placeholder='passport Nr'
                                 id='jammerPassportNr'
@@ -92,7 +92,7 @@ const StudentInfoForm = (props) => {
                         </div>
                     </div>
                     <div className="student-form-section">
-                        <div className="student-form-row">
+                        <div className="student-form-dates-row">
                             <CustomInputFieldWithLabel
                                 type="date"
                                 width='120px'
@@ -112,6 +112,9 @@ const StudentInfoForm = (props) => {
                                 value={jammerInfo.checkOut}
                                 changeControl = {handleInputChange}
                             />
+                           
+                        </div>
+                        <div className="student-form-row">
 
                             <CustomInputFieldWithLabel
                                 type="text"
@@ -122,8 +125,6 @@ const StudentInfoForm = (props) => {
                                 value={jammerInfo.roomNr}
                                 changeControl = {handleInputChange}
                             />
-                        </div>
-                        <div className="studnet-form-row">
                             <CustomInputFieldWithLabel
                                 type="text"
                                 width='120px'
@@ -149,13 +150,14 @@ const StudentInfoForm = (props) => {
                         <div className="student-form-row">
                             <CustomInputFieldWithLabel
                                 type="text"
-                                width='120px'
+                                width='400px'
                                 label='Street:'
                                 placeholder='street'
                                 id='jammerStreet'
                                 value={jammerInfo.jammerStreet}
                                 changeControl = {handleInputChange}
                             />
+
                             <CustomInputFieldWithLabel
                                 type="text"
                                 width='120px'
