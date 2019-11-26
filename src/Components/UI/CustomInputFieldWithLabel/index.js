@@ -3,7 +3,7 @@ import React from "react";
 // CSS
 import "./index.css";
 
-const CustomInputField = ({ size, placeholder, type, id, value, changeControl, width}) => {
+const CustomInputFieldWithLabel = ({ size, label, placeholder, type, id, value, changeControl, width}) => {
 
     const handleChange = (event) => {
         //console.log('handle change launched');
@@ -12,9 +12,12 @@ const CustomInputField = ({ size, placeholder, type, id, value, changeControl, w
 
     return (
      
-        <div className="input-unit" style={{width: width}}>
+        <div className="input-unit-withLabel" style={{width: width}}>
+            <div className="input-unit-label">
+                <p>{label}</p>
+            </div>
             <input
-                className="input-field"
+                className="input-field-withLabel"
                 type={type}
                 id={id}
                 size={size}
@@ -26,15 +29,17 @@ const CustomInputField = ({ size, placeholder, type, id, value, changeControl, w
     );
 }
 
-export default CustomInputField;
+export default CustomInputFieldWithLabel;
 
 
 // IN FATHER PASTE THIS BLOCK
 
-{/* <CustomInputField
+{/* <CustomInputFieldWithLabel
     width='120px'
+    label='input custom test'
     placeholder='input info'
     type="text"
     id='inputTest'
+    value='value'
     changeControl = {parent function name}
 /> */}

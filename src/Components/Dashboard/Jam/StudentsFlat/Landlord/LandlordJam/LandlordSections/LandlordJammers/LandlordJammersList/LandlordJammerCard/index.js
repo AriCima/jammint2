@@ -6,10 +6,9 @@ import { connect } from 'react-redux';
 
 // CSS
 import "./index.css";
-import {setJammerId} from "../../../../../../../../../../redux/actions/jamersActions"
+import {setJammerId} from "../../../../../../../../../../redux/actions/jammersActions"
 
 const LandlordJammerCard = (props) => {
-  console.log('props jammer Card: ', props);
 
   const { jI  } = props
   

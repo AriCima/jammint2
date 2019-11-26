@@ -15,7 +15,7 @@ const ButtonContactJammer = (onContactJammer, jammerName) => {
       type='submit'
       onClick={handleClick}
       >
-      <p>contact {jammerName}</p>
+      <p>contact</p>
     </button>
   );
   

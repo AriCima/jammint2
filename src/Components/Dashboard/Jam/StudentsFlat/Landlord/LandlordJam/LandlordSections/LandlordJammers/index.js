@@ -11,28 +11,42 @@ import LandlordJammerInfo from './LandlordJammerInfo';
 import './index.css';
 
 const LandlordJammers = (props) => {
-    console.log('props en Jammers: ', props);
 
-    const { jamId } = props
+    const { jamId, jammerId } = props
     const [jammers, setJammers] = useState([])
+    const [jammerInfo, setJammerInfo] = useState({})
 
     
     useEffect(() => {
-        console.log('USE EFFECT LAUNCHED')
         DataService.getJammers(jamId)
         .then((res) => {
-            console.log('res = ', res)
+            console.log('res jamId= ', res)
             setJammers(res)
         })
-       
     }, [jamId])
+
+    useEffect(() => {
+        if( jammerId !== ''){
+            DataService.getJammerInfo(jamId, jammerId)
+            .then((res) => {
+                console.log('res info = ', res)
+                setJammerInfo(res)
+            })
+        }
+    }, [jamId, jammerId])
 
 
     return (
         <div className="landlord-jam-jammers">
 
             <div className="landlord-jam-jammers-info">
-                {jammers !==[] ? <LandlordJammerInfo jamId={jamId} /> : <div>LOADING !</div>}
+                {jamId && 
+                    <LandlordJammerInfo 
+                        jammerId={jammerId} 
+                        jammerInfo={jammerInfo}
+                        jamId={jamId} 
+                    />
+                }
             </div>
            
             <div className="landlord-jam-jammers-list">
@@ -59,6 +73,7 @@ const mapStateToProps = (state) => {
         user: state.firebase.auth,
         jamId: state.jamId,
         jamActiveSection: state.jamSection,
+        jammerId: state.jammerId
     }
 }
 export default connect(mapStateToProps)(LandlordJammers);

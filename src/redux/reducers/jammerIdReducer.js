@@ -1,4 +1,4 @@
-const jammerIdReducer = (state = [''], action) => {    
+const jammerIdReducer = (state = '', action) => {    
     switch(action.type) {
         case 'JAMMER_ID':
             return action.payload;

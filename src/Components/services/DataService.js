@@ -378,6 +378,31 @@ export default class DataService {
             
         });
     }
+    static getJammerInfo(jamId, jammerId){
+        console.log('GET JAMMER INFO LAUNCHED IN SERVICE')
+        return new Promise((resolve, reject) => {
+
+            firebase.firestore()
+            .collection('jams')
+            .doc(jamId)
+            .collection('jammers')
+            .doc(jammerId).get() 
+            .then(function(querySnapshot) {
+                let result = [];
+                querySnapshot.forEach(function(doc) {
+                    const info = doc.data()
+                    result.push(info)
+                 
+                });
+                console.log('result  =', result)
+                resolve(result)
+            })
+            .catch((error) => {
+               //console.log('error: ', error);
+            })
+            
+        });
+    }
     static getJammersMessages(jamId){
         return new Promise((resolve, reject) => {
             firebase.firestore().collection('jams').doc(jamId).collection('jammersMessages').orderBy('createdAt', 'asc')

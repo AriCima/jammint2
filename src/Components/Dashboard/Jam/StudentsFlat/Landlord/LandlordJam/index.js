@@ -11,8 +11,6 @@ import LandlordSettings from './LandlordSections/LandlordSettings';
 import './index.css';
 
 const LandlordJam = ({ jamId, jamInfo, jamActiveSection } ) => {
-  console.log('jamId: ', jamId);
-  console.log('jamInfo: ', jamInfo);
 
   return (
     <div className="landlord-jam-wrapper">
@@ -42,7 +40,7 @@ const LandlordJam = ({ jamId, jamInfo, jamActiveSection } ) => {
           />
         }
 
-        { (jamActiveSection === 'jammers' || jamActiveSection === 'flatmates') && 
+        { (jamActiveSection === 'jammers') && 
           <LandlordJammers 
             jamId={jamId}
             jamInfo={jamInfo}
