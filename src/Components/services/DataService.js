@@ -235,7 +235,6 @@ export default class DataService {
                 })
             });
         };
-
         static addJamToUser(userId, jamToJoin){
             return new Promise((resolve, reject) => {
                 firebase.firestore().collection(`users`)
@@ -377,7 +376,7 @@ export default class DataService {
             })
             
         });
-    }
+    };
     static getJammerInfo(jamId, jammerId){
         console.log('GET JAMMER INFO LAUNCHED IN SERVICE', jamId, jammerId)
         return new Promise((resolve, reject) => {
@@ -398,27 +397,9 @@ export default class DataService {
             }).catch(function(error) {
                 console.log("Error getting document:", error);
             });
-            
-            
-            
-            // .get() 
-            // .then(function(querySnapshot) {
-                
-            //     let result = [];
-            //     querySnapshot.forEach(function(doc) {
-            //         const info = doc.data()
-            //         result.push(info)
-            //         console.log('info = ', info)
-            //     });
-            //     console.log('result  =', result)
-            //     resolve(result)
-            // })
-            // .catch((error) => {
-            //    //console.log('error: ', error);
-            // })
-            
+ 
         });
-    }
+    };
     static getJammersMessages(jamId){
         return new Promise((resolve, reject) => {
             firebase.firestore().collection('jams').doc(jamId).collection('jammersMessages').orderBy('createdAt', 'asc')
@@ -438,8 +419,6 @@ export default class DataService {
             })
             
         });
-    }
-
-    
+    };
 }
 

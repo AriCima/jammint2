@@ -32,6 +32,19 @@
     justify-content: center;
     margin-bottom: 30px;
 }
+.student-section-title{
+    width: 100%;
+}
+
+.student-section-title p{
+    margin-left: 20px;
+    margin-right: 20px;
+    line-height: 35px;
+    border-bottom: 1px solid rgb(134, 134, 134);
+    font-weight: 700;
+    text-transform: uppercase;
+    color: rgb(134, 134, 134);
+}
 
 .student-form-row{
     width: 100%;
@@ -39,15 +52,16 @@
     align-items: flex-start;
     justify-content: flex-start;
     flex-wrap: wrap;
-    margin: 10px 0;
+    padding: 10px 20px;
 }
+
 .student-form-dates-row{
     width: 100%;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
     flex-wrap: wrap;
-    margin: 10px 0;
+    padding: 10px 20px;
 }
 .button-area{
     width: 100%;

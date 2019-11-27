@@ -32,6 +32,9 @@ const StudentInfoForm = (props) => {
                 
                 <div className="student-form-body">
                     <div className="student-form-section">
+                            <div className="student-section-title">
+                                <p>Personal Info</p>
+                            </div>
                         <div className="student-form-row">
                             <CustomInputFieldWithLabel
                                 type="text"
@@ -98,6 +101,9 @@ const StudentInfoForm = (props) => {
                         </div>
                     </div>
                     <div className="student-form-section">
+                            <div className="student-section-title">
+                                <p>Booking Info</p>
+                            </div>
                         <div className="student-form-dates-row">
                             <CustomInputFieldWithLabel
                                 type="date"
@@ -153,6 +159,9 @@ const StudentInfoForm = (props) => {
                         </div>
                     </div>
                     <div className="student-form-section">
+                        <div className="student-section-title">
+                            <p>Contract Info</p>
+                        </div>
                         <div className="student-form-row">
                             <CustomInputFieldWithLabel
                                 type="text"
@@ -194,7 +203,7 @@ const StudentInfoForm = (props) => {
                                 changeControl = {handleInputChange}
                             />
                         </div>
-                        <div className="studnet-form-row">
+                        <div className="student-form-row">
                             <CustomInputFieldWithLabel
                                 type="text"
                                 width='120px'
