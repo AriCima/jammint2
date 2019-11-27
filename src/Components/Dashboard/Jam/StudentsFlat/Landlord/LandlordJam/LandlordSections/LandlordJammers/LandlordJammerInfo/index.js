@@ -12,8 +12,19 @@ import './index.css';
 
 const LandlordJammerInfo = (props) => {
 
-  const { auth, jammerId, userJams, jammerInfo } = props;
+  const { auth, jamId, jammerId, userJams } = props;
   const userId = auth.uid;
+
+  const [jammerInfo, setJammerInfo ] = useState({})
+
+  useEffect(() => {
+    jammerId && DataService.getJammerInfo(jamId, jammerId)
+    .then(result => {
+      console.log('result =', result)
+      setJammerInfo(result)
+    })
+    
+  }, [jamId, jammerId])
 
 
   const contactJammer = () => {

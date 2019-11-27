@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import CustomInputFieldWithLabel from '../../../CustomInputFieldWithLabel';
 
@@ -6,8 +6,13 @@ import CustomInputFieldWithLabel from '../../../CustomInputFieldWithLabel';
 import './index.css';
 const StudentInfoForm = (props) => {
 
-    const [jammerInfo, setJammerInfo] = useState(props.jammerInfo);
-    
+    const [jammerInfo, setJammerInfo] = useState({});
+
+    useEffect(() => {
+       setJammerInfo(props.jammerInfo)
+    }, [props.jammerInfo])
+
+
     const handleInputChange = (event) => {
         event.persist();
         setJammerInfo(jammerInfo => ({...jammerInfo, [event.target.id]: event.target.value}));
@@ -17,8 +22,9 @@ const StudentInfoForm = (props) => {
         if (event) {
           event.preventDefault();
         }
-
     }
+
+
     console.log('jammerInfo = ', jammerInfo);
     return (
         <div className="student-info-wrapper">

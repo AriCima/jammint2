@@ -11,7 +11,6 @@ import DataService from '../services/DataService';
 // COMPONENTS
 import JamsList from '../Dashboard/JamsList';
 import Jam from '../Dashboard/Jam';
-import JamAdmin from '../Dashboard/Jam';
 // CSS
 import './index.css'; 
 
@@ -35,6 +34,7 @@ const Dashboard = ({ auth, userJams, getUserJams, getJamInfo, jamId, jamInfo }) 
     const userId  = auth.uid;
     const adminId  = jamInfo.adminId;
     const isAdmin = userId && adminId;
+    
     return (
         <div className="dashboard">
             <aside className="jams-list">

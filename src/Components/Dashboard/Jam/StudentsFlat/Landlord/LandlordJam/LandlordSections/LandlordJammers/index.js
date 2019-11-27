@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 // COMPONENTS
 import { connect } from 'react-redux';
+import { getJammerInfo } from '../../../../../../../../redux/actions/jammersActions'
 import DataService from '../../../../../../../services/DataService';
 import LandlordJammersList from './LandlordJammersList';
 import LandlordJammerInfo from './LandlordJammerInfo';
@@ -13,6 +14,7 @@ import './index.css';
 const LandlordJammers = (props) => {
 
     const { jamId, jammerId } = props
+    console.log('jammerId en Jammers: ', jammerId);
     const [jammers, setJammers] = useState([])
     const [jammerInfo, setJammerInfo] = useState({})
 
@@ -25,15 +27,16 @@ const LandlordJammers = (props) => {
         })
     }, [jamId])
 
-    useEffect(() => {
-        if( jammerId !== ''){
-            DataService.getJammerInfo(jamId, jammerId)
-            .then((res) => {
-                console.log('res info = ', res)
-                setJammerInfo(res)
-            })
-        }
-    }, [jamId, jammerId])
+    // useEffect(() => {
+    //     if( jammerId !== ''){  
+    //         getJammerInfo(jamId, jammerId)
+    //         // DataService.getJammerInfo(jamId, jammerId)
+    //         // .then((res) => {
+    //         //     console.log('res info = ', res)
+    //         //     setJammerInfo(res)
+    //         // })
+    //     }
+    // }, [jamId, jammerId])
 
 
     return (
@@ -66,6 +69,14 @@ const LandlordJammers = (props) => {
     );   
 };
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        // nombre de la función que paso como prop: (arg) => 
+        // dispatch(nombre del action creator(argumento))
+
+        getJammerInfo: (jamId, jammerId) => dispatch(getJammerInfo(jamId, jammerId))
+    }
+}
 
 
 const mapStateToProps = (state) => {
@@ -76,4 +87,4 @@ const mapStateToProps = (state) => {
         jammerId: state.jammerId
     }
 }
-export default connect(mapStateToProps)(LandlordJammers);
+export default connect(mapStateToProps, mapDispatchToProps)(LandlordJammers);

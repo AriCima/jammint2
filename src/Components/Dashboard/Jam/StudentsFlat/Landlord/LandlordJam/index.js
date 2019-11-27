@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 
 // COMPONENTS
@@ -9,8 +9,9 @@ import LandlordMyJam from './LandlordSections/LandlordMyJam';
 import LandlordSettings from './LandlordSections/LandlordSettings';
 
 import './index.css';
+import DataService from '../../../../../services/DataService';
 
-const LandlordJam = ({ jamId, jamInfo, jamActiveSection } ) => {
+const LandlordJam = ({ jamId, jamInfo, jammerId, jamActiveSection } ) => {
 
   return (
     <div className="landlord-jam-wrapper">
@@ -44,6 +45,7 @@ const LandlordJam = ({ jamId, jamInfo, jamActiveSection } ) => {
           <LandlordJammers 
             jamId={jamId}
             jamInfo={jamInfo}
+            jammerId={jammerId}
           />
         }
 
@@ -66,7 +68,8 @@ const mapStateToProps = state => {
   return { 
     jamInfo: state.jamInfo,
     auth: state.firebase.auth,
-    jamActiveSection: state.jamSection
+    jamActiveSection: state.jamSection,
+    jammerId: state.jammerId
   }
 };
 

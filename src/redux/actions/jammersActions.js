@@ -1,21 +1,17 @@
 
 export const getJammerInfo = (jamId, jammerId) => {
-  
-    if(!jammerId){
-        return 
-    } else { 
+    console.log('entró con', jamId, ' / ', jammerId)
         return (dispatch, getState, { getFirebase, getFirestore }) => {
             
             const firestore = getFirestore();
-
+            console.log('promise', jamId, ' / ', jammerId)
             return new Promise((resolve, reject) => {
-
-                getFirestore().collection('jams').doc(jamId)
+                firestore.collection('jams').doc(jamId)
                 .collection('jammers')
                 .doc(jammerId)
                 .get()
                 .then(result => {
-                    console.log(result)
+                    console.log('result = ', result)
                     const jammerInfo = result;
                     console.log.og(jammerInfo)
                     resolve(jammerInfo);
@@ -30,11 +26,11 @@ export const getJammerInfo = (jamId, jammerId) => {
             })
 
         }
-    }
+    
 }
 
 export const setJammerId = (jammerId) => {
-    console.log('SET JAMMER ID LAUNCHED')
+    console.log('SET JAMMER ID LAUNCHED', jammerId)
     return  {
         type: "JAMMER_ID", 
         payload: jammerId

@@ -379,27 +379,43 @@ export default class DataService {
         });
     }
     static getJammerInfo(jamId, jammerId){
-        console.log('GET JAMMER INFO LAUNCHED IN SERVICE')
+        console.log('GET JAMMER INFO LAUNCHED IN SERVICE', jamId, jammerId)
         return new Promise((resolve, reject) => {
 
             firebase.firestore()
             .collection('jams')
             .doc(jamId)
             .collection('jammers')
-            .doc(jammerId).get() 
-            .then(function(querySnapshot) {
-                let result = [];
-                querySnapshot.forEach(function(doc) {
-                    const info = doc.data()
-                    result.push(info)
-                 
-                });
-                console.log('result  =', result)
-                resolve(result)
-            })
-            .catch((error) => {
-               //console.log('error: ', error);
-            })
+            .doc(jammerId).get()
+            .then(function(doc) {
+                if (doc.exists) {
+                    console.log("Document data:", doc.data());
+                    resolve(doc.data())
+                } else {
+                    // doc.data() will be undefined in this case
+                    console.log("No such document!");
+                }
+            }).catch(function(error) {
+                console.log("Error getting document:", error);
+            });
+            
+            
+            
+            // .get() 
+            // .then(function(querySnapshot) {
+                
+            //     let result = [];
+            //     querySnapshot.forEach(function(doc) {
+            //         const info = doc.data()
+            //         result.push(info)
+            //         console.log('info = ', info)
+            //     });
+            //     console.log('result  =', result)
+            //     resolve(result)
+            // })
+            // .catch((error) => {
+            //    //console.log('error: ', error);
+            // })
             
         });
     }
