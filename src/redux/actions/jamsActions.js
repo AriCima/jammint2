@@ -2,7 +2,7 @@
 export const getUserJams = (userId) => {
   
     if(!userId){
-        return 
+        return console.log('no user id', userId);
     } else { 
         return (dispatch, getState, { getFirebase, getFirestore }) => {
             

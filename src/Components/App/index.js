@@ -28,8 +28,8 @@ function App() {
         <div className="app-body">
           <Switch>
             <Route exact path="/" component={Dashboard} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Register} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={Register} />
           </Switch>
         </div>
       </div>

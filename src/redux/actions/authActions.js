@@ -42,6 +42,7 @@ export const loginAction = (credentials) => {
                     return userJams
                 });
                 // //console.log('doc received', userJams);
+                console.log('userJams: ', userJams);
                 dispatch({type: 'LOGIN_SUCCESS', userJams})
             })
             .catch(function(error) {

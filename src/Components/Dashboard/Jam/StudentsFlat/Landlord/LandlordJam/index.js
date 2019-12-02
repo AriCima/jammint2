@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 // COMPONENTS
 import LandlordNavBar from '../LandlordNavBar';
 import LandlordBoard from './LandlordSections/LandlordBoard';
-import LandlordJammers from './LandlordSections/LandlordJammers';
+// import LandlordJammers from './LandlordSections/LandlordJammers';
+import LandlordRooms from './LandlordSections/LandlordRooms';
 import LandlordMyJam from './LandlordSections/LandlordMyJam';
 import LandlordSettings from './LandlordSections/LandlordSettings';
 
@@ -41,8 +42,15 @@ const LandlordJam = ({ jamId, jamInfo, jammerId, jamActiveSection } ) => {
           />
         }
 
-        { (jamActiveSection === 'jammers') && 
+        {/* { (jamActiveSection === 'jammers') && 
           <LandlordJammers 
+            jamId={jamId}
+            jamInfo={jamInfo}
+            jammerId={jammerId}
+          />
+        } */}
+        { (jamActiveSection === 'jammers') && 
+          <LandlordRooms 
             jamId={jamId}
             jamInfo={jamInfo}
             jammerId={jammerId}

@@ -21,9 +21,9 @@ const Dashboard = ({ auth, userJams, getUserJams, getJamInfo, jamId, jamInfo }) 
     useEffect(() => {
         const userId = auth.uid;
         //getUserJams(userId);
-       DataService.getUserJams(userId).then(result=>{
-        setJamsList(result);
-       });
+        DataService.getUserJams(userId)
+         .then(result=>{setJamsList(result);})
+         .catch(err => console.log(err));
 
     },[auth.uid, getUserJams, userJams]);
 
@@ -73,6 +73,7 @@ const mapStateToProps = state => {
         jamId: state.jamId,
         jamInfo: state.jamInfo,
         auth: state.firebase.auth,
+        userJams: state.userJams
     }
 };
 
