@@ -1,4 +1,5 @@
-const roomIdReducer = (state = '', action) => {    
+const roomIdReducer = (state = '', action) => {  
+    console.log('action en el reducer = ', action)  
     switch(action.type) {
         case 'ROOM_ID':
             return action.payload;

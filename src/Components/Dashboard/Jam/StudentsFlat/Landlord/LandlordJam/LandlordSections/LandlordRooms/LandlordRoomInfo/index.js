@@ -15,16 +15,16 @@ const LandlordRoomInfo = (props) => {
 
   const [roomInfo, setRoomInfo ] = useState({})
 
-  useEffect(() => {
-    if (roomId !== '' && roomId !== 'newRoom'){
+//   useEffect(() => {
+//     if (roomId !== '' && roomId !== 'newRoom'){
 
-        DataService.getRoomInfo(jamId, roomId)
-        .then(result => {
-          console.log('result =', result)
-          setRoomInfo(result)
-        })
-    } 
-  }, [jamId, roomId])
+//         DataService.getRoomInfo(jamId, roomId)
+//         .then(result => {
+//           console.log('result =', result)
+//           setRoomInfo(result)
+//         })
+//     } 
+//   }, [jamId, roomId])
 
 
 //   const contactroom = () => {

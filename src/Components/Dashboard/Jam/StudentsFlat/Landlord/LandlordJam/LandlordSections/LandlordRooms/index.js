@@ -10,7 +10,7 @@ import LandlordRoomInfo from './LandlordRoomInfo';
 
 // CSS
 import './index.css';
-import { setRoomId } from '../../../../../../../../redux/actions/roomsActions';
+// import { setRoomId } from '../../../../../../../../redux/actions/roomsActions';
 
 const LandlordRooms = (props) => {
 
@@ -19,22 +19,22 @@ const LandlordRooms = (props) => {
     const [roomInfo, setRoomInfo] = useState({});
 
     useEffect(() => {
-        console.log('el use del rooms launched ', jamId)
+        console.log('el getRooms launched ', jamId)
         DataService.getJamRooms(jamId)
         .then((res) => {
-            console.log('el res rooms = ', res)
+            // console.log('el res rooms = ', res)
             setRooms(res)
-            setRoomId(res.id)
-            console.log('roomId = ', roomId)
+            // setRoomId(res.id)
+            // console.log('roomId = ', roomId)
         })
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [jamId]);
     
 
     useEffect(() => {   
-        console.log('roomId = ', roomId, typeof roomId)     
+        // console.log('roomId = ', roomId, typeof roomId)     
         if (roomId !== ''){
-            console.log('entró en el if');
+            // console.log('entró en el if');
             DataService.getRoomInfo(jamId, roomId)
             .then((res) => {
                 setRoomInfo(res)
@@ -45,26 +45,6 @@ const LandlordRooms = (props) => {
         };
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [roomId])
-
-    // useEffect(() => {
-    //     if( jammerId !== ''){  
-    //         getJammerInfo(jamId, jammerId)
-    //         // DataService.getJammerInfo(jamId, jammerId)
-    //         // .then((res) => {
-    //         //     console.log('res info = ', res)
-    //         //     setJammerInfo(res)
-    //         // })
-    //     }
-    // }, [jamId, jammerId])
-    
-    // useEffect(() => {
-    //     DataService.getJammers(jamId)
-    //     .then((res) => {
-    //         console.log('res jamId= ', res)
-    //         setJammers(res)
-    //     })
-    // }, [jamId])
-
 
     return (
         <div className="landlord-rooms">

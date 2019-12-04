@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // import DataService from "../../../../../../../../../services/DataService";
 
@@ -11,11 +11,12 @@ import {setRoomId} from "../../../../../../../../../../redux/actions/roomsAction
 const LandlordRoomCard = (props) => {
 
   const { rI  } = props
+  console.log('rI = ', rI)
 
-  console.log(rI)
+  const roomId = rI.id;
 
-  const roomId = 12312
   const onShowRoomInfo = (roomId) => {
+    console.log('el roomId antes del set = ', roomId)
     props.setRoomId(roomId)
   }
 
