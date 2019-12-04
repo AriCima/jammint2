@@ -11,7 +11,6 @@ import './index.css';
 const LandlordRoomsList = (props) => {
 
     const { rooms } = props;
-    console.log('rooms received en el List : ', rooms);
 
     const renderRoomsList = () => {
         return rooms.map((rI, i) => {

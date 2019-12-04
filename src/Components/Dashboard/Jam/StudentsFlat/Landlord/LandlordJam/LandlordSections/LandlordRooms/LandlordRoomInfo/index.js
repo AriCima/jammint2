@@ -10,23 +10,17 @@ import './index.css';
 
 const LandlordRoomInfo = (props) => {
 
-  const { auth, jamId, roomId, userJams } = props;
-  const userId = auth.uid;
+  const { auth, jamId, roomId, roomInfo } = props;
+  console.log('roomInfo: ', roomInfo);
+//   const userId = auth.uid;
 
-  const [roomInfo, setRoomInfo ] = useState({})
+//   const [roomInfo, setRoomInfo] = useState(props.roomInfo)
 
 //   useEffect(() => {
-//     if (roomId !== '' && roomId !== 'newRoom'){
-
-//         DataService.getRoomInfo(jamId, roomId)
-//         .then(result => {
-//           console.log('result =', result)
-//           setRoomInfo(result)
-//         })
+//     if(roomInfo !== {}){
+//     setRoomInfo(roomInfo)
 //     } 
-//   }, [jamId, roomId])
-
-
+//   }, [roomInfo])
 //   const contactroom = () => {
 
 //       const chatId = userId + roomId;
@@ -61,6 +55,7 @@ const LandlordRoomInfo = (props) => {
 //       props.setJamSection('chat')
 //   }
 
+console.log('roomInfo en roomInfo = ', roomInfo)
   return(
     <div className="room-info-wrapper">
         { roomId === 'newRoom' ? 
@@ -76,16 +71,16 @@ const LandlordRoomInfo = (props) => {
                         <img src="/" alt="tenant-img"/>
                     </div>
                     <div className="current-tenant-name">
-                        <p>Ariel Cima</p>
+                        <p>{roomInfo.roomName}</p>
                     </div>
                 </div>
 
                 <div className="room-current-contract-info">
                     <div className="current-tenant-block">
-                        <p>Check-In:</p>
+                       {roomInfo.exterior ? <p>Exterior</p> : <p>Interior</p>}
                     </div>
                     <div className="current-tenant-block">
-                        <p>Check-Out:</p>
+                        <p>Sperficie: {roomInfo.sqm}</p>
                     </div>
                     <div className="current-tenant-block">
                         <p>Rent:</p>
@@ -108,7 +103,7 @@ const mapStateToProps = state => {
     return { 
       auth: state.firebase.auth,
       jamActiveSection: state.jamSection,
-      roomId: state.roomId
+      roomId: state.roomId,
     }
 };
   

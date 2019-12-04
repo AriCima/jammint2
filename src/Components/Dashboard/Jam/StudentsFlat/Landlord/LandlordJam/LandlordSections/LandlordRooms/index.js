@@ -19,7 +19,7 @@ const LandlordRooms = (props) => {
     const [roomInfo, setRoomInfo] = useState({});
 
     useEffect(() => {
-        console.log('el getRooms launched ', jamId)
+        // console.log('el getRooms launched ', jamId)
         DataService.getJamRooms(jamId)
         .then((res) => {
             // console.log('el res rooms = ', res)
@@ -32,25 +32,24 @@ const LandlordRooms = (props) => {
     
 
     useEffect(() => {   
-        // console.log('roomId = ', roomId, typeof roomId)     
         if (roomId !== ''){
-            // console.log('entró en el if');
             DataService.getRoomInfo(jamId, roomId)
             .then((res) => {
                 setRoomInfo(res)
             })
         } 
         return() => {
-            setRoomInfo(roomInfo);
+            setRoomInfo({});
         };
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [roomId])
 
+    console.log('roomInfo antes del return = ', roomInfo)
     return (
         <div className="landlord-rooms">
 
             <div className="landlord-room-info">
-                {roomId !== '' ?
+                {roomInfo !== {} ?
                     <LandlordRoomInfo
                         roomId={roomId} 
                         roomInfo={roomInfo}

@@ -25,11 +25,15 @@ const LandlordRoomCard = (props) => {
     <button className="landlord-room-card-container" onClick={()=> onShowRoomInfo(roomId)}>
 
       <div className="landlord-room-card-lin">
-        <p>{rI.roomName} Ariel Cima</p>
+        <p>{rI.roomName}</p>
       </div>
       
       <div className="landlord-room-card-line">
-        <p>In: 14-Sep-2019 Out: 30-Jun-2020</p> 
+        {rI.exterior ? <p>exterior</p> : <p>interior</p>}
+      </div>
+
+      <div className="landlord-room-card-line">
+        <p>Superficie: {rI.sqm}</p>
       </div>
 
 

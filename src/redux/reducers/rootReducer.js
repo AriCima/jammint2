@@ -21,6 +21,7 @@ const rootReducer = combineReducers({
     jamSection: jamSectionReducer,
     jammerId: jammerIdReducer,
     roomId: roomIdReducer,
+    roomInfo: roomIdReducer,
     // el firestoreReducer automáticamente sincronizará la propiedad "firestore"
     // del Obj "state" con nuestra data en la base de datos
     // tomará esa data y ésta data dependerá de qué componente 
