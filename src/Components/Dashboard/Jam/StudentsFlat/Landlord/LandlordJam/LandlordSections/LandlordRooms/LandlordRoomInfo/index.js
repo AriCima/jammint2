@@ -4,6 +4,7 @@ import DataService from '../../../../../../../../services/DataService';
 import NewRoomForm from '../../../../../../../../UI/Forms/NewRoomForm'
 import { connect } from 'react-redux';
 import { selectRoom } from "../../../../../../../../../redux/actions/jamActive";
+import ButtonPlain from '../../../../../../../../UI/ButtonPlain'
 
 // CSS
 import './index.css';
@@ -91,7 +92,13 @@ console.log('roomInfo en roomInfo = ', roomInfo)
                 </div>
 
             </div>
-            {/* <RoomInfo roomId={roomId}/> */}
+            <div className="room-new-booking-area">
+                <ButtonPlain 
+                    type='button'
+                    text='new booking'
+                />
+            </div>
+
         </>
         }
       
