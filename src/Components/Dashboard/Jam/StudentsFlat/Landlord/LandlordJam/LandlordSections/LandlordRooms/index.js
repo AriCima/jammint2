@@ -32,7 +32,7 @@ const LandlordRooms = (props) => {
     
 
     useEffect(() => {   
-        if (roomId !== ''){
+        if (roomId !== '' && roomId !== false){
             DataService.getRoomInfo(jamId, roomId)
             .then((res) => {
                 setRoomInfo(res)

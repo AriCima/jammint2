@@ -29,7 +29,9 @@ const LandlordRoomInfo = (props) => {
       console.log('roomId en el effect ', roomId, typeof roomId)
     if (roomId === 'newRoom'){
         setNewRoom(true)
-    } 
+    } else {
+        setNewRoom(false)
+    }
   }, [roomId])
 
   console.log('props en el roomInfo = ', props)

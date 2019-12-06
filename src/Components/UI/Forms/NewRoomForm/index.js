@@ -5,9 +5,11 @@ import CustomInputField from '../../CustomInputField';
 import CustomSelectInputField from '../../CustomSelectInputField';
 import ButtonPlain from '../../ButtonPlain';
 import { connect } from 'react-redux';
+import { setRoomId } from '../../../../redux/actions/roomsActions';
 
 // CSS
 import './index.css'; 
+
 
 const NewRoomForm = ( props ) => {
     const { jamId } = props;
@@ -18,16 +20,24 @@ const NewRoomForm = ( props ) => {
         setroomInfo(roomInfo => ({...roomInfo, [event.target.id]: event.target.value}));
     }
 
-    const handleSubmit = (event) => {
+    const submitNewRoom = (event) => {
         if (event) {
           event.preventDefault();
         }
         const jamField = 'accommodationInfo';
         DataService.updateJamInfo(jamId, jamField, roomInfo)
     }
+
+    const cancelAction = (event) => {
+        if (event) {
+            event.preventDefault();
+        }
+
+        props.setRoomId(false)
+    }
     
     return (
-        <form className="new-apartment-form" onSubmit={handleSubmit}>
+        <form className="new-apartment-form" onSubmit={submitNewRoom}>
             
             <div className="form-header">
                 <div className="form-header-line">
@@ -125,7 +135,13 @@ const NewRoomForm = ( props ) => {
                 <div className="button-area">
                     <ButtonPlain  
                         type="submit"
-                        buttonText='Submit'
+                        text='Submit'
+                        clickHandle={submitNewRoom}
+                    />
+                     <ButtonPlain  
+                        type="cancel"
+                        text='cancel'
+                        clickHandle={cancelAction}
                     />
                 </div>
 
@@ -134,10 +150,18 @@ const NewRoomForm = ( props ) => {
     )
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        // nombre de la función que paso como prop: (arg) => 
+        // dispatch(nombre del action creator(argumento))
+        setRoomId: (roomId) => dispatch(setRoomId(roomId)),
+    }
+  }
 const mapStateToProps = (state) => {
     return {
         user: state.firebase.auth,
-        jamId: state.jamId
+        jamId: state.jamId,
+        roomId: state.roomId
     }
 }
-export default connect(mapStateToProps, null)(NewRoomForm);
+export default connect(mapStateToProps, mapDispatchToProps)(NewRoomForm);
