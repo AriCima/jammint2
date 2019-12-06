@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
-const AccommodationInviteForm = () => {
+const NewBookingForm = (props) => {
 
+    const { roomName } = props;
     const [jammerInfo, setJammerInfo] = useState({});
     
     const handleInputChange = (event) => {
@@ -13,7 +14,7 @@ const AccommodationInviteForm = () => {
         if (event) {
           event.preventDefault();
         }
-        //console.log('submitted')
+        console.log('submitted')
     }
 
     return (
@@ -21,7 +22,7 @@ const AccommodationInviteForm = () => {
             
             <div className="form-header">
                 <div className="form-header-title">
-                    <p>Invite a new Jammer</p>
+                    <p>New Booking for room: {roomName}</p>
                 </div>
                 <div className="form-header-text">
                     <p>Please fill the following info and then send the invitation</p>
@@ -201,4 +202,4 @@ const AccommodationInviteForm = () => {
     )
 }
 
-export default AccommodationInviteForm
+export default NewBookingForm

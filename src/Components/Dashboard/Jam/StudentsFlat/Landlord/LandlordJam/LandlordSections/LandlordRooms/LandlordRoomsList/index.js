@@ -8,6 +8,10 @@ import ButtonPlain from '../../../../../../../../UI/ButtonPlain'
 // CSS
 import './index.css';
 
+//REDUX
+import { connect } from 'react-redux';
+import { setRoomId } from '../../../../../../../../../redux/actions/roomsActions';
+
 const LandlordRoomsList = (props) => {
 
     const { rooms } = props;
@@ -25,7 +29,8 @@ const LandlordRoomsList = (props) => {
     }
 
     const onNewRoom = () => {
-        console.log('new Room Created')
+        const roomId = 'newRoom'
+       props.setRoomId(roomId)
     }
 
     return (
@@ -36,6 +41,7 @@ const LandlordRoomsList = (props) => {
             <ButtonPlain 
                 onClick={onNewRoom}
                 text='new room'
+                clickHandle={onNewRoom}
             />
             </div>
         </>
@@ -43,4 +49,10 @@ const LandlordRoomsList = (props) => {
     );   
 };
 
-export default LandlordRoomsList;
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setRoomId: (roomId) => dispatch(setRoomId(roomId))
+    }
+};
+export default connect (null, mapDispatchToProps)(LandlordRoomsList);
