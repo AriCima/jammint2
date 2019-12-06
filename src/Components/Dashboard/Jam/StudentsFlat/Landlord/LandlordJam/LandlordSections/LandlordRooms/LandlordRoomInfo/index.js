@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 import DataService from '../../../../../../../../services/DataService';
-import NewRoomForm from '../../../../../../../../UI/Forms/NewRoomForm'
-import NewBookingForm from '../../../../../../../../UI/Forms/NewRoomForm'
+import NewRoomForm from '../../../../../../../../UI/Forms/StudentsFlat/NewRoomForm'
+import NewBookingForm from '../../../../../../../../UI/Forms/StudentsFlat/NewBookingForm'
 import { connect } from 'react-redux';
-import { selectRoom } from "../../../../../../../../../redux/actions/jamActive";
 import ButtonPlain from '../../../../../../../../UI/ButtonPlain'
 
 // CSS

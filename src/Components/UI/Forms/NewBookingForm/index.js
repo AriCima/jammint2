@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import DataService from '../../../../services/DataService';
+import DataService from '../../Components/services/DataService';
 // import CountrySelect from '../../UI/CountrySelection';
-import CustomInputField from '../../../CustomInputField';
-import CustomSelectInputField from '../../../CustomSelectInputField';
-import ButtonPlain from '../../../ButtonPlain';
+import CustomInputField from '../../Components/UI/CustomInputField';
+import CustomSelectInputField from '../../Components/UI/CustomSelectInputField';
+import ButtonPlain from '../../Components/UI/ButtonPlain';
 import { connect } from 'react-redux';
-import { setRoomId } from '../../../../../redux/actions/roomsActions';
+import { setRoomId } from '../../redux/actions/roomsActions';
 
 // CSS
 import './index.css'; 
