@@ -1,8 +1,8 @@
 import React from "react"
 import RoomInput from "./RoomInput"
 
-import CustomInputField from '../../CustomInputField';
-import CustomSelectInputField from '../../CustomSelectInputField';
+import CustomInputField from '../../Components/UI/CustomInputField';
+import CustomSelectInputField from '../../Components/UI/CustomSelectInputField';
 
 
 // REFERENCE

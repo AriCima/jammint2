@@ -208,6 +208,28 @@ export default class Calculations {
 
     };
 
-    
+    // - - - - - - - - BOOKINGS
+
+    static organizeBookings = (bookings) => {
+        const result = {
+            currentBooking: {}, 
+            dueBookings: [],
+            futureBookings: [],
+            nextBooking: {}
+        }
+        const currentDate = new Date()
+        bookings.forEach(e =>{
+
+            if ( currentDate > e.checkOut ) {
+                result.dueBookings.push(e)
+            } else if ( currentDate < e.checkIn) {
+                result.futureBookings.push(e);
+            } else if ( (e.checkIn >= currentDate) && (currentDate <= e.checkOut) ) {
+                result.currentBooking = e
+            }
+        })
+        result.nextBooking = result.futureBookings[0];
+        return result
+    }
 
 }

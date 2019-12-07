@@ -463,7 +463,11 @@ export default class DataService {
     };
     static getJammersMessages(jamId){
         return new Promise((resolve, reject) => {
-            firebase.firestore().collection('jams').doc(jamId).collection('jammersMessages').orderBy('createdAt', 'asc')
+            firebase.firestore()
+            .collection('jams')
+            .doc(jamId)
+            .collection('jammersMessages')
+            .orderBy('createdAt', 'asc')
             .get() 
             .then((result) => {
                 let messages=[];
@@ -526,6 +530,28 @@ export default class DataService {
             
         });
     }
+    static getRoomBookings(jamId, roomId){
+        return new Promise((resolve, reject) => {
+            firebase.firestore().collection('jams')
+            .doc(jamId)
+            .collection('rooms')
+            .doc(roomId)
+            .collection('bookings')
+            .orderBy('checkIn', 'asc')
+            .get() 
+            .then(result => {
+                // console.log('result = ', result)
+                const roomBookings = result;
+                console.log.og(roomBookings)
+                resolve(roomBookings);
+            })
+
+            .catch((error) => {
+               //console.log('error: ', error);
+            })
+            
+        });
+    };
 
 
 // ROOMS

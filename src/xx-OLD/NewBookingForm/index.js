@@ -1,36 +1,66 @@
-import React from "react";
-import CustomInputField from '../../../CustomInputField'
-const RoomInput = (props) => {
+import React, { useState } from 'react';
+import DataService from '../../Components/services/DataService';
+// import CountrySelect from '../../UI/CountrySelection';
+import CustomInputField from '../../Components/UI/CustomInputField';
+import CustomSelectInputField from '../../Components/UI/CustomSelectInputField';
+import ButtonPlain from '../../Components/UI/ButtonPlain';
+import { connect } from 'react-redux';
+import { setRoomId } from '../../redux/actions/roomsActions';
 
-  return (
-    props.cats.map((val, i)=> {
-      let catId = `cat-${i}`, ageId = `age-${i}`
-      
-      return (
-        <div key={i}>
-          
-          <input
-            type="text"
-            name={catId}
-            data-id={i}
-            id={catId}
-            value={props.rooms[i].name} 
-            className="name"
-          />
-            <div className="form-row">
+// CSS
+import './index.css'; 
+
+
+const NewBookingForm = ( props ) => {
+    const { jamId } = props;
+    const [roomInfo, setroomInfo] = useState({});
+    
+    const handleInputChange = (event) => {
+        event.persist();
+        setroomInfo(roomInfo => ({...roomInfo, [event.target.id]: event.target.value}));
+    }
+
+    const submitNewRoom = (event) => {
+        if (event) {
+          event.preventDefault();
+        }
+        const jamField = 'accommodationInfo';
+        DataService.updateJamInfo(jamId, jamField, roomInfo)
+    }
+
+    const cancelAction = (event) => {
+        if (event) {
+            event.preventDefault();
+        }
+
+        props.setRoomId(false)
+    }
+    
+    return (
+        <form className="new-apartment-form" onSubmit={submitNewRoom}>
+            
+            <div className="form-header">
+                <div className="form-header-line">
+                    <h3>New Room Form</h3>
+                </div>
+                <div className="form-header-line">
+                    <p>Room Info</p>
+                </div>
+            </div>
+
+            <div className="form-body">
+               
+                <div className="form-row">
                     
-                <CustomInputField 
-                    type="text" 
-                    name={catId}
-                    data-id={i}
-                    id={`roomName`} 
-                    value={props.roomsInfo[i].roomName}
-                    className="roomName"
-                    width='400px'
-                    label="roomName"
-                    placeholder={`room name or ID`}
-                    changeControl={handleInputChange} 
-                />
+                    <CustomInputField 
+                        width='400px'
+                        label="roomName"
+                        type="text" 
+                        id={`roomName`} 
+                        placeholder={`room name or ID`}
+                        value={roomInfo.roomName}
+                        changeControl={handleInputChange} 
+                    />
 
                     <CustomInputField 
                         width='60px'
@@ -105,21 +135,33 @@ const RoomInput = (props) => {
                 <div className="button-area">
                     <ButtonPlain  
                         type="submit"
-                        buttonText='Submit'
+                        text='Submit'
+                        clickHandle={submitNewRoom}
+                    />
+                     <ButtonPlain  
+                        type="cancel"
+                        text='cancel'
+                        clickHandle={cancelAction}
                     />
                 </div>
 
-          <input
-            type="text"
-            name={ageId}
-            data-id={i}
-            id={ageId}
-            value={props.rooms[i].age} 
-            className="age"
-          />
-        </div>
-      )
-    })
-  )
+            </div>
+        </form>
+    )
 }
-export default RoomInput
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        // nombre de la función que paso como prop: (arg) => 
+        // dispatch(nombre del action creator(argumento))
+        setRoomId: (roomId) => dispatch(setRoomId(roomId)),
+    }
+  }
+const mapStateToProps = (state) => {
+    return {
+        user: state.firebase.auth,
+        jamId: state.jamId,
+        roomId: state.roomId
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(NewRoomForm);

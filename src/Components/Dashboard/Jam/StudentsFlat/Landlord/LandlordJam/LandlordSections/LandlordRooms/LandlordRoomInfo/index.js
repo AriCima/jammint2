@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import DataService from '../../../../../../../../services/DataService';
 import NewRoomForm from '../../../../../../../../UI/Forms/StudentsFlat/NewRoomForm'
 import NewBookingForm from '../../../../../../../../UI/Forms/StudentsFlat/NewBookingForm'
+import RoomBookings from './RoomBookings';
 import { connect } from 'react-redux';
 import ButtonPlain from '../../../../../../../../UI/ButtonPlain'
 
@@ -15,6 +16,7 @@ const LandlordRoomInfo = (props) => {
 
   const [newBooking, setNewBooking] = useState(false);
   const [newRoom, setNewRoom] = useState(false);
+  const [bookings, setBookings] = useState({})
 
   const onNewRoom = (jamId) => {
     setNewRoom(true)
@@ -25,7 +27,6 @@ const LandlordRoomInfo = (props) => {
   }
 
   useEffect(() => {
-      console.log('roomId en el effect ', roomId, typeof roomId)
     if (roomId === 'newRoom'){
         setNewRoom(true)
     } else {
@@ -33,7 +34,13 @@ const LandlordRoomInfo = (props) => {
     }
   }, [roomId])
 
-  console.log('props en el roomInfo = ', props)
+  useEffect(() => {
+    if (bookings !== {}){
+        setBookings(bookings)
+    } else {
+        setNewRoom({})
+    }
+  }, [bookings])
 
   return(
     <div className="room-info-wrapper">
@@ -64,30 +71,7 @@ const LandlordRoomInfo = (props) => {
                             />
                         </div>
                         
-
-                        <div className="room-current-tenant-info">
-                            <div className="current-tentant-img">
-                                <img src="/" alt="tenant-img"/>
-                            </div>
-                            <div className="current-tenant-name">
-                                <p>{roomInfo.roomName}</p>
-                            </div>
-                        </div>
-
-                        <div className="room-current-contract-info">
-                        <div className="current-tenant-block">
-                        {roomInfo.exterior ? <p>Exterior</p> : <p>Interior</p>}
-                        </div>
-                        <div className="current-tenant-block">
-                            <p>Sperficie: {roomInfo.sqm}</p>
-                        </div>
-                        <div className="current-tenant-block">
-                            <p>Rent:</p>
-                        </div>
-                        <div className="current-tenant-block">
-                            <p>Deposit:</p>
-                        </div>
-                    </div>
+                        <RoomBookings bookings={bookings}/>
                     </>
                 }
 
@@ -105,6 +89,7 @@ const mapStateToProps = state => {
       auth: state.firebase.auth,
       jamActiveSection: state.jamSection,
       roomId: state.roomId,
+      bookings: state.bookings
     }
 };
   
