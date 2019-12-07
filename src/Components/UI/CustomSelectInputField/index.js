@@ -3,11 +3,11 @@ import React from "react";
 // CSS
 import "./index.css";
 
-const CustomSelectInputField = ({ options, size, placeholder, id, value, changeControl, width}) => {
+const CustomSelectInputField = ({ options, size, placeholder, id, value, onChange, width}) => {
 
     const handleChange = (event) => {
         //console.log('handle change launched');
-       changeControl(event)
+       onChange(event)
     }
 
     const renderOptions = (options) => {

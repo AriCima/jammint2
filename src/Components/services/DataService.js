@@ -80,16 +80,17 @@ export default class DataService {
     // JAMS
         // Create
         static createJam(jamInfo) {  
-            //console.log('creteJam launched en Dataservice')
             return new Promise((resolve, reject) => {
                 firebase.firestore().collection('jams').add(jamInfo)
                 .then((doc) => {
+                    console.log("Current data: ", doc.data());
                     resolve({id: doc.id}); 
+                    
                 })
                 .catch((error) => {
                     var errorCode = error.code;
                     var errorMessage = error.message;
-                    //console.log('Jam could not be created: ', errorCode, errorMessage);
+                    console.log('Jam could not be created: ', errorCode, errorMessage);
                 })
                 
             });
@@ -242,10 +243,13 @@ export default class DataService {
                 .doc(userId)
                 .collection('userJams')
                 .add(jamToJoin)
-                .then((result) => {
-                    console.log("Jam succesfully added to user")
-                    resolve(result);
+                .onSnapshot(function(doc) {
+                    console.log("Jam succesfully added to user: ", doc.data());
+                    resolve(doc);
                 })
+                // .then((result) => {
+                //     console.log("Jam succesfully added to user")
+                // })
                 .catch((error) => {
                     var errorCode = error.code;
                     console.log('ERROR Jam NOT added to user: ', errorCode);                
@@ -290,26 +294,38 @@ export default class DataService {
 
             return new Promise((resolve, reject) => {
 
-                firebase.firestore().collection('jams').doc(jamId).collection('rooms').get()
-                .then(result => {
+                firebase.firestore()
+                .collection('jams')
+                .doc(jamId)
+                .collection('rooms')
+                //.get()
+                // .then(result => {
+                //     let rooms = [];
+                //     result.docs.forEach(d => {
+                //       let j = d.data();
+                //       j.id = d.id;
+                //       rooms.push(j);
+                //     });
+                //     resolve(rooms);
+                // })
+                .onSnapshot(function (result) {
                     let rooms = [];
                     result.docs.forEach(d => {
                       let j = d.data();
                       j.id = d.id;
                       rooms.push(j);
                     });
+                    console.log('room successfully added')
                     resolve(rooms);
                 })
             })
             .catch((error) => {
                 var errorCode = error.code;
-                console.log('Jam Rooms error : ', errorCode)
+                console.log('Jam Rooms error : ', error)
             });
         }
         static getRoomInfo(jamId, roomId){
-
             console.log('user JAMS called with: ', )
-
             return new Promise((resolve, reject) => {
 
                 firebase.firestore().collection('jams').doc(jamId)
@@ -330,7 +346,6 @@ export default class DataService {
                 });
             })
         };
-
 
     // MESSAGES
 
@@ -400,7 +415,7 @@ export default class DataService {
         })
     };
 
-    // JAMMERS
+// JAMMERS
 
     static getJammers(jamId){
 
@@ -462,6 +477,91 @@ export default class DataService {
 
             .catch((error) => {
                //console.log('error: ', error);
+            })
+            
+        });
+    };
+
+
+
+// BOOKINGS
+    static addNewBooking(jamId, roomId, bookingInfo){
+        return new Promise((resolve, reject) => {
+            firebase.firestore().collection('jams')
+            .doc(jamId)
+            .collection('rooms')
+            .doc(roomId)
+            .collection('bookings')
+            .add(bookingInfo)
+            .then(function(docRef) {
+                console.log("Document written with ID: ", docRef.id);
+                resolve(docRef);
+            })
+            .catch((error) => {
+                var errorCode = error.code;
+                //console.log('Message could not be sent: ', errorCode);                
+            })
+            
+        });
+    }
+    static updateBooking(jamId, roomId, bookingId, field, newValue){
+        return new Promise((resolve, reject) => {
+            firebase.firestore().collection('jams')
+            .doc(jamId)
+            .collection('rooms')
+            .doc(roomId)
+            .collection('bookings')
+            .doc(bookingId)
+            .update(
+                {[field]: newValue}
+            )
+            .then(function(docRef) {
+                console.log("Document successfully updated: ", docRef.id);
+                resolve(docRef);
+            })
+            .catch((error) => {
+                var errorCode = error.code;
+                //console.log('Message could not be sent: ', errorCode);                
+            })
+            
+        });
+    }
+
+
+// ROOMS
+    static addNewRoom(jamId, roomInfo){
+        return new Promise((resolve, reject) => {
+            firebase.firestore().collection('jams')
+            .doc(jamId)
+            .collection('rooms')
+            .add(roomInfo)
+            .then((doc) => {
+                console.log("room succesfully added to jam: ", doc.data());
+                resolve(doc);
+            })
+            .catch((error) => {
+                var errorCode = error.code;
+                //console.log('Message could not be sent: ', errorCode);                
+            })
+            
+        });
+    }
+    static updateRoomInfo(jamId, roomId, field, newValue){
+        return new Promise((resolve, reject) => {
+            firebase.firestore().collection('jams')
+            .doc(jamId)
+            .collection('rooms')
+            .doc(roomId)
+            .update(
+                {[field]: newValue}
+            )
+            .then(function(docRef) {
+                console.log("Room successfully updated: ", docRef.id);
+                resolve(docRef);
+            })
+            .catch((error) => {
+                var errorCode = error.code;
+                //console.log('Message could not be sent: ', errorCode);                
             })
             
         });

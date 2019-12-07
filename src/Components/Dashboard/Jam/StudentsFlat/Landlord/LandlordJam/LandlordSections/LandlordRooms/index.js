@@ -44,6 +44,12 @@ const LandlordRooms = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [roomId])
 
+    useEffect(() => {
+        setRooms(rooms)
+        return () => {
+            setRooms({})
+        };
+    }, [rooms])
     console.log('roomInfo antes del return = ', roomInfo)
     return (
         <div className="landlord-rooms">

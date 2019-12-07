@@ -1,24 +1,44 @@
 import React, { useState } from 'react';
+import DataService from '../../../../services/DataService';
+import Calculations from '../../../../services/Calculations';
+
+
+import ButtonPlain from '../../../ButtonPlain';
+import ButtonCancel from '../../../ButtonCancel';
+
 
 const NewBookingForm = (props) => {
 
-    const { roomName } = props;
-    const [jammerInfo, setJammerInfo] = useState({});
+    const { roomName, jamId, roomId } = props;
+    const [bookingInfo, setBookingInfo] = useState({});
     
     const handleInputChange = (event) => {
         event.persist();
-        setJammerInfo(jammerInfo => ({...jammerInfo, [event.target.id]: event.target.value}));
+        setBookingInfo(bookingInfo => ({...bookingInfo, [event.target.id]: event.target.value}));
     }
 
-    const handleSubmit = (event) => {
+
+
+    const submitNewBooking = (event) => {
         if (event) {
           event.preventDefault();
         }
-        console.log('submitted')
+
+        const bookingCode = Calculations.getCode()
+
+        DataService.addNewBooking(jamId, roomId, bookingInfo)
     }
 
+    const cancelAction = (event) => {
+        if (event) {
+            event.preventDefault();
+        }
+        props.setRoomId(false)
+    }
+
+
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={submitNewBooking}>
             
             <div className="form-header">
                 <div className="form-header-title">
@@ -37,7 +57,7 @@ const NewBookingForm = (props) => {
                             type="text" 
                             id={`jammerName`} 
                             placeholder={`Name`}
-                            value={jammerInfo.jammerName}
+                            value={bookingInfo.jammerName}
                             onChange={handleInputChange} 
                         />
                     </div>
@@ -46,7 +66,7 @@ const NewBookingForm = (props) => {
                             type="text" 
                             id={`jammerSurname`} 
                             placeholder={`Surname`}
-                            value={jammerInfo.jammerSurname}
+                            value={bookingInfo.jammerSurname}
                             onChange={handleInputChange} 
                         />
                     </div>
@@ -55,7 +75,7 @@ const NewBookingForm = (props) => {
                             type="text" 
                             id={`jammerEmail`} 
                             placeholder={`email`}
-                            value={jammerInfo.jammerEmail}
+                            value={bookingInfo.jammerEmail}
                             onChange={handleInputChange} 
                         />
                     </div>
@@ -64,7 +84,7 @@ const NewBookingForm = (props) => {
                                 type="text" 
                                 id={`jammerHomeTel`} 
                                 placeholder={`email`}
-                                value={jammerInfo.jammerHomeTel}
+                                value={bookingInfo.jammerHomeTel}
                                 onChange={handleInputChange} 
                             />
                         </div>
@@ -73,7 +93,7 @@ const NewBookingForm = (props) => {
                             type="text" 
                             id={`jammerMogbile`} 
                             placeholder={`email`}
-                            value={jammerInfo.jammerMobile}
+                            value={bookingInfo.jammerMobile}
                             onChange={handleInputChange} 
                         />
                     </div>
@@ -82,7 +102,7 @@ const NewBookingForm = (props) => {
                             type="text" 
                             id={`jammerPassportNr`} 
                             placeholder={`Passport Nr`}
-                            value={jammerInfo.jammerPassportNr}
+                            value={bookingInfo.jammerPassportNr}
                             onChange={handleInputChange} 
                         />
                     </div>
@@ -95,7 +115,7 @@ const NewBookingForm = (props) => {
                             type="text" 
                             id={`jammerHouseNr`} 
                             placeholder={`House Nr`}
-                            value={jammerInfo.jammerHouserNr}
+                            value={bookingInfo.jammerHouserNr}
                             onChange={handleInputChange} 
                         />
                     </div>
@@ -104,7 +124,7 @@ const NewBookingForm = (props) => {
                             type="text" 
                             id={`jammerFloor`} 
                             placeholder={`Floor`}
-                            value={jammerInfo.jammerFloor}
+                            value={bookingInfo.jammerFloor}
                             onChange={handleInputChange} 
                         />
                     </div>
@@ -113,7 +133,7 @@ const NewBookingForm = (props) => {
                             type="text" 
                             id={`jammerDoor`} 
                             placeholder={`Door`}
-                            value={jammerInfo.jammerDoor}
+                            value={bookingInfo.jammerDoor}
                             onChange={handleInputChange} 
                         />
                     </div>
@@ -122,7 +142,7 @@ const NewBookingForm = (props) => {
                             type="text" 
                             id={`jammerZipCode`} 
                             placeholder={`Zip-code`}
-                            value={jammerInfo.jammerZipCode}
+                            value={bookingInfo.jammerZipCode}
                             onChange={handleInputChange} 
                         />
                     </div>
@@ -131,7 +151,7 @@ const NewBookingForm = (props) => {
                             type="text" 
                             id={`jammerCity`} 
                             placeholder={`City`}
-                            value={jammerInfo.jammerCity}
+                            value={bookingInfo.jammerCity}
                             onChange={handleInputChange} 
                         />
                     </div>
@@ -140,7 +160,7 @@ const NewBookingForm = (props) => {
                             type="text" 
                             id={`jammerCountry`} 
                             placeholder={`Country`}
-                            value={jammerInfo.jammerCountry}
+                            value={bookingInfo.jammerCountry}
                             onChange={handleInputChange} 
                         />
                     </div>
@@ -149,7 +169,7 @@ const NewBookingForm = (props) => {
                             type="text" 
                             id={`jammerStudy`} 
                             placeholder={`Study`}
-                            value={jammerInfo.jammerStudy}
+                            value={bookingInfo.jammerStudy}
                             onChange={handleInputChange} 
                         />
                     </div>
@@ -158,7 +178,7 @@ const NewBookingForm = (props) => {
                             type="text" 
                             id={`jammerSchool`} 
                             placeholder={`School`}
-                            value={jammerInfo.jammerSchool}
+                            value={bookingInfo.jammerSchool}
                             onChange={handleInputChange} 
                         />
                     </div>
@@ -172,7 +192,7 @@ const NewBookingForm = (props) => {
                             type="date" 
                             id={`checkIn`} 
                             placeholder={`Check-In Date`}
-                            value={jammerInfo.checkIn}
+                            value={bookingInfo.checkIn}
                             onChange={handleInputChange} 
                         />
                     </div>
@@ -181,7 +201,7 @@ const NewBookingForm = (props) => {
                             type="date" 
                             id={`checkOut`} 
                             placeholder={`Check-Out Date`}
-                            value={jammerInfo.checkOut}
+                            value={bookingInfo.checkOut}
                             onChange={handleInputChange} 
                         />
                     </div>
@@ -190,13 +210,25 @@ const NewBookingForm = (props) => {
                             type="text" 
                             id={`roomNr`} 
                             placeholder={`Room Nr`}
-                            value={jammerInfo.roomNr}
+                            value={bookingInfo.roomNr}
                             onChange={handleInputChange} 
                         />
                     </div>
                    
                 </div>
                 
+                <div className="new-booking-buttons-area">
+                    <ButtonPlain  
+                        type="submit"
+                        text='Submit'
+                        clickHandle={submitNewBooking}
+                    />
+
+                    <ButtonCancel 
+                        clickHandle={cancelAction}
+                    />
+                </div>
+
             </div>
         </form>
     )

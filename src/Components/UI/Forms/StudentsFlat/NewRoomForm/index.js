@@ -3,7 +3,9 @@ import DataService from '../../../../services/DataService';
 // import CountrySelect from '../../UI/CountrySelection';
 import CustomInputField from '../../../CustomInputField';
 import CustomSelectInputField from '../../../CustomSelectInputField';
-import ButtonPlain from '../../../ButtonPlain';
+import ButtonCancel from '../../../ButtonCancel';
+import ButtonSubmit from '../../../ButtonSubmit';
+
 import { connect } from 'react-redux';
 import { setRoomId } from '../../../../../redux/actions/roomsActions';
 
@@ -21,11 +23,11 @@ const NewRoomForm = ( props ) => {
     }
 
     const submitNewRoom = (event) => {
+        console.log('room submitted')
         if (event) {
           event.preventDefault();
         }
-        const jamField = 'accommodationInfo';
-        DataService.updateJamInfo(jamId, jamField, roomInfo)
+        DataService.addNewRoom(jamId, roomInfo)
     }
 
     const cancelAction = (event) => {
@@ -67,7 +69,7 @@ const NewRoomForm = ( props ) => {
                         label="Room size"
                         type="text" 
                         id={`roomSize`} 
-                        placeholder={`Room size`}
+                        placeholder={`Size`}
                         value={roomInfo.roomSize}
                         changeControl={handleInputChange} 
                     />
@@ -132,18 +134,13 @@ const NewRoomForm = ( props ) => {
                     />
 
                 </div>
-                <div className="button-area">
-                    <ButtonPlain  
-                        type="submit"
-                        text='Submit'
-                        clickHandle={submitNewRoom}
-                    />
-                     <ButtonPlain  
-                        type="cancel"
-                        text='cancel'
+                <div className="new-rooms-buttons-area">
+                    <ButtonSubmit/>
+
+                    <ButtonCancel 
                         clickHandle={cancelAction}
                     />
-                </div>
+                    </div>
 
             </div>
         </form>

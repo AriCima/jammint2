@@ -3,7 +3,7 @@ import React from 'react';
 // CSS
 import './index.css';
 
-const ButtonPlain = () => {
+const ButtonSubmit = () => {
 
   return (
     <button 
@@ -17,7 +17,7 @@ const ButtonPlain = () => {
 }
 
 
-export default ButtonPlain;
+export default ButtonSubmit;
 
 
 // IMPLEMENTATION
