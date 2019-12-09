@@ -23,17 +23,18 @@ const NewBookingForm = (props) => {
         if (event) {
           event.preventDefault();
         }
-
-        const bookingCode = Calculations.generateCode()
-
+        const bCode = Calculations.generateCode()
+        bookingInfo.bookingCode = bCode;
         DataService.addNewBooking(jamId, roomId, bookingInfo)
+        .then(
+            props.setActiveScreen('overview')
+        )
     };
 
     const cancelAction = (event) => {
         if (event) {
             event.preventDefault();
         }
-
         props.setActiveScreen('overview')
     };
 

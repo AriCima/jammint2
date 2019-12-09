@@ -315,7 +315,6 @@ export default class DataService {
                       j.id = d.id;
                       rooms.push(j);
                     });
-                    console.log('room successfully added')
                     resolve(rooms);
                 })
             })
@@ -324,28 +323,7 @@ export default class DataService {
                 console.log('Jam Rooms error : ', error)
             });
         }
-        static getRoomInfo(jamId, roomId){
-            console.log('user JAMS called with: ', )
-            return new Promise((resolve, reject) => {
-
-                firebase.firestore().collection('jams').doc(jamId)
-                .collection('rooms')
-                .doc(roomId)
-                .get()
-                .then(function(doc) {
-                    if (doc.exists) {
-                        console.log("Document data:", doc.data());
-                        resolve(doc.data());
-                    } else {
-                        // doc.data() will be undefined in this case
-                        console.log("No such document!");
-                    }
-                })
-                .catch(function(error) {
-                    console.log("Error getting document:", error);
-                });
-            })
-        };
+       
 
     // MESSAGES
 
@@ -552,7 +530,6 @@ export default class DataService {
             
         });
     };
-
 
 // ROOMS
     static addNewRoom(jamId, roomInfo){
