@@ -11,6 +11,7 @@ import './index.css';
 //REDUX
 import { connect } from 'react-redux';
 import { setRoomId } from '../../../../../../../../../redux/actions/roomsActions';
+import { setActiveScreen } from '../../../../../../../../../redux/actions/roomScreen';
 
 const LandlordRoomsList = (props) => {
 
@@ -29,8 +30,8 @@ const LandlordRoomsList = (props) => {
     }
 
     const onNewRoom = () => {
-        const roomId = 'newRoom'
-       props.setRoomId(roomId)
+        const roomId = 'newRoomForm'
+        props.setActiveScreen(roomId)
     }
 
     return (
@@ -52,7 +53,8 @@ const LandlordRoomsList = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setRoomId: (roomId) => dispatch(setRoomId(roomId))
+        setRoomId: (roomId) => dispatch(setRoomId(roomId)),
+        setActiveScreen: (screen) => dispatch( setActiveScreen(screen)),
     }
 };
 export default connect (null, mapDispatchToProps)(LandlordRoomsList);

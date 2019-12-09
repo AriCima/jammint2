@@ -7,7 +7,7 @@ import ButtonCancel from '../../../ButtonCancel';
 import ButtonSubmit from '../../../ButtonSubmit';
 
 import { connect } from 'react-redux';
-import { setRoomId } from '../../../../../redux/actions/roomsActions';
+import { setRoomId, setActiveScreen } from '../../../../../redux/actions/roomsActions';
 
 // CSS
 import './index.css'; 
@@ -35,7 +35,7 @@ const NewRoomForm = ( props ) => {
             event.preventDefault();
         }
 
-        props.setRoomId(false)
+        props.setActiveScreen('overview')
     }
     
     return (
@@ -152,13 +152,15 @@ const mapDispatchToProps = (dispatch) => {
         // nombre de la función que paso como prop: (arg) => 
         // dispatch(nombre del action creator(argumento))
         setRoomId: (roomId) => dispatch(setRoomId(roomId)),
+        setActiveScreen: (screen) => dispatch( setActiveScreen(screen)),
     }
-  }
+}
 const mapStateToProps = (state) => {
     return {
         user: state.firebase.auth,
         jamId: state.jamId,
-        roomId: state.roomId
+        roomId: state.roomId,
+        activeScreen: state.activeScreen
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(NewRoomForm);

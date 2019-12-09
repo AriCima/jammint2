@@ -6,6 +6,9 @@ import Calculations from '../../../../services/Calculations';
 import ButtonPlain from '../../../ButtonPlain';
 import ButtonCancel from '../../../ButtonCancel';
 
+import { connect } from 'react-redux';
+import { setRoomId, setActiveScreen } from '../../../../../redux/actions/roomsActions';
+
 
 const NewBookingForm = (props) => {
 
@@ -15,27 +18,24 @@ const NewBookingForm = (props) => {
     const handleInputChange = (event) => {
         event.persist();
         setBookingInfo(bookingInfo => ({...bookingInfo, [event.target.id]: event.target.value}));
-    }
-
-
-
+    };
     const submitNewBooking = (event) => {
         if (event) {
           event.preventDefault();
         }
 
-        const bookingCode = Calculations.getCode()
+        const bookingCode = Calculations.generateCode()
 
         DataService.addNewBooking(jamId, roomId, bookingInfo)
-    }
+    };
 
     const cancelAction = (event) => {
         if (event) {
             event.preventDefault();
         }
-        props.setRoomId(false)
-    }
 
+        props.setActiveScreen('overview')
+    };
 
     return (
         <form onSubmit={submitNewBooking}>
@@ -234,4 +234,20 @@ const NewBookingForm = (props) => {
     )
 }
 
-export default NewBookingForm
+const mapDispatchToProps = (dispatch) => {
+    return {
+        // nombre de la función que paso como prop: (arg) => 
+        // dispatch(nombre del action creator(argumento))
+        setRoomId: (roomId) => dispatch(setRoomId(roomId)),
+        setActiveScreen: (screen) => dispatch( setActiveScreen(screen)),
+    }
+}
+const mapStateToProps = (state) => {
+    return {
+        user: state.firebase.auth,
+        jamId: state.jamId,
+        roomId: state.roomId,
+        activeScreen: state.activeScreen
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(NewBookingForm)

@@ -211,6 +211,7 @@ export default class Calculations {
     // - - - - - - - - BOOKINGS
 
     static organizeBookings = (bookings) => {
+        
         const result = {
             currentBooking: {}, 
             dueBookings: [],
@@ -218,8 +219,8 @@ export default class Calculations {
             nextBooking: {}
         }
         const currentDate = new Date()
-        bookings.forEach(e =>{
 
+        bookings.forEach(e => {
             if ( currentDate > e.checkOut ) {
                 result.dueBookings.push(e)
             } else if ( currentDate < e.checkIn) {
@@ -227,7 +228,7 @@ export default class Calculations {
             } else if ( (e.checkIn >= currentDate) && (currentDate <= e.checkOut) ) {
                 result.currentBooking = e
             }
-        })
+        });
         result.nextBooking = result.futureBookings[0];
         return result
     }

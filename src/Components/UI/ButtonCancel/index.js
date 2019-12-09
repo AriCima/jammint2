@@ -12,7 +12,9 @@ const ButtonCancel = (props) => {
   return (
     <button 
       id="cancelButton"
-      onClick={() => handleClick()}
+      onClick={(e) => {
+        e.preventDefault(); 
+        handleClick()}}
       >
       Cancel
     </button>

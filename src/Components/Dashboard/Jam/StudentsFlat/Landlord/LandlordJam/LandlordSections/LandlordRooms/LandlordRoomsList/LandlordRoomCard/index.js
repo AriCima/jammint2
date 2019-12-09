@@ -4,6 +4,7 @@ import React, { useState } from "react";
 
 import { connect } from 'react-redux';
 import {setRoomId} from "../../../../../../../../../../redux/actions/roomsActions"
+import {setActiveScreen} from "../../../../../../../../../../redux/actions/roomScreen"
 
 // CSS
 import "./index.css";
@@ -16,8 +17,8 @@ const LandlordRoomCard = (props) => {
   const roomId = rI.id;
 
   const onShowRoomInfo = (roomId) => {
-    console.log('el roomId antes del set = ', roomId)
-    props.setRoomId(roomId)
+    props.setActiveScreen('roomInfo');
+    props.setRoomId(roomId);
   }
 
   return (
@@ -47,6 +48,7 @@ const mapDispatchToProps = (dispatch) => {
       // nombre de la función que paso como prop: (arg) => 
       // dispatch(nombre del action creator(argumento))
       setRoomId: (roomId) => dispatch(setRoomId(roomId)),
+      setActiveScreen: (roomInfo) => dispatch(setActiveScreen(roomInfo))
   }
 }
 

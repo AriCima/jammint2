@@ -14,7 +14,12 @@ const RoomBookings = (props) => {
     const [dueBookings, setDueBookings] = useState([]);
     const [futureBookings, setFutureBookings] = useState([]);
 
-    if (roomBookings !== {}){
+    const existBookings = roomBookings.length;
+    console.log('existBookings: ', existBookings);
+
+    if (existBookings ){
+        console.log(roomBookings === {})
+        console.log('existBookings: ', existBookings);
         const bookings = Calculations.organizeBookings(roomBookings)
         setRoomBookings(bookings)
         setCurrentBooking(bookings.currentBooking)
@@ -40,9 +45,11 @@ const RoomBookings = (props) => {
                 }
             </div>
             <div className="dueBookings">
+                <p>Past Bookings</p>
                 <BookingsList bookings={roomBookings.dueBookings} />
             </div>
             <div className="dueBookings">
+                <p>Future Bookings</p>
                 <BookingsList bookings={roomBookings.futureBookings} />
             </div>
 

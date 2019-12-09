@@ -17,6 +17,7 @@ const LandlordRooms = (props) => {
     const { jamId, roomId } = props;
     const [rooms, setRooms] = useState([]);
     const [roomInfo, setRoomInfo] = useState({});
+    const [roomBookings, setRoomBookings] = useState({});
 
     useEffect(() => {
         // console.log('el getRooms launched ', jamId)
@@ -30,12 +31,15 @@ const LandlordRooms = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [jamId]);
     
-
     useEffect(() => {   
         if (roomId !== '' && roomId !== false){
             DataService.getRoomInfo(jamId, roomId)
             .then((res) => {
                 setRoomInfo(res)
+            })
+            DataService.getRoomBookings(jamId, roomId)
+            .then((res) => {
+                setRoomBookings(res)
             })
         } 
         return() => {
@@ -50,20 +54,17 @@ const LandlordRooms = (props) => {
             setRooms({})
         };
     }, [rooms])
-    console.log('roomInfo antes del return = ', roomInfo)
+
     return (
         <div className="landlord-rooms">
 
             <div className="landlord-room-info">
-                {roomInfo !== {} ?
-                    <LandlordRoomInfo
-                        roomId={roomId} 
-                        roomInfo={roomInfo}
-                        jamId={jamId} 
-                    />
-                    :
-                    <p>Select a room</p>
-                }
+                <LandlordRoomInfo
+                    roomId={roomId} 
+                    roomInfo={roomInfo}
+                    roomBookings={roomBookings}
+                    jamId={jamId} 
+                />
             </div>
            
             <div className="landlord-rooms-list">
