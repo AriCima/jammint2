@@ -26,9 +26,37 @@ const BookingsList = (props) => {
 
 
     return (
-
         <>
-            { bookings ? renderBookingsList() : <p>Loading</p>}            
+            { bookings ? 
+                <div className="bookings-chart">
+                    <div className="booking-chart-header">
+                        <div className="booking-chart-block">
+                            <p>Room</p>
+                        </div>
+                        <div className="booking-chart-block">
+                            <p>ID</p>
+                        </div>
+                        <div className="booking-chart-block">
+                            <p>Tenant</p>
+                        </div>
+                        <div className="booking-chart-block">
+                            <p>Check-In</p>
+                        </div>
+                        <div className="booking-chart-block">
+                            <p>Check-Out</p>
+                        </div>
+                        <div className="booking-chart-block">
+                            <p>Rent €</p>
+                        </div>
+                        <div className="booking-chart-block">
+                            <p>Deposit €</p>
+                        </div>
+                    </div>
+                </div>
+                renderBookingsList() 
+            : <p>Loading</p>
+
+            }            
         </>
 
     );   

@@ -5,7 +5,12 @@ import NewRoomForm from '../../../../../../../../UI/Forms/StudentsFlat/NewRoomFo
 import NewBookingForm from '../../../../../../../../UI/Forms/StudentsFlat/NewBookingForm'
 import NewInvitationForm from '../../../../../../../../UI/Forms/StudentsFlat/NewInvitationForm'
 
+import CurrentTenant from './CurrentTenant';
 import RoomBookings from './RoomBookings';
+import RoomInfo from './RoomInfo';
+import RoomsOverview from './RoomsOverview';
+
+
 import { connect } from 'react-redux';
 import ButtonPlain from '../../../../../../../../UI/ButtonPlain'
 
@@ -14,7 +19,7 @@ import './index.css';
 
 const LandlordRoomInfo = (props) => {
 
-  const { jamId, roomId, roomInfo, roomBookings, activeScreen } = props;
+  const { jamId, roomsInfo, roomBookings, activeScreen } = props;
 
   const [screen, setScreen] = useState(props.activeScreen)
 
@@ -30,6 +35,7 @@ const LandlordRoomInfo = (props) => {
     // setNewInvitation(true)
     setScreen('newInvitationForm')
   };
+
 
   useEffect(() => {
     if (activeScreen === 'newRoomForm'){
@@ -77,8 +83,22 @@ const LandlordRoomInfo = (props) => {
             </div>
         }
 
+        { screen === 'overview' && 
+            <>
+                <div className="room-section-title">
+                    <p>THIS IS OVERVIEW</p>
+                </div>
+                <div className="room-section-content">
+                    <RoomsOverview
+                        roomsInfo={roomsInfo}
+                        bookings={roomBookings}
+                    />
+                </div>
+            </>
+        }
+
         { screen === 'roomInfo' && 
-            <div className="room-general-info-wrapper">
+            <div className="rooms-sections-wrapper">
 
                 <div className="room-buttons-area">
 
@@ -94,39 +114,36 @@ const LandlordRoomInfo = (props) => {
                         clickHandle={onNewInvitation}
                     />
                 </div>
-
-                <div className="room-info-section">
-                    <button className="room-info-section-title">
-                        <p>Overview</p>
-                    </button>
+       
+                <div className="room-section-title">
+                    <p>Current State</p>
                 </div>
 
-                <div className="room-info-section">
-                    <button className="room-info-section-title">
-                        <p>Current State</p>
-                    </button>
+                <div className="room-section-content">
+                    <CurrentTenant roomBookings={roomBookings}/>
                 </div>
 
-                <div className="room-info-section">
-                    <button className="room-info-section-title">
-                        <p>Bookings</p>
-                    </button>
-                    <RoomBookings bookings={roomBookings}/>
+                <div className="room-section-title">
+                    <p>Bookings</p>
                 </div>
 
-                <div className="room-info-section">
-                    <button className="room-info-section-title">
-                        <p>Room Info</p>
-                    </button>
+                <div className="room-section-content">
+                    <RoomBookings 
+                        roomBookings={roomBookings}
+                    />
                 </div>
+    
+                <div className="room-section-title">
+                    <p>Room Info</p>
+                </div>
+                <div className="room-section-content">
+                    <RoomInfo 
+                        roomsInfo={roomsInfo}
+                    />
+                </div>
+
             </div>
         }     
-
-        { screen === 'overview' && 
-            <div className="new-booking-wrapper">
-                <p>THIS IS OVERVIEW</p>
-            </div>
-        } 
 
     </div>
   )

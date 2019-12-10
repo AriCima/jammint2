@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import moment from 'moment';
 
 import Calculations from '../../../../../../../../../services/Calculations';
 import BookingsList from './BookingsList';
+import BookingCard from './BookingsList/BookingCard';
 // CSS
 import './index.css';
 
@@ -10,47 +11,46 @@ const RoomBookings = (props) => {
 
     const [roomBookings, setRoomBookings] = useState(props.bookings);
     const [currentBooking, setCurrentBooking] = useState({});
-    const [nextBooking, setNextBooking] = useState({});
-    const [dueBookings, setDueBookings] = useState([]);
-    const [futureBookings, setFutureBookings] = useState([]);
+    // const [nextBooking, setNextBooking] = useState({});
+    const [futureBookings, setFutureBookings] = useState({});
+    const [dueContracts, setDueContracts] = useState([]);
 
     const existBookings = roomBookings.length;
-    console.log('existBookings: ', existBookings);
-
     if (existBookings ){
-        console.log(roomBookings === {})
-        console.log('existBookings: ', existBookings);
         const bookings = Calculations.organizeBookings(roomBookings)
         setRoomBookings(bookings)
         setCurrentBooking(bookings.currentBooking)
         setFutureBookings(bookings.futureBookings)
-        setDueBookings(bookings.dueBookings)
-        setNextBooking(bookings.nextBooking)
+        setDueContracts(bookings.dueContracts)
+        // setNextBooking(bookings.nextBooking)
     };
     
-
     return(
         <div className="room-bookings-wrapper">
-            <div className="room-bookings-current">
-                { roomBookings.currentBooking ? 
-                    <BookingsList bookings={roomBookings.currentBooking}/>
-                    :
-                    <div className="no-current-booking">
-                        {roomBookings.nextBooking ?
-                            <p>Vacant until <span>{moment(roomBookings.nextBooking.checkIn).format('DD/MM')}</span></p>
-                            :
-                            <p>This room is currently <span>VACANT</span></p>
-                        }
-                    </div>
-                }
+            
+            <div className="room-section-title">
+               <p>Room Booings and Contracts</p>
             </div>
-            <div className="dueBookings">
-                <p>Past Bookings</p>
-                <BookingsList bookings={roomBookings.dueBookings} />
+
+            <div className="room-booking-section">
+                <div className="room-section-title">
+                    <p>Future Bookings</p>
+                </div>
+                <BookingsList bookings={futureBookings} />
             </div>
-            <div className="dueBookings">
-                <p>Future Bookings</p>
-                <BookingsList bookings={roomBookings.futureBookings} />
+
+            <div className="room-booking-section">
+                <div className="room-section-title">
+                    <p>Current contract</p>
+                </div>
+                <BookingCard bookings={currentBooking} />
+            </div>
+
+            <div className="room-booking-section">
+                <div className="room-section-title">
+                    <p>Due contracts</p>
+                </div>
+                <BookingsList bookings={dueContracts} />
             </div>
 
         </div>

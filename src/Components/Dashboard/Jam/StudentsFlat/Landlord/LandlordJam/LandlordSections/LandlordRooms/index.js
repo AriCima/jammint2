@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 
 // COMPONENTS
 import { connect } from 'react-redux';
-import { getJammerInfo } from '../../../../../../../../redux/actions/jammersActions'
 import DataService from '../../../../../../../services/DataService';
 import LandlordRoomsList from './LandlordRoomsList';
 import LandlordRoomInfo from './LandlordRoomInfo';
@@ -15,8 +14,7 @@ import './index.css';
 const LandlordRooms = (props) => {
 
     const { jamId, roomId } = props;
-    const [rooms, setRooms] = useState([]);
-    const [roomInfo, setRoomInfo] = useState({});
+    const [roomsInfo, setRoomsInfo] = useState([]);
     const [roomBookings, setRoomBookings] = useState({});
 
     useEffect(() => {
@@ -30,10 +28,6 @@ const LandlordRooms = (props) => {
     
     useEffect(() => {   
         if (roomId !== '' && roomId !== false){
-            // DataService.getRoomInfo(jamId, roomId)
-            // .then((res) => {
-            //     setRoomInfo(res)
-            // })
             DataService.getRoomBookings(jamId, roomId)
             .then((res) => {
                 console.log('res del bookings = ', res)
@@ -41,17 +35,17 @@ const LandlordRooms = (props) => {
             })
         } 
         return() => {
-            setRoomInfo({});
+            setRoomsInfo({});
         };
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [roomId])
 
     useEffect(() => {
-        setRooms(rooms)
+        setRoomsInfo(roomsInfo)
         return () => {
-            setRooms({})
+            setRoomsInfo({})
         };
-    }, [rooms])
+    }, [roomsInfo])
 
 
 
@@ -61,16 +55,16 @@ const LandlordRooms = (props) => {
             <div className="landlord-room-info">
                 <LandlordRoomInfo
                     roomId={roomId} 
-                    roomInfo={roomInfo}
+                    roomInfo={roomsInfo}
                     roomBookings={roomBookings}
                     jamId={jamId} 
                 />
             </div>
            
             <div className="landlord-rooms-list">
-                {rooms !==[] ? 
+                {roomsInfo !==[] ? 
                     <LandlordRoomsList
-                        rooms={rooms} 
+                        roomsInfo={roomsInfo} 
                     /> 
                     : 
                     <p>Loading</p>
@@ -83,14 +77,6 @@ const LandlordRooms = (props) => {
     );   
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        // nombre de la función que paso como prop: (arg) => 
-        // dispatch(nombre del action creator(argumento))
-
-        getJammerInfo: (jamId, jammerId) => dispatch(getJammerInfo(jamId, jammerId))
-    }
-}
 
 
 const mapStateToProps = (state) => {
@@ -101,4 +87,4 @@ const mapStateToProps = (state) => {
         roomId: state.roomId
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(LandlordRooms);
+export default connect(mapStateToProps, null)(LandlordRooms);
