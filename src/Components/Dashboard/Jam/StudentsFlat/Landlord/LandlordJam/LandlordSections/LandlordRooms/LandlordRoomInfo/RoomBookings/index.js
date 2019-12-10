@@ -9,7 +9,7 @@ import './index.css';
 
 const RoomBookings = (props) => {
 
-    const [roomBookings, setRoomBookings] = useState(props.bookings);
+    const [roomBookings, setRoomBookings] = useState(props.roomBookings);
     const [currentBooking, setCurrentBooking] = useState({});
     // const [nextBooking, setNextBooking] = useState({});
     const [futureBookings, setFutureBookings] = useState({});

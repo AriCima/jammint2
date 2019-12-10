@@ -1,4 +1,4 @@
-const roomActionsReducer = (state = 'overview', action) => {  
+const roomIdReducer = (state = 'overview', action) => {  
     switch(action.type) {
         case 'ACTIVE_SCREEN':
             return action.payload;
@@ -7,4 +7,4 @@ const roomActionsReducer = (state = 'overview', action) => {
     }
 };
 
-export default roomActionsReducer;
+export default roomIdReducer;

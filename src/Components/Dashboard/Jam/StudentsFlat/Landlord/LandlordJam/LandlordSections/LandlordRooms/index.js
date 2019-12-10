@@ -6,22 +6,24 @@ import { connect } from 'react-redux';
 import DataService from '../../../../../../../services/DataService';
 import LandlordRoomsList from './LandlordRoomsList';
 import LandlordRoomInfo from './LandlordRoomInfo';
+import RoomsOverview from './RoomsOverview';
 
 // CSS
 import './index.css';
-// import { setRoomId } from '../../../../../../../../redux/actions/roomsActions';
+// import { setRoomId } from '../../../../../../../../redux/actions/roomsId';
 
 const LandlordRooms = (props) => {
 
     const { jamId, roomId } = props;
-    const [roomsInfo, setRoomsInfo] = useState([]);
+    const [roomInfo, setRoomInfo] = useState([]);
+    const [jamRoomsInfo, setJamRoomsInfo] = useState([]);
     const [roomBookings, setRoomBookings] = useState({});
 
     useEffect(() => {
         DataService.getJamRooms(jamId)
         .then((res) => {
             console.log('res del rooms = ', res)
-            setRooms(res)
+            setJamRoomsInfo(res)
         })
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [jamId]);
@@ -30,41 +32,54 @@ const LandlordRooms = (props) => {
         if (roomId !== '' && roomId !== false){
             DataService.getRoomBookings(jamId, roomId)
             .then((res) => {
-                console.log('res del bookings = ', res)
+                console.log('roomBookings = ', res)
                 setRoomBookings(res)
+            })
+            DataService.getRoomInfo(jamId, roomId)
+            .then((res) => {
+                console.log('roomInfo = ', res)
+                setRoomInfo(res)
             })
         } 
         return() => {
-            setRoomsInfo({});
+            setRoomInfo({});
+            setRoomBookings({});
         };
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [roomId])
 
-    useEffect(() => {
-        setRoomsInfo(roomsInfo)
-        return () => {
-            setRoomsInfo({})
-        };
-    }, [roomsInfo])
+    // useEffect(() => {
+    //     setRoomsInfo(roomsInfo)
+    //     return () => {
+    //         setRoomsInfo({})
+    //     };
+    // }, [roomsInfo])
 
 
 
     return (
         <div className="landlord-rooms">
 
-            <div className="landlord-room-info">
-                <LandlordRoomInfo
-                    roomId={roomId} 
-                    roomInfo={roomsInfo}
-                    roomBookings={roomBookings}
-                    jamId={jamId} 
-                />
-            </div>
+            {roomId === "" ? 
+            
+                <RoomsOverview />
+                :
+
+                <div className="landlord-room-info">
+                    <LandlordRoomInfo
+                        roomId={roomId} 
+                        roomInfo={roomInfo}
+                        roomBookings={roomBookings}
+                        jamId={jamId} 
+                    />
+                </div>
+        
+            }
            
             <div className="landlord-rooms-list">
-                {roomsInfo !==[] ? 
+                {jamRoomsInfo !==[] ? 
                     <LandlordRoomsList
-                        roomsInfo={roomsInfo} 
+                        jamRoomsInfo={jamRoomsInfo} 
                     /> 
                     : 
                     <p>Loading</p>
@@ -84,7 +99,7 @@ const mapStateToProps = (state) => {
         user: state.firebase.auth,
         jamId: state.jamId,
         jamActiveSection: state.jamSection,
-        roomId: state.roomId
+        roomId: state.roomId,
     }
 }
 export default connect(mapStateToProps, null)(LandlordRooms);

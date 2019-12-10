@@ -7,7 +7,8 @@ import ButtonCancel from '../../../ButtonCancel';
 import ButtonSubmit from '../../../ButtonSubmit';
 
 import { connect } from 'react-redux';
-import { setRoomId, setActiveScreen } from '../../../../../redux/actions/roomsActions';
+import { setRoomId } from '../../../../../redux/actions/roomsId';
+import { setActiveScreen } from '../../../../../redux/actions/roomScreen';
 
 // CSS
 import './index.css'; 

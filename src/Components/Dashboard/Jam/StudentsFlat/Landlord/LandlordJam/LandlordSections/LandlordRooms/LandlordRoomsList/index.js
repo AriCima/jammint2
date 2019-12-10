@@ -10,15 +10,15 @@ import './index.css';
 
 //REDUX
 import { connect } from 'react-redux';
-import { setRoomId } from '../../../../../../../../../redux/actions/roomsActions';
+import { setRoomId } from '../../../../../../../../../redux/actions/roomsId';
 import { setActiveScreen } from '../../../../../../../../../redux/actions/roomScreen';
 
 const LandlordRoomsList = (props) => {
 
-    const { rooms } = props;
+    const { jamRoomsInfo } = props;
 
     const renderRoomsList = () => {
-        return rooms.map((rI, i) => {
+        return jamRoomsInfo.map((rI, i) => {
             return (
                 <React.Fragment key={i}>
                     <LandlordRoomCard
@@ -27,17 +27,17 @@ const LandlordRoomsList = (props) => {
                 </React.Fragment>
             )
         })
-    }
+    };
 
     const onNewRoom = () => {
         const roomId = 'newRoomForm'
         props.setActiveScreen(roomId)
-    }
+    };
 
     return (
 
         <>
-            { rooms ? renderRoomsList() : <p>Loading</p>}
+            { jamRoomsInfo ? renderRoomsList() : <p>Loading</p>}
             <div className="rooms-list-addRoom-area">
             <ButtonPlain 
                 onClick={onNewRoom}

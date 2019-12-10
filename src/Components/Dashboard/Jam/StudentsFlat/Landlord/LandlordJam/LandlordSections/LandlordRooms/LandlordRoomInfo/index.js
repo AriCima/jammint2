@@ -1,25 +1,22 @@
 import React, { useState, useEffect } from 'react';
 
-import DataService from '../../../../../../../../services/DataService';
+import ButtonPlain from '../../../../../../../../UI/ButtonPlain'
 import NewRoomForm from '../../../../../../../../UI/Forms/StudentsFlat/NewRoomForm'
 import NewBookingForm from '../../../../../../../../UI/Forms/StudentsFlat/NewBookingForm'
 import NewInvitationForm from '../../../../../../../../UI/Forms/StudentsFlat/NewInvitationForm'
-
 import CurrentTenant from './CurrentTenant';
 import RoomBookings from './RoomBookings';
 import RoomInfo from './RoomInfo';
-import RoomsOverview from './RoomsOverview';
 
-
+// REDUX
 import { connect } from 'react-redux';
-import ButtonPlain from '../../../../../../../../UI/ButtonPlain'
 
 // CSS
 import './index.css';
 
 const LandlordRoomInfo = (props) => {
 
-  const { jamId, roomsInfo, roomBookings, activeScreen } = props;
+  const { jamId, roomId, roomInfo, roomBookings, activeScreen } = props;
 
   const [screen, setScreen] = useState(props.activeScreen)
 
@@ -27,11 +24,11 @@ const LandlordRoomInfo = (props) => {
     // setNewRoom(true)
     setScreen('newRoomForm')
   };
-  const onNewBooking = () => {
+  const onNewBooking = (roomId) => {
     // setNewBooking(true)
     setScreen('newBookingForm')
   };
-  const onNewInvitation = () => {
+  const onNewInvitation = (roomId) => {
     // setNewInvitation(true)
     setScreen('newInvitationForm')
   };
@@ -46,8 +43,6 @@ const LandlordRoomInfo = (props) => {
         setScreen('newBookingForm');
     } else if (activeScreen === 'roomInfo') {
         setScreen('roomInfo')
-    } else if (activeScreen === 'overview') {
-        setScreen('overview')
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeScreen])
@@ -65,9 +60,9 @@ const LandlordRoomInfo = (props) => {
         }
 
         { screen === 'newBookingForm' && 
-
             <div className="new-booking-wrapper">
                 <NewBookingForm 
+                    roomId={roomId}
                     roomInfo={roomInfo}
                     clickHandle={onNewBooking}
                 />
@@ -77,24 +72,11 @@ const LandlordRoomInfo = (props) => {
         { screen === 'newInvitationForm' && 
             <div className="new-booking-wrapper">
                 <NewInvitationForm 
+                    roomId={roomId}
                     roomInfo={roomInfo}
                     clickHandle={onNewInvitation}
                 />
             </div>
-        }
-
-        { screen === 'overview' && 
-            <>
-                <div className="room-section-title">
-                    <p>THIS IS OVERVIEW</p>
-                </div>
-                <div className="room-section-content">
-                    <RoomsOverview
-                        roomsInfo={roomsInfo}
-                        bookings={roomBookings}
-                    />
-                </div>
-            </>
         }
 
         { screen === 'roomInfo' && 
@@ -138,7 +120,7 @@ const LandlordRoomInfo = (props) => {
                 </div>
                 <div className="room-section-content">
                     <RoomInfo 
-                        roomsInfo={roomsInfo}
+                        roomInfo={roomInfo}
                     />
                 </div>
 

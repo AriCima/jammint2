@@ -3,7 +3,7 @@ import React, { useState } from "react";
 // import DataService from "../../../../../../../../../services/DataService";
 
 import { connect } from 'react-redux';
-import {setRoomId} from "../../../../../../../../../../redux/actions/roomsActions"
+import {setRoomId} from "../../../../../../../../../../redux/actions/roomsId"
 import {setActiveScreen} from "../../../../../../../../../../redux/actions/roomScreen"
 
 // CSS

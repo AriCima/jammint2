@@ -7,7 +7,8 @@ import ButtonPlain from '../../../ButtonPlain';
 import ButtonCancel from '../../../ButtonCancel';
 
 import { connect } from 'react-redux';
-import { setRoomId, setActiveScreen } from '../../../../../redux/actions/roomsActions';
+import { setRoomId } from '../../../../../redux/actions/roomsId';
+import { setActiveScreen } from '../../../../../redux/actions/roomScreen';
 
 
 const NewBookingForm = (props) => {

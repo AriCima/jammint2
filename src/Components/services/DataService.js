@@ -569,5 +569,23 @@ export default class DataService {
             
         });
     };
+    static getRoomInfo(jamId, roomId){
+        return new Promise((resolve, reject) => {
+            firebase.firestore().collection('jams')
+            .doc(jamId)
+            .collection('rooms')
+            .doc(roomId)
+            .get() 
+            .then(result => {
+                const roomInfo = result;
+                resolve(roomInfo);
+            })
+
+            .catch((error) => {
+               console.log('error: ', error);
+            })
+            
+        });
+    };
 }
 
