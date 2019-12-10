@@ -577,7 +577,7 @@ export default class DataService {
             .doc(roomId)
             .get() 
             .then(result => {
-                const roomInfo = result;
+                const roomInfo = result.data();
                 resolve(roomInfo);
             })
 

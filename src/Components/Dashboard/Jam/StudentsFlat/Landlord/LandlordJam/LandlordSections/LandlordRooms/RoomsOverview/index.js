@@ -34,17 +34,20 @@ const RoomsOverview = (roomBookings, roomsInfo) => {
             <p>This is Rooms Overview</p>
 
             <div className="rooms-info-chart">
-                <div className="room-info-chart-title">
-                    <div className="room-info-chart-title-block">
+                <div className="room-info-chart-header">
+                    <div className="room-info-chart-block">
                         <p>Room Name</p>
                     </div>
-                    <div className="room-info-chart-title-block">
+                    <div className="room-info-chart-block">
+                        <p>Booking ID</p>
+                    </div>
+                    <div className="room-info-chart-block">
                         <p>Tenant Name</p>
                     </div>
-                    <div className="room-info-chart-title-block">
+                    <div className="room-info-chart-block">
                         <p>Check-In</p>
                     </div>
-                    <div className="room-info-chart-title-block">
+                    <div className="room-info-chart-block">
                         <p>Check-Out</p>
                     </div>
                 </div>

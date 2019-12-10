@@ -12,9 +12,8 @@ import './index.css';
 
 const LandlordBoard = (props) => {
 
-    const { jamId, jamActiveSection, jamInfo } = props;
+    const { jamId } = props;
     const userId = props.auth.uid;
-    const jamAdmin = jamInfo.adminId;
     const [sectionInfo, setSectionInfo] = useState([]);
     const [messageText, setMessageText ] = useState('');
    
@@ -45,9 +44,7 @@ const LandlordBoard = (props) => {
 
     const onSubmit = (message) => {
         message.preventDefault();
-
         const date = new Date()
-        console.log(messageText)
         if (messageText === '') {
             alert('the message is empty')
             return
@@ -103,7 +100,7 @@ const mapStateToProps = (state) => {
     return {
         auth: state.firebase.auth,
         jamActive: state.jamActive,
-        jamActiveSection: state.jamSection,
+        // jamActiveSection: state.jamSection,
     }
 }
 export default connect(mapStateToProps)(LandlordBoard);

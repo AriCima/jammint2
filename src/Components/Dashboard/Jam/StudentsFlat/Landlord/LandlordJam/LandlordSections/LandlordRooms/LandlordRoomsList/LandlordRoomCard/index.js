@@ -12,8 +12,6 @@ import "./index.css";
 const LandlordRoomCard = (props) => {
 
   const { rI  } = props
-  console.log('rI = ', rI)
-
   const roomId = rI.id;
 
   const onShowRoomInfo = (roomId) => {
@@ -24,20 +22,17 @@ const LandlordRoomCard = (props) => {
   return (
 
     <button className="landlord-room-card-container" onClick={()=> onShowRoomInfo(roomId)}>
-
-      <div className="landlord-room-card-lin">
+      <div className="landlord-room-card-roomNr">
         <p>{rI.roomName}</p>
       </div>
-      
-      <div className="landlord-room-card-line">
-        {rI.exterior ? <p>exterior</p> : <p>interior</p>}
+      <div className="landlord-room-card-info">
+        <div className="landlord-room-card-upperline">
+          <p>Frederic Antoine</p>
+        </div>
+        <div className="landlord-room-card-lowerline">
+          <p>Seatle, USA</p>
+        </div>
       </div>
-
-      <div className="landlord-room-card-line">
-        <p>Superficie: {rI.sqm}</p>
-      </div>
-
-
     </button>
   )
   

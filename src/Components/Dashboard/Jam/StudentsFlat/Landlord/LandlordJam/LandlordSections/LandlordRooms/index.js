@@ -15,14 +15,14 @@ import './index.css';
 const LandlordRooms = (props) => {
 
     const { jamId, roomId } = props;
-    const [roomInfo, setRoomInfo] = useState([]);
+    const [roomInfo, setRoomInfo] = useState({});
     const [jamRoomsInfo, setJamRoomsInfo] = useState([]);
     const [roomBookings, setRoomBookings] = useState({});
+    
 
     useEffect(() => {
         DataService.getJamRooms(jamId)
         .then((res) => {
-            console.log('res del rooms = ', res)
             setJamRoomsInfo(res)
         })
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -32,7 +32,7 @@ const LandlordRooms = (props) => {
         if (roomId !== '' && roomId !== false){
             DataService.getRoomBookings(jamId, roomId)
             .then((res) => {
-                console.log('roomBookings = ', res)
+                // console.log('roomBookings = ', res)
                 setRoomBookings(res)
             })
             DataService.getRoomInfo(jamId, roomId)
@@ -48,34 +48,28 @@ const LandlordRooms = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [roomId])
 
-    // useEffect(() => {
-    //     setRoomsInfo(roomsInfo)
-    //     return () => {
-    //         setRoomsInfo({})
-    //     };
-    // }, [roomsInfo])
 
-
+    console.log('roomInfo: ', roomInfo);
+    // console.log('jamRoomsInfo: ', jamRoomsInfo);
+    // console.log('roomBookings: ', roomBookings);
 
     return (
         <div className="landlord-rooms">
 
-            {roomId === "" ? 
-            
-                <RoomsOverview />
-                :
-
-                <div className="landlord-room-info">
+            <div className="landlord-room-info">
+                {roomId === "" ? 
+                    <RoomsOverview 
+                        jamRoomsInfo={jamRoomsInfo} 
+                    />
+                    :
                     <LandlordRoomInfo
                         roomId={roomId} 
                         roomInfo={roomInfo}
                         roomBookings={roomBookings}
                         jamId={jamId} 
                     />
-                </div>
-        
-            }
-           
+                }
+            </div>
             <div className="landlord-rooms-list">
                 {jamRoomsInfo !==[] ? 
                     <LandlordRoomsList
@@ -97,7 +91,6 @@ const LandlordRooms = (props) => {
 const mapStateToProps = (state) => {
     return {
         user: state.firebase.auth,
-        jamId: state.jamId,
         jamActiveSection: state.jamSection,
         roomId: state.roomId,
     }

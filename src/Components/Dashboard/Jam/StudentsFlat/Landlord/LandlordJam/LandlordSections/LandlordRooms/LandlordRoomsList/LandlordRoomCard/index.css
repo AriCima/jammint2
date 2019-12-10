@@ -2,9 +2,8 @@
     width: 100%;
     height: 60px;
     display: flex;
-    flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
     border: 0.5px solid lightgrey;
     opacity: 0.7;
     transition: 0.3s;
@@ -18,12 +17,48 @@
     background-color: rgba(255, 255, 255, 1);
 }
 
+.landlord-room-card-roomNr{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-.landlord-room-card-line{
+.landlord-room-card-roomNr p{
+    font-size: 16px;
+    color: black;
+    font-weight: 700px;
+}
+.landlord-room-card-info{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.landlord-room-card-upperline{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+}
+
+.landlord-room-card-upperline p{
+    font-size: 16px;
+    color: black;
+    font-weight: 700px;
+}
+.landlord-room-card-lowerline{
     width: 100%;
     height: 30px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
-
+.landlord-room-card-lowerline p{
+    font-size: 12px;
+    color: black;
+    font-weight: 400px;
+}

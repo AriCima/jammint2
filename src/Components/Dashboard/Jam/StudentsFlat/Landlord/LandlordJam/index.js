@@ -4,15 +4,14 @@ import { connect } from 'react-redux';
 // COMPONENTS
 import LandlordNavBar from '../LandlordNavBar';
 import LandlordBoard from './LandlordSections/LandlordBoard';
-// import LandlordJammers from './LandlordSections/LandlordJammers';
 import LandlordRooms from './LandlordSections/LandlordRooms';
-import LandlordMyJam from './LandlordSections/LandlordMyJam';
-import LandlordSettings from './LandlordSections/LandlordSettings';
+
 
 import './index.css';
 import DataService from '../../../../../services/DataService';
 
 const LandlordJam = ({ jamId, jamInfo, jammerId, jamActiveSection } ) => {
+  console.log('jamInfo received in LandlordJam: ', jamInfo);
 
   return (
     <div className="landlord-jam-wrapper">
@@ -21,6 +20,7 @@ const LandlordJam = ({ jamId, jamInfo, jammerId, jamActiveSection } ) => {
         {jamInfo === [] ? <Fragment></Fragment>: 
           <LandlordNavBar 
             jamName={jamInfo.jamName}
+            jamDesc={jamInfo.jamDesc}
             jamActiveSection={jamInfo.jamActiveSection}
             jamType={jamInfo.jamType}
           />
@@ -32,37 +32,13 @@ const LandlordJam = ({ jamId, jamInfo, jammerId, jamActiveSection } ) => {
         { jamActiveSection === 'board' && 
           <LandlordBoard 
             jamId={jamId}
-            jamInfo={jamInfo}
           />
         }
-        { (jamActiveSection === 'myJam') && 
-          <LandlordMyJam 
-            jamId={jamId}
-            jamInfo={jamInfo}
-          />
-        }
-
-        {/* { (jamActiveSection === 'jammers') && 
-          <LandlordJammers 
-            jamId={jamId}
-            jamInfo={jamInfo}
-            jammerId={jammerId}
-          />
-        } */}
         { (jamActiveSection === 'jammers') && 
           <LandlordRooms 
             jamId={jamId}
-            jamInfo={jamInfo}
-            jammerId={jammerId}
           />
         }
-
-        { jamActiveSection === 'settings' && 
-          <LandlordSettings 
-            jamId={jamId}
-            jamInfo={jamInfo}
-          />
-        } 
       </div>
       
 

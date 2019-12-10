@@ -1,0 +1,37 @@
+.rooms-overview-wrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.rooms-info-chart{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.room-info-chart-header{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(61,158,247);
+    margin-bottom: 5px;
+}
+
+.room-info-chart-block{
+    width: 14%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.room-info-chart-block p{
+    margin-left: 2%;
+    font-size: 10px;
+    font-weight: 700;
+    color: white;
+}

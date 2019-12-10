@@ -105,19 +105,10 @@ const LandlordRoomInfo = (props) => {
                     <CurrentTenant roomBookings={roomBookings}/>
                 </div>
 
-                <div className="room-section-title">
-                    <p>Bookings</p>
-                </div>
-
                 <div className="room-section-content">
-                    <RoomBookings 
-                        roomBookings={roomBookings}
-                    />
+                    <RoomBookings roomBookings={roomBookings} />
                 </div>
     
-                <div className="room-section-title">
-                    <p>Room Info</p>
-                </div>
                 <div className="room-section-content">
                     <RoomInfo 
                         roomInfo={roomInfo}
@@ -132,7 +123,6 @@ const LandlordRoomInfo = (props) => {
 }
 
 const mapStateToProps = state => {
-    console.log('state: ', state);
     return { 
       auth: state.firebase.auth,
       jamActiveSection: state.jamSection,

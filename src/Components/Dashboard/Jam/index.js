@@ -9,13 +9,14 @@ import StudentJam from './StudentsFlat/Student/StudentJam';
 import './index.css';
 
 const Jam = ({ jamId, jamInfo, auth } ) => {
+  console.log('jamInfo recieved in Jam: ', jamInfo);
 
   const isAdmin = jamInfo.adminId && jamInfo.adminId === auth.uid;
   
   return (
     <div className="jam-wrapper">
       { isAdmin ? 
-          <LandlordJam jamId={jamId}/>
+          <LandlordJam jamId={jamId} jamInfo={jamInfo}/>
         :
           <StudentJam jamId={jamId}/>
       }
