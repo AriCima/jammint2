@@ -1,6 +1,4 @@
 import React from "react";
-import NewBookingForm from '../../../../../../../../../../../UI/Forms/StudentsFlat/NewAccommodationForm';
-
 
 // CSS
 import "./index.css";
@@ -11,13 +9,31 @@ const BookingCard = (props) => {
   const bookingId = bI.id;
 
   return (
+    <div className="booking-chart-row">
+      <div className="booking-chart-row-block">
+        <p>{bI.roomName}</p>
+      </div>
+      <div className="booking-chart-row-block">
+        <p>{bI.bookingCode}</p>
+      </div>
+      <div className="booking-chart-row-block">
+        <p>{bI.jammerName} {bI.jammerSurname}</p>
+      </div>
+      <div className="booking-chart-row-block">
+        <p>{bI.checkIn}</p>
+      </div>
+      <div className="booking-chart-row-block">
+        <p>{bI.checkOut}</p>
+      </div>
+      <div className="booking-chart-row-block">
+        <p>{bI.rent}</p>
+      </div>
+      <div className="booking-chart-row-block">
+        <p>{bI.deposit}</p>
+      </div>
+  </div>
 
-    <div className="booking-card-wrapper">
-      <p>Booking ID: {bookingId}</p>
 
-      <NewBookingForm />
-
-    </div>
   )
   
 }

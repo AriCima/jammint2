@@ -21,9 +21,7 @@ const BookingsList = (props) => {
                 </React.Fragment>
             )
         })
-    }
-
-
+    };
 
     return (
         <>
@@ -52,8 +50,8 @@ const BookingsList = (props) => {
                             <p>Deposit €</p>
                         </div>
                     </div>
+                    {renderBookingsList}
                 </div>
-                renderBookingsList() 
             : <p>Loading</p>
 
             }            

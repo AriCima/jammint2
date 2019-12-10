@@ -1,29 +1,35 @@
-.landlord-room-card-container{
+.booking-chart-row{
     width: 100%;
-    height: 60px;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    border: 0.5px solid lightgrey;
-    opacity: 0.7;
-    transition: 0.3s;
-    background-color: rgba(197, 208, 212, 0.2);
-
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(61,158,247);
+    margin-bottom: 5px;
 }
 
-.landlord-room-card-container:hover{
-    cursor: pointer;
-    opacity: 1;
-    background-color: rgba(255, 255, 255, 1);
+.booking-chart-row:nth-child(even){
+    background-color: rgba(0, 144, 248, 0.1);
+}
+.booking-chart-row:nth-child(odd){
+    background-color: rgba(0, 144, 248, 0.2);
+}
+.booking-chart-row:nth-child(even):hover{
+    background-color: rgba(0, 144, 248, 0.05);
+}
+.booking-chart-row:nth-child(odd):hover{
+    background-color: rgba(0, 144, 248, 0.05);
 }
 
-
-.landlord-room-card-line{
-    width: 100%;
-    height: 30px;
+.booking-chart-block{
+    width: 14%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
 
+.booking-chart-block p{
+    margin-left: 2%;
+    font-size: 10px;
+    font-weight: 700;
+    color: white;
+}

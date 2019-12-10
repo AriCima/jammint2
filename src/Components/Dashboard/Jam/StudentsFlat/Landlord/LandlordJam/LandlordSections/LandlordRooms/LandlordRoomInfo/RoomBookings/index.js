@@ -43,7 +43,7 @@ const RoomBookings = (props) => {
                 <div className="room-section-title">
                     <p>Current contract</p>
                 </div>
-                <BookingCard bookings={currentBooking} />
+                <BookingsList bookings={currentBooking} />
             </div>
 
             <div className="room-booking-section">
