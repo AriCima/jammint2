@@ -42,7 +42,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border-bottom: 1px solid lightgray;
+    border-bottom: 1px solid rgba(79, 86,109, 0.5);
 }
 
 .landlord-room-card-upperline p{

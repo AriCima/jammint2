@@ -33,7 +33,8 @@ export const loginAction = (credentials) => {
             credentials.password
         ).then((res) => {
             //console.log('res = ', res, res.user.uid)
-            firestore.collection('users').doc(res.user.uid).collection('userJams').get()
+            firestore.collection('users')
+            .doc(res.user.uid).collection('userJams').get()
             .then(function(querySnapshot) {
                 const userJams = []
                 querySnapshot.forEach(function(doc) {

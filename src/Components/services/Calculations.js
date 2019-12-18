@@ -27,41 +27,34 @@ export default class Calculations {
         }
         return messageTime
     }
-    static generateCode(){
-     // GENERATE BOOKING CODE
+    static generateCode(){ 
+     // GENERATE BOOKING CODE  type: 4aG-89n --> 14.776.336 combinations
+
      const letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
      let codeArray = [];
-     let codeArrayEnd = [];
 
-     for (let l=0; l<4; l++){
-        let capital = Math.round(Math.random()*10);
-        let random = Math.round(Math.random()*25);
+     // if a random nr is even then letter is capital
+     for (let l=0; l<8; l++){
+        const firstRandomNr = Math.round(Math.random()*10);
+        const secondRandomNr = Math.round(Math.random()*10);
 
-        if(Number.isInteger(capital/2)){
-            codeArray[l]=(letters[random]).toUpperCase();
-        } else {
-            codeArray[l]=letters[random];
-        }
-     };
-     for (let l=0; l<4; l++){
-        let capital = Math.round(Math.random()*10);
-        let random = Math.round(Math.random()*25);
+        const isNumber = Number.isInteger(firstRandomNr/2);
+        const isCapitalLetter =  Number.isInteger(secondRandomNr/2);
+        const letterIndex = Math.round(Math.random()*25);
 
-        if(Number.isInteger(capital/2)){
-            codeArrayEnd[l]=(letters[random]).toUpperCase();
-        } else {
-            codeArrayEnd[l]=letters[random];
+        if (isNumber) {
+            codeArray[l]=(firstRandomNr);
+        } else if (isCapitalLetter){
+                codeArray[l]=(letters[letterIndex]).toUpperCase();
+            } else {
+                codeArray[l]=letters[letterIndex];
         }
      };
 
-     let d = new Date();
-     let t = d.getTime().toString();  
-
-     let code = codeArray.join("").concat(t).concat(codeArrayEnd.join(""));
-
-
+     codeArray[3] = '-'
+     let code = codeArray.join("");
+     console.log('code = ', code)
      return code
-     
     };
     static getJamSections(type){
         //console.log('get Jam Sections launched')
@@ -232,5 +225,28 @@ export default class Calculations {
         result.nextBooking = result.futureBookings[0];
         return result
     }
+
+    // FLAT INFO
+    static getOnwStudentsFlats = (userJams, userId) => {
+        let result = []
+        for ( let i = 0; i < userJams.length; i++ ){
+            if ( userJams[i].adminId === userId && userJams[i].jamType === 'studentsFlat') {
+              result.push(userJams[i])
+            }
+        }
+        return result
+    }
+
+
+    static mergeCompleteFlatInfo = (flats, rooms) => {
+        console.log('flats, rooms: ', flats, rooms);
+        for (let i = 0; i < flats.length; i++){
+           
+           flats[i].rooms=(rooms[i])
+       }
+       console.log('flats = ',flats)
+        return flats
+    }
+
 
 }

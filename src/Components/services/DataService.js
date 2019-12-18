@@ -55,7 +55,7 @@ export default class DataService {
             });
         };
         static getUserJams(userId){
-            //console.log('user JAMS called with: ', userId)
+            console.log('user JAMS called with: ', userId)
 
             return new Promise((resolve, reject) => {
 
@@ -485,7 +485,29 @@ export default class DataService {
             })
             
         });
-    }
+    };
+
+    static updateBookingSummary(jamId, roomId, bookingInfo){
+        return new Promise((resolve, reject) => {
+            firebase.firestore().collection('jams')
+            .doc(jamId)
+            .collection('rooms')
+            .doc(roomId)
+            .set({
+                bookingInfo
+            }, { merge: true })
+            .then(function(docRef) {
+                console.log("Document updated with ID: ", docRef);
+                resolve(docRef);
+            })
+            .catch((error) => {
+                var errorCode = error.code;
+                //console.log('Message could not be sent: ', errorCode);                
+            })
+            
+        });
+    };
+
     static updateBooking(jamId, roomId, bookingId, field, newValue){
         return new Promise((resolve, reject) => {
             firebase.firestore().collection('jams')
@@ -548,7 +570,7 @@ export default class DataService {
             })
             
         });
-    }
+    };
     static updateRoomInfo(jamId, roomId, field, newValue){
         return new Promise((resolve, reject) => {
             firebase.firestore().collection('jams')

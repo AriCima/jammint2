@@ -10,23 +10,26 @@ const RoomInfo = ({ roomInfo }) => {
         <div className="room-section-wrapper">
            <div className="room-section-title">
                <p>Room Info</p>
+               <div className="separator-line">
+                 
+               </div>
            </div>
 
             <div className="room-info-content">
                 <div className="room-info-block">
-                    <p>Room Name: {roomInfo.roomName}</p>
+                    <p>Room Name: <span>{roomInfo.roomName}</span></p>
                 </div>
                 <div className="room-info-block">
-                    <p>Room size: {roomInfo.sqm} sqm</p>
+                    <p>Room size: <span>{roomInfo.sqm}</span> sqm</p>
                 </div>
                 <div className="room-info-block">
-                    <p>Exterior: {roomInfo.exterior ? 'Yes' : 'No'}</p>
+                    <p>Exterior: <span>{roomInfo.exterior ? 'Yes' : 'No'}</span></p>
                 </div>
                 <div className="room-info-block">
-                    <p>Balcony: {roomInfo.ebalcony ? 'Yes' : 'No'}</p>
+                    <p>Balcony: <span>{roomInfo.ebalcony ? 'Yes' : 'No'}</span></p>
                 </div>
                 <div className="room-info-block">
-                    <p>Private Bathroom: {roomInfo.privateBathroom}</p>
+                    <p>Private Bathroom: <span>{roomInfo.privateBathroom}</span></p>
                 </div>
             </div>
         </div>

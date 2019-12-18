@@ -20,6 +20,7 @@ const NewBookingForm = (props) => {
         event.persist();
         setBookingInfo(bookingInfo => ({...bookingInfo, [event.target.id]: event.target.value}));
     };
+    
     const submitNewBooking = (event) => {
         if (event) {
           event.preventDefault();
@@ -27,9 +28,15 @@ const NewBookingForm = (props) => {
         const bCode = Calculations.generateCode()
         bookingInfo.bookingCode = bCode;
         DataService.addNewBooking(jamId, roomId, bookingInfo)
-        .then(
-            props.setActiveScreen('overview')
-        )
+        .then(result => {
+
+            const bookingId = result.id;
+            bookingInfo.bookingId = bookingId;
+            DataService.updateBookingSummary(jamId, roomId, bookingInfo)
+            .then(
+                props.setActiveScreen('overview')
+            )
+        })
     };
 
     const cancelAction = (event) => {

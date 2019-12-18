@@ -1,29 +1,52 @@
 import React from 'react';
 
+import Calculations from '../../../../../../../../services/Calculations';
+
 // CSS
 import './index.css';
 
-const RoomsOverview = (roomBookings, roomsInfo) => {
+const RoomsOverview = (roomsInfo) => {
 
-    const superObject = roomBookings + roomsInfo;
+    for (let i = 0; i < roomsInfo.length ; i++ ){
+        const orderBookings = Calculations.organizeBookings(roomsInfo[i].bookingsSummary)
+        const currentBooking = orderBookings.currentBooking;
+        roomsInfo[i].currentBooking = currentBooking;
+    }
+
+    console.log('roomsInfo = ', roomsInfo)
 
     const renderRoomsChart = () => {
-
-        return superObject.map((room, i) => {
+        return roomsInfo.map((room, i) => {
             return (
                 <div className="room-info-line">
                     <div className="room-info-block">
                         <p>{room.roomName}</p>
                     </div>
-                    <div className="room-info-block">
-                        <p>{room.jammerName} {room.jammerSurname}</p>
-                    </div>
-                    <div className="room-info-block">
-                        <p>{room.checkIn}</p>
-                    </div>
-                    <div className="room-info-block">
-                        <p>{room.checkOut}</p>
-                    </div>
+                    {room.currentBooking === {} ?
+                        <>
+                            <div className="room-info-vacant-row">
+                                <p>VACANT</p>
+                            </div>
+                        </>
+                        :
+                        <>
+                            <div className="room-info-block">
+                                <p>{room.currentBooking.jammerName}</p>
+                            </div>
+                            <div className="room-info-block">
+                                <p>{room.currentBooking.checkIn}</p>
+                            </div>
+                            <div className="room-info-block">
+                                <p>{room.currentBooking.checkOut}</p>
+                            </div>
+                            <div className="room-info-block">
+                                <p>{room.currentBooking.rent}</p>
+                            </div>
+                            <div className="room-info-block">
+                                <p>{room.currentBooking.deposit}</p>
+                            </div>
+                        </>
+                    }
                 </div>
             )
         })
@@ -31,7 +54,6 @@ const RoomsOverview = (roomBookings, roomsInfo) => {
 
     return(
         <div className="rooms-overview-wrapper">
-            <p>This is Rooms Overview</p>
 
             <div className="rooms-info-chart">
                 <div className="room-info-chart-header">
@@ -51,7 +73,7 @@ const RoomsOverview = (roomBookings, roomsInfo) => {
                         <p>Check-Out</p>
                     </div>
                 </div>
-                {renderRoomsChart}
+                {renderRoomsChart()}
             </div>
         </div>
         

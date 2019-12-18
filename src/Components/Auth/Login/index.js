@@ -1,4 +1,7 @@
 import React, { Component } from '../../../../node_modules/react';
+import AuthService from '../../services/AuthService';
+import DataService from '../../services/DataService';
+
 import {Link} from 'react-router-dom';
 
 import { connect } from 'react-redux';
@@ -32,7 +35,6 @@ class Login extends Component {
 
     submitLogin = (e) => {
         e.preventDefault();
-        this.props.login(this.state)
     }
 
     render(){
@@ -87,7 +89,7 @@ class Login extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        login: (creds) => dispatch(loginAction((creds)))
+        loginAction: (creds) => dispatch(loginAction((creds)))
     }
 };
 

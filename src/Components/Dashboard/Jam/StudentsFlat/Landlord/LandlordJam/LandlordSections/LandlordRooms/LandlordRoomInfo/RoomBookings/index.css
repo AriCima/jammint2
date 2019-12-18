@@ -8,7 +8,7 @@
 .room-section-title{
     width: 100%;
     margin-bottom: 10px;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid rgb(79, 86,109);
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -16,7 +16,7 @@
 
 .room-section-title p {
     font-size: 16px;
-    color: gray;
+    color: rgb(79, 86,109);
     font-weight: 700;
 } 
 

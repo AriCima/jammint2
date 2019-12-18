@@ -23,6 +23,7 @@ const LandlordRooms = (props) => {
     useEffect(() => {
         DataService.getJamRooms(jamId)
         .then((res) => {
+            console.log('res del get RoomsInfo = ', res)
             setJamRoomsInfo(res)
         })
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -50,7 +51,7 @@ const LandlordRooms = (props) => {
 
 
     console.log('roomInfo: ', roomInfo);
-    // console.log('jamRoomsInfo: ', jamRoomsInfo);
+    console.log('jamRoomsInfo: ', jamRoomsInfo);
     // console.log('roomBookings: ', roomBookings);
 
     return (
