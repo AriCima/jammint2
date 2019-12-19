@@ -227,7 +227,7 @@ export default class Calculations {
     }
 
     // FLAT INFO
-    static getOnwStudentsFlats = (userJams, userId) => {
+    static getOnwStudentsFlats = (userJams = [], userId = '') => {
         let result = []
         for ( let i = 0; i < userJams.length; i++ ){
             if ( userJams[i].adminId === userId && userJams[i].jamType === 'studentsFlat') {
@@ -238,7 +238,7 @@ export default class Calculations {
     }
 
 
-    static mergeCompleteFlatInfo = (flats, rooms) => {
+    static mergeCompleteFlatInfo = (flats = [], rooms = []) => {
         console.log('flats, rooms: ', flats, rooms);
         for (let i = 0; i < flats.length; i++){
            

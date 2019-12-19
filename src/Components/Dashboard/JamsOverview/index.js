@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import DataService from "../../services/DataService";
 import Calculations from '../../services/Calculations';
@@ -6,30 +6,26 @@ import Calculations from '../../services/Calculations';
 // CSS
 import "./index.css";
 
-const JamsOverview = (props) => {
+const JamsOverview = ({ ownStudentsFlats = [] }) => {
+  const [flats, setFlats] = useState([])
 
-  const { ownStudentsFlats } = props;
-  
-  let rooms = [[]]
-  for (let j = 0; j < ownStudentsFlats.length; j++){
-    DataService.getJamRooms(ownStudentsFlats[j].id)
-    .then(result => {
-      console.log('result: ', result);
-      rooms[j] = result;
-    })
-  }
+  useEffect(() => {
+    getRooms(ownStudentsFlats);
+  }, [ownStudentsFlats])
 
-  console.log('rooms: ', rooms);
 
-  const flatRoomsInfo = Calculations.mergeCompleteFlatInfo(ownStudentsFlats, rooms)
-  console.log('flatRoomsInfo: ', flatRoomsInfo);
+  const getRooms = async (flats) => {
+    const roomsPromise = flats.map(el => DataService.getJamRooms(el.id));
+    const items = await Promise.all(roomsPromise);
+    const flatRoomsInfo = Calculations.mergeCompleteFlatInfo(ownStudentsFlats, items);
+    setFlats(flatRoomsInfo);
+  } 
 
   return (
     <div className="jamsOVerview-wrapper">
       <p>This is JamsOverview</p>
     </div>
-  )
-  
+  );
 }
 
 export default JamsOverview;
