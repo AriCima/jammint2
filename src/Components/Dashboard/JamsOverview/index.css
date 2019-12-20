@@ -1,6 +1,7 @@
 .jamsOverview-wrapper{
-    top: 60px;
-    width: 100%;
+    position: absolute;
+    top: -60px;
+    width: 80%;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;

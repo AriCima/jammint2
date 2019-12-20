@@ -81,7 +81,7 @@ const MyJamsList = ({ flats }) => {
 
     <div className="units-list">
         <div className="overview-section-title">
-        <h3>Student's flats curent state</h3>
+          <p>Student's flats curent state</p>
         </div>
 
         <div className="render-flats-wrapper">

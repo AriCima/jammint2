@@ -1,5 +1,5 @@
 .units-list{
-    margin-top: 10px;
+    margin-top: 0px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -8,18 +8,32 @@
 }
 .overview-section-title{
     width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 40px;
+    border-bottom: 1px solid rgba(34, 96, 200, 1);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
-.overview-section-title h3{
-    margin-left: 20px;
-    font-size: 16px;
-    color: rgb(0, 144, 248);
+.overview-section-title p{
+    margin: 0 0 0 40px;
+    font-size: 20px;
+    font-family: arial;
+    text-transform: uppercase;
+    color: rgba(0, 187, 150, 0.7);
+    font-weight: 700;
 }
+
 .render-flats-wrapper{
-    width: 80%;
+    width: 90%;
+    margin-top: 40px;
+    overflow-y: scroll;
 }
 /* --> RENDER JAMS <-- */
 
-/* --> ROOMS LIST HEADER <--- */
+/* --> FLATS LIST HEADER <--- */
 .flats-list-header{
     border-radius: 10px;
     width: 100%;
@@ -55,7 +69,7 @@
     align-items: center;
 }
 
-/* --> Apartments Rows <-- */
+/* --> FLATS ROW <-- */
 .myjams-list-container{
     margin-top: 15px;
     width: 100%;
@@ -66,11 +80,11 @@
 }
 .flat-name{
     width: 100%;
+    margin-top: 15px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    margin: 10px 0;
 }
 .flat-name-info{
     width: 100%;
@@ -89,7 +103,7 @@
 }
 .flats-row{
     width: 100%;
-    border-radius: 10px;
+    border: none;
     margin: 4px 0px;
     padding: 0;
     display: flex;
@@ -159,6 +173,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    cursor: pointer;
 }
 .rooms-home-row:hover{
     background-color: rgba(236, 236, 236, 0.2);
