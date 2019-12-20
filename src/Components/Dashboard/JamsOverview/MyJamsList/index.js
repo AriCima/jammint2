@@ -3,11 +3,8 @@ import React, { useState, useEffect } from "react";
 // CSS
 import "./index.css";
 
-const JamsList = ({ flats }) => {
+const MyJamsList = ({ flats }) => {
  
-   
-
-
   const renderJams = (flats) => {
     return flats.map((f,j) => {
       return (
@@ -65,33 +62,32 @@ const JamsList = ({ flats }) => {
   }; 
 
   return (
-    <div className="jamsOverview-wrapper">
-      <div className="units-list">
+
+    <div className="units-list">
         <div className="overview-section-title">
-          <h3>Student's flats curent state</h3>
+        <h3>Student's flats curent state</h3>
         </div>
 
         <div className="units-list-header">
-          <ul>
-            <li>ID</li>
-            <li>Tenant</li>
-            <li>Check-In</li>
-            <li>Check-Out</li>
-            <li>Rent (€/Mo)</li>
-          </ul>     
+            <ul>
+                <li>ID</li>
+                <li>Tenant</li>
+                <li>Check-In</li>
+                <li>Check-Out</li>
+                <li>Rent (€/Mo)</li>
+            </ul>     
         </div>
-        <div className="units-list-super-container">
-          { flats.length !== 0 ? 
+        <div className="render-flats-wrapper">
+        { flats.length !== 0 ? 
             renderJams(flats) 
             :
             <div><p>LOADING !</p></div>
-          }
+        }
         </div>
 
-      </div>
-
     </div>
+
     );
 }
 
-export default JamsList;
+export default MyJamsList;

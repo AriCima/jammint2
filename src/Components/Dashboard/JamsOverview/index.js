@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import DataService from "../../services/DataService";
 import Calculations from '../../services/Calculations';
-import JamsList from './JamsList';
+import MyJamsList from './MyJamsList';
 // CSS
 import "./index.css";
 
@@ -23,7 +23,7 @@ const JamsOverview = ({ ownStudentsFlats = [] }) => {
   return (
     <div className="jamsOverview-wrapper">
       { flats.length !== 0 ? 
-        <JamsList flats={flats} />
+        <MyJamsList flats={flats} />
         :
         <div><p>LOADING !</p></div>
       }

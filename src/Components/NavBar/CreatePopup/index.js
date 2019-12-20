@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 // SERVICES
-import DataService from "../services/DataService";
-import Calculations from "../services/Calculations";
+import DataService from "../../services/DataService";
+import Calculations from "../../services/Calculations";
 
 // FONTAWESOME
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

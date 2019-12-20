@@ -85,7 +85,8 @@ const mapStateToProps = state => {
         jamId: state.jamId,
         jamInfo: state.jamInfo,
         auth: state.firebase.auth,
-        userJams: state.userJams
+        userJams: state.userJams,
+        
     }
 };
 
