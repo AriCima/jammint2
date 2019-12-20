@@ -239,12 +239,12 @@ export default class Calculations {
 
 
     static mergeCompleteFlatInfo = (flats = [], rooms = []) => {
-        console.log('flats, rooms: ', flats, rooms);
+        // console.log('flats, rooms: ', flats, rooms);
         for (let i = 0; i < flats.length; i++){
            
            flats[i].rooms=(rooms[i])
        }
-       console.log('flats = ',flats)
+       console.log('flats en calculations = ',flats)
         return flats
     }
 

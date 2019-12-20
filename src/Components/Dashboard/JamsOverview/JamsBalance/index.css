@@ -1,0 +1,81 @@
+
+.e-figures{
+    width: 80%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.e-figures-left{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.chart-title p{
+    font-weight: 500;
+}
+
+.chart-title p span{
+    font-weight: 700;
+}
+
+.user-overview{
+    width: 30%;
+    background-color: rgba(242, 242, 242, 0.3);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+
+.overview-block{
+    width: 90%;
+    margin: 15px 0 15px 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.overview-block-underlined{
+    width: 90%;
+    margin: 15px 0 15px 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-bottom: 5px;
+    border-bottom: 1px solid black;
+}
+
+.overview-block-feature{
+    width: 70%;
+    margin-left: 2%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+}
+.overview-block-value{
+    margin-left: 2%;
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+
+}
+.overview-block-result span{
+    font-weight: 700;
+}
+
+.overview-block-result{
+    width: 90%;
+    margin: 5px 0 15px 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
