@@ -9,25 +9,30 @@
 .overview-section-title{
     width: 100%;
 }
-
 .overview-section-title h3{
     margin-left: 20px;
     font-size: 16px;
     color: rgb(0, 144, 248);
 }
-.units-list-header{
-    border-radius: 10px;
+.render-flats-wrapper{
     width: 80%;
+}
+/* --> RENDER JAMS <-- */
+
+/* --> ROOMS LIST HEADER <--- */
+.flats-list-header{
+    border-radius: 10px;
+    width: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     background-color: rgb(0, 144, 248);
     margin-bottom: 2px;
 }
-.units-list-header ul{
+.flats-list-header ul{
     width: 100%;
     margin: 0;
-    padding: 20px 0;
+    padding: 5px 0;
     list-style-type: none;
     color: white;
     font-weight: 550;
@@ -35,52 +40,54 @@
     justify-content: flex-start;
     align-items: center;
 }
-.units-list-header ul li{
+.flats-list-header ul li{
     margin: 4px 0px 4px 20px;
     width: 25%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
-.units-list-header ul li:last-child{
+.flats-list-header ul li:last-child{
     margin: 4px 0px 4px 20px;
     width: 25%;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-/* --> RENDERFLATS <-- */
-.render-flats-wrapper{
-    width: 80%;
-}
-.units-list-super-container{
-    border-radius: 10px;
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.line-centered{
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.line-centered p span{
-    color: rgb(0, 144, 248);  
-    font-weight: 550; 
-}
-
-.list-container{
-    width: 100%; 
 }
 
 /* --> Apartments Rows <-- */
-.apts-row{
+.myjams-list-container{
+    margin-top: 15px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.flat-name{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 10px 0;
+}
+.flat-name-info{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.flat-name p{
+    font-size: 24px;
+    color: gray;
+}
+.flat-name-line{
+    width: 100%;
+    height: 2px;
+    background-color: rgb(0, 144, 248);
+}
+.flats-row{
     width: 100%;
     border-radius: 10px;
     margin: 4px 0px;
@@ -89,19 +96,19 @@
     justify-content: flex-start;
     align-items: center;
 }
-.apts-row:nth-child(even){
+.flats-row:nth-child(even){
     background-color: rgba(0, 144, 248, 0.05);
 }
-.apts-row:nth-child(odd){
+.flats-row:nth-child(odd){
     background-color: rgba(0, 144, 248, 0.1);
 }
-.apts-row:nth-child(even):hover{
+.flats-row:nth-child(even):hover{
     background-color: rgba(0, 144, 248, 0.2);
 }
-.apts-row:nth-child(odd):hover{
+.flats-row:nth-child(odd):hover{
     background-color: rgba(0, 144, 248, 0.4);
 }
-.apts-info-block{
+/* .apts-info-block{
     margin: 4px 0px 4px 20px;
     width: 25%;
     display: flex;
@@ -132,39 +139,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-p{
-    font-family: helvetica;
-    font-size: 16px;
-    padding: 0;
-    margin: 0;
-    color: rgb(0, 144, 248);
-}
-.add-apartment{
-    margin-top: 30px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
-.add-button-left{
-    width: 80%;
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    
-}
-#add-button{
-    margin-top: 5px;
-    display: flex;
-    justify-content: flex-start;
-}
-
-/* ------------- ROOMS -------------- */
-
+} */
 .home-rooms-list{
     width: 100%;
     display: flex;
@@ -173,6 +148,9 @@ p{
     align-items: center;
     background-color: rgba(236, 236, 236, 0.05);
 }
+
+/* ------------- ROOMS -------------- */
+
 .rooms-home-row{
     width: 100%;
     margin: 0px;

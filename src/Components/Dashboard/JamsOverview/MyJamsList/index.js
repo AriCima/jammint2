@@ -8,12 +8,29 @@ const MyJamsList = ({ flats }) => {
   const renderJams = (flats) => {
     return flats.map((f,j) => {
       return (
-        <div className="jams-list-container">
-          <button className="apts-row" key={j} to={`/single_apt_overview/${f.id}`}> 
-          
-            <div className="apts-info-block">
-               <p>{f.jamName}</p>
+        <div className="myjams-list-container">
+            
+          <div className="flat-name">
+            <div className="flat-name-info">
+              <p>{f.jamName}</p>
             </div>
+            <div className="flat-name-line"></div>
+          </div>
+
+          <button className="flats-row" key={j} to={`/single_apt_overview/${f.id}`}> 
+            
+            <div className="flats-list-header">
+              <ul>
+                <li>Room Nr</li>
+                <li>Tenant</li>
+                <li>Check-In</li>
+                <li>Check-Out</li>
+                <li>Rent (€/Mo)</li>
+              </ul>     
+            </div>
+            {/* <div className="apts-info-block">
+               <p>{f.jamName}</p>
+            </div> */}
             {/* <div className="apts-info-block-name">
                 { !f.tenantName && f.roomsRental === 'NO'? <p><span>Vacant</span></p> : <p>{f.tenantName} {f.tenantSurname}</p>}
             </div> */}
@@ -40,9 +57,8 @@ const MyJamsList = ({ flats }) => {
     return jamRooms.map((rooms,j) => {
       return (
         <button className="rooms-home-row" key={j} to={`/single_room_overview/${rooms.id}`}> 
-        
           <div className="rooms-home-block-nr">
-              <p>{rooms.roomName}</p>
+            <p>{rooms.roomName}</p>
           </div>
           <div className="rooms-home-block-name">
           {rooms.tenantName === undefined ? <p><span>Vacant</span></p>:<p>{rooms.tenantName} {rooms.tenantSurname}</p>}
@@ -68,15 +84,6 @@ const MyJamsList = ({ flats }) => {
         <h3>Student's flats curent state</h3>
         </div>
 
-        <div className="units-list-header">
-            <ul>
-                <li>ID</li>
-                <li>Tenant</li>
-                <li>Check-In</li>
-                <li>Check-Out</li>
-                <li>Rent (€/Mo)</li>
-            </ul>     
-        </div>
         <div className="render-flats-wrapper">
         { flats.length !== 0 ? 
             renderJams(flats) 

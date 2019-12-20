@@ -4,8 +4,8 @@
     height: 60px;
     margin: 5px 0;
     border: 1px solid rgb(61,158,247) ;
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -16,7 +16,7 @@
 }
 
 .jamsList-jam-container:hover{
-    border: 1px solid rgb(61,158,247) ;
+    /* border: 1px solid rgb(61,158,247) ; */
     background-color: rgba(61,158,247, 0.6) ;
 }
 

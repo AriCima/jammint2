@@ -1,9 +1,9 @@
 
-.navBar-left{
+.navBar-icons{
     height: 100%;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     background-color: rgba(34, 96, 200, 1);   
 }
@@ -22,9 +22,8 @@
 } */
 
 .navBar-item{
-    width: 20%;
     margin: 0 5px;
-    font-size: 24px;
+    font-size: 18px;
     color: white;
 }
 
@@ -43,8 +42,7 @@
 .navBar-menu-style{
     color:white;
     padding: 0;
-    margin: 0 20px;
-    font-size: 30px;
+    font-size: 18px;
     transition: 0.066s;
 }
 

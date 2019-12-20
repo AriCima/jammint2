@@ -22,46 +22,40 @@ const NavBar = ({user, signOut, jamActive}) => {
 
     return (
 
-        <div className="navBar">
+        <div className="navBar-icons">
 
-            <div className="navBar-left">
-
-                <div className="navBar-item">
-                    <FontAwesomeIcon className="navBar-menu-style" icon={faBars} />
-                </div>
-
-            
-
-                <div className="navBar-item">
-                    <CreatePopup
-                        user = { user }
-                    />
-                </div>
-
-                <div className="navBar-item">
-                    <JoinPopup
-                        user = { user }
-                    />
-                </div>
-
-
-                <div className="navBar-item">
-                    <Home
-                        user = { user }
-                    />
-                </div>
-
-                {/* { !user ? 
-                    <div className="navBar-item">
-                        <NavLink to={`/login`}>Sign In</NavLink> 
-                    </div> :
-                    
-                    <div className="navBar-item" onClick={signOut}>
-                        <FontAwesomeIcon className="signOut-icon-style" icon={faSignOutAlt} />
-                    </div>
-                } */}
-        
+            <div className="navBar-item">
+                <FontAwesomeIcon className="navBar-menu-style" icon={faBars} />
             </div>
+
+            <div className="navBar-item">
+                <CreatePopup
+                    user = { user }
+                />
+            </div>
+
+            <div className="navBar-item">
+                <JoinPopup
+                    user = { user }
+                />
+            </div>
+
+            <div className="navBar-item">
+                <Home
+                    user = { user }
+                />
+            </div>
+
+            {/* { !user ? 
+                <div className="navBar-item">
+                    <NavLink to={`/login`}>Sign In</NavLink> 
+                </div> :
+                
+                <div className="navBar-item" onClick={signOut}>
+                    <FontAwesomeIcon className="signOut-icon-style" icon={faSignOutAlt} />
+                </div>
+            } */}
+
 
         </div>
 
