@@ -32,10 +32,11 @@ const LandlordNavBar = ({ setJamSection, setRoomId, jamName, jamType}) => {
 
 
     const renderLandlordNavBar = () => {
+        console.log('renderNavBar launched', jamSections)
         return jamSections.map((section, id) => {
             
             const fontIcon = Calculations.getHeaderIcon(section);
-
+            console.log('fontIcon = ', fontIcon)
             return jamType === 'chat' ? 
             
             <div className="jamAdminNavBar-item" key={id} onClick={() => onSelectJamSection(`${section}`)}>
@@ -88,9 +89,10 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state) => {
+    console.log('state en el navBar = ', state)
     return {
         jamSection: state.jamSection,
-        jamActive: state.jamActive,
+        jamId: state.jamId,
         user: state.firebase.auth,
     }
 };

@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
 import { connect } from 'react-redux';
-import { selectJam } from '../../../../redux/actions/jamActive';
+import { selectJam } from '../../../../redux/actions/jamId';
 
 
 // CSS
@@ -11,6 +11,7 @@ import "./index.css";
   const { jamName, jamId, jamType, jamDesc, user2Name = '' } = props
 
   const onSelectJam = (jamId) => {
+    console.log('selectJam con jamId = ', jamId)
     props.selectJam(jamId);
   };
 

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import { getUserJams } from '../../redux/actions/jamsActions';
 import { getJamInfo } from '../../redux/actions/jamInfo';
 
@@ -15,15 +14,12 @@ import JamsOverview from './JamsOverview';
 // CSS
 import './index.css'; 
 
-const Dashboard = ({ auth, userJams, getJamInfo, jamId, jamInfo }) => {
-
-
+const Dashboard = ({ auth, userJams, getJamInfo, jamId, jamInfo, props }) => {
     const [ jamsList, setJamsList ] = useState([]);
     const [ ownStudentsFlats, setOwnStudentsFlats] = useState([])
 
     useEffect(() => {
         const userId = auth.uid;
-
         DataService.getUserJams(userId)
         .then(result => {
             setJamsList(result);
@@ -41,19 +37,19 @@ const Dashboard = ({ auth, userJams, getJamInfo, jamId, jamInfo }) => {
     }, [getJamInfo, jamId]);
     
 
-
-
+    console.log('jamId antes del render de Dash = ', jamId)
     return (
         <div className="dashboard">
             <aside className="jams-list">
 
-            {jamsList === undefined ? <p>LOADING !</p> : 
+            {jamsList === null ? <p>LOADING !</p> : 
                 <JamsList userJams={jamsList}/>
             }
             </aside>
 
             <div className="jam-screen">
-                { jamInfo.length === 0 ? 
+                { jamId === undefined ? 
+                // { jamInfo.length === 0 ? 
                     <JamsOverview 
                         ownStudentsFlats={ownStudentsFlats}
                     /> 
@@ -80,13 +76,12 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = state => {
-    console.log('state del Dashboard : ', state)
+    // console.log('state del Dashboard : ', state)
     return { 
         jamId: state.jamId,
         jamInfo: state.jamInfo,
         auth: state.firebase.auth,
         userJams: state.userJams,
-        
     }
 };
 

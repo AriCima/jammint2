@@ -57,7 +57,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
       user: state.firebase.auth,
-      jamActive: state.jamActive,
+      jamId: state.jamId,
       userJams: state.userJams,
   }
 }

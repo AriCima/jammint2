@@ -95,7 +95,7 @@ const mapStateToProps = (state) => {
     //console.log('state en el jamNavBar = ', state)
     return {
         auth: state.firebase.auth,
-        jamActive: state.jamActive,
+        jamId: state.jamId,
         jamActiveSection: state.jamSection,
     }
 }

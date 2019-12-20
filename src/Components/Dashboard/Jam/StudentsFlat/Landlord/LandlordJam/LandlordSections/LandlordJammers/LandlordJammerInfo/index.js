@@ -5,7 +5,7 @@ import ButtonContactJammer from '../../../../../../../../UI/ButtonContactJammer'
 import StudentInfoForm from '../../../../../../../../UI/Forms/StudentsFlat/StudentInfoForm';
 
 import { connect } from 'react-redux';
-import { selectJam } from "../../../../../../../../../redux/actions/jamActive";
+import { selectJam } from "../../../../../../../../../redux/actions/jamId";
 
 // CSS
 import './index.css';

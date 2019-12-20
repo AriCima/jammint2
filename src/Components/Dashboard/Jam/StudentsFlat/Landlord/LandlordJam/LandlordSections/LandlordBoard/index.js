@@ -99,7 +99,7 @@ const LandlordBoard = (props) => {
 const mapStateToProps = (state) => {
     return {
         auth: state.firebase.auth,
-        jamActive: state.jamActive,
+        jamId: state.jamId,
         // jamActiveSection: state.jamSection,
     }
 }

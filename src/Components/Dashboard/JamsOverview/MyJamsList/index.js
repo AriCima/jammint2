@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 // CSS
 import "./index.css";
@@ -17,7 +17,7 @@ const MyJamsList = ({ flats }) => {
             <div className="flat-name-line"></div>
           </div>
 
-          <button className="flats-row" key={j} to={`/single_apt_overview/${f.id}`}> 
+          <div className="flats-row" key={j} to={`/single_apt_overview/${f.id}`}> 
             
             <div className="flats-list-header">
               <ul>
@@ -28,22 +28,7 @@ const MyJamsList = ({ flats }) => {
                 <li>Rent (€/Mo)</li>
               </ul>     
             </div>
-            {/* <div className="apts-info-block">
-               <p>{f.jamName}</p>
-            </div> */}
-            {/* <div className="apts-info-block-name">
-                { !f.tenantName && f.roomsRental === 'NO'? <p><span>Vacant</span></p> : <p>{f.tenantName} {f.tenantSurname}</p>}
-            </div> */}
-            {/* <div className="apts-info-block">
-                <p>{f.checkIn}</p>
-            </div>
-            <div className="apts-info-block">
-                <p>{f.checkOut}</p>
-            </div>
-            <div className="apts-info-block-c">
-                <p>{f.rPrice}</p>
-            </div> */}
-          </button>
+          </div>
             <div className="home-rooms-list">
               {renderRooms(f.rooms)}
             </div>

@@ -64,7 +64,7 @@ const Chat = (props) => {
 const mapStateToProps = (state) => {
     return {
         user: state.firebase.auth,
-        jamActive: state.jamActive
+        jamId: state.jamid
     }
 }
 export default connect(mapStateToProps)(Chat);

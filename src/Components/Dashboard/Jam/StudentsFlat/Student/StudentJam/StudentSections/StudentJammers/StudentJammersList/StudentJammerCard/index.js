@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 // CSS
 import "./index.css";
-import { selectJam } from "../../../../../../../../../../redux/actions/jamActive";
+import { selectJam } from "../../../../../../../../../../redux/actions/jamId";
 import {setJamSection} from "../../../../../../../../../../redux/actions/jamSection"
 
 const LandlordJammerCard = (props) => {
@@ -88,7 +88,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
       user: state.firebase.auth,
-      jamActive: state.jamActive,
+      jamId: state.jamId,
       userJams: state.userJams,
   }
 }
