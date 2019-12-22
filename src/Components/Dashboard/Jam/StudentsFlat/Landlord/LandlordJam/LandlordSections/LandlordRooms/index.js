@@ -21,7 +21,6 @@ const LandlordRooms = (props) => {
     const [roomBookings, setRoomBookings] = useState({});
     
     useEffect(() => {
-        console.log('useEffect launched')
         DataService.getJamRooms(jamId)
         .then((res) => {
             setJamRoomsInfo(res)
@@ -48,8 +47,6 @@ const LandlordRooms = (props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [roomId])
     
-    
-    console.log('jamRoomsInfo: ', jamRoomsInfo);
     return (
         <div className="landlord-rooms">
 

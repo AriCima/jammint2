@@ -6,6 +6,7 @@ import Calculations from '../../../../../../../../services/Calculations';
 import './index.css';
 
 const RoomsOverview = ({jamRoomsInfo}) => {
+    console.log('jamRoomsInfo: ', jamRoomsInfo);
     
     for (let i = 0; i < jamRoomsInfo.length ; i++ ){
         const orderBookings = Calculations.organizeBookings(jamRoomsInfo[i].bookingsSummary)
