@@ -290,7 +290,7 @@ export default class DataService {
             });
         };
         static getJamRooms(jamId){
-            //console.log('user JAMS called with: ', userId)
+            console.log('get Rooms called with: ', jamId)
 
             return new Promise((resolve, reject) => {
 

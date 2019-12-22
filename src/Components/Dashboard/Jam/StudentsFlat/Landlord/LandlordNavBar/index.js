@@ -26,22 +26,16 @@ const LandlordNavBar = ({ setJamSection, setRoomId, jamName, jamType}) => {
 
     useEffect(() => {
         const sections = Calculations.getJamSections(jamType)
-        console.log('sections: ', sections);
         setJamSections(sections)
     }, [jamType, setJamSections])
 
-
-
     const renderLandlordNavBar = () => {
-        console.log('renderNavBar launched', jamSections)
         return jamSections.map((section, id) => {
-            
             const fontIcon = Calculations.getHeaderIcon(section);
-            console.log('fontIcon = ', fontIcon)
             return jamType === 'chat' ? 
             
             <div className="jamAdminNavBar-item" key={id} onClick={() => onSelectJamSection(`${section}`)}>
-                    <FontAwesomeIcon className="navBar-icon-style" icon={faComments} />
+                <FontAwesomeIcon className="navBar-icon-style" icon={faComments} />
             </div>
             
             : 
@@ -91,7 +85,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state) => {
-    console.log('state en el navBar = ', state)
     return {
         jamSection: state.jamSection,
         jamId: state.jamId,

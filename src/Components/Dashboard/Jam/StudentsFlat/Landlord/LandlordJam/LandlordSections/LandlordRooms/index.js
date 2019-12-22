@@ -15,19 +15,18 @@ import './index.css';
 const LandlordRooms = (props) => {
 
     const { jamId, roomId } = props;
+
     const [roomInfo, setRoomInfo] = useState({});
     const [jamRoomsInfo, setJamRoomsInfo] = useState([]);
     const [roomBookings, setRoomBookings] = useState({});
     
-
     useEffect(() => {
+        console.log('useEffect launched')
         DataService.getJamRooms(jamId)
         .then((res) => {
-            console.log('res del get RoomsInfo = ', res)
             setJamRoomsInfo(res)
         })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [jamId]);
+    }, []);
     
     useEffect(() => {   
         if (roomId !== '' && roomId !== false){
@@ -46,19 +45,16 @@ const LandlordRooms = (props) => {
             setRoomInfo({});
             setRoomBookings({});
         };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [roomId])
-
-
-    console.log('roomInfo: ', roomInfo);
+    
+    
     console.log('jamRoomsInfo: ', jamRoomsInfo);
-    // console.log('roomBookings: ', roomBookings);
-
     return (
         <div className="landlord-rooms">
 
             <div className="landlord-room-info">
-                {roomId === "" ? 
+                {roomId === "" & jamRoomsInfo.length !== 0 ? 
                     <RoomsOverview 
                         jamRoomsInfo={jamRoomsInfo} 
                     />
@@ -90,9 +86,10 @@ const LandlordRooms = (props) => {
 
 
 const mapStateToProps = (state) => {
+    console.log('state: ', state);
+
     return {
         user: state.firebase.auth,
-        jamActiveSection: state.jamSection,
         roomId: state.roomId,
     }
 }

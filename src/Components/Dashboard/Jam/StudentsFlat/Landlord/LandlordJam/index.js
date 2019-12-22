@@ -10,8 +10,7 @@ import LandlordRooms from './LandlordSections/LandlordRooms';
 import './index.css';
 import DataService from '../../../../../services/DataService';
 
-const LandlordJam = ({ jamId, jamInfo, jammerId, jamActiveSection } ) => {
-  console.log('jamInfo received in LandlordJam: ', jamInfo);
+const LandlordJam = ({ jamId, jamInfo, jammerId, jamActiveSection }) => {
 
   return (
     <div className="landlord-jam-wrapper">
@@ -29,12 +28,12 @@ const LandlordJam = ({ jamId, jamInfo, jammerId, jamActiveSection } ) => {
 
       <div className="landlord-jam-container">
   
-        { jamActiveSection === 'board' && 
+        { jamActiveSection === 'Board' && 
           <LandlordBoard 
             jamId={jamId}
           />
         }
-        { (jamActiveSection === 'jammers') && 
+        { (jamActiveSection === 'Rooms') && 
           <LandlordRooms 
             jamId={jamId}
           />

@@ -204,6 +204,7 @@ export default class Calculations {
     // - - - - - - - - BOOKINGS
 
     static organizeBookings = (bookings) => {
+        console.log('bookings: ', bookings);
         
         const result = {
             currentBooking: {}, 
@@ -223,6 +224,7 @@ export default class Calculations {
             }
         });
         result.nextBooking = result.futureBookings[0];
+        console.log('result = ', result)
         return result
     }
 

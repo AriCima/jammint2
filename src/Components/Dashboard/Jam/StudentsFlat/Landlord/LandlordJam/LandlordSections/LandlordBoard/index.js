@@ -14,6 +14,7 @@ const LandlordBoard = (props) => {
 
     const { jamId } = props;
     const userId = props.auth.uid;
+
     const [sectionInfo, setSectionInfo] = useState([]);
     const [messageText, setMessageText ] = useState('');
    

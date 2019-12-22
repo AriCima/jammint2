@@ -5,18 +5,17 @@ import Calculations from '../../../../../../../../services/Calculations';
 // CSS
 import './index.css';
 
-const RoomsOverview = (roomsInfo) => {
-
-    for (let i = 0; i < roomsInfo.length ; i++ ){
-        const orderBookings = Calculations.organizeBookings(roomsInfo[i].bookingsSummary)
+const RoomsOverview = ({jamRoomsInfo}) => {
+    
+    for (let i = 0; i < jamRoomsInfo.length ; i++ ){
+        const orderBookings = Calculations.organizeBookings(jamRoomsInfo[i].bookingsSummary)
         const currentBooking = orderBookings.currentBooking;
-        roomsInfo[i].currentBooking = currentBooking;
+        jamRoomsInfo[i].currentBooking = currentBooking;
     }
-
-    console.log('roomsInfo = ', roomsInfo)
-
+    
     const renderRoomsChart = () => {
-        return roomsInfo.map((room, i) => {
+        console.log('jamRoomsInfo: ', jamRoomsInfo);
+        return jamRoomsInfo.map((room, i) => {
             return (
                 <div className="room-info-line">
                     <div className="room-info-block">
@@ -73,7 +72,7 @@ const RoomsOverview = (roomsInfo) => {
                         <p>Check-Out</p>
                     </div>
                 </div>
-                {renderRoomsChart()}
+                {jamRoomsInfo.length !== 0 && renderRoomsChart()}
             </div>
         </div>
         
