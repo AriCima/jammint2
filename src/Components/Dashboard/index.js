@@ -48,7 +48,7 @@ const Dashboard = ({ auth, userJams, getJamInfo, jamId, jamInfo, props }) => {
             </aside>
 
             <div className="jam-screen">
-                { jamId === undefined ? 
+                { jamId === null ? 
                 // { jamInfo.length === 0 ? 
                     <JamsOverview 
                         ownStudentsFlats={ownStudentsFlats}
