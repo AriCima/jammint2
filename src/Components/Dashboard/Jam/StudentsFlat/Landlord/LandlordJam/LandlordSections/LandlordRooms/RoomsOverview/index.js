@@ -15,7 +15,7 @@ const RoomsOverview = ({jamRoomsInfo}) => {
     }
     
     const renderRoomsChart = () => {
-        console.log('jamRoomsInfo: ', jamRoomsInfo);
+        console.log()
         return jamRoomsInfo.map((room, i) => {
             return (
                 <div className="room-info-line">

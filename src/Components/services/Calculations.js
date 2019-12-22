@@ -211,13 +211,15 @@ export default class Calculations {
             dueBookings: [],
             futureBookings: [],
             nextBooking: {}
-        }
+        };
         
-        const currentDate = new Date()
+        const currentDate = new Date();
 
         bookings.forEach(e => {
-            const cOut = new Date(e.checkOut);
+            const cOut = new Date(moment((e.checkOut)).format('DD-MM-YYY'));
             const cIn = new Date(e.checkIn);
+            console.log('cIn: ', cIn);
+            console.log('cOut: ', cOut);
             if ( currentDate > cOut ) {
                 result.dueBookings.push(e)
             } else if ( currentDate < cIn) {
