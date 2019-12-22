@@ -26,6 +26,7 @@ const LandlordNavBar = ({ setJamSection, setRoomId, jamName, jamType}) => {
 
     useEffect(() => {
         const sections = Calculations.getJamSections(jamType)
+        console.log('sections: ', sections);
         setJamSections(sections)
     }, [jamType, setJamSections])
 
@@ -46,7 +47,8 @@ const LandlordNavBar = ({ setJamSection, setRoomId, jamName, jamType}) => {
             : 
 
             <div className="jamAdminNavBar-item" key={id} onClick={() => onSelectJamSection(`${section}`)}>
-                {fontIcon}
+                {/* {fontIcon} */}
+                {section}
             </div>
             
         })

@@ -14,13 +14,12 @@ import "./index.css";
 const Home = (props) => {
 
   const onSelectJam = (jamId) => {
-    console.log('jamId en home = ', jamId)
     props.selectJam(jamId);
   };
 
   return (
 
-    <button  className="home-button" onClick={()=> onSelectJam('overview')}>
+    <button  className="home-button" onClick={()=> onSelectJam(null)}>
         <FontAwesomeIcon className="home-icon-style" icon={faHome} />
     </button>
   )
@@ -29,7 +28,7 @@ const Home = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    selectJam: () => dispatch(selectJam('overview')),
+    selectJam: () => dispatch(selectJam(null)),
   }
 }
 
