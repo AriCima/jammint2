@@ -204,7 +204,7 @@ export default class Calculations {
     // - - - - - - - - BOOKINGS
 
     static organizeBookings = (bookings) => {
-        console.log('bookings calculations: ', bookings);
+        // console.log('bookings calculations: ', bookings);
         
         const result = {
             currentBooking: {}, 
@@ -216,15 +216,20 @@ export default class Calculations {
         const currentDate = new Date();
 
         bookings.forEach(e => {
-            const cOut = new Date(moment((e.checkOut)).format('DD-MM-YYY'));
+            const cOut = new Date(e.checkOut);
             const cIn = new Date(e.checkIn);
-            console.log('cIn: ', cIn);
-            console.log('cOut: ', cOut);
+            // console.log('cIn: ', cIn);
+            // console.log('cOut: ', cOut);
+            console.log('current <= cOut ? ', currentDate <= cOut )
+            console.log('current >= cIn ? ', currentDate >= cIn )
             if ( currentDate > cOut ) {
+                console.log('due Booking');
                 result.dueBookings.push(e)
             } else if ( currentDate < cIn) {
+                console.log('future Booking');
                 result.futureBookings.push(e);
-            } else if ( (cIn >= currentDate) && (currentDate <= cOut) ) {
+            } else if ( (currentDate >= cIn) && (currentDate <= cOut) ) {
+                console.log('current booking');
                 result.currentBooking = e
             }
         });
@@ -233,7 +238,7 @@ export default class Calculations {
         } else {
             result.nextBooking = {};
         }
-        console.log('result = ', result)
+        // console.log('result = ', result)
         return result
     }
 

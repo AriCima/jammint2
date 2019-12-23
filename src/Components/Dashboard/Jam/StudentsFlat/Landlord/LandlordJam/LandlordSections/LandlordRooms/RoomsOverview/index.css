@@ -27,6 +27,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    background-color: yellow;
 }
 
 .room-info-chart-block p{
@@ -41,4 +42,28 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+}
+.room-info-vacant-row{
+    width: 100;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: blue;
+}
+.vacant-sign{
+    padding: 5%;
+    background-color: red;
+    border-radius: 50%;
+    color: white;
+    font-weight: 700;
+}
+.room-info-block{
+    width: 14%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: yellow;
+}
+.room-info-block p{
+    font-size: 10px;
 }

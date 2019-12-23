@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Calculations from '../../../../../../../../services/Calculations';
 
@@ -6,44 +6,57 @@ import Calculations from '../../../../../../../../services/Calculations';
 import './index.css';
 
 const RoomsOverview = ({jamRoomsInfo}) => {
+    // jamRoomsInfo --> array con bookingsSummary  + roomInfo de cada hab
+    // jamRoomsInfo = [ {bookingsSummary: [{}..{}]}, roomInfo ]
     console.log('jamRoomsInfo: ', jamRoomsInfo);
+
+    
+    let roomsBookings = []
     
     for (let i = 0; i < jamRoomsInfo.length ; i++ ){
-        const orderBookings = Calculations.organizeBookings(jamRoomsInfo[i].bookingsSummary)
-        const currentBooking = orderBookings.currentBooking;
-        jamRoomsInfo[i].currentBooking = currentBooking;
+        const orderedBookings = Calculations.organizeBookings(jamRoomsInfo[i].bookingsSummary)
+        const roomName = jamRoomsInfo[i].roomName;
+        const roomBookingsSummary = {roomName: roomName, bookings: orderedBookings}
+        roomsBookings.push(roomBookingsSummary)
     }
+
+
+    // console.log('roomsBookings = ', roomsBookings)
     
     const renderRoomsChart = () => {
-        console.log()
-        return jamRoomsInfo.map((room, i) => {
+        return roomsBookings.map((room, i) => {
+            console.log('roomsBookings = ',roomsBookings)
             return (
                 <div className="room-info-line">
                     <div className="room-info-block">
                         <p>{room.roomName}</p>
                     </div>
-                    {room.currentBooking === {} ?
+                    {room.bookings.currentBooking.length === 0 ?
                         <>
                             <div className="room-info-vacant-row">
-                                <p>VACANT</p>
+                                <div className="vacant-sign">
+                                    <p>CURRENTLY VACANT</p>
+                                </div>
                             </div>
                         </>
                         :
-                        <>
-                            <div className="room-info-block">
-                                <p>{room.currentBooking.jammerName}</p>
+                        <>  <div className="room-info-block">
+                                <p>{room.bookings.currentBooking.bookingId}</p>
                             </div>
                             <div className="room-info-block">
-                                <p>{room.currentBooking.checkIn}</p>
+                                <p>{room.bookings.currentBooking.jammerName}</p>
                             </div>
                             <div className="room-info-block">
-                                <p>{room.currentBooking.checkOut}</p>
+                                <p>{room.bookings.currentBooking.checkIn}</p>
                             </div>
                             <div className="room-info-block">
-                                <p>{room.currentBooking.rent}</p>
+                                <p>{room.bookings.currentBooking.checkOut}</p>
                             </div>
                             <div className="room-info-block">
-                                <p>{room.currentBooking.deposit}</p>
+                                <p>{room.bookings.currentBooking.rent}</p>
+                            </div>
+                            <div className="room-info-block">
+                                <p>{room.bookings.currentBooking.deposit}</p>
                             </div>
                         </>
                     }
