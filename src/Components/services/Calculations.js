@@ -218,19 +218,12 @@ export default class Calculations {
         bookings.forEach(e => {
             const cOut = new Date(e.checkOut);
             const cIn = new Date(e.checkIn);
-            // console.log('cIn: ', cIn);
-            // console.log('cOut: ', cOut);
-            console.log('current <= cOut ? ', currentDate <= cOut )
-            console.log('current >= cIn ? ', currentDate >= cIn )
             if ( currentDate > cOut ) {
-                console.log('due Booking');
                 result.dueBookings.push(e)
             } else if ( currentDate < cIn) {
-                console.log('future Booking');
                 result.futureBookings.push(e);
             } else if ( (currentDate >= cIn) && (currentDate <= cOut) ) {
-                console.log('current booking');
-                result.currentBooking = e
+                result.currentBooking = {...e}
             }
         });
         if (result.futureBookings.length !== 0) {
@@ -264,5 +257,13 @@ export default class Calculations {
         return flats
     }
 
+    // FUNCTION TO DETERMINE IF AN OBJECT IS EMPTY
+    static isEmpty = (obj) => {
+        for(var key in obj) {
+            if(obj.hasOwnProperty(key))
+                return false;
+        }
+        return true;
+    }
 
 }

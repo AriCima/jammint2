@@ -30,9 +30,7 @@ const JamsList = (props) => {
 
   return (
     <div className="jams-list-wrapper">
-      {
-      _renderJams()
-      }
+      { userJams.length !== 0 && _renderJams() }
     </div>
   )
   

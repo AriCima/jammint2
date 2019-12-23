@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import moment from 'moment';
 
 import Calculations from '../../../../../../../../services/Calculations';
 
@@ -20,37 +21,45 @@ const RoomsOverview = ({jamRoomsInfo}) => {
         roomsBookings.push(roomBookingsSummary)
     }
 
-
-    // console.log('roomsBookings = ', roomsBookings)
+    const isEmpty = (x) => {
+        const empty = Calculations.isEmpty(x)
+        return empty
+    }
     
     const renderRoomsChart = () => {
         return roomsBookings.map((room, i) => {
-            console.log('roomsBookings = ',roomsBookings)
+            console.log('current = ',room.roomName, ' / ', room.bookings.currentBooking, ' / ', typeof room.bookings.currentBooking, ' / ', room.bookings.currentBooking.length)
             return (
-                <div className="room-info-line">
-                    <div className="room-info-block">
-                        <p>{room.roomName}</p>
-                    </div>
-                    {room.bookings.currentBooking.length === 0 ?
-                        <>
+                <div className="rooms-charts-wrapper" key={i}>
+                    {isEmpty(room.bookings.currentBooking) ?
+                        (<div className="vacant-row">
+                            <div clasaName="vacant-row-roomName">
+                                <div className="room-info-block-center">
+                                    <p>{room.roomName}</p>
+                                </div>
+                            </div>
                             <div className="room-info-vacant-row">
                                 <div className="vacant-sign">
                                     <p>CURRENTLY VACANT</p>
                                 </div>
                             </div>
-                        </>
+                        </div>)
                         :
-                        <>  <div className="room-info-block">
+                        (<div className="room-info-line">
+                            <div className="room-info-block-center">
+                                <p>{room.roomName}</p>
+                            </div>
+                            <div className="room-info-block">
                                 <p>{room.bookings.currentBooking.bookingId}</p>
                             </div>
                             <div className="room-info-block">
                                 <p>{room.bookings.currentBooking.jammerName}</p>
                             </div>
                             <div className="room-info-block">
-                                <p>{room.bookings.currentBooking.checkIn}</p>
+                                <p>{moment(room.bookings.currentBooking.checkIn).format('DD-MMM-YYYY')}</p>
                             </div>
                             <div className="room-info-block">
-                                <p>{room.bookings.currentBooking.checkOut}</p>
+                                <p>{moment(room.bookings.currentBooking.checkOut).format('DD-MMM-YYYY')}</p>
                             </div>
                             <div className="room-info-block">
                                 <p>{room.bookings.currentBooking.rent}</p>
@@ -58,7 +67,7 @@ const RoomsOverview = ({jamRoomsInfo}) => {
                             <div className="room-info-block">
                                 <p>{room.bookings.currentBooking.deposit}</p>
                             </div>
-                        </>
+                        </div>)
                     }
                 </div>
             )
@@ -70,20 +79,26 @@ const RoomsOverview = ({jamRoomsInfo}) => {
 
             <div className="rooms-info-chart">
                 <div className="room-info-chart-header">
-                    <div className="room-info-chart-block">
+                    <div className="room-info-chart-header-block">
                         <p>Room Name</p>
                     </div>
-                    <div className="room-info-chart-block">
+                    <div className="room-info-chart-header-block">
                         <p>Booking ID</p>
                     </div>
-                    <div className="room-info-chart-block">
+                    <div className="room-info-chart-header-block">
                         <p>Tenant Name</p>
                     </div>
-                    <div className="room-info-chart-block">
+                    <div className="room-info-chart-header-block">
                         <p>Check-In</p>
                     </div>
-                    <div className="room-info-chart-block">
+                    <div className="room-info-chart-header-block">
                         <p>Check-Out</p>
+                    </div>
+                    <div className="room-info-chart-header-block">
+                        <p>Rent €</p>
+                    </div>
+                    <div className="room-info-chart-header-block">
+                        <p>Deposit €</p>
                     </div>
                 </div>
                 {jamRoomsInfo.length !== 0 && renderRoomsChart()}

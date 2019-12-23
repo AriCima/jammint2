@@ -37,12 +37,12 @@ const Dashboard = ({ auth, userJams, getJamInfo, jamId, jamInfo, props }) => {
     }, [getJamInfo, jamId]);
     
 
-    console.log('jamId antes del render de Dash = ', jamId)
+    console.log('jamsList = ', jamsList)
     return (
         <div className="dashboard">
             <aside className="jams-list">
 
-            {jamsList === null ? <p>LOADING !</p> : 
+            {jamsList && 
                 <JamsList userJams={jamsList}/>
             }
             </aside>
