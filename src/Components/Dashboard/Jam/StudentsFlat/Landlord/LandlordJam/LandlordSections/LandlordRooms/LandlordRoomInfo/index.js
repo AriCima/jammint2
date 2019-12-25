@@ -16,7 +16,8 @@ import './index.css';
 
 const LandlordRoomInfo = (props) => {
 
-  const { jamId, roomId, roomInfo, roomBookings, activeScreen } = props;
+  const { jamId, roomId, roomInfo, activeScreen } = props;
+  console.log('roomInfo en RoomInfo: ', roomInfo);
 
   const [screen, setScreen] = useState(props.activeScreen)
 
@@ -100,12 +101,15 @@ const LandlordRoomInfo = (props) => {
                 <div className="room-section-title">
                     <p>Current State</p>
                 </div>
-
-                {/* <div className="room-section-content">
-                    <CurrentTenant roomBookings={roomBookings}/>
-                </div>
-
+               
                 <div className="room-section-content">
+                        <CurrentTenant 
+                            roomId={roomId}
+                            roomInfo={roomInfo}
+                        />
+                    </div>
+set
+                {/*  <div className="room-section-content">
                     <RoomBookings roomBookings={roomBookings} />
                 </div>
     

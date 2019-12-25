@@ -79,7 +79,6 @@ const LandlordRooms = (props) => {
                     <LandlordRoomInfo
                         roomId={roomId} 
                         roomInfo={roomInfo}
-                        roomsBookings={orderedBookings}
                         jamId={jamId} 
                     />
                 }
