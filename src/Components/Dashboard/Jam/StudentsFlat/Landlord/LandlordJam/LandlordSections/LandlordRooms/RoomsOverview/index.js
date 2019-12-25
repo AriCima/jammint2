@@ -31,10 +31,11 @@ const RoomsOverview = ({jamRoomsInfo}) => {
             console.log('current = ',room.roomName, ' / ', room.bookings.currentBooking, ' / ', typeof room.bookings.currentBooking, ' / ', room.bookings.currentBooking.length)
             return (
                 <div className="rooms-charts-wrapper" key={i}>
-                    {isEmpty(room.bookings.currentBooking) ?
+                    <div className="room-info-line">
+                        {isEmpty(room.bookings.currentBooking) ?
                         (<div className="vacant-row">
-                            <div clasaName="vacant-row-roomName">
-                                <div className="room-info-block-center">
+                            <div className="vacant-row-roomName">
+                                <div className="vacant-info-block">
                                     <p>{room.roomName}</p>
                                 </div>
                             </div>
@@ -45,30 +46,33 @@ const RoomsOverview = ({jamRoomsInfo}) => {
                             </div>
                         </div>)
                         :
-                        (<div className="room-info-line">
-                            <div className="room-info-block-center">
-                                <p>{room.roomName}</p>
-                            </div>
-                            <div className="room-info-block">
-                                <p>{room.bookings.currentBooking.bookingId}</p>
-                            </div>
-                            <div className="room-info-block">
-                                <p>{room.bookings.currentBooking.jammerName}</p>
-                            </div>
-                            <div className="room-info-block">
-                                <p>{moment(room.bookings.currentBooking.checkIn).format('DD-MMM-YYYY')}</p>
-                            </div>
-                            <div className="room-info-block">
-                                <p>{moment(room.bookings.currentBooking.checkOut).format('DD-MMM-YYYY')}</p>
-                            </div>
-                            <div className="room-info-block">
-                                <p>{room.bookings.currentBooking.rent}</p>
-                            </div>
-                            <div className="room-info-block">
-                                <p>{room.bookings.currentBooking.deposit}</p>
-                            </div>
-                        </div>)
-                    }
+                        (
+                        <>
+                        <div className="room-info-block-center">
+                            <p>{room.roomName}</p>
+                        </div>
+                        <div className="room-info-block">
+                            <p>{room.bookings.currentBooking.bookingId}</p>
+                        </div>
+                        <div className="room-info-block">
+                            <p>{room.bookings.currentBooking.jammerName}</p>
+                        </div>
+                        <div className="room-info-block">
+                            <p>{moment(room.bookings.currentBooking.checkIn).format('DD-MMM-YYYY')}</p>
+                        </div>
+                        <div className="room-info-block">
+                            <p>{moment(room.bookings.currentBooking.checkOut).format('DD-MMM-YYYY')}</p>
+                        </div>
+                        <div className="room-info-block">
+                            <p>{room.bookings.currentBooking.rent}</p>
+                        </div>
+                        <div className="room-info-block">
+                            <p>{room.bookings.currentBooking.deposit}</p>
+                        </div>
+                        </>
+                    
+                        )}
+                    </div>
                 </div>
             )
         })

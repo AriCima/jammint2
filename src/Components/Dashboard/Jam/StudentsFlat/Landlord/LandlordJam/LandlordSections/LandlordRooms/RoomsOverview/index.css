@@ -53,24 +53,45 @@
 }
 .vacant-row-roomName{
     width: 14%;
+    margin: 2px 0;
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
-.room-info-vacant-row{
-    width: 100;
+.vacant-info-block{
+    width: 100%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 5px;
+}
+.room-info-vacant-row{
+    width: 86%;
+    padding-right: 14%;
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 
 .vacant-sign{
-    padding: 5%;
+    width: auto;
     background-color: red;
-    border-radius: 50%;
-    color: white;
-    font-weight: 700;
+    border: 1px solid white;
+    padding: 5px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.vacant-sign p{
+    margin: 0;
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+}
+
+/* | - - - - VACANT LINE - - - - | */
 
 .room-info-line{
     width: 100%;
