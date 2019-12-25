@@ -13,12 +13,13 @@ import { connect } from 'react-redux';
 import { setRoomId } from '../../../../../../../../../redux/actions/roomsId';
 import { setActiveScreen } from '../../../../../../../../../redux/actions/roomScreen';
 
-const LandlordRoomsList = (props) => {
+// const LandlordRoomsList = (props) => {
 
-    const { jamRoomsInfo } = props;
+//     const { jamRoomsInfo } = props;
+const LandlordRoomsList = ({ roomsBookings, setActiveScreen }) => {
 
     const renderRoomsList = () => {
-        return jamRoomsInfo.map((rI, i) => {
+        return roomsBookings.map((rI, i) => {
             return (
                 <React.Fragment key={i}>
                     <LandlordRoomCard
@@ -31,13 +32,13 @@ const LandlordRoomsList = (props) => {
 
     const onNewRoom = () => {
         const roomId = 'newRoomForm'
-        props.setActiveScreen(roomId)
+        setActiveScreen(roomId)
     };
 
     return (
 
         <>
-            { jamRoomsInfo ? renderRoomsList() : <p>Loading</p>}
+            { roomsBookings ? renderRoomsList() : <p>Loading</p>}
             <div className="rooms-list-addRoom-area">
             <ButtonPlain 
                 onClick={onNewRoom}

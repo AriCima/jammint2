@@ -27,7 +27,7 @@ const LandlordRoomCard = (props) => {
       </div>
       <div className="landlord-room-card-info">
         <div className="landlord-room-card-upperline">
-          <p>Frederic Antoine</p>
+          <p>{rI.bookings.currentBooking.jammerName}</p>
         </div>
         <div className="landlord-room-card-lowerline">
           <p>Seatle, USA</p>

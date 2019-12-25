@@ -7,25 +7,11 @@ import Calculations from '../../../../../../../../services/Calculations';
 import './index.css';
 
 const RoomsOverview = ({roomsBookings}) => {
-    console.log('roomsBookings: ', roomsBookings);
-    // jamRoomsInfo --> array con bookingsSummary  + roomInfo de cada hab
-    // jamRoomsInfo = [ {bookingsSummary: [{}..{}]}, roomInfo ]
-
-
-    
-    // let roomsBookings = []
-    
-    // for (let i = 0; i < jamRoomsInfo.length ; i++ ){
-    //     const orderedBookings = Calculations.organizeBookings(jamRoomsInfo[i].bookingsSummary)
-    //     const roomName = jamRoomsInfo[i].roomName;
-    //     const roomBookingsSummary = {roomName: roomName, bookings: orderedBookings}
-    //     roomsBookings.push(roomBookingsSummary)
-    // }
 
     const isEmpty = (x) => {
         const empty = Calculations.isEmpty(x)
         return empty
-    }
+    };
     
     const renderRoomsChart = () => {
         return roomsBookings.map((room, i) => {
@@ -77,11 +63,10 @@ const RoomsOverview = ({roomsBookings}) => {
                 </div>
             )
         })
-    }
+    };
 
     return(
         <div className="rooms-overview-wrapper">
-
             <div className="rooms-info-chart">
                 <div className="room-info-chart-header">
                     <div className="room-info-chart-header-block">
@@ -109,8 +94,6 @@ const RoomsOverview = ({roomsBookings}) => {
                 {roomsBookings.length !== 0 && renderRoomsChart()}
             </div>
         </div>
-        
-
     )
 }
 

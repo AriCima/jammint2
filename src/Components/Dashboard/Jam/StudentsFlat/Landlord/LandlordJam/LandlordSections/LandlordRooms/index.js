@@ -64,8 +64,7 @@ const LandlordRooms = (props) => {
         }
 
     }, [jamRoomsInfo])
-    
-    console.log('orderedBookings: ', orderedBookings);
+
     return (
         <div className="landlord-rooms">
 
@@ -79,7 +78,7 @@ const LandlordRooms = (props) => {
                     <LandlordRoomInfo
                         roomId={roomId} 
                         roomInfo={roomInfo}
-                        roomBookings={roomBookings}
+                        roomsBookings={orderedBookings}
                         jamId={jamId} 
                     />
                 }
@@ -87,7 +86,8 @@ const LandlordRooms = (props) => {
             <div className="landlord-rooms-list">
                 {jamRoomsInfo !==[] ? 
                     <LandlordRoomsList
-                        jamRoomsInfo={jamRoomsInfo} 
+                        jamRoomsInfo={jamRoomsInfo}
+                        roomsBookings={orderedBookings}
                     /> 
                     : 
                     <p>Loading</p>
