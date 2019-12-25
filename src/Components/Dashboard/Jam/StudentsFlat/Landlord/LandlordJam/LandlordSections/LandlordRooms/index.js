@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 // COMPONENTS
 import { connect } from 'react-redux';
 import DataService from '../../../../../../../services/DataService';
+import Calculations from '../../../../../../../services/Calculations';
+
 import LandlordRoomsList from './LandlordRoomsList';
 import LandlordRoomInfo from './LandlordRoomInfo';
 import RoomsOverview from './RoomsOverview';
@@ -19,7 +21,8 @@ const LandlordRooms = (props) => {
     const [roomInfo, setRoomInfo] = useState({});
     const [jamRoomsInfo, setJamRoomsInfo] = useState([]);
     const [roomBookings, setRoomBookings] = useState({});
-    
+    const [orderedBookings, setOrderedBookings] = useState([])
+
     useEffect(() => {
         DataService.getJamRooms(jamId)
         .then((res) => {
@@ -47,13 +50,30 @@ const LandlordRooms = (props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [roomId])
     
+    useEffect(() => {
+        if (jamRoomsInfo.length !==0){
+            let roomsBookings = []
+        
+            for (let i = 0; i < jamRoomsInfo.length ; i++ ){
+                const orderedBookings = Calculations.organizeBookings(jamRoomsInfo[i].bookingsSummary)
+                const roomName = jamRoomsInfo[i].roomName;
+                const roomBookingsSummary = {roomName: roomName, bookings: orderedBookings}
+                roomsBookings.push(roomBookingsSummary)
+            }
+            setOrderedBookings(roomsBookings)
+        }
+
+    }, [jamRoomsInfo])
+    
+    console.log('orderedBookings: ', orderedBookings);
     return (
         <div className="landlord-rooms">
 
             <div className="landlord-room-info">
-                {roomId === "" & jamRoomsInfo.length !== 0 ? 
+                {roomId === "" & orderedBookings.length !== 0 ? 
                     <RoomsOverview 
-                        jamRoomsInfo={jamRoomsInfo} 
+                        // jamRoomsInfo={jamRoomsInfo} 
+                        roomsBookings={orderedBookings}
                     />
                     :
                     <LandlordRoomInfo

@@ -46,7 +46,6 @@
 /* - - - - - VACANT LINE - - - - - */
 .vacant-row{
     width: 100%;
-    margin: 5px 0;
     display: flex;
     justify-content: flex-start;
     align-items: center;

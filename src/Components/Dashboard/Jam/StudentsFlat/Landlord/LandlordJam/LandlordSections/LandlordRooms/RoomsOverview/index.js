@@ -6,20 +6,21 @@ import Calculations from '../../../../../../../../services/Calculations';
 // CSS
 import './index.css';
 
-const RoomsOverview = ({jamRoomsInfo}) => {
+const RoomsOverview = ({roomsBookings}) => {
+    console.log('roomsBookings: ', roomsBookings);
     // jamRoomsInfo --> array con bookingsSummary  + roomInfo de cada hab
     // jamRoomsInfo = [ {bookingsSummary: [{}..{}]}, roomInfo ]
-    console.log('jamRoomsInfo: ', jamRoomsInfo);
+
 
     
-    let roomsBookings = []
+    // let roomsBookings = []
     
-    for (let i = 0; i < jamRoomsInfo.length ; i++ ){
-        const orderedBookings = Calculations.organizeBookings(jamRoomsInfo[i].bookingsSummary)
-        const roomName = jamRoomsInfo[i].roomName;
-        const roomBookingsSummary = {roomName: roomName, bookings: orderedBookings}
-        roomsBookings.push(roomBookingsSummary)
-    }
+    // for (let i = 0; i < jamRoomsInfo.length ; i++ ){
+    //     const orderedBookings = Calculations.organizeBookings(jamRoomsInfo[i].bookingsSummary)
+    //     const roomName = jamRoomsInfo[i].roomName;
+    //     const roomBookingsSummary = {roomName: roomName, bookings: orderedBookings}
+    //     roomsBookings.push(roomBookingsSummary)
+    // }
 
     const isEmpty = (x) => {
         const empty = Calculations.isEmpty(x)
@@ -105,7 +106,7 @@ const RoomsOverview = ({jamRoomsInfo}) => {
                         <p>Deposit €</p>
                     </div>
                 </div>
-                {jamRoomsInfo.length !== 0 && renderRoomsChart()}
+                {roomsBookings.length !== 0 && renderRoomsChart()}
             </div>
         </div>
         
