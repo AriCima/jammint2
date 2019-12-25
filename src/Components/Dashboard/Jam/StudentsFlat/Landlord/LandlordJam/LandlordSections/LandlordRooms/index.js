@@ -57,7 +57,8 @@ const LandlordRooms = (props) => {
             for (let i = 0; i < jamRoomsInfo.length ; i++ ){
                 const orderedBookings = Calculations.organizeBookings(jamRoomsInfo[i].bookingsSummary)
                 const roomName = jamRoomsInfo[i].roomName;
-                const roomBookingsSummary = {roomName: roomName, bookings: orderedBookings}
+                const roomId = jamRoomsInfo[i].id;
+                const roomBookingsSummary = {roomName: roomName, roomId: roomId, bookings: orderedBookings}
                 roomsBookings.push(roomBookingsSummary)
             }
             setOrderedBookings(roomsBookings)

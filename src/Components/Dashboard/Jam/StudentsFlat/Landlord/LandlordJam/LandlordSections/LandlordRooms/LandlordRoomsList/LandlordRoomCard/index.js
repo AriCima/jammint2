@@ -10,6 +10,7 @@ import {setActiveScreen} from "../../../../../../../../../../redux/actions/roomS
 import "./index.css";
 
 const LandlordRoomCard = (props) => {
+  console.log('props: ', props);
 
   const { rI  } = props
   const roomId = rI.id;
@@ -21,7 +22,7 @@ const LandlordRoomCard = (props) => {
 
   return (
 
-    <button className="landlord-room-card-container" onClick={()=> onShowRoomInfo(roomId)}>
+    <button className="landlord-room-card-container" onClick={()=> onShowRoomInfo(rI.roomId)}>
       <div className="landlord-room-card-roomNr">
         <p>{rI.roomName}</p>
       </div>

@@ -15,7 +15,6 @@ const RoomsOverview = ({roomsBookings}) => {
     
     const renderRoomsChart = () => {
         return roomsBookings.map((room, i) => {
-            console.log('current = ',room.roomName, ' / ', room.bookings.currentBooking, ' / ', typeof room.bookings.currentBooking, ' / ', room.bookings.currentBooking.length)
             return (
                 <div className="rooms-charts-wrapper" key={i}>
                     <div className="room-info-line">

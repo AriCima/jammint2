@@ -101,7 +101,7 @@ const LandlordRoomInfo = (props) => {
                     <p>Current State</p>
                 </div>
 
-                <div className="room-section-content">
+                {/* <div className="room-section-content">
                     <CurrentTenant roomBookings={roomBookings}/>
                 </div>
 
@@ -113,7 +113,7 @@ const LandlordRoomInfo = (props) => {
                     <RoomInfo 
                         roomInfo={roomInfo}
                     />
-                </div>
+                </div> */}
 
             </div>
         }     
