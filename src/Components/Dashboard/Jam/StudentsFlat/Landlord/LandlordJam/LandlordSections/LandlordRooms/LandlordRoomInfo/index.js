@@ -108,7 +108,6 @@ const LandlordRoomInfo = (props) => {
                             roomInfo={roomInfo}
                         />
                     </div>
-set
                 {/*  <div className="room-section-content">
                     <RoomBookings roomBookings={roomBookings} />
                 </div>
