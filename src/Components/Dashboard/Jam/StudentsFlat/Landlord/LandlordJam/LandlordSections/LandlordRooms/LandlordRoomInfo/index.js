@@ -97,22 +97,21 @@ const LandlordRoomInfo = (props) => {
                         clickHandle={onNewInvitation}
                     />
                 </div>
-       
-                <div className="room-section-title">
-                    <p>Current State</p>
-                </div>
                
                 <div className="room-section-content">
-                        <CurrentTenant 
-                            roomId={roomId}
-                            roomInfo={roomInfo}
-                        />
-                    </div>
-                {/*  <div className="room-section-content">
-                    <RoomBookings roomBookings={roomBookings} />
+                    <CurrentTenant 
+                        roomId={roomId}
+                        roomInfo={roomInfo}
+                    />
+                </div>
+                <div className="room-section-content">
+                    <RoomBookings 
+                        roomId={roomId}
+                        roomInfo={roomInfo}
+                    />
                 </div>
     
-                <div className="room-section-content">
+                {/*  <div className="room-section-content">
                     <RoomInfo 
                         roomInfo={roomInfo}
                     />

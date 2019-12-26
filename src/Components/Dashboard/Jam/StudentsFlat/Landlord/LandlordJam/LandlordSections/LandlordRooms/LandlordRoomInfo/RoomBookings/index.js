@@ -7,23 +7,32 @@ import BookingCard from './BookingsList/BookingCard';
 // CSS
 import './index.css';
 
-const RoomBookings = (props) => {
 
-    const [roomBookings, setRoomBookings] = useState(props.roomBookings);
-    const [currentBooking, setCurrentBooking] = useState({});
-    // const [nextBooking, setNextBooking] = useState({});
-    const [futureBookings, setFutureBookings] = useState({});
-    const [dueContracts, setDueContracts] = useState([]);
+const RoomBookings = ({ roomInfo, roomId }) => {
 
-    const existBookings = roomBookings.length;
-    if (existBookings ){
-        const bookings = Calculations.organizeBookings(roomBookings)
-        setRoomBookings(bookings)
-        setCurrentBooking(bookings.currentBooking)
-        setFutureBookings(bookings.futureBookings)
-        setDueContracts(bookings.dueContracts)
-        // setNextBooking(bookings.nextBooking)
-    };
+    const [orderedBookings, setOrderedBookings] = useState({});
+    const [existsCurrentTenant, setExistsCurrentTenant] = useState(false)
+    const [existsNextBooking, setExistsNextBooking] = useState(false)
+    
+    const emptyBookings = Calculations.isEmpty(roomInfo)
+    console.log('emptyBookings: ', emptyBookings);
+    
+
+    // useEffect(() => {
+    //     !emptyBookings && setOrderedBookings(Calculations.organizeBookings(roomInfo.bookingsSummary))
+    // }, [])
+
+    useEffect(() => {
+        if (!emptyBookings){
+            setOrderedBookings(Calculations.organizeBookings(roomInfo.bookingsSummary))
+            setExistsNextBooking(Calculations.isEmpty(orderedBookings.nextBooking))
+            setExistsCurrentTenant(Calculations.isEmpty(orderedBookings.currentBooking))
+        }
+    }, [roomInfo])
+    
+
+    const anyBookings = Calculations.isEmpty(orderedBookings);
+
     
     return(
         <div className="room-bookings-wrapper">

@@ -21,7 +21,7 @@ const LandlordRooms = (props) => {
     const [roomInfo, setRoomInfo] = useState({});
     const [jamRoomsInfo, setJamRoomsInfo] = useState([]);
     const [roomBookings, setRoomBookings] = useState({});
-    const [orderedBookings, setOrderedBookings] = useState([])
+    const [jamOrderedBookings, setJamOrderedBookings] = useState([])
 
     useEffect(() => {
         DataService.getJamRooms(jamId)
@@ -39,7 +39,6 @@ const LandlordRooms = (props) => {
             })
             DataService.getRoomInfo(jamId, roomId)
             .then((res) => {
-                console.log('roomInfo = ', res)
                 setRoomInfo(res)
             })
         } 
@@ -55,13 +54,13 @@ const LandlordRooms = (props) => {
             let roomsBookings = []
         
             for (let i = 0; i < jamRoomsInfo.length ; i++ ){
-                const orderedBookings = Calculations.organizeBookings(jamRoomsInfo[i].bookingsSummary)
+                const jamOrderedBookings = Calculations.organizeBookings(jamRoomsInfo[i].bookingsSummary)
                 const roomName = jamRoomsInfo[i].roomName;
                 const roomId = jamRoomsInfo[i].id;
-                const roomBookingsSummary = {roomName: roomName, roomId: roomId, bookings: orderedBookings}
+                const roomBookingsSummary = {roomName: roomName, roomId: roomId, bookings: jamOrderedBookings}
                 roomsBookings.push(roomBookingsSummary)
             }
-            setOrderedBookings(roomsBookings)
+            setJamOrderedBookings(roomsBookings)
         }
 
     }, [jamRoomsInfo])
@@ -70,10 +69,10 @@ const LandlordRooms = (props) => {
         <div className="landlord-rooms">
 
             <div className="landlord-room-info">
-                {roomId === "" & orderedBookings.length !== 0 ? 
+                {roomId === "" & jamOrderedBookings.length !== 0 ? 
                     <RoomsOverview 
                         // jamRoomsInfo={jamRoomsInfo} 
-                        roomsBookings={orderedBookings}
+                        roomsBookings={jamOrderedBookings}
                     />
                     :
                     <LandlordRoomInfo
@@ -87,7 +86,7 @@ const LandlordRooms = (props) => {
                 {jamRoomsInfo !==[] ? 
                     <LandlordRoomsList
                         jamRoomsInfo={jamRoomsInfo}
-                        roomsBookings={orderedBookings}
+                        roomsBookings={jamOrderedBookings}
                     /> 
                     : 
                     <p>Loading</p>
