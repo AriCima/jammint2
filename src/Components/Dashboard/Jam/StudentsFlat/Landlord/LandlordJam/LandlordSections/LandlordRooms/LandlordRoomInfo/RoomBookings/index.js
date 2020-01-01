@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 
 import Calculations from '../../../../../../../../../services/Calculations';
@@ -13,20 +13,16 @@ const RoomBookings = ({ roomInfo, roomId }) => {
     const [orderedBookings, setOrderedBookings] = useState({});
     const [existsCurrentTenant, setExistsCurrentTenant] = useState(false)
     const [existsNextBooking, setExistsNextBooking] = useState(false)
+    const [existsDueContracts, setExistsDueContracts] = useState(false)
     
     const emptyBookings = Calculations.isEmpty(roomInfo)
-    console.log('emptyBookings: ', emptyBookings);
-    
-
-    // useEffect(() => {
-    //     !emptyBookings && setOrderedBookings(Calculations.organizeBookings(roomInfo.bookingsSummary))
-    // }, [])
 
     useEffect(() => {
         if (!emptyBookings){
             setOrderedBookings(Calculations.organizeBookings(roomInfo.bookingsSummary))
             setExistsNextBooking(Calculations.isEmpty(orderedBookings.nextBooking))
             setExistsCurrentTenant(Calculations.isEmpty(orderedBookings.currentBooking))
+            setExistsDueContracts(Calculations.isEmpty(orderedBookings.dueContracts))
         }
     }, [roomInfo])
     
@@ -45,21 +41,43 @@ const RoomBookings = ({ roomInfo, roomId }) => {
                 <div className="room-section-title">
                     <p>Future Bookings</p>
                 </div>
-                <BookingsList bookings={futureBookings} />
+                <div className="room-booking-section-content">
+                    {existsNextBooking ? 
+                        <BookingsList bookings={orderedBookings.futureBookings} />
+                        :
+                        <p>There are no bookings for this room yet</p>
+                    }
+                </div>
             </div>
 
             <div className="room-booking-section">
                 <div className="room-section-title">
                     <p>Current contract</p>
                 </div>
-                <BookingsList bookings={currentBooking} />
+                <div className="room-booking-section-content">
+                    { existsCurrentTenant ?
+                        <BookingsList bookings={orderedBookings.currentBooking} />
+                        :
+                        <div className="no-current-booking">
+                            {existsNextBooking?
+                                <p>This room is VACANT until <span>{moment(orderedBookings.nextBooking.checkIn).format('DD/MM')}</span></p>
+                                :
+                                <p>This room is currently <span>VACANT</span></p>
+                            }
+                        </div>
+                    }
+                </div>
             </div>
 
             <div className="room-booking-section">
                 <div className="room-section-title">
                     <p>Due contracts</p>
                 </div>
-                <BookingsList bookings={dueContracts} />
+                {existsDueContracts ? 
+                    <BookingsList bookings={orderedBookings.dueContracts} />
+                    :
+                    <p>There are contracts history this room yet</p>
+                }
             </div>
 
         </div>
