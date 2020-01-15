@@ -7,8 +7,8 @@ import ButtonPlain from '../../../ButtonPlain';
 import ButtonCancel from '../../../ButtonCancel';
 
 import { connect } from 'react-redux';
-import { setRoomId } from '../../../../../redux/actions/roomsId';
-import { setActiveScreen } from '../../../../../redux/actions/roomScreen';
+import { changeRoomId } from '../../../../../redux/actions/roomsId';
+// import { setActiveScreen } from '../../../../../redux/actions/roomScreen';
 
 
 const NewBookingForm = (props) => {
@@ -34,7 +34,8 @@ const NewBookingForm = (props) => {
             bookingInfo.bookingId = bookingId;
             DataService.updateBookingSummary(jamId, roomId, bookingInfo)
             .then(
-                props.setActiveScreen('overview')
+                // props.setActiveScreen('overview')
+                changeRoomId('overview')
             )
         })
     };
@@ -43,7 +44,8 @@ const NewBookingForm = (props) => {
         if (event) {
             event.preventDefault();
         }
-        props.setActiveScreen('overview')
+        // props.setActiveScreen('overview')
+        changeRoomId('overview')
     };
 
     return (
@@ -247,8 +249,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         // nombre de la función que paso como prop: (arg) => 
         // dispatch(nombre del action creator(argumento))
-        setRoomId: (roomId) => dispatch(setRoomId(roomId)),
-        setActiveScreen: (screen) => dispatch( setActiveScreen(screen)),
+        changeRoomId: (roomId) => dispatch(changeRoomId(roomId)),
+        // setActiveScreen: (screen) => dispatch( setActiveScreen(screen)),
     }
 }
 const mapStateToProps = (state) => {

@@ -1,4 +1,4 @@
-const roomIdReducer = (state = '', action) => {  
+const roomIdReducer = (state = 'overview', action) => {  
     // console.log('action en el reducer = ', action)  
     switch(action.type) {
         case 'ROOM_ID':

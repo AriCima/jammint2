@@ -12,12 +12,12 @@ import RoomsOverview from './RoomsOverview';
 
 // CSS
 import './index.css';
+import { changeRoomId } from '../../../../../../../../redux/actions/roomsId';
 // import { setRoomId } from '../../../../../../../../redux/actions/roomsId';
 
-const LandlordRooms = (props) => {
+const LandlordRooms = ({ changeRoomId, jamId, roomId}) => {
 
-    const { jamId, roomId } = props;
-
+    const [room, setRoom] = useState(roomId)
     const [roomInfo, setRoomInfo] = useState({});
     const [jamRoomsInfo, setJamRoomsInfo] = useState([]);
     const [roomBookings, setRoomBookings] = useState({});
@@ -31,7 +31,8 @@ const LandlordRooms = (props) => {
     }, []);
     
     useEffect(() => {   
-        if (roomId !== '' && roomId !== false){
+        setRoom(roomId)
+        if (room !== 'overview'){
             DataService.getRoomBookings(jamId, roomId)
             .then((res) => {
                 // console.log('roomBookings = ', res)
@@ -43,6 +44,7 @@ const LandlordRooms = (props) => {
             })
         } 
         return() => {
+            changeRoomId('overview')
             setRoomInfo({});
             setRoomBookings({});
         };
@@ -69,7 +71,7 @@ const LandlordRooms = (props) => {
         <div className="landlord-rooms">
 
             <div className="landlord-room-info">
-                {roomId === "" & jamOrderedBookings.length !== 0 ? 
+                {room === "overview" & jamOrderedBookings.length !== 0 ? 
                     <RoomsOverview 
                         // jamRoomsInfo={jamRoomsInfo} 
                         roomsBookings={jamOrderedBookings}
@@ -99,7 +101,12 @@ const LandlordRooms = (props) => {
     );   
 };
 
-
+const mapDispatchToProps = (dispatch) => {
+    return {
+        changeRoomId: (roomId) => dispatch(changeRoomId(roomId)),
+        // setActiveScreen: (screen) => dispatch( setActiveScreen(screen))
+    }
+};
 
 const mapStateToProps = (state) => {
     console.log('state: ', state);
@@ -109,4 +116,4 @@ const mapStateToProps = (state) => {
         roomId: state.roomId,
     }
 }
-export default connect(mapStateToProps, null)(LandlordRooms);
+export default connect(mapStateToProps, mapDispatchToProps)(LandlordRooms);

@@ -5,7 +5,7 @@ import jamIdReducer from './jamIdReducer';
 import jamInfoReducer from './jamInfoReducer';
 import jammerIdReducer from './jammerIdReducer';
 import roomIdReducer from './roomIdReducer';
-import roomScreenReducer from './roomScreenReducer';
+// import roomScreenReducer from './roomScreenReducer';
 import roomBookingsReducer from './roomBookingsReducer';
 
 // sincronizador del firestore data y nuestro state
@@ -23,7 +23,7 @@ const rootReducer = combineReducers({
     jamSection: jamSectionReducer,
     jammerId: jammerIdReducer,
     roomId: roomIdReducer,
-    activeScreen: roomScreenReducer,
+    // activeScreen: roomScreenReducer,
     roomBookings: roomBookingsReducer,
     // el firestoreReducer automáticamente sincronizará la propiedad "firestore"
     // del Obj "state" con nuestra data en la base de datos

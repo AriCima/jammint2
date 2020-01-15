@@ -5,14 +5,14 @@ import CustomInputField from '../../Components/UI/CustomInputField';
 import CustomSelectInputField from '../../Components/UI/CustomSelectInputField';
 import ButtonPlain from '../../Components/UI/ButtonPlain';
 import { connect } from 'react-redux';
-import { setRoomId } from '../../redux/actions/roomsActions';
+import { changeRoomId } from '../../redux/actions/roomsActions';
 
 // CSS
 import './index.css'; 
 
 
-const NewRoomForm = ( props ) => {
-    const { jamId } = props;
+const NewRoomForm = ({ changeRoomId, jamId, roomId }) => {
+
     const [roomInfo, setroomInfo] = useState({});
     
     const handleInputChange = (event) => {
@@ -33,7 +33,7 @@ const NewRoomForm = ( props ) => {
             event.preventDefault();
         }
 
-        props.setRoomId(false)
+        changeRoomId(roomId)
     }
     
     return (
@@ -154,7 +154,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         // nombre de la función que paso como prop: (arg) => 
         // dispatch(nombre del action creator(argumento))
-        setRoomId: (roomId) => dispatch(setRoomId(roomId)),
+        changeRoomId: (roomId) => dispatch(changeRoomId(roomId)),
     }
   }
 const mapStateToProps = (state) => {

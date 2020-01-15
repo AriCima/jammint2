@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import Calculations from '../../../../../services/Calculations';
 import { setJamSection } from '../../../../../../redux/actions/jamSection';
-import { setRoomId } from     "../../../../../../redux/actions/roomsId";
+import { changeRoomId } from     "../../../../../../redux/actions/roomsId";
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -15,13 +15,13 @@ import { faComments} from '@fortawesome/free-solid-svg-icons'
 // CSS
 import './index.css';
 
-const LandlordNavBar = ({ setJamSection, setRoomId, jamName, jamType}) => {
+const LandlordNavBar = ({ setJamSection, changeRoomId, jamName, jamType}) => {
     
     const [jamSections, setJamSections] = useState([])
    
     const onSelectJamSection = (section, activeScreen)=> {
         setJamSection(section)
-        setRoomId('');
+        changeRoomId('overview');
     };
 
     useEffect(() => {
@@ -80,7 +80,7 @@ const LandlordNavBar = ({ setJamSection, setRoomId, jamName, jamType}) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         setJamSection: (section) => dispatch(setJamSection(section)),
-        setRoomId: (roomId) => dispatch(setRoomId(roomId))
+        changeRoomId: (roomId) => dispatch(changeRoomId(roomId))
     }
 };
 

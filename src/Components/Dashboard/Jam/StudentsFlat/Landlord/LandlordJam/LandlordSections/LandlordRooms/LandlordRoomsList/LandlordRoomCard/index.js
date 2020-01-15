@@ -3,21 +3,19 @@ import React, { useState } from "react";
 // import DataService from "../../../../../../../../../services/DataService";
 
 import { connect } from 'react-redux';
-import {setRoomId} from "../../../../../../../../../../redux/actions/roomsId"
-import {setActiveScreen} from "../../../../../../../../../../redux/actions/roomScreen"
+import { changeRoomId } from "../../../../../../../../../../redux/actions/roomsId"
+// import {setActiveScreen} from "../../../../../../../../../../redux/actions/roomScreen"
 
 // CSS
 import "./index.css";
 
-const LandlordRoomCard = (props) => {
-  console.log('props: ', props);
+const LandlordRoomCard = ( { changeRoomId, rI}) => {
 
-  const { rI  } = props
   const roomId = rI.id;
 
   const onShowRoomInfo = (roomId) => {
-    props.setActiveScreen('roomInfo');
-    props.setRoomId(roomId);
+    // props.setActiveScreen('roomInfo');
+    changeRoomId(roomId);
   }
 
   return (
@@ -43,8 +41,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
       // nombre de la función que paso como prop: (arg) => 
       // dispatch(nombre del action creator(argumento))
-      setRoomId: (roomId) => dispatch(setRoomId(roomId)),
-      setActiveScreen: (roomInfo) => dispatch(setActiveScreen(roomInfo))
+      changeRoomId: (roomId) => dispatch(changeRoomId(roomId)),
+      // setActiveScreen: (roomInfo) => dispatch(setActiveScreen(roomInfo))
   }
 }
 

@@ -10,13 +10,13 @@ import './index.css';
 
 //REDUX
 import { connect } from 'react-redux';
-import { setRoomId } from '../../../../../../../../../redux/actions/roomsId';
-import { setActiveScreen } from '../../../../../../../../../redux/actions/roomScreen';
+import { changeRoomId } from '../../../../../../../../../redux/actions/roomsId';
+// import { setActiveScreen } from '../../../../../../../../../redux/actions/roomScreen';
 
 // const LandlordRoomsList = (props) => {
 
 //     const { jamRoomsInfo } = props;
-const LandlordRoomsList = ({ roomsBookings, setActiveScreen }) => {
+const LandlordRoomsList = ({ roomsBookings, changeRoomId }) => {
 
     const renderRoomsList = () => {
         return roomsBookings.map((rI, i) => {
@@ -32,7 +32,8 @@ const LandlordRoomsList = ({ roomsBookings, setActiveScreen }) => {
 
     const onNewRoom = () => {
         const roomId = 'newRoomForm'
-        setActiveScreen(roomId)
+        // setActiveScreen(roomId)
+        changeRoomId(roomId)
     };
 
     return (
@@ -54,8 +55,8 @@ const LandlordRoomsList = ({ roomsBookings, setActiveScreen }) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setRoomId: (roomId) => dispatch(setRoomId(roomId)),
-        setActiveScreen: (screen) => dispatch( setActiveScreen(screen)),
+        changeRoomId: (roomId) => dispatch(changeRoomId(roomId)),
+        // setActiveScreen: (screen) => dispatch( setActiveScreen(screen)),
     }
 };
 export default connect (null, mapDispatchToProps)(LandlordRoomsList);

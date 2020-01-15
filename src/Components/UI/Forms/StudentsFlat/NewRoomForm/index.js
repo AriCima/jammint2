@@ -7,15 +7,15 @@ import ButtonCancel from '../../../ButtonCancel';
 import ButtonSubmit from '../../../ButtonSubmit';
 
 import { connect } from 'react-redux';
-import { setRoomId } from '../../../../../redux/actions/roomsId';
-import { setActiveScreen } from '../../../../../redux/actions/roomScreen';
+import { changeRoomId } from '../../../../../redux/actions/roomsId';
+// import { setActiveScreen } from '../../../../../redux/actions/roomScreen';
 
 // CSS
 import './index.css'; 
 
 
-const NewRoomForm = ( props ) => {
-    const { jamId } = props;
+const NewRoomForm = ({ changeRoomId, jamId }) => {
+
     const [roomInfo, setroomInfo] = useState({});
     
     const handleInputChange = (event) => {
@@ -35,8 +35,8 @@ const NewRoomForm = ( props ) => {
         if (event) {
             event.preventDefault();
         }
-
-        props.setActiveScreen('overview')
+        // props.setActiveScreen('overview')
+        changeRoomId('overview')
     }
     
     return (
@@ -152,8 +152,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         // nombre de la función que paso como prop: (arg) => 
         // dispatch(nombre del action creator(argumento))
-        setRoomId: (roomId) => dispatch(setRoomId(roomId)),
-        setActiveScreen: (screen) => dispatch( setActiveScreen(screen)),
+        changeRoomId: (roomId) => dispatch(changeRoomId(roomId)),
+        // setActiveScreen: (screen) => dispatch( setActiveScreen(screen)),
     }
 }
 const mapStateToProps = (state) => {
