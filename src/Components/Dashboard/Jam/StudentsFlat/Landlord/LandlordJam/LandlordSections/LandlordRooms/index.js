@@ -31,6 +31,7 @@ const LandlordRooms = ({ changeRoomId, jamId, roomId}) => {
     }, []);
     
     useEffect(() => {   
+        console.log('effect launched con roomID = ', roomId)
         setRoom(roomId)
         if (room !== 'overview'){
             DataService.getRoomBookings(jamId, roomId)
@@ -43,11 +44,7 @@ const LandlordRooms = ({ changeRoomId, jamId, roomId}) => {
                 setRoomInfo(res)
             })
         } 
-        return() => {
-            changeRoomId('overview')
-            setRoomInfo({});
-            setRoomBookings({});
-        };
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [roomId])
     

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 // import DataService from "../../../../../../../../../services/DataService";
 
@@ -20,7 +20,9 @@ const LandlordRoomCard = ( { changeRoomId, rI}) => {
 
   return (
 
-    <button className="landlord-room-card-container" onClick={()=> onShowRoomInfo(rI.roomId)}>
+    <button className="landlord-room-card-container" 
+      onClick={()=> onShowRoomInfo(rI.roomId)}
+    >
       <div className="landlord-room-card-roomNr">
         <p>{rI.roomName}</p>
       </div>
