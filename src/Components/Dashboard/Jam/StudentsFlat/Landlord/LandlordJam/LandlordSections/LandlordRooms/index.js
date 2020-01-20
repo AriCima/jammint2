@@ -31,7 +31,6 @@ const LandlordRooms = ({ changeRoomId, jamId, roomId}) => {
     }, []);
     
     useEffect(() => {   
-        console.log('effect launched con roomID = ', roomId)
         setRoom(roomId)
         if (room !== 'overview'){
             DataService.getRoomBookings(jamId, roomId)
@@ -84,6 +83,7 @@ const LandlordRooms = ({ changeRoomId, jamId, roomId}) => {
             <div className="landlord-rooms-list">
                 {jamRoomsInfo !==[] ? 
                     <LandlordRoomsList
+                        jamId={jamId}
                         jamRoomsInfo={jamRoomsInfo}
                         roomsBookings={jamOrderedBookings}
                     /> 
