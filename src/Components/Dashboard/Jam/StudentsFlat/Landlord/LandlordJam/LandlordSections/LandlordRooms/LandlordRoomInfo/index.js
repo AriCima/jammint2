@@ -51,16 +51,16 @@ const LandlordRoomInfo = (props) => {
   return(
     <div className="room-info-wrapper">
         
-        { screen === 'newRoomForm' &&  
+        {/* { screen === 'newRoomForm' &&  
            <div className="new-Room-wrapper">
                <NewRoomForm 
                     jamId={jamId} 
                     clickHandle={onNewRoom}
                 />
            </div>
-        }
+        } */}
 
-        { screen === 'newBookingForm' && 
+        {/* { screen === 'newBookingForm' && 
             <div className="new-booking-wrapper">
                 <NewBookingForm 
                     roomId={roomId}
@@ -68,7 +68,7 @@ const LandlordRoomInfo = (props) => {
                     clickHandle={onNewBooking}
                 />
             </div>
-        }
+        } */}
 
         { screen === 'newInvitationForm' && 
             <div className="new-booking-wrapper">

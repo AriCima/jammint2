@@ -5,7 +5,7 @@ import DataService from '../../services/DataService';
 
 import CustomInputField from '../CustomInputField';
 import CustomSelectInputField from '../CustomSelectInputField';
-
+import ButtonPlain from '../ButtonPlain';
 
 const NewRoomModal = (props) => {
   const { jamName, jamId } = props;
@@ -16,12 +16,17 @@ const NewRoomModal = (props) => {
     event.persist();
     setroomInfo(roomInfo => ({...roomInfo, [event.target.id]: event.target.value}));
   };
+
   const submitNewRoom = (event) => {
     console.log('form submitted')
     if (event) {
       event.preventDefault();
     }
-    DataService.addNewRoom(jamId, roomInfo);
+
+    DataService.addNewRoom(jamId, roomInfo)
+    .then(() => {
+      props.onHide();
+    });
   };
 
   return (
@@ -36,11 +41,10 @@ const NewRoomModal = (props) => {
           NEW ROOM
         </Modal.Title>
       </Modal.Header>
+
       <Modal.Body>
         <h4>Please fill the info below and submit</h4>
-        <p>
-          en el jamId = {jamId}
-        </p>
+        <p>en el jamId = {jamId}</p>
 
         <form className="new-apartment-form" onSubmit={submitNewRoom}>
           <div className="form-header">
@@ -51,7 +55,6 @@ const NewRoomModal = (props) => {
                 <p>Room Info</p>
             </div>
           </div>
-
           <div className="form-body">
             <div className="form-row">
               <CustomInputField 
@@ -134,11 +137,10 @@ const NewRoomModal = (props) => {
               />
             </div>
           </div>
+          <button>submit</button>
         </form>
+
       </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Submit</Button>
-      </Modal.Footer>
     </Modal>
   );
 }

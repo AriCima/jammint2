@@ -42,8 +42,7 @@ const LandlordRooms = ({ changeRoomId, jamId, roomId}) => {
             .then((res) => {
                 setRoomInfo(res)
             })
-        } 
-
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [roomId])
     
@@ -52,11 +51,13 @@ const LandlordRooms = ({ changeRoomId, jamId, roomId}) => {
             let roomsBookings = []
         
             for (let i = 0; i < jamRoomsInfo.length ; i++ ){
-                const jamOrderedBookings = Calculations.organizeBookings(jamRoomsInfo[i].bookingsSummary)
-                const roomName = jamRoomsInfo[i].roomName;
-                const roomId = jamRoomsInfo[i].id;
-                const roomBookingsSummary = {roomName: roomName, roomId: roomId, bookings: jamOrderedBookings}
-                roomsBookings.push(roomBookingsSummary)
+                if (!Calculations.isEmpty(jamRoomsInfo[i].bookingsSummary)){
+                    const jamOrderedBookings = Calculations.organizeBookings(jamRoomsInfo[i].bookingsSummary)
+                    const roomName = jamRoomsInfo[i].roomName;
+                    const roomId = jamRoomsInfo[i].id;
+                    const roomBookingsSummary = {roomName: roomName, roomId: roomId, bookings: jamOrderedBookings}
+                    roomsBookings.push(roomBookingsSummary)
+                }
             }
             setJamOrderedBookings(roomsBookings)
         }

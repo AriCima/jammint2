@@ -9,11 +9,7 @@ import ModalNewRoom from '../../../../../../../../UI/ModalNewRoom';
 // CSS
 import './index.css';
 
-//REDUX
-import { connect } from 'react-redux';
-import { changeRoomId } from '../../../../../../../../../redux/actions/roomsId';
-
-const LandlordRoomsList = ({ jamId, roomsBookings, changeRoomId }) => {
+const LandlordRoomsList = ({ jamId, roomsBookings }) => {
 
     const renderRoomsList = () => {
         return roomsBookings.map((rI, i) => {
@@ -52,13 +48,4 @@ const LandlordRoomsList = ({ jamId, roomsBookings, changeRoomId }) => {
     );   
 };
 
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        changeRoomId: (roomId) => dispatch(changeRoomId(roomId)),
-        // setActiveScreen: (screen) => dispatch( setActiveScreen(screen)),
-    }
-};
-
-
-export default connect (null, mapDispatchToProps)(LandlordRoomsList);
+export default LandlordRoomsList;
