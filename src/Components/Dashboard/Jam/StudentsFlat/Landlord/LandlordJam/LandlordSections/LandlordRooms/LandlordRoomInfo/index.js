@@ -22,103 +22,51 @@ const LandlordRoomInfo = (props) => {
   const [screen, setScreen] = useState(props.activeScreen)
 
   const onNewRoom = (jamId) => {
-    // setNewRoom(true)
-    setScreen('newRoomForm')
+    alert('NEW ROOM')
   };
   const onNewBooking = (roomId) => {
-    // setNewBooking(true)
-    setScreen('newBookingForm')
+   alert('NEW BOOKING')
   };
   const onNewInvitation = (roomId) => {
-    // setNewInvitation(true)
-    setScreen('newInvitationForm')
+    alert('NEW INVITATION')
   };
 
-
-  useEffect(() => {
-    if (activeScreen === 'newRoomForm'){
-        setScreen('newRoomForm');
-    } else if (activeScreen === 'newInvitationForm'){
-        setScreen('newInvitationForm');
-    } else if (activeScreen === 'newBookingForm'){
-        setScreen('newBookingForm');
-    } else if (activeScreen === 'roomInfo') {
-        setScreen('roomInfo')
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeScreen])
 
   return(
     <div className="room-info-wrapper">
-        
-        {/* { screen === 'newRoomForm' &&  
-           <div className="new-Room-wrapper">
-               <NewRoomForm 
-                    jamId={jamId} 
-                    clickHandle={onNewRoom}
-                />
-           </div>
-        } */}
+        <div className="rooms-sections-wrapper">
+            <div className="room-buttons-area">
 
-        {/* { screen === 'newBookingForm' && 
-            <div className="new-booking-wrapper">
-                <NewBookingForm 
-                    roomId={roomId}
-                    roomInfo={roomInfo}
+                <ButtonPlain 
+                    type='button'
+                    text='New Booking'
                     clickHandle={onNewBooking}
                 />
-            </div>
-        } */}
 
-        { screen === 'newInvitationForm' && 
-            <div className="new-booking-wrapper">
-                <NewInvitationForm 
-                    roomId={roomId}
-                    roomInfo={roomInfo}
+                <ButtonPlain 
+                    type='button'
+                    text='Invite'
                     clickHandle={onNewInvitation}
                 />
             </div>
-        }
-
-        { screen === 'roomInfo' && 
-            <div className="rooms-sections-wrapper">
-
-                <div className="room-buttons-area">
-
-                    <ButtonPlain 
-                        type='button'
-                        text='New Booking'
-                        clickHandle={onNewBooking}
-                    />
-
-                    <ButtonPlain 
-                        type='button'
-                        text='Invite'
-                        clickHandle={onNewInvitation}
-                    />
-                </div>
-               
-                <div className="room-section-content">
-                    <CurrentTenant 
-                        roomId={roomId}
-                        roomInfo={roomInfo}
-                    />
-                </div>
-                <div className="room-section-content">
-                    <RoomBookings 
-                        roomId={roomId}
-                        roomInfo={roomInfo}
-                    />
-                </div>
-    
-                {/*  <div className="room-section-content">
-                    <RoomInfo 
-                        roomInfo={roomInfo}
-                    />
-                </div> */}
-
+            <div className="room-section-content">
+                <CurrentTenant 
+                    roomId={roomId}
+                    roomInfo={roomInfo}
+                />
             </div>
-        }     
+            <div className="room-section-content">
+                <RoomBookings 
+                    roomId={roomId}
+                    roomInfo={roomInfo}
+                />
+            </div>
+            {/*  <div className="room-section-content">
+                <RoomInfo 
+                    roomInfo={roomInfo}
+                />
+            </div> */}
+        </div>
 
     </div>
   )
