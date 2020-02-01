@@ -290,8 +290,6 @@ export default class DataService {
             });
         };
         static getJamRooms(jamId){
-            console.log('get Rooms called with: ', jamId)
-
             return new Promise((resolve, reject) => {
 
                 firebase.firestore()

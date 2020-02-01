@@ -35,6 +35,8 @@ const LandlordRoomInfo = (props) => {
   return(
     <div className="room-info-wrapper">
         <div className="rooms-sections-wrapper">
+            <h4>This is Room Nr {roomInfo.roomName}</h4>
+
             <div className="room-buttons-area">
 
                 <ButtonPlain 
@@ -49,18 +51,21 @@ const LandlordRoomInfo = (props) => {
                     clickHandle={onNewInvitation}
                 />
             </div>
+           
             <div className="room-section-content">
                 <CurrentTenant 
                     roomId={roomId}
                     roomInfo={roomInfo}
                 />
             </div>
+            
             <div className="room-section-content">
                 <RoomBookings 
                     roomId={roomId}
                     roomInfo={roomInfo}
                 />
             </div>
+           
             {/*  <div className="room-section-content">
                 <RoomInfo 
                     roomInfo={roomInfo}

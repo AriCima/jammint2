@@ -26,7 +26,7 @@ class Login extends Component {
     }
 
     handleChange=(e)=>{
-        // //console.log('login state: ', e.target.id)
+        console.log('login state: ', e.target.id)
         this.setState({
             [e.target.id]: e.target.value
         })
@@ -35,6 +35,7 @@ class Login extends Component {
 
     submitLogin = (e) => {
         e.preventDefault();
+        AuthService.login(this.state.email, this.state.password)
     }
 
     render(){

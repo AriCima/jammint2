@@ -37,7 +37,6 @@ const Dashboard = ({ auth, userJams, getJamInfo, jamId, jamInfo, props }) => {
     }, [getJamInfo, jamId]);
     
 
-    console.log('jamsList = ', jamsList)
     return (
         <div className="dashboard">
             <aside className="jams-list">
@@ -68,15 +67,13 @@ const Dashboard = ({ auth, userJams, getJamInfo, jamId, jamInfo, props }) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        // nombre de la función que paso como prop: (arg) => 
-        // dispatch(nombre del action creator(argumento))
         getUserJams: (userId) => dispatch(getUserJams(userId)),
         getJamInfo: (jamId) => dispatch(getJamInfo(jamId))
     }
 }
 
 const mapStateToProps = state => {
-    // console.log('state del Dashboard : ', state)
+    console.log('state del Dashboard : ', state)
     return { 
         jamId: state.jamId,
         jamInfo: state.jamInfo,

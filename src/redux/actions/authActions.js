@@ -32,7 +32,7 @@ export const loginAction = (credentials) => {
             credentials.email,
             credentials.password
         ).then((res) => {
-            //console.log('res = ', res, res.user.uid)
+            console.log('login res = ', res, ' / ', res.user.uid)
             firestore.collection('users')
             .doc(res.user.uid).collection('userJams').get()
             .then(function(querySnapshot) {

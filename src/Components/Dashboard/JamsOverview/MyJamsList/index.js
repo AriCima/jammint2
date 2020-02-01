@@ -40,13 +40,14 @@ const MyJamsList = ({ flats }) => {
   const renderRooms = (jamRooms) => {
 
     return jamRooms.map((rooms,j) => {
+      console.log('rooms en el map', rooms)
       return (
         <button className="rooms-home-row" key={j} to={`/single_room_overview/${rooms.id}`}> 
           <div className="rooms-home-block-nr">
             <p>{rooms.roomName}</p>
           </div>
           <div className="rooms-home-block-name">
-          {rooms.tenantName === undefined ? <p><span>Vacant</span></p>:<p>{rooms.tenantName} {rooms.tenantSurname}</p>}
+          {rooms.jammerName === undefined ? <p><span>Vacant</span></p>:<p>{rooms.tenantName} {rooms.tenantSurname}</p>}
           </div>
           <div className="rooms-home-block">
               <p>{rooms.checkIn}</p>
