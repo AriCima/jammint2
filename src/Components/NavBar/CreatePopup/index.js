@@ -59,14 +59,10 @@ const CreatePopup = (props) => {
       newJam.jamId = res.id;
       const jamId = res.id;
 
-      const userInfo = {userId: userId, name: 'Ari', email: user.email}
+      const userInfo = {userId: userId, email: user.email}
       DataService.addJamToUser(userId, newJam);
       DataService.updateJammersInJam(jamId, userInfo);
-      
-      // for (let i=0; i<sections.length; i++){
-      //   const content = {date: new Date(), content: `Hello ${sections[i]}`}
-      //   DataService.createJamSections(jamId, sections[i], content)
-      // }
+
     })
     setOpen(false);
   };
