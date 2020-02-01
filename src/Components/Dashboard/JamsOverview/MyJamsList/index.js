@@ -8,7 +8,7 @@ const MyJamsList = ({ flats }) => {
   const renderJams = (flats) => {
     return flats.map((f,j) => {
       return (
-        <div className="myjams-list-container">
+        <div className="myjams-list-container" key={j}>
             
           <div className="flat-name">
             <div className="flat-name-info">
@@ -40,7 +40,6 @@ const MyJamsList = ({ flats }) => {
   const renderRooms = (jamRooms) => {
 
     return jamRooms.map((rooms,j) => {
-      console.log('rooms en el map', rooms)
       return (
         <button className="rooms-home-row" key={j} to={`/single_room_overview/${rooms.id}`}> 
           <div className="rooms-home-block-nr">

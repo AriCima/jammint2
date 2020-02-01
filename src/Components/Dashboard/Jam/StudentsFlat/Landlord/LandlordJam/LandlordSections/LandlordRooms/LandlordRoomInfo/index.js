@@ -15,11 +15,10 @@ import { connect } from 'react-redux';
 import './index.css';
 
 const LandlordRoomInfo = (props) => {
+  const { roomInfo } = props;
+  console.log('roomInfo: ', roomInfo);
 
-  const { jamId, roomId, roomInfo, activeScreen } = props;
-  console.log('roomInfo en RoomInfo: ', roomInfo);
-
-  const [screen, setScreen] = useState(props.activeScreen)
+//   const [screen, setScreen] = useState(props.activeScreen)
 
   const onNewRoom = (jamId) => {
     alert('NEW ROOM')
@@ -53,17 +52,11 @@ const LandlordRoomInfo = (props) => {
             </div>
            
             <div className="room-section-content">
-                <CurrentTenant 
-                    roomId={roomId}
-                    roomInfo={roomInfo}
-                />
+                <CurrentTenant roomInfo={roomInfo} />
             </div>
             
             <div className="room-section-content">
-                <RoomBookings 
-                    roomId={roomId}
-                    roomInfo={roomInfo}
-                />
+                <RoomBookings roomInfo={roomInfo} />
             </div>
            
             {/*  <div className="room-section-content">

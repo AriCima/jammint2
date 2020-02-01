@@ -15,12 +15,9 @@ import './index.css';
 import { changeRoomId } from '../../../../../../../../redux/actions/roomsId';
 // import { setRoomId } from '../../../../../../../../redux/actions/roomsId';
 
-const LandlordRooms = ({ changeRoomId, jamId, roomId}) => {
-
-    const [room, setRoom] = useState(roomId)
+const LandlordRooms = ({ jamId, roomId }) => {
     const [roomInfo, setRoomInfo] = useState({});
     const [jamRoomsInfo, setJamRoomsInfo] = useState([]);
-    const [roomBookings, setRoomBookings] = useState({});
     const [jamOrderedBookings, setJamOrderedBookings] = useState([])
 
     useEffect(() => {
@@ -31,13 +28,11 @@ const LandlordRooms = ({ changeRoomId, jamId, roomId}) => {
     }, []);
     
     useEffect(() => {   
-        setRoom(roomId)
-        if (room !== 'overview'){
-            DataService.getRoomBookings(jamId, roomId)
-            .then((res) => {
-                // console.log('roomBookings = ', res)
-                setRoomBookings(res)
-            })
+        if (roomId !== 'overview'){
+            // DataService.getRoomBookings(jamId, roomId)
+            // .then((res) => {
+            //     setRoomBookings(res)
+            // })
             DataService.getRoomInfo(jamId, roomId)
             .then((res) => {
                 setRoomInfo(res)
@@ -47,19 +42,21 @@ const LandlordRooms = ({ changeRoomId, jamId, roomId}) => {
     }, [roomId])
     
     useEffect(() => {
-        if (jamRoomsInfo.length !==0){
-            let roomsBookings = []
-        
-            for (let i = 0; i < jamRoomsInfo.length ; i++ ){
-                if (!Calculations.isEmpty(jamRoomsInfo[i].bookingsSummary)){
-                    const jamOrderedBookings = Calculations.organizeBookings(jamRoomsInfo[i].bookingsSummary)
-                    const roomName = jamRoomsInfo[i].roomName;
-                    const roomId = jamRoomsInfo[i].id;
-                    const roomBookingsSummary = {roomName: roomName, roomId: roomId, bookings: jamOrderedBookings}
-                    roomsBookings.push(roomBookingsSummary)
+        if (roomId === 'overview'){
+            if (jamRoomsInfo.length !==0){
+                let roomsBookings = []
+            
+                for (let i = 0; i < jamRoomsInfo.length ; i++ ){
+                    if (!Calculations.isEmpty(jamRoomsInfo[i].bookingsSummary)){
+                        const jamOrderedBookings = Calculations.organizeBookings(jamRoomsInfo[i].bookingsSummary)
+                        const roomName = jamRoomsInfo[i].roomName;
+                        const roomId = jamRoomsInfo[i].id;
+                        const roomBookingsSummary = {roomName: roomName, roomId: roomId, bookings: jamOrderedBookings}
+                        roomsBookings.push(roomBookingsSummary)
+                    }
                 }
+                setJamOrderedBookings(roomsBookings)
             }
-            setJamOrderedBookings(roomsBookings)
         }
 
     }, [jamRoomsInfo])
@@ -68,21 +65,18 @@ const LandlordRooms = ({ changeRoomId, jamId, roomId}) => {
         <div className="landlord-rooms">
 
             <div className="landlord-room-info">
-                {room === "overview" & jamOrderedBookings.length !== 0 ? 
+                {roomId === "overview" && jamOrderedBookings.length !== 0 ? 
                     <RoomsOverview 
-                        // jamRoomsInfo={jamRoomsInfo} 
                         roomsBookings={jamOrderedBookings}
                     />
                     :
                     <LandlordRoomInfo
-                        roomId={roomId} 
                         roomInfo={roomInfo}
-                        jamId={jamId} 
                     />
                 }
             </div>
             <div className="landlord-rooms-list">
-                {jamRoomsInfo !==[] ? 
+                {jamRoomsInfo.length ?
                     <LandlordRoomsList
                         jamId={jamId}
                         jamRoomsInfo={jamRoomsInfo}
@@ -107,8 +101,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state) => {
-    console.log('state: ', state);
-
     return {
         user: state.firebase.auth,
         roomId: state.roomId,

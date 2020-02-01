@@ -6,14 +6,12 @@ import Calculations from '../../../../../../../../../services/Calculations';
 // CSS
 import './index.css';
 
-const CurrentTenant = ({ roomInfo, roomId }) => {
-
+const CurrentTenant = ({ roomInfo }) => {
     const [orderedBookings, setOrderedBookings] = useState({});
     const [existsCurrentTenant, setExistsCurrentTenant] = useState(false)
     const [existsNextBooking, setExistsNextBooking] = useState(false)
     
     const emptyBookings = Calculations.isEmpty(roomInfo)
-    console.log('emptyBookings: ', emptyBookings);
     
 
     // useEffect(() => {
@@ -31,7 +29,6 @@ const CurrentTenant = ({ roomInfo, roomId }) => {
 
     const anyBookings = Calculations.isEmpty(orderedBookings);
 
-    console.log('orderedBookings: ', orderedBookings);
     return(
         <div className="current-tenant-wrapper">
 

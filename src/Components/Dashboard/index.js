@@ -73,7 +73,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = state => {
-    console.log('state del Dashboard : ', state)
     return { 
         jamId: state.jamId,
         jamInfo: state.jamInfo,
