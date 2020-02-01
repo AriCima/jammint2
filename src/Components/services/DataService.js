@@ -83,7 +83,8 @@ export default class DataService {
             return new Promise((resolve, reject) => {
                 firebase.firestore().collection('jams').add(jamInfo)
                 .then((doc) => {
-                    console.log("Current data: ", doc.data());
+                    // console.log('doc: ', doc);
+                    // console.log("Current data: ", doc.data());
                     resolve({id: doc.id}); 
                     
                 })
@@ -243,13 +244,13 @@ export default class DataService {
                 .doc(userId)
                 .collection('userJams')
                 .add(jamToJoin)
-                .onSnapshot(function(doc) {
-                    console.log("Jam succesfully added to user: ", doc.data());
-                    resolve(doc);
-                })
-                // .then((result) => {
-                //     console.log("Jam succesfully added to user")
+                // .onSnapshot(function(doc) {
+                //     console.log("Jam succesfully added to user: ", doc.data());
+                //     resolve(doc);
                 // })
+                .then((result) => {
+                    console.log("Jam succesfully added to user")
+                })
                 .catch((error) => {
                     var errorCode = error.code;
                     console.log('ERROR Jam NOT added to user: ', errorCode);                
