@@ -83,8 +83,7 @@ export default class DataService {
             return new Promise((resolve, reject) => {
                 firebase.firestore().collection('jams').add(jamInfo)
                 .then((doc) => {
-                    // console.log('doc: ', doc);
-                    // console.log("Current data: ", doc.data());
+                    console.log("doc del create: ", doc);
                     resolve({id: doc.id}); 
                     
                 })
