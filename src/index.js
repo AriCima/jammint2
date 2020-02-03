@@ -1,41 +1,40 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-//CSS
-import './index.css';
+// CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // COMPONENTS
-import App from '../src/Components/App';
 // import registerServiceWorker from './registerServiceWorker';
 
 // REDUX  el Middleware me permite utilizar el Thuk
-import { createStore, applyMiddleware, compose } from 'redux'
-import rootReducer from './redux/reducers/rootReducer'
+import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
 // connecting Redux to Firebase: https://www.youtube.com/watch?v=gf5bVfVlNUM
 import { reduxFirestore, getFirestore } from 'redux-firestore';
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
-import fbConfig from './config/fbConfig'
+import rootReducer from './redux/reducers/rootReducer';
+import App from './Components/App';
+import fbConfig from './config/fbConfig';
 
-//compose me permite agregar varios "potenciadores" al store. 
+// compose me permite agregar varios "potenciadores" al store.
 // en este caso agrego, thunk y los dos fun que me potencial la intereacción react-redux-firebase
-const store = createStore(rootReducer, 
+const store = createStore(rootReducer,
     compose(
         applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
         reduxFirestore(fbConfig),
-        reactReduxFirebase(fbConfig, {useFirestoreForProfile: true, userProfile: 'users', attachAuthIsReady: true}),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+        reactReduxFirebase(fbConfig, { useFirestoreForProfile: true, userProfile: 'users', attachAuthIsReady: true }),
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 
-    )
-);
+    ));
 
 
 ReactDOM.render(
-    <Provider store = {store}>
+    <Provider store={store}>
         <App />
-    </Provider>
-    , document.getElementById('root'));
+    </Provider>,
+    document.getElementById('root'),
+);
 // registerServiceWorker();
