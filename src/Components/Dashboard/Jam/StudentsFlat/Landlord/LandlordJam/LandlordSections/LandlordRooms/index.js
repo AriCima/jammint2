@@ -17,6 +17,7 @@ import { changeRoomId } from '../../../../../../../../redux/actions/roomsId';
 
 const LandlordRooms = ({ jamId, roomId }) => {
     const [roomInfo, setRoomInfo] = useState({});
+    const [showRoomInfo, setShowRoomInfo] = useState(false)
     const [jamRoomsInfo, setJamRoomsInfo] = useState([]);
     const [jamOrderedBookings, setJamOrderedBookings] = useState([])
 
@@ -24,6 +25,7 @@ const LandlordRooms = ({ jamId, roomId }) => {
         DataService.getJamRooms(jamId)
         .then((res) => {
             setJamRoomsInfo(res)
+            
         })
     }, []);
     
@@ -36,6 +38,7 @@ const LandlordRooms = ({ jamId, roomId }) => {
             DataService.getRoomInfo(jamId, roomId)
             .then((res) => {
                 setRoomInfo(res)
+                setShowRoomInfo(true)
             })
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -61,6 +64,7 @@ const LandlordRooms = ({ jamId, roomId }) => {
 
     }, [jamRoomsInfo])
 
+    console.log('roomInfo en roomInfo= ', roomInfo)
     return (
         <div className="landlord-rooms">
 
@@ -70,9 +74,13 @@ const LandlordRooms = ({ jamId, roomId }) => {
                         roomsBookings={jamOrderedBookings}
                     />
                     :
-                    <LandlordRoomInfo
-                        roomInfo={roomInfo}
-                    />
+                    
+                    showRoomInfo  ?
+                        <LandlordRoomInfo roomInfo={roomInfo}/>
+                    : 
+                    <p>LOADING</p>
+                        
+                    
                 }
             </div>
             <div className="landlord-rooms-list">

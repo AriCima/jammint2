@@ -204,7 +204,7 @@ export default class Calculations {
     // - - - - - - - - BOOKINGS
 
     static organizeBookings = (bookings) => {
-        
+        console.log('organize bookings : ', bookings)
         const result = {
             currentBooking: {}, 
             dueBookings: [],

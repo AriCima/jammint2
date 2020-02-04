@@ -10,6 +10,7 @@ import ModalNewRoom from '../../../../../../../../UI/ModalNewRoom';
 import './index.css';
 
 const LandlordRoomsList = ({ jamId, roomsBookings }) => {
+    console.log('roomsBookings: ', roomsBookings);
 
     const renderRoomsList = () => {
         return roomsBookings.map((rI, i) => {

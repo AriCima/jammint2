@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 import ButtonPlain from '../../../../../../../../UI/ButtonPlain'
-import NewRoomForm from '../../../../../../../../UI/Forms/StudentsFlat/NewRoomForm'
-import NewBookingForm from '../../../../../../../../UI/Forms/StudentsFlat/NewBookingForm'
-import NewInvitationForm from '../../../../../../../../UI/Forms/StudentsFlat/NewInvitationForm'
 import CurrentTenant from './CurrentTenant';
 import RoomBookings from './RoomBookings';
-import RoomInfo from './RoomInfo';
+import moment from 'moment';
+import Calculations from '../../../../../../../../services/Calculations';
+
 
 // REDUX
 import { connect } from 'react-redux';
@@ -14,11 +13,12 @@ import { connect } from 'react-redux';
 // CSS
 import './index.css';
 
-const LandlordRoomInfo = (props) => {
-  const { roomInfo } = props;
-  console.log('roomInfo: ', roomInfo);
+const LandlordRoomInfo = ({ roomInfo }) => {
 
-//   const [screen, setScreen] = useState(props.activeScreen)
+  const orderedBookings = Calculations.organizeBookings(roomInfo.bookingsSummary);
+  const noNextBooking = Calculations.isEmpty(orderedBookings.nextBooking);
+  const noCurrentTenant = Calculations.isEmpty(orderedBookings.currentBooking);
+
 
   const onNewRoom = (jamId) => {
     alert('NEW ROOM')
@@ -30,7 +30,7 @@ const LandlordRoomInfo = (props) => {
     alert('NEW INVITATION')
   };
 
-
+  console.log('orderedBookings en RoomInfo: ', orderedBookings);
   return(
     <div className="room-info-wrapper">
         <div className="rooms-sections-wrapper">
@@ -51,9 +51,23 @@ const LandlordRoomInfo = (props) => {
                 />
             </div>
            
-            <div className="room-section-content">
-                <CurrentTenant roomInfo={roomInfo} />
-            </div>
+            { !noCurrentTenant ? (
+              <div className="room-section-content">
+                  <CurrentTenant orderedBookings={orderedBookings} />
+              </div>
+            )
+            :
+            (
+              <div className="no-current-booking">
+                {!noNextBooking?
+                    <p>Vacant until <span>{moment(orderedBookings.nextBooking.checkIn).format('DD/MM')}</span></p>
+                    :
+                    <p>This room is currently <span>VACANT</span></p>
+                }
+              </div>
+            )
+
+            }
             
             <div className="room-section-content">
                 <RoomBookings roomInfo={roomInfo} />
@@ -70,14 +84,15 @@ const LandlordRoomInfo = (props) => {
   )
 }
 
-const mapStateToProps = state => {
-    return { 
-      auth: state.firebase.auth,
-      jamActiveSection: state.jamSection,
-      roomId: state.roomId,
-      bookings: state.bookings,
-      activeScreen: state.activeScreen
-    }
-};
+// const mapStateToProps = state => {
+//     return { 
+//       auth: state.firebase.auth,
+//       jamActiveSection: state.jamSection,
+//       roomId: state.roomId,
+//       bookings: state.bookings,
+//       activeScreen: state.activeScreen
+//     }
+// };
   
-export default connect(mapStateToProps) (LandlordRoomInfo);
+// export default connect(mapStateToProps) (LandlordRoomInfo);
+export default LandlordRoomInfo;
