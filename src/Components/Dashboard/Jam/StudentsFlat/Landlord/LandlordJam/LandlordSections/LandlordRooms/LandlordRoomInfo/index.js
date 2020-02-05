@@ -34,23 +34,32 @@ const LandlordRoomInfo = ({ roomInfo }) => {
   return(
     <div className="room-info-wrapper">
         <div className="rooms-sections-wrapper">
-            <h4>This is Room Nr {roomInfo.roomName}</h4>
 
-            <div className="room-buttons-area">
+            <div className="room-header">
 
-                <ButtonPlain 
+              <div className="room-header-title">
+                <h4>Room Nr {roomInfo.roomName}</h4>
+              </div>
+
+              <div className="room-buttons-area">
+                <div className="room-button-block">
+                  <ButtonPlain 
                     type='button'
                     text='New Booking'
                     clickHandle={onNewBooking}
-                />
-
-                <ButtonPlain 
+                  />
+                </div>
+                <div className="room-button-block">
+                  <ButtonPlain 
                     type='button'
                     text='Invite'
                     clickHandle={onNewInvitation}
-                />
+                  />
+                </div>
+              </div>
+
             </div>
-           
+            
             { !noCurrentTenant ? (
               <div className="room-section-content">
                   <CurrentTenant orderedBookings={orderedBookings} />
