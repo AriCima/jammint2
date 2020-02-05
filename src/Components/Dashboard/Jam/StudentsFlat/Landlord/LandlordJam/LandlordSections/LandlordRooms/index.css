@@ -7,8 +7,8 @@
 }
 
 .landlord-room-info{
+    margin-top: 20px;
     width: 70%;
-    height: 600px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
