@@ -61,29 +61,29 @@ const LandlordRoomInfo = ({ roomInfo }) => {
             </div>
             
             { !noCurrentTenant ? (
-              <div className="room-section">
-                <CurrentTenant orderedBookings={orderedBookings} />
-              </div>
-            )
-            :
-            (
-              <div className="room-section">
-                {!noNextBooking?
-                  <div className="no-current-tenant-line">
-                    <p>Vacant until <span>{moment(orderedBookings.nextBooking.checkIn).format("DD MMM YYYY")}</span></p>
-                  </div>
-                  :
-                  <div className="no-current-tenant-line">
-                    <p>This room is currently <span>VACANT</span></p>
-                  </div>
-                }
-              </div>
-            )
+                <div className="room-section">
+                  <CurrentTenant orderedBookings={orderedBookings} />
+                </div>
+              )
+              :
+              (
+                <div className="room-section">
+                  {!noNextBooking?
+                    <div className="no-current-tenant-line">
+                      <p>Vacant until <span>{moment(orderedBookings.nextBooking.checkIn).format("DD MMM YYYY")}</span></p>
+                    </div>
+                    :
+                    <div className="no-current-tenant-line">
+                      <p>This room is currently <span>VACANT</span></p>
+                    </div>
+                  }
+                </div>
+              )
 
             }
             
             <div className="room-section">
-                <RoomBookings roomInfo={roomInfo} />
+                <RoomBookings orderedBookings={orderedBookings} />
             </div>
            
             {/*  <div className="room-section-content">
