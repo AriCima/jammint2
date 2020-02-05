@@ -1,7 +1,35 @@
 .room-info-wrapper{
     width: 100%;
+    padding: 0 10px;
 }
 
+.room-header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.room-header-title{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.room-header-title h4{
+    font-size: 16px;
+    font-weight: 700;
+    color: rgb(79, 86,109);
+    margin: 0 20px;;
+}
+
+.room-buttons-area{
+    min-width: 200px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.room-button-block{
+    margin: 0 10px;
+}
 .room-current-state-wrapper{
     width: 100%;
     display: flex;
@@ -11,6 +39,8 @@
     margin-bottom: 20px;
     border-bottom: 1px solid rgb(79, 86,109);
 }
+
+
 
 .room-current-tenant-info{
     width: 100%;
