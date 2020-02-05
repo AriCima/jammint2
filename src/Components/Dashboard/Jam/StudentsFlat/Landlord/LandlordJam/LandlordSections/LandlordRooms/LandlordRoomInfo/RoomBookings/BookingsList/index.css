@@ -13,6 +13,7 @@
     align-items: center;
     background-color: rgb(61,158,247);
     margin-bottom: 5px;
+    padding: 5px;
 }
 
 .booking-chart-block{
@@ -24,7 +25,7 @@
 
 .booking-chart-block p{
     margin-left: 2%;
-    font-size: 10px;
+    font-size: 14px;
     font-weight: 700;
     color: white;
 }

@@ -28,9 +28,9 @@ const BookingsList = (props) => {
             { bookings ? 
                 <div className="bookings-chart">
                     <div className="booking-chart-header">
-                        <div className="booking-chart-block">
+                        {/* <div className="booking-chart-block">
                             <p>Room</p>
-                        </div>
+                        </div> */}
                         <div className="booking-chart-block">
                             <p>ID</p>
                         </div>

@@ -117,6 +117,7 @@
     border: 1px solid gray;
     border-radius: 5px;
     margin: 10px 0px;
+    padding: 5px;
 }
 
 .contract-line-value p{

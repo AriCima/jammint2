@@ -1,5 +1,6 @@
 .room-bookings-wrapper{
-    width: 100%;
+    width: 95%;
+    padding-left: 20px;
     display: flex; 
     flex-direction: column;
     justify-content: center;
@@ -22,6 +23,10 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+}
+
+.room-booking-section-content{
+    width: 100%;
 }
 
 .room-section-title p {
