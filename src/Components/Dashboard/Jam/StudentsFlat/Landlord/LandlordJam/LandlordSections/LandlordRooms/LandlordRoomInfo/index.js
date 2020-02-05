@@ -60,9 +60,9 @@ const LandlordRoomInfo = ({ roomInfo }) => {
             (
               <div className="no-current-booking">
                 {!noNextBooking?
-                    <p>Vacant until <span>{moment(orderedBookings.nextBooking.checkIn).format('DD/MM')}</span></p>
-                    :
-                    <p>This room is currently <span>VACANT</span></p>
+                  <p>Vacant until <span>{moment(orderedBookings.nextBooking.checkIn).format('DD/MM')}</span></p>
+                  :
+                  <p>This room is currently <span>VACANT</span></p>
                 }
               </div>
             )

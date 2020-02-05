@@ -130,6 +130,25 @@ export default class Calculations {
         return x.sort(compare)
     };
 
+    static sortAscRooms(x){
+        console.log('x: ', x);
+
+        function compare(a,b){
+            const varA = a.roomName;
+            const varB = b.roomName;            
+        
+            let comparison = 0;
+            if (varA < varB) {
+            comparison = -1;
+            } else if (varA > varB) {
+            comparison = 1;
+            }
+            return comparison;
+        }
+
+        return x.sort(compare)
+    };
+
 
     // HEADER ICONS
 

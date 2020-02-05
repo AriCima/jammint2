@@ -5,15 +5,16 @@ import React from 'react';
 import LandlordRoomCard from './LandlordRoomCard';
 import ButtonPlain from '../../../../../../../../UI/ButtonPlain';
 import ModalNewRoom from '../../../../../../../../UI/ModalNewRoom';
+import Calculations from '../../../../../../../../services/Calculations'
 
 // CSS
 import './index.css';
 
 const LandlordRoomsList = ({ jamId, roomsBookings }) => {
-    console.log('roomsBookings: ', roomsBookings);
 
+    const orderedRooms = Calculations.sortAscRooms(roomsBookings)
     const renderRoomsList = () => {
-        return roomsBookings.map((rI, i) => {
+        return orderedRooms.map((rI, i) => {
             return (
                 <React.Fragment key={i}>
                     <LandlordRoomCard

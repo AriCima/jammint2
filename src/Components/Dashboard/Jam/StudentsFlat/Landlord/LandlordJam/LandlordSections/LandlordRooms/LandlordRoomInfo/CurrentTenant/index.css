@@ -83,17 +83,49 @@
     justify-content: flex-start;
     align-items: flex-start;
 }
-.current-tenant-info-contract p{
-    font-size: 14px;
-    color: black;
-    font-weight: 400;
+
+.current-tenant-info-contract-line{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.contract-line-block{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
-.current-tenant-info-contract p span{
-    font-size: 14px;
-    color: rgb(79, 86,109);
-    font-weight: 700;
+.contract-line-field{
+    width: 120px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 10px 5px;
 }
+.contract-line-field p{
+    font-size: 14px;
+    color: gray;
+    font-weight: 400;
+}
+.contract-line-value{
+    width: 180px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: rgb(246, 244, 244);
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin: 10px 0px;
+}
+
+.contract-line-value p{
+    font-size: 14px;
+    color: darkgray;
+    font-weight: 400;
+    margin-left: 5px;
+}
+
 
 .current-tenant-info-comments{
     width: 100%;    
