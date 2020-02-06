@@ -28,10 +28,14 @@ const LandlordRoomCard = ( { changeRoomId, rI}) => {
       </div>
       <div className="landlord-room-card-info">
         <div className="landlord-room-card-upperline">
-          <p>{rI.bookings.currentBooking.jammerName}</p>
+          {rI.bookings.currentBooking.jammerName ?
+            <p>{rI.bookings.currentBooking.jammerName}</p>
+            :
+            <p>Vacant</p>
+          }
         </div>
         <div className="landlord-room-card-lowerline">
-          <p>Seatle, USA</p>
+          <p>,</p>
         </div>
       </div>
     </button>

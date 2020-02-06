@@ -11,11 +11,11 @@ import './index.css';
 const RoomBookings = ({ orderedBookings }) => {
 
     const existsDueContracts = orderedBookings.dueBookings.length;
-    console.log('existsDueContracts: ', existsDueContracts);
+    // console.log('existsDueContracts: ', existsDueContracts);
     const existsNextBooking = Calculations.isEmpty(orderedBookings.nextBooking);
-    console.log('existsNextBooking: ', existsNextBooking);
+    // console.log('existsNextBooking: ', existsNextBooking);
     const existsFutureBookings = orderedBookings.futureBookings.length;
-    console.log('existsFutureBookings: ', existsFutureBookings);
+    // console.log('existsFutureBookings: ', existsFutureBookings);
 
     return (
         <>
@@ -31,7 +31,7 @@ const RoomBookings = ({ orderedBookings }) => {
                             <div className="room-booking-section-content">
                                 {!existsNextBooking ?
                                     <BookingsList bookings={orderedBookings.nextBooking} />
-                                    : <p>There are no bookings for this room yet</p>}
+                                    : <p>There are no future bookings for this room yet</p>}
                             </div>
                         </div>
 
@@ -42,7 +42,7 @@ const RoomBookings = ({ orderedBookings }) => {
                             <div className="room-booking-section-content">
                                 {existsFutureBookings > 1 ?
                                     <BookingsList bookings={orderedBookings.futureBookings} />
-                                    : <p>There are no more bookings for this room yet</p>}
+                                    : <p>There are no future bookings for this room yet</p>}
                             </div>
                         </div>
 

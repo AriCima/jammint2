@@ -55,7 +55,6 @@ export default class DataService {
             });
         };
         static getUserJams(userId){
-            console.log('user JAMS called with: ', userId)
 
             return new Promise((resolve, reject) => {
 

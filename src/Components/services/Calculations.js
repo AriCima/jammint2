@@ -131,8 +131,6 @@ export default class Calculations {
     };
 
     static sortAscRooms(x){
-        console.log('x: ', x);
-
         function compare(a,b){
             const varA = a.roomName;
             const varB = b.roomName;            
@@ -223,7 +221,6 @@ export default class Calculations {
     // - - - - - - - - BOOKINGS
 
     static organizeBookings = (bookings) => {
-        console.log('organize bookings : ', bookings)
         const result = {
             currentBooking: {}, 
             dueBookings: [],

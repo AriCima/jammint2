@@ -11,7 +11,6 @@ import "./index.css";
   const { jamName, jamId, jamType, jamDesc, user2Name = '' } = props
 
   const onSelectJam = (jamId) => {
-    console.log('selectJam con jamId = ', jamId)
     props.selectJam(jamId);
   };
 

@@ -14,7 +14,7 @@ import JamsOverview from './JamsOverview';
 // CSS
 import './index.css'; 
 
-const Dashboard = ({ auth, userJams, getJamInfo, jamId, jamInfo, props }) => {
+const Dashboard = ({ auth, userJams, getJamInfo, jamId, jamInfo }) => {
     const [ jamsList, setJamsList ] = useState([]);
     const [ ownStudentsFlats, setOwnStudentsFlats] = useState([])
 
@@ -67,7 +67,7 @@ const Dashboard = ({ auth, userJams, getJamInfo, jamId, jamInfo, props }) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getUserJams: (userId) => dispatch(getUserJams(userId)),
+        // getUserJams: (userId) => dispatch(getUserJams(userId)),
         getJamInfo: (jamId) => dispatch(getJamInfo(jamId))
     }
 }
