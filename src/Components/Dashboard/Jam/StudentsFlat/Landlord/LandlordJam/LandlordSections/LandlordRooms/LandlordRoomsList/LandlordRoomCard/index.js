@@ -35,7 +35,7 @@ const LandlordRoomCard = ( { changeRoomId, rI}) => {
           }
         </div>
         <div className="landlord-room-card-lowerline">
-          <p>,</p>
+        <p>{rI.bookings.currentBooking.jammerCountry}</p>
         </div>
       </div>
     </button>
