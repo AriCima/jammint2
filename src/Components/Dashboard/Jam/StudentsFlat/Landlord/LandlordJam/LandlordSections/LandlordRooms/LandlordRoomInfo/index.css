@@ -35,6 +35,14 @@
 .room-button-block{
     margin: 0 10px;
 }
+/* * * * BOOKINGS GRAPHIC * * * * */
+
+.bookings-graphic{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0 20px 0;
+}
 
 /* * * * ROOM SECTION * * * * */
 

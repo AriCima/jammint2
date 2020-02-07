@@ -55,7 +55,7 @@ const LandlordRoomInfo = ({ roomInfo }) => {
               </div>
             </div>
             
-            <div className="booking-graphic">
+            <div className="bookings-graphic">
               <BookingsGraphic bookingsSummary={bookingsSummary} />
 
             </div>
