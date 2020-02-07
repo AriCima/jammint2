@@ -10,11 +10,8 @@ import './index.css';
 const BookingsList = (props) => {
 
     const { bookings } = props;
-    const bookingType = typeof bookings;
     const bookingsLength = bookings.length;
     const isArray = bookingsLength > 0
-    console.log('bookingType: ', bookingType);
-    console.log('bookingsLength: ', bookingsLength);
 
     const renderBookingsList = () => {
         console.log('render bookings triggered con :', bookings)
