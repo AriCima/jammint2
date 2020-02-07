@@ -43,7 +43,7 @@ const BookingsGraphic = ({ bookingsSummary }) => {
       )
     })
     
-  }
+  };
 
   const generateDays = (mm,yy) => {   // x = 'Mes' y = yyyy
     let months  =  ['Jan', 'Feb', 'Mar', 'Apr','May', 'Jun', 'Jul', 'Aug','Sep', 'Oct', 'Nov', 'Dec'];
@@ -112,9 +112,7 @@ const BookingsGraphic = ({ bookingsSummary }) => {
 
   };
   
-
   return(
- 
     <div className="graphic-area">
       {generateGraphicsMonths()}
     </div>

@@ -20,7 +20,7 @@ const CurrentTenant = ({ orderedBookings }) => {
             <div className="current-tenant-info">
 
                 <div className="current-tenant-personal-info">
-                    
+
                 </div>
 
                 <div className="current-tenant-info-contract">
@@ -39,7 +39,7 @@ const CurrentTenant = ({ orderedBookings }) => {
                                 <p>Check-Out: </p> 
                             </div>
                             <div className="contract-line-value">
-                                <p>{orderedBookings.currentBooking.checkOut}</p>
+                                <p>{moment(orderedBookings.currentBooking.checkOut).format("DD MMM YYYY")}</p>
                             </div>
                         </div>
                     </div>
