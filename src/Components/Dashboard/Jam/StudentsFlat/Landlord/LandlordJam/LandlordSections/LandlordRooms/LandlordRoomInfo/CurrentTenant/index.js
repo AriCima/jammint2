@@ -9,21 +9,18 @@ const CurrentTenant = ({ orderedBookings }) => {
         <div className="current-tenant-wrapper">
 
             <div className="current-tenant-section-title">
-                <p>Current Tenant</p>
+                <div className="current-tenant-title">
+                    <p>Current Tenant</p>
+                </div>
+                <div className="current-tenant-title-value">
+                    <p>{orderedBookings.currentBooking.jammerName}</p>
+                </div>
             </div>
 
             <div className="current-tenant-info">
 
-                <div className="current-tenant-info-header">
-                    <div className="tenant-img">
-                        <img src="/" alt="img" />
-                    </div>
-
-                    <div className="current-tenant-personal-info">
-                        <div className="current-tenant-personal-info-upperline">
-                            <p>{orderedBookings.currentBooking.jammerName}</p>
-                        </div>
-                    </div>
+                <div className="current-tenant-personal-info">
+                    
                 </div>
 
                 <div className="current-tenant-info-contract">

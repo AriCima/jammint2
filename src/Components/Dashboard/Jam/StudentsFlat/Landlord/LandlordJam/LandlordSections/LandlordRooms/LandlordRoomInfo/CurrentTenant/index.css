@@ -10,18 +10,30 @@
 
 .current-tenant-section-title{
     width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     margin-bottom: 10px;
     border-bottom: 1px solid rgb(79, 86,109);
+}
+
+.current-tenant-title, .current-tenant-title-value {
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
 
-.room-section-title p {
+.current-tenant-title p {
     font-size: 16px;
     color: rgb(79, 86,109);
     font-weight: 700;
+    margin-right: 20px;
 } 
+.current-tenant-title-value p{
+    font-size: 16px;
+    color: rgb(79, 86,109);
+    font-weight: 700;
+}
 
 .current-tenant-info{
     width: 100%;
@@ -54,17 +66,6 @@
     align-items: flex-start;
 }
 
-.current-tenant-personal-info-upperline{
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-.current-tenant-personal-info-upperline p{
-    font-size: 16px;
-    color: rgb(79, 86,109);
-    font-weight: 700;
-}
 .current-tenant-personal-info-lowerline{
     display: flex;
     justify-content: flex-start;
