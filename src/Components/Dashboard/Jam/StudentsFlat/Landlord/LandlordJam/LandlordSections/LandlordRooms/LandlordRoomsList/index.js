@@ -11,7 +11,6 @@ import Calculations from '../../../../../../../../services/Calculations'
 import './index.css';
 
 const LandlordRoomsList = ({ jamId, roomsBookings }) => {
-    console.log('roomsBookings: ', roomsBookings);
 
     const orderedRooms = Calculations.sortAscRooms(roomsBookings)
     const renderRoomsList = () => {

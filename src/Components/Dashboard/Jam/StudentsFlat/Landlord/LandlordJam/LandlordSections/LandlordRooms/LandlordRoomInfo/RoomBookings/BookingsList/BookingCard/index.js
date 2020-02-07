@@ -6,6 +6,7 @@ import "./index.css";
 const BookingCard = (props) => {
 
   const { bI  } = props;
+  console.log('bI booking card: ', bI);
   const bookingId = bI.id;
 
   return (

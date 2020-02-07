@@ -10,8 +10,14 @@ import './index.css';
 const BookingsList = (props) => {
 
     const { bookings } = props;
+    const bookingType = typeof bookings;
+    const bookingsLength = bookings.length;
+    const isArray = bookingsLength > 0
+    console.log('bookingType: ', bookingType);
+    console.log('bookingsLength: ', bookingsLength);
 
     const renderBookingsList = () => {
+        console.log('render bookings triggered con :', bookings)
         return bookings.map((bI, i) => {
             return (
                 <React.Fragment key={i}>
@@ -23,6 +29,34 @@ const BookingsList = (props) => {
         })
     };
 
+    const renderBooking = () => {
+        console.log('bookings = ', bookings)
+        return (
+            <div className="booking-chart-row">
+                <div className="booking-chart-row-block">
+                    <p>{bookings.bookingId}</p>
+                </div>
+                <div className="booking-chart-row-block">
+                    <p>{bookings.bookingCode}</p>
+                </div>
+                <div className="booking-chart-row-block">
+                    <p>{bookings.jammerName} {bookings.jammerSurname}</p>
+                </div>
+                <div className="booking-chart-row-block">
+                    <p>{bookings.checkIn}</p>
+                </div>
+                <div className="booking-chart-row-block">
+                    <p>{bookings.checkOut}</p>
+                </div>
+                <div className="booking-chart-row-block">
+                    <p>{bookings.rent}</p>
+                </div>
+                <div className="booking-chart-row-block">
+                    <p>{bookings.deposit}</p>
+                </div>
+            </div>
+        )
+    }
     return (
         <>
             { bookings ? 
@@ -50,7 +84,11 @@ const BookingsList = (props) => {
                             <p>Deposit €</p>
                         </div>
                     </div>
-                    {renderBookingsList}
+                    { isArray ?
+                        renderBookingsList()
+                        :
+                        renderBooking()
+                    }
                 </div>
             : <p>Loading</p>
 
