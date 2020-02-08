@@ -20,8 +20,9 @@
     background-color: rgba(0, 144, 248, 0.05);
 }
 
-.booking-chart-block{
+.booking-chart-row-block{
     width: 14%;
+    margin-left: 2%;
     display: flex;
     justify-content: flex-start;
     align-items: center;

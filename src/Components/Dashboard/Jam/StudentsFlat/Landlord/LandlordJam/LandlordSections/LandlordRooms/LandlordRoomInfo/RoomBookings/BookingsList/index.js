@@ -1,5 +1,6 @@
 
 import React from 'react';
+import moment from 'moment';
 
 // COMPONENTS
 import BookingCard from './BookingCard';
@@ -33,17 +34,17 @@ const BookingsList = (props) => {
                 <div className="booking-chart-row-block">
                     <p>{bookings.bookingId}</p>
                 </div>
-                <div className="booking-chart-row-block">
+                {/* <div className="booking-chart-row-block">
                     <p>{bookings.bookingCode}</p>
-                </div>
+                </div> */}
                 <div className="booking-chart-row-block">
                     <p>{bookings.jammerName} {bookings.jammerSurname}</p>
                 </div>
                 <div className="booking-chart-row-block">
-                    <p>{bookings.checkIn}</p>
+                    <p>{moment(bookings.checkIn).format("DD MMM YYYY")}</p>
                 </div>
                 <div className="booking-chart-row-block">
-                    <p>{bookings.checkOut}</p>
+                <p>{moment(bookings.checkOut).format("DD MMM YYYY")}</p>
                 </div>
                 <div className="booking-chart-row-block">
                     <p>{bookings.rent}</p>

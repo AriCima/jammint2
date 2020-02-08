@@ -13,7 +13,7 @@ const BookingCard = (props) => {
         <p>{bI.bookingCode}</p>
       </div>
       <div className="booking-chart-row-block">
-        <p>{bI.jammerName} {bI.jammerSurname}</p>
+        <p>{bI.jammerName}</p>
       </div>
       <div className="booking-chart-row-block">
         <p>{bI.checkIn}</p>

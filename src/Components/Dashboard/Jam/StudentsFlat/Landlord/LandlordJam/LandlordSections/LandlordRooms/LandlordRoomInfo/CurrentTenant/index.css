@@ -8,7 +8,7 @@
     align-items: flex-start;
 }
 
-.current-tenant-section-title{
+.current-tenant-header{
     width: 100%;
     display: flex;
     justify-content: flex-start;
@@ -17,18 +17,61 @@
     border-bottom: 1px solid rgb(79, 86,109);
 }
 
-.current-tenant-title, .current-tenant-title-value {
+.current-tenant-header-title {
+    width: 20%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-right: 20px;
+}
+.current-tenant-header-title p {
+    font-size: 16px;
+    color: rgb(79, 86,109);
+    font-weight: 700;
+    margin-right: 20px;
+}
+
+.current-tenant-header-info{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.current-tenant-name{
+    width: 50%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+} 
+
+.current-tenant-bookingId{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.current-bookingId-field{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.current-bookingId-value{
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
 
-.current-tenant-title p {
-    font-size: 16px;
-    color: rgb(79, 86,109);
-    font-weight: 700;
-    margin-right: 20px;
-} 
+.current-bookingId-value p{
+    color: blue;
+    cursor: pointer;
+}
+
+.current-bookingId-value p:hover{
+    text-decoration: underline;
+}
+ 
 .current-tenant-title-value p{
     font-size: 16px;
     color: rgb(79, 86,109);

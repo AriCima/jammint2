@@ -1,20 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import moment from 'moment';
 
 // CSS
 import './index.css';
 
 const CurrentTenant = ({ orderedBookings }) => {
+
+    const openBookingForm = () => {
+        alert("BOOKING FORM WILL OPEN")
+    }
+
     return(
         <div className="current-tenant-wrapper">
 
-            <div className="current-tenant-section-title">
-                <div className="current-tenant-title">
+            <div className="current-tenant-header">
+
+                <div className="current-tenant-header-title">
                     <p>Current Tenant</p>
                 </div>
-                <div className="current-tenant-title-value">
-                    <p>{orderedBookings.currentBooking.jammerName}</p>
+
+                <div className="current-tenant-header-info">
+                    <div className="current-tenant-name">
+                        <p>{orderedBookings.currentBooking.jammerName}</p>
+                    </div>
+                    <div className="current-tenant-bookingId">
+                        <div className="current-bookingId-field">
+                            <p>Booking Ref:</p>
+                        </div>
+                        <div className="current-bookingId-value" onCLick={openBookingForm}>
+                            <p>{orderedBookings.currentBooking.bookingId}</p>
+                        </div>
+                    </div>
                 </div>
+
             </div>
 
             <div className="current-tenant-info">
