@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Modal , Button, ButtonToolbar} from 'react-bootstrap';
+import { Modal , Form, Button, ButtonToolbar} from 'react-bootstrap';
 
 import DataService from '../../services/DataService';
 
@@ -45,7 +45,7 @@ const NewRoomModal = (props) => {
       <Modal.Body>
         {/* <h4>Please fill the info below and submit</h4>
         <p>en el jamId = {jamId}</p> */}
-
+{/* 
         <form className="new-room-form" onSubmit={submitNewRoom}>
           <div className="form-body">
             <div className="form-row">
@@ -132,7 +132,28 @@ const NewRoomModal = (props) => {
             </div>
           </div>
           <button>submit</button>
-        </form>
+        </form> */}
+
+        <Form>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control type="email" placeholder="Enter email" />
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
+
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control type="password" placeholder="Password" />
+          </Form.Group>
+          <Form.Group controlId="formBasicCheckbox">
+            <Form.Check type="checkbox" label="Check me out" />
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
 
       </Modal.Body>
     </Modal>

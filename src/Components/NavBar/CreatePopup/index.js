@@ -1,56 +1,62 @@
-import React, { useState } from "react";
-
-// SERVICES
-import DataService from "../../services/DataService";
-import Calculations from "../../services/Calculations";
-
-// FONTAWESOME
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
-
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable indent */
+import React, { useState } from 'react';
 
 // Material UI
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+// FONTAWESOME
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+// SERVICES
+import DataService from '../../services/DataService';
+import Calculations from '../../services/Calculations';
 
 // CSS
 import './index.css';
 
 const CreatePopup = (props) => {
-
-  const { user } = props
+  // eslint-disable-next-line indent
+  const { user } = props;
 
   const [open, setOpen] = useState(false);
   const [jamName, setJamName] = useState('');
   const [jamDesc, setJamDesc] = useState('');
-    
+  const [jamType, setJamType] = useState('');
+  const [nrOfRooms, setNrOfRooms] = useState('');
+
   const handleChange = (field) => event => {
-    if (field === 'jamName'){
+    if (field === 'jamName') {
       setJamName(event.target.value);
-    } else {
+    } else if (field === 'jamDesc') {
       setJamDesc(event.target.value);
+    } else if (field === 'jamType') {
+      setJamType(event.target.value);
+      console.log('jamType = ', event.target.value);
+    } else {
+      setNrOfRooms(event.target.value);
+      console.log('roomsNr = ', nrOfRooms);
     }
   };
 
   const onCreateNewJam = (e) => {
     e.preventDefault();
-    
     const userId = user.uid;
-    let createdAt = new Date();
-    let jamCode = Calculations.generateCode();
-    
-    let newJam = {
+    const createdAt = new Date();
+    const jamCode = Calculations.generateCode();
+
+    const newJam = {
       adminId: userId,
-      jamCode: jamCode,
-      jamName: jamName,
-      jamDesc: jamDesc,
-      jamType: 'studentsFlat',
-      createdAt: createdAt,
-      updatedAt: ''
+      jamCode,
+      jamName,
+      jamDesc,
+      jamType,
+      nrOfRooms,
+      createdAt,
+      updatedAt: '',
     };
 
 
@@ -58,68 +64,118 @@ const CreatePopup = (props) => {
     .then(res => {
       newJam.jamId = res.id;
       const jamId = res.id;
-
-      const userInfo = {userId: userId, email: user.email}
+      const userInfo = { userId, email: user.email };
       DataService.addJamToUser(userId, newJam);
       DataService.updateJammersInJam(jamId, userInfo);
+      if (jamType === 'rooms-rental') {
+        const rooms = Number(nrOfRooms);
+        for (let i = 0; i < rooms; i++) {
+          const roomNr = i + 1;
+          const roomInfo = {
+            roomNr,
+          };
+          DataService.addNewRoom(jamId, roomInfo);
+        }
+      }
+    });
 
-    })
     setOpen(false);
   };
 
   const handleClickOpen = () => {
     setOpen(true);
-  }
+  };
 
   const handleClose = () => {
     setOpen(false);
-  }
+  };
 
-  return ( 
-    <div>
-      <button className="create-button"  onClick={handleClickOpen}>
-        <FontAwesomeIcon className="create-icon-style" icon={faPlus} />
-      </button>
-      
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Create you own Jam</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="jamName"
-            label="JamName"
-            type="text"
-            fullWidth
-            onChange={handleChange('jamName')}
-          />
+  return (
+      <div>
+          <button type="submit" className="create-button" onClick={handleClickOpen}>
+              <FontAwesomeIcon className="create-icon-style" icon={faPlus} />
+          </button>
 
-          <TextField
-            autoFocus
-            margin="dense"
-            id="jamDesc"
-            label="JamDesc"
-            type="text"
-            fullWidth
-            onChange={handleChange('jamDesc')}
-          />
+          <Dialog
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="form-dialog-title"
+              fullWidth="true"
+          >
+              <DialogTitle id="form-dialog-title">Create you own Jam</DialogTitle>
+              <DialogContent>
+                  <form>
+                      <div className="input-group mb-3">
+                          <input
+                              type="text"
+                              className="form-control"
+                              placeholder="Jam Name"
+                              onChange={handleChange('jamName')}
+                          />
+                      </div>
+                      <div className="input-group mb-3">
+                          <input
+                              type="text"
+                              className="form-control"
+                              placeholder="Description"
+                              onChange={handleChange('jamDesc')}
+                          />
+                      </div>
+                      <div className="input-group mb-3">
+                          <div className="input-group-prepend">
+                              <label className="input-group-text" htmlFor="inputGroupSelect01">Jam Type</label>
+                          </div>
+                          <select
+                              className="custom-select"
+                              id="inputGroupSelect01"
+                              onChange={handleChange('jamType')}
+                          >
+                              <option selected>Choose...</option>
+                              <option value="jam">Just a jam</option>
+                              <option value="apt-rental">Apartment rental</option>
+                              <option value="rooms-rental">Rooms rental</option>
+                          </select>
+                      </div>
+                      {jamType === 'rooms-rental'
+                        && (
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <label className="input-group-text" htmlFor="inputGroupSelect01">Nr of Rooms</label>
+                            </div>
+                            <select
+                                className="custom-select"
+                                id="inputGroupSelect01"
+                                onChange={handleChange('nrOfRooms')}
+                            >
+                                <option selected>Choose...</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+                        )}
+                  </form>
+              </DialogContent>
 
-        </DialogContent>
+              <DialogActions>
+                  <Button onClick={handleClose} color="primary">
+              Cancel
+                  </Button>
+                  <Button onClick={onCreateNewJam} color="primary">
+              Create
+                  </Button>
 
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={onCreateNewJam} color="primary">
-            Create
-          </Button>
-
-        </DialogActions>
-      </Dialog>
-    </div>
-    
+              </DialogActions>
+          </Dialog>
+      </div>
   );
 };
 
 export default CreatePopup;
-

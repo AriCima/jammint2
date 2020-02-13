@@ -27,6 +27,10 @@ const LandlordRoomInfo = ({ roomInfo }) => {
     alert('NEW INVITATION')
   };
 
+  const openInvitationForm = () => {
+
+  }
+
   console.log('orderedBookings en RoomInfo: ', orderedBookings);
   return(
     <div className="room-info-wrapper">
@@ -39,11 +43,12 @@ const LandlordRoomInfo = ({ roomInfo }) => {
 
               <div className="room-buttons-area">
                 <div className="room-button-block">
-                  <ButtonPlain 
+                  {/* <ButtonPlain 
                     type='button'
                     text='New Booking'
                     clickHandle={onNewBooking}
-                  />
+                  /> */}
+                  <a href={`/invite/bId-004`}>invitation Form</a>
                 </div>
                 <div className="room-button-block">
                   <ButtonPlain 
