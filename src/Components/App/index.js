@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 // import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 // COMPONENTS
-import NavBar from '../NavBar/NavBar'
+import NavBar from '../NavBar/NavBar';
 import Login from '../Auth/Login';
 import Register from '../Auth/Register';
 import Dashboard from '../Dashboard';
-import InvitationForm from '../UI/Forms/StudentsFlat/InvitationForm'
+import PreBookingForm from '../UI/Forms/StudentsFlat/PreBookingForm';
 
 // SERVICES
 // import DataService from '../services/DataService';
@@ -16,27 +16,24 @@ import InvitationForm from '../UI/Forms/StudentsFlat/InvitationForm'
 import './index.css';
 
 
-
 function App() {
-
-
-  return (
-    <BrowserRouter>
-      <div className="App">
-          <div className="navBar">
-            <NavBar/>
-          </div>
-        <div className="app-body">
-          <Switch>
-            <Route exact path="/" component={Dashboard} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={Register} />
-            <Route path="/invite/:bookingId" exact render = {(props) => { return <InvitationForm propsFn={props.history} bookingID={props.match.params.bookingId}/> }}/> 
-          </Switch>
-        </div>
-      </div>
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <div className="App">
+                <div className="navBar">
+                    <NavBar />
+                </div>
+                <div className="app-body">
+                    <Switch>
+                        <Route exact path="/" component={Dashboard} />
+                        <Route exact path="/login" component={Login} />
+                        <Route exact path="/register" component={Register} />
+                        <Route path="/invite/:bookingId" exact render={(props) => <PreBookingForm propsFn={props.history} bookingID={props.match.params.bookingId} />} />
+                    </Switch>
+                </div>
+            </div>
+        </BrowserRouter>
+    );
 }
 
 

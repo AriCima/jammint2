@@ -23,6 +23,7 @@ const CreatePopup = (props) => {
   const { user } = props;
 
   const [open, setOpen] = useState(false);
+
   const [jamName, setJamName] = useState('');
   const [jamDesc, setJamDesc] = useState('');
   const [jamType, setJamType] = useState('');
@@ -42,11 +43,13 @@ const CreatePopup = (props) => {
     }
   };
 
-  const onCreateNewJam = (e) => {
+
+  const onCreatenewJam = (e) => {
     e.preventDefault();
     const userId = user.uid;
     const createdAt = new Date();
     const jamCode = Calculations.generateCode();
+    const updatedAt = '';
 
     const newJam = {
       adminId: userId,
@@ -56,7 +59,7 @@ const CreatePopup = (props) => {
       jamType,
       nrOfRooms,
       createdAt,
-      updatedAt: '',
+      updatedAt,
     };
 
 
@@ -67,8 +70,9 @@ const CreatePopup = (props) => {
       const userInfo = { userId, email: user.email };
       DataService.addJamToUser(userId, newJam);
       DataService.updateJammersInJam(jamId, userInfo);
-      if (jamType === 'rooms-rental') {
-        const rooms = Number(nrOfRooms);
+
+      if (newJam.jamType === 'rooms-rental') {
+        const rooms = Number(newJam.nrOfRooms);
         for (let i = 0; i < rooms; i++) {
           const roomNr = i + 1;
           const roomInfo = {
@@ -110,6 +114,7 @@ const CreatePopup = (props) => {
                               type="text"
                               className="form-control"
                               placeholder="Jam Name"
+                              label="jamName"
                               onChange={handleChange('jamName')}
                           />
                       </div>
@@ -118,6 +123,7 @@ const CreatePopup = (props) => {
                               type="text"
                               className="form-control"
                               placeholder="Description"
+                              label="jamDesc"
                               onChange={handleChange('jamDesc')}
                           />
                       </div>
@@ -128,6 +134,7 @@ const CreatePopup = (props) => {
                           <select
                               className="custom-select"
                               id="inputGroupSelect01"
+                              label="jamType"
                               onChange={handleChange('jamType')}
                           >
                               <option selected>Choose...</option>
@@ -145,6 +152,7 @@ const CreatePopup = (props) => {
                             <select
                                 className="custom-select"
                                 id="inputGroupSelect01"
+                                label="nrOfRooms"
                                 onChange={handleChange('nrOfRooms')}
                             >
                                 <option selected>Choose...</option>
@@ -168,7 +176,7 @@ const CreatePopup = (props) => {
                   <Button onClick={handleClose} color="primary">
               Cancel
                   </Button>
-                  <Button onClick={onCreateNewJam} color="primary">
+                  <Button onClick={onCreatenewJam} color="primary">
               Create
                   </Button>
 
