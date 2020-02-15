@@ -212,11 +212,6 @@ export default class Calculations {
 
         return divisions
     };
-    
-    static getgetMyJammers = (totalRooms) => {
-        let divisions = {eng: '', esp:''}
-
-    };
 
     // - - - - - - - - BOOKINGS
 
@@ -249,6 +244,39 @@ export default class Calculations {
         // console.log('result = ', result)
         return result
     }
+
+    static checkOverlapping(checkIn, checkOut, bookings){
+   
+        for (let k=0; k < bookings.length; k++){
+            const bIn = bookings[k].checkIn;
+            const bOut = bookings[k].checkOut
+            const bId = bookings[k].bookingId
+            const bName = bookings[k].jammerName
+
+            if(checkOut >= bIn && checkOut <= bOut){
+                let validationResult = {
+                    error : true,
+                    message : `The range overlaps with ${bName}'s booking, booking-ID =${bId}`
+                }
+                return validationResult 
+            };
+            if(checkIn >= bIn && checkIn <= bOut){
+                let validationResult = {
+                    error : true,
+                    message : `The range overlaps with ${bName}'s booking, booking-ID =${bId}`
+                }
+                return validationResult 
+            };
+        }
+        
+        let validationResult = {
+            error : false,
+            message : "Dates are OK"
+        }
+
+        return validationResult
+       
+    };
 
     // FLAT INFO
     static getOnwStudentsFlats = (userJams = [], userId = '') => {

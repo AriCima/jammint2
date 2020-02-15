@@ -11,7 +11,9 @@ import DataService from '../../../../services/DataService';
 import Calculations from '../../../../services/Calculations';
 
 
-const PreBookingForm = ({ jamId, roomId, roomNr }) => {
+const PreBookingForm = ({
+    jamId, roomId, roomNr, bookings,
+}) => {
     const [open, setOpen] = useState(false);
 
     const [checkIn, setCheckIn] = useState('');
@@ -22,6 +24,17 @@ const PreBookingForm = ({ jamId, roomId, roomNr }) => {
     const handleChange = (field) => event => {
         switch (field) {
         case 'checkIn':
+            if (checkOut !== '') {
+                const inDate = new Date(checkIn);
+                const outDate = new Date(checkOut);
+                if (outDate <= inDate) {
+                    alert('Check-in date must be earlier than check-In date');
+                }
+                const overlapping = Calculations.checkOverlapping(checkIn, checkOut, bookings);
+                if (overlapping) {
+                    alert(`${overlapping.message}`);
+                }
+            }
             setCheckIn(event.target.value);
             break;
         case 'checkOut':
@@ -29,7 +42,11 @@ const PreBookingForm = ({ jamId, roomId, roomNr }) => {
                 const inDate = new Date(checkIn);
                 const outDate = new Date(checkOut);
                 if (outDate <= inDate) {
-                    alert('CheckOut date must be greater than check-In date');
+                    alert('Check-out date must be later than check-In date');
+                }
+                const overlapping = Calculations.checkOverlapping(checkIn, checkOut, bookings);
+                if (overlapping) {
+                    alert(`${overlapping.message}`);
                 }
             }
             setCheckOut(event.target.value);
@@ -62,11 +79,11 @@ const PreBookingForm = ({ jamId, roomId, roomNr }) => {
             createdAt,
         };
 
-
         DataService.addNewInvite(jamId, roomId, preBookingInfo)
             .then(res => {
                 const preBookingId = res.id;
                 const inviteURL = `localhost:3000/invite/${jamId}/${roomId}/${preBookingId}`;
+                alert('Pre-booking ID: ', inviteURL);
             });
 
         setOpen(false);
@@ -90,67 +107,163 @@ const PreBookingForm = ({ jamId, roomId, roomNr }) => {
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="form-dialog-title"
-                fullWidth="true"
+                fullWidth
             >
                 <DialogTitle id="form-dialog-title">Fill all the info of the booking</DialogTitle>
                 <DialogContent>
                     <form>
                         <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <span className="input-group-text">Room Nr:</span>
+                            </div>
                             <input
                                 type="text"
                                 className="form-control"
-                                placeholder="Jam Name"
-                                onChange={handleChange('jamName')}
+                                placeholder="Room ID"
+                                value={roomId}
+                                onChange={handleChange('roomId')}
                             />
                         </div>
-                        <div className="input-group mb-3">
-                            <input
-                                type="text"
-                                className="form-control"
-                                placeholder="Description"
-                                onChange={handleChange('jamDesc')}
-                            />
+                        <div className="row">
+                            <div className="col">
+                                <div className="input-group mb-3">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text">Check-In</span>
+                                    </div>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        // placeholder="Check-In"
+                                        onChange={handleChange('checkIn')}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="col">
+                                <div className="input-group mb-3">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text">Check-Out</span>
+                                    </div>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        // placeholder="Check-Out"
+                                        onChange={handleChange('checkOut')}
+                                    />
+                                </div>
+
+                            </div>
                         </div>
+                        <div className="row">
+                            <div className="col">
+                                <div className="input-group mb-3">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text">Rent [€/Mo]</span>
+                                    </div>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        // placeholder="Rent"
+                                        onChange={handleChange('rent')}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="col">
+                                <div className="input-group mb-3">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text">Deposit [€]</span>
+                                    </div>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        // placeholder="Deposit"
+                                        onChange={handleChange('deposit')}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col">
+                                <div className="input-group mb-3">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text">Name</span>
+                                    </div>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        // placeholder="Name"
+                                        onChange={handleChange('name')}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="col">
+                                <div className="input-group mb-3">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text">Surname</span>
+                                    </div>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        // placeholder="Surname"
+                                        onChange={handleChange('surname')}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+
                         <div className="input-group mb-3">
                             <div className="input-group-prepend">
-                                <label className="input-group-text" htmlFor="inputGroupSelect01">Jam Type</label>
+                                <span className="input-group-text">Address</span>
                             </div>
-                            <select
-                                className="custom-select"
-                                id="inputGroupSelect01"
-                                onChange={handleChange('jamType')}
-                            >
-                                <option selected>Choose...</option>
-                                <option value="jam">Just a jam</option>
-                                <option value="apt-rental">Apartment rental</option>
-                                <option value="rooms-rental">Rooms rental</option>
-                            </select>
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Street, House Nr, Floor, Door "
+                                onChange={handleChange('address')}
+                            />
                         </div>
-                        {preBookingInfo.jamType === 'rooms-rental'
-                        && (
-                            <div className="input-group mb-3">
-                                <div className="input-group-prepend">
-                                    <label className="input-group-text" htmlFor="inputGroupSelect01">Nr of Rooms</label>
+                        <div className="row">
+                            <div className="col">
+                                <div className="input-group mb-3">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text">Zip-Code</span>
+                                    </div>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        onChange={handleChange('zipCode')}
+                                    />
                                 </div>
-                                <select
-                                    className="custom-select"
-                                    id="inputGroupSelect01"
-                                    onChange={handleChange('nrOfRooms')}
-                                >
-                                    <option selected>Choose...</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                </select>
                             </div>
-                        )}
+                            <div className="col">
+                                <div className="input-group mb-3">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text">City</span>
+                                    </div>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        onChange={handleChange('city')}
+                                    />
+                                </div>
+                            </div>
+                            <div className="col">
+                                <div className="input-group mb-3">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text">Country</span>
+                                    </div>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        onChange={handleChange('country')}
+                                    />
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </DialogContent>
 

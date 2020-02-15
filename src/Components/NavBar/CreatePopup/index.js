@@ -104,7 +104,7 @@ const CreatePopup = (props) => {
               open={open}
               onClose={handleClose}
               aria-labelledby="form-dialog-title"
-              fullWidth="true"
+              fullWidth
           >
               <DialogTitle id="form-dialog-title">Create you own Jam</DialogTitle>
               <DialogContent>
