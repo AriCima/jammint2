@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SingleDatePicker } from 'react-dates';
+// import { SingleDatePicker } from 'react-dates';
 import 'react-dates/initialize';
 
 // Material UI
@@ -8,6 +8,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import ErrorAlert from '../../../ErrorAlert';
 
 // SERVICES
 import DataService from '../../../../services/DataService';
@@ -57,7 +58,13 @@ const PreBookingForm = ({
 
         const overlapping = Calculations.checkOverlapping(inDate, outDate, bookingsSummary);
         if (overlapping.error) {
-            return alert(`${overlapping.message}`);
+            console.log('overlapping Error', overlapping.message);
+            // return alert(`${overlapping.message}`);
+            return (
+                <ErrorAlert
+                    errorMessage={overlapping.message}
+                />
+            );
         }
 
         const createdAt = new Date();

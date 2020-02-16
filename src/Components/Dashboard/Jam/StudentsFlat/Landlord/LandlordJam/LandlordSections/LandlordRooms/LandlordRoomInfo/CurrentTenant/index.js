@@ -5,12 +5,11 @@ import moment from 'moment';
 import './index.css';
 
 const CurrentTenant = ({ orderedBookings }) => {
-
     const openBookingForm = () => {
-        alert("BOOKING FORM WILL OPEN")
-    }
+        alert('BOOKING FORM WILL OPEN');
+    };
 
-    return(
+    return (
         <div className="current-tenant-wrapper">
 
             <div className="current-tenant-header">
@@ -27,7 +26,7 @@ const CurrentTenant = ({ orderedBookings }) => {
                         <div className="current-bookingId-field">
                             <p>Booking Ref:</p>
                         </div>
-                        <div className="current-bookingId-value" onCLick={openBookingForm}>
+                        <div className="current-bookingId-value" onClick={openBookingForm}>
                             <p>{orderedBookings.currentBooking.bookingId}</p>
                         </div>
                     </div>
@@ -37,27 +36,25 @@ const CurrentTenant = ({ orderedBookings }) => {
 
             <div className="current-tenant-info">
 
-                <div className="current-tenant-personal-info">
-
-                </div>
+                <div className="current-tenant-personal-info" />
 
                 <div className="current-tenant-info-contract">
 
                     <div className="current-tenant-info-contract-line">
                         <div className="contract-line-block">
                             <div className="contract-line-field">
-                                <p>Check-In: </p> 
+                                <p>Check-In: </p>
                             </div>
                             <div className="contract-line-value">
-                                <p>{moment(orderedBookings.currentBooking.checkIn).format("DD MMM YYYY")}</p>
+                                <p>{moment(orderedBookings.currentBooking.checkIn).format('DD MMM YYYY')}</p>
                             </div>
                         </div>
                         <div className="contract-line-block">
                             <div className="contract-line-field">
-                                <p>Check-Out: </p> 
+                                <p>Check-Out: </p>
                             </div>
                             <div className="contract-line-value">
-                                <p>{moment(orderedBookings.currentBooking.checkOut).format("DD MMM YYYY")}</p>
+                                <p>{moment(orderedBookings.currentBooking.checkOut).format('DD MMM YYYY')}</p>
                             </div>
                         </div>
                     </div>
@@ -65,7 +62,7 @@ const CurrentTenant = ({ orderedBookings }) => {
                     <div className="current-tenant-info-contract-line">
                         <div className="contract-line-block">
                             <div className="contract-line-field">
-                                <p>Rent:</p> 
+                                <p>Rent:</p>
                             </div>
                             <div className="contract-line-value">
                                 <p>{orderedBookings.currentBooking.rent}</p>
@@ -76,7 +73,7 @@ const CurrentTenant = ({ orderedBookings }) => {
                     <div className="current-tenant-info-contract-line">
                         <div className="contract-line-block">
                             <div className="contract-line-field">
-                                <p>Deposit:</p> 
+                                <p>Deposit:</p>
                             </div>
                             <div className="contract-line-value">
                                 <p>{orderedBookings.currentBooking.deposit}</p>
@@ -91,10 +88,10 @@ const CurrentTenant = ({ orderedBookings }) => {
                 </div>
 
             </div>
-                        
-        </div>
-        
-    )
-}
 
-export default CurrentTenant
+        </div>
+
+    );
+};
+
+export default CurrentTenant;
