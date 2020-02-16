@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import DataService from '../../../../services/DataService';
 import Calculations from '../../../../services/Calculations';
 
@@ -6,38 +7,35 @@ import Calculations from '../../../../services/Calculations';
 import ButtonPlain from '../../../ButtonPlain';
 import ButtonCancel from '../../../ButtonCancel';
 
-import { connect } from 'react-redux';
 import { changeRoomId } from '../../../../../redux/actions/roomsId';
 // import { setActiveScreen } from '../../../../../redux/actions/roomScreen';
 
 
 const NewBookingForm = (props) => {
-
-    const { roomName, jamId, roomId } = props;
+    const { roomNr, jamId, roomId } = props;
     const [bookingInfo, setBookingInfo] = useState({});
-    
+
     const handleInputChange = (event) => {
         event.persist();
-        setBookingInfo(bookingInfo => ({...bookingInfo, [event.target.id]: event.target.value}));
+        setBookingInfo(bookingInfo => ({ ...bookingInfo, [event.target.id]: event.target.value }));
     };
-    
+
     const submitNewBooking = (event) => {
         if (event) {
-          event.preventDefault();
+            event.preventDefault();
         }
-        const bCode = Calculations.generateCode()
+        const bCode = Calculations.generateCode();
         bookingInfo.bookingCode = bCode;
         DataService.addNewBooking(jamId, roomId, bookingInfo)
-        .then(result => {
-
-            const bookingId = result.id;
-            bookingInfo.bookingId = bookingId;
-            DataService.updateBookingSummary(jamId, roomId, bookingInfo)
-            .then(
-                // props.setActiveScreen('overview')
-                changeRoomId('overview')
-            )
-        })
+            .then(result => {
+                const bookingId = result.id;
+                bookingInfo.bookingId = bookingId;
+                DataService.updateBookingSummary(jamId, roomId, bookingInfo)
+                    .then(
+                        // props.setActiveScreen('overview')
+                        changeRoomId('overview'),
+                    );
+            });
     };
 
     const cancelAction = (event) => {
@@ -45,15 +43,19 @@ const NewBookingForm = (props) => {
             event.preventDefault();
         }
         // props.setActiveScreen('overview')
-        changeRoomId('overview')
+        changeRoomId('overview');
     };
 
     return (
         <form onSubmit={submitNewBooking}>
-            
+
             <div className="form-header">
                 <div className="form-header-title">
-                    <p>New Booking for room: {roomName}</p>
+                    <p>
+New Booking for room:
+                        {' '}
+                        {roomNr}
+                    </p>
                 </div>
                 <div className="form-header-text">
                     <p>Please fill the following info and then send the invitation</p>
@@ -64,133 +66,133 @@ const NewBookingForm = (props) => {
 
                 <div className="form-section personalInfo">
                     <div className="input-block">
-                        <input 
-                            type="text" 
-                            id={`jammerName`} 
-                            placeholder={`Name`}
+                        <input
+                            type="text"
+                            id="jammerName"
+                            placeholder="Name"
                             value={bookingInfo.jammerName}
-                            onChange={handleInputChange} 
+                            onChange={handleInputChange}
                         />
                     </div>
                     <div className="input-block">
-                        <input 
-                            type="text" 
-                            id={`jammerSurname`} 
-                            placeholder={`Surname`}
+                        <input
+                            type="text"
+                            id="jammerSurname"
+                            placeholder="Surname"
                             value={bookingInfo.jammerSurname}
-                            onChange={handleInputChange} 
+                            onChange={handleInputChange}
                         />
                     </div>
                     <div className="input-block">
-                        <input 
-                            type="text" 
-                            id={`jammerEmail`} 
-                            placeholder={`email`}
+                        <input
+                            type="text"
+                            id="jammerEmail"
+                            placeholder="email"
                             value={bookingInfo.jammerEmail}
-                            onChange={handleInputChange} 
+                            onChange={handleInputChange}
                         />
                     </div>
                     <div className="input-block">
-                            <input 
-                                type="text" 
-                                id={`jammerHomeTel`} 
-                                placeholder={`email`}
-                                value={bookingInfo.jammerHomeTel}
-                                onChange={handleInputChange} 
-                            />
-                        </div>
+                        <input
+                            type="text"
+                            id="jammerHomeTel"
+                            placeholder="email"
+                            value={bookingInfo.jammerHomeTel}
+                            onChange={handleInputChange}
+                        />
+                    </div>
                     <div className="input-block">
-                        <input 
-                            type="text" 
-                            id={`jammerMogbile`} 
-                            placeholder={`email`}
+                        <input
+                            type="text"
+                            id="jammerMogbile"
+                            placeholder="email"
                             value={bookingInfo.jammerMobile}
-                            onChange={handleInputChange} 
+                            onChange={handleInputChange}
                         />
                     </div>
                     <div className="input-block">
-                        <input 
-                            type="text" 
-                            id={`jammerPassportNr`} 
-                            placeholder={`Passport Nr`}
+                        <input
+                            type="text"
+                            id="jammerPassportNr"
+                            placeholder="Passport Nr"
                             value={bookingInfo.jammerPassportNr}
-                            onChange={handleInputChange} 
+                            onChange={handleInputChange}
                         />
                     </div>
-               </div>
+                </div>
 
                 <div className="form-section homeAddress">
 
                     <div className="input-block">
-                        <input 
-                            type="text" 
-                            id={`jammerHouseNr`} 
-                            placeholder={`House Nr`}
+                        <input
+                            type="text"
+                            id="jammerHouseNr"
+                            placeholder="House Nr"
                             value={bookingInfo.jammerHouserNr}
-                            onChange={handleInputChange} 
+                            onChange={handleInputChange}
                         />
                     </div>
                     <div className="input-block">
-                        <input 
-                            type="text" 
-                            id={`jammerFloor`} 
-                            placeholder={`Floor`}
+                        <input
+                            type="text"
+                            id="jammerFloor"
+                            placeholder="Floor"
                             value={bookingInfo.jammerFloor}
-                            onChange={handleInputChange} 
+                            onChange={handleInputChange}
                         />
                     </div>
                     <div className="input-block">
-                        <input 
-                            type="text" 
-                            id={`jammerDoor`} 
-                            placeholder={`Door`}
+                        <input
+                            type="text"
+                            id="jammerDoor"
+                            placeholder="Door"
                             value={bookingInfo.jammerDoor}
-                            onChange={handleInputChange} 
+                            onChange={handleInputChange}
                         />
                     </div>
                     <div className="input-block">
-                        <input 
-                            type="text" 
-                            id={`jammerZipCode`} 
-                            placeholder={`Zip-code`}
+                        <input
+                            type="text"
+                            id="jammerZipCode"
+                            placeholder="Zip-code"
                             value={bookingInfo.jammerZipCode}
-                            onChange={handleInputChange} 
+                            onChange={handleInputChange}
                         />
                     </div>
                     <div className="input-block">
-                        <input 
-                            type="text" 
-                            id={`jammerCity`} 
-                            placeholder={`City`}
+                        <input
+                            type="text"
+                            id="jammerCity"
+                            placeholder="City"
                             value={bookingInfo.jammerCity}
-                            onChange={handleInputChange} 
+                            onChange={handleInputChange}
                         />
                     </div>
                     <div className="input-block">
-                        <input 
-                            type="text" 
-                            id={`jammerCountry`} 
-                            placeholder={`Country`}
+                        <input
+                            type="text"
+                            id="jammerCountry"
+                            placeholder="Country"
                             value={bookingInfo.jammerCountry}
-                            onChange={handleInputChange} 
+                            onChange={handleInputChange}
                         />
                     </div>
                     <div className="input-block">
-                        <input 
-                            type="text" 
-                            id={`jammerStudy`} 
-                            placeholder={`Study`}
+                        <input
+                            type="text"
+                            id="jammerStudy"
+                            placeholder="Study"
                             value={bookingInfo.jammerStudy}
-                            onChange={handleInputChange} 
+                            onChange={handleInputChange}
                         />
                     </div>
                     <div className="input-block">
-                        <input 
-                            type="text" 
-                            id={`jammerSchool`} 
-                            placeholder={`School`}
+                        <input
+                            type="text"
+                            id="jammerSchool"
+                            placeholder="School"
                             value={bookingInfo.jammerSchool}
-                            onChange={handleInputChange} 
+                            onChange={handleInputChange}
                         />
                     </div>
 
@@ -199,66 +201,62 @@ const NewBookingForm = (props) => {
                 <div className="form-section rentInfo">
 
                     <div className="input-block">
-                        <input 
-                            type="date" 
-                            id={`checkIn`} 
-                            placeholder={`Check-In Date`}
+                        <input
+                            type="date"
+                            id="checkIn"
+                            placeholder="Check-In Date"
                             value={bookingInfo.checkIn}
-                            onChange={handleInputChange} 
+                            onChange={handleInputChange}
                         />
                     </div>
                     <div className="input-block">
-                        <input 
-                            type="date" 
-                            id={`checkOut`} 
-                            placeholder={`Check-Out Date`}
+                        <input
+                            type="date"
+                            id="checkOut"
+                            placeholder="Check-Out Date"
                             value={bookingInfo.checkOut}
-                            onChange={handleInputChange} 
+                            onChange={handleInputChange}
                         />
                     </div>
                     <div className="input-block">
-                        <input 
-                            type="text" 
-                            id={`roomNr`} 
-                            placeholder={`Room Nr`}
+                        <input
+                            type="text"
+                            id="roomNr"
+                            placeholder="Room Nr"
                             value={bookingInfo.roomNr}
-                            onChange={handleInputChange} 
+                            onChange={handleInputChange}
                         />
                     </div>
-                   
+
                 </div>
-                
+
                 <div className="new-booking-buttons-area">
-                    <ButtonPlain  
+                    <ButtonPlain
                         type="submit"
-                        text='Submit'
+                        text="Submit"
                         clickHandle={submitNewBooking}
                     />
 
-                    <ButtonCancel 
+                    <ButtonCancel
                         clickHandle={cancelAction}
                     />
                 </div>
 
             </div>
         </form>
-    )
-}
+    );
+};
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        // nombre de la función que paso como prop: (arg) => 
-        // dispatch(nombre del action creator(argumento))
-        changeRoomId: (roomId) => dispatch(changeRoomId(roomId)),
-        // setActiveScreen: (screen) => dispatch( setActiveScreen(screen)),
-    }
-}
-const mapStateToProps = (state) => {
-    return {
-        user: state.firebase.auth,
-        jamId: state.jamId,
-        roomId: state.roomId,
-        activeScreen: state.activeScreen
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(NewBookingForm)
+const mapDispatchToProps = (dispatch) => ({
+    // nombre de la función que paso como prop: (arg) =>
+    // dispatch(nombre del action creator(argumento))
+    changeRoomId: (roomId) => dispatch(changeRoomId(roomId)),
+    // setActiveScreen: (screen) => dispatch( setActiveScreen(screen)),
+});
+const mapStateToProps = (state) => ({
+    user: state.firebase.auth,
+    jamId: state.jamId,
+    roomId: state.roomId,
+    activeScreen: state.activeScreen,
+});
+export default connect(mapStateToProps, mapDispatchToProps)(NewBookingForm);

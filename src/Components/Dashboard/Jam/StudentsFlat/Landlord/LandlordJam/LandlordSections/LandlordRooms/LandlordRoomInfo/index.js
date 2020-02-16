@@ -14,6 +14,7 @@ import PrebBookingForm from '../../../../../../../../UI/Forms/StudentsFlat/PreBo
 import './index.css';
 
 const LandlordRoomInfo = ({ roomInfo, jamId, roomId }) => {
+    console.log('roomInfo: ', roomInfo);
     const orderedBookings = Calculations.organizeBookings(roomInfo.bookingsSummary);
     const noNextBooking = Calculations.isEmpty(orderedBookings.nextBooking);
     const noCurrentTenant = Calculations.isEmpty(orderedBookings.currentBooking);
@@ -33,7 +34,7 @@ const LandlordRoomInfo = ({ roomInfo, jamId, roomId }) => {
                         <h4>
                             Room Nr
                             {' '}
-                            {roomInfo.roomName}
+                            {roomInfo.roomNr}
                         </h4>
                     </div>
 
@@ -41,7 +42,8 @@ const LandlordRoomInfo = ({ roomInfo, jamId, roomId }) => {
                         <div className="room-button-block">
                             <PrebBookingForm
                                 jamId={jamId}
-                                roomId={roomInfo.roomName}
+                                roomId={roomId}
+                                roomNr={roomInfo.roomNr}
                                 bookingsSummary={bookingsSummary}
                             />
                         </div>

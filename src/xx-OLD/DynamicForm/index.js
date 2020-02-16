@@ -31,7 +31,7 @@ class DynamicApartmentForm extends React.Component {
         country: "",
     }],
     roomsInfo: [{
-        roomName: "",
+        roomNr: "",
         roomSize: "",
         roomLocation: "",
         roomBalcony: "",
@@ -44,7 +44,7 @@ class DynamicApartmentForm extends React.Component {
     handlenputChange = (e) => {
 
         const roomParameters = [
-            "roomName",
+            "roomNr",
             "roomSize",
             "roomLocation",
             "roomBalcony",

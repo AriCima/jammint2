@@ -17,7 +17,8 @@ import Calculations from '../../../../services/Calculations';
 const PreBookingForm = ({
     jamId, roomId, roomNr, bookingsSummary,
 }) => {
-    console.log('futureBookings: ', bookingsSummary);
+    console.log('roomNr: ', roomNr);
+
     const [open, setOpen] = useState(false);
 
     const [checkIn, setCheckIn] = useState('');
@@ -55,7 +56,7 @@ const PreBookingForm = ({
         }
 
         const overlapping = Calculations.checkOverlapping(inDate, outDate, bookingsSummary);
-        if (overlapping) {
+        if (overlapping.error) {
             return alert(`${overlapping.message}`);
         }
 
@@ -75,7 +76,7 @@ const PreBookingForm = ({
             createdAt,
         };
 
-        DataService.addNewInvite(jamId, roomId, preBookingInfo)
+        DataService.addPreBooking(jamId, roomId, preBookingInfo)
             .then(res => {
                 console.log('res =', res);
                 const preBookingId = res.id;
@@ -110,7 +111,7 @@ const PreBookingForm = ({
                 <DialogTitle id="form-dialog-title">
                     Pre-Booking Form for Room Nr:
                     {' '}
-                    {roomId}
+                    {roomNr}
                 </DialogTitle>
                 <DialogContent>
                     <form>

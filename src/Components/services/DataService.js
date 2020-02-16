@@ -449,15 +449,15 @@ export default class DataService {
         });
     }
 
-    // INVITES
-    static addNewInvite(jamId, roomId, inviteInfo) {
+    // PREBOOKING
+    static addPreBooking(jamId, roomId, preBookingInfo) {
         return new Promise((resolve, reject) => {
             firebase.firestore().collection('jams')
                 .doc(jamId)
                 .collection('rooms')
                 .doc(roomId)
-                .collection('invites')
-                .add(inviteInfo)
+                .collection('preBookings')
+                .add(preBookingInfo)
                 .then((docRef) => {
                     console.log('Document written with ID: ', docRef.id);
                     resolve(docRef);

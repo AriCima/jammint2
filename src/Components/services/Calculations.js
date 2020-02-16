@@ -132,8 +132,8 @@ export default class Calculations {
 
     static sortAscRooms(x){
         function compare(a,b){
-            const varA = a.roomName;
-            const varB = b.roomName;            
+            const varA = a.roomNr;
+            const varB = b.roomNr;            
         
             let comparison = 0;
             if (varA < varB) {
@@ -247,17 +247,12 @@ export default class Calculations {
 
     static checkOverlapping(checkIn, checkOut, bookings){
         
-        console.log('checkOvrelapping launched, = ',bookings)
         for (let k=0; k < bookings.length; k++){
             const bIn = new Date (bookings[k].checkIn);
             const bOut = new Date (bookings[k].checkOut);
             const bId = bookings[k].bookingId;
             const bName = bookings[k].jammerName;
 
-            console.log('in :', checkIn, ' /', bIn)
-            console.log('out :', checkOut, ' /',bOut)
-
-            console.log()
             if(checkOut >= bIn && checkOut <= bOut){
                 let validationResult = {
                     error : true,

@@ -52,9 +52,9 @@ const LandlordRooms = ({ jamId, roomId }) => {
                 for (let i = 0; i < jamRoomsInfo.length; i++) {
                     if (!Calculations.isEmpty(jamRoomsInfo[i].bookingsSummary)) {
                         const jamOrderedBookings = Calculations.organizeBookings(jamRoomsInfo[i].bookingsSummary);
-                        const { roomName } = jamRoomsInfo[i];
+                        const { roomNr } = jamRoomsInfo[i];
                         const roomId = jamRoomsInfo[i].id;
-                        const roomBookingsSummary = { roomName, roomId, bookings: jamOrderedBookings };
+                        const roomBookingsSummary = { roomNr, roomId, bookings: jamOrderedBookings };
                         roomsBookings.push(roomBookingsSummary);
                     }
                 }
