@@ -246,13 +246,18 @@ export default class Calculations {
     }
 
     static checkOverlapping(checkIn, checkOut, bookings){
-   
+        
+        console.log('checkOvrelapping launched, = ',bookings)
         for (let k=0; k < bookings.length; k++){
-            const bIn = bookings[k].checkIn;
-            const bOut = bookings[k].checkOut
-            const bId = bookings[k].bookingId
-            const bName = bookings[k].jammerName
+            const bIn = new Date (bookings[k].checkIn);
+            const bOut = new Date (bookings[k].checkOut);
+            const bId = bookings[k].bookingId;
+            const bName = bookings[k].jammerName;
 
+            console.log('in :', checkIn, ' /', bIn)
+            console.log('out :', checkOut, ' /',bOut)
+
+            console.log()
             if(checkOut >= bIn && checkOut <= bOut){
                 let validationResult = {
                     error : true,

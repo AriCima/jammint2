@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { SingleDatePicker } from 'react-dates';
+import 'react-dates/initialize';
+
 // Material UI
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -12,8 +15,9 @@ import Calculations from '../../../../services/Calculations';
 
 
 const PreBookingForm = ({
-    jamId, roomId, roomNr, bookings,
+    jamId, roomId, roomNr, bookingsSummary,
 }) => {
+    console.log('futureBookings: ', bookingsSummary);
     const [open, setOpen] = useState(false);
 
     const [checkIn, setCheckIn] = useState('');
@@ -21,34 +25,13 @@ const PreBookingForm = ({
     const [rent, setRent] = useState('');
     const [deposit, setDeposit] = useState('');
 
+
     const handleChange = (field) => event => {
         switch (field) {
         case 'checkIn':
-            if (checkOut !== '') {
-                const inDate = new Date(checkIn);
-                const outDate = new Date(checkOut);
-                if (outDate <= inDate) {
-                    alert('Check-in date must be earlier than check-In date');
-                }
-                const overlapping = Calculations.checkOverlapping(checkIn, checkOut, bookings);
-                if (overlapping) {
-                    alert(`${overlapping.message}`);
-                }
-            }
             setCheckIn(event.target.value);
             break;
         case 'checkOut':
-            if (checkIn !== '') {
-                const inDate = new Date(checkIn);
-                const outDate = new Date(checkOut);
-                if (outDate <= inDate) {
-                    alert('Check-out date must be later than check-In date');
-                }
-                const overlapping = Calculations.checkOverlapping(checkIn, checkOut, bookings);
-                if (overlapping) {
-                    alert(`${overlapping.message}`);
-                }
-            }
             setCheckOut(event.target.value);
             break;
         case 'rent':
@@ -64,8 +47,21 @@ const PreBookingForm = ({
 
     const onInvite = (e) => {
         e.preventDefault();
+
+        const inDate = new Date(checkIn);
+        const outDate = new Date(checkOut);
+        if (outDate <= inDate) {
+            return alert('Check-In date must be earlier than check-Out date');
+        }
+
+        const overlapping = Calculations.checkOverlapping(inDate, outDate, bookingsSummary);
+        if (overlapping) {
+            return alert(`${overlapping.message}`);
+        }
+
         const createdAt = new Date();
         const bookingCode = Calculations.generateCode();
+
 
         const preBookingInfo = {
             jamId,
@@ -81,6 +77,7 @@ const PreBookingForm = ({
 
         DataService.addNewInvite(jamId, roomId, preBookingInfo)
             .then(res => {
+                console.log('res =', res);
                 const preBookingId = res.id;
                 const inviteURL = `localhost:3000/invite/${jamId}/${roomId}/${preBookingId}`;
                 alert('Pre-booking ID: ', inviteURL);
@@ -96,6 +93,7 @@ const PreBookingForm = ({
     const handleClose = () => {
         setOpen(false);
     };
+
     return (
 
         <div>
@@ -109,20 +107,40 @@ const PreBookingForm = ({
                 aria-labelledby="form-dialog-title"
                 fullWidth
             >
-                <DialogTitle id="form-dialog-title">Fill all the info of the booking</DialogTitle>
+                <DialogTitle id="form-dialog-title">
+                    Pre-Booking Form for Room Nr:
+                    {' '}
+                    {roomId}
+                </DialogTitle>
                 <DialogContent>
                     <form>
-                        <div className="input-group mb-3">
-                            <div className="input-group-prepend">
-                                <span className="input-group-text">Room Nr:</span>
+                        <div className="row">
+                            <div className="col">
+                                <div className="input-group mb-3">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text">Name</span>
+                                    </div>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        // placeholder="Name"
+                                        onChange={handleChange('name')}
+                                    />
+                                </div>
                             </div>
-                            <input
-                                type="text"
-                                className="form-control"
-                                placeholder="Room ID"
-                                value={roomId}
-                                onChange={handleChange('roomId')}
-                            />
+                            <div className="col">
+                                <div className="input-group mb-3">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text">Email</span>
+                                    </div>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        // placeholder="Name"
+                                        onChange={handleChange('email')}
+                                    />
+                                </div>
+                            </div>
                         </div>
                         <div className="row">
                             <div className="col">
@@ -133,7 +151,6 @@ const PreBookingForm = ({
                                     <input
                                         type="text"
                                         className="form-control"
-                                        // placeholder="Check-In"
                                         onChange={handleChange('checkIn')}
                                     />
                                 </div>
@@ -147,7 +164,6 @@ const PreBookingForm = ({
                                     <input
                                         type="text"
                                         className="form-control"
-                                        // placeholder="Check-Out"
                                         onChange={handleChange('checkOut')}
                                     />
                                 </div>
@@ -184,20 +200,7 @@ const PreBookingForm = ({
                             </div>
                         </div>
 
-                        <div className="row">
-                            <div className="col">
-                                <div className="input-group mb-3">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text">Name</span>
-                                    </div>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        // placeholder="Name"
-                                        onChange={handleChange('name')}
-                                    />
-                                </div>
-                            </div>
+                        {/*
 
                             <div className="col">
                                 <div className="input-group mb-3">
@@ -263,7 +266,7 @@ const PreBookingForm = ({
                                     />
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </form>
                 </DialogContent>
 

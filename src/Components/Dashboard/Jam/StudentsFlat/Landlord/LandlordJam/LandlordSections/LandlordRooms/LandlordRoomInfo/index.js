@@ -17,6 +17,7 @@ const LandlordRoomInfo = ({ roomInfo, jamId, roomId }) => {
     const orderedBookings = Calculations.organizeBookings(roomInfo.bookingsSummary);
     const noNextBooking = Calculations.isEmpty(orderedBookings.nextBooking);
     const noCurrentTenant = Calculations.isEmpty(orderedBookings.currentBooking);
+
     const { bookingsSummary } = roomInfo;
 
     const onNewInvitation = (roomId) => {
@@ -41,8 +42,7 @@ const LandlordRoomInfo = ({ roomInfo, jamId, roomId }) => {
                             <PrebBookingForm
                                 jamId={jamId}
                                 roomId={roomInfo.roomName}
-                                nextBooking={orderedBookings.nextBooking}
-                                futureBookings={orderedBookings.futureBookings}
+                                bookingsSummary={bookingsSummary}
                             />
                         </div>
                         <div className="room-button-block">
