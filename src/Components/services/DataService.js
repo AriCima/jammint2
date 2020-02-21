@@ -453,7 +453,7 @@ export default class DataService {
     static addPreBooking(preBookingInfo) {
         return new Promise((resolve, reject) => {
             firebase.firestore()
-                .collection('preBookings')
+                .collection('invitations')
                 .add(preBookingInfo)
                 .then((docRef) => {
                     console.log('Document written with ID: ', docRef.id);
@@ -487,11 +487,9 @@ export default class DataService {
     }
 
     static getInvitationInfo(bookingCode) {
-        console.log('bookingCode: ', bookingCode);
-
         return new Promise((resolve, reject) => {
             firebase.firestore()
-                .collection('preBookings')
+                .collection('invitations')
                 .where('bookingCode', '==', bookingCode)
                 .get()
                 .then((querySnapshot) => {

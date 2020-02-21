@@ -88,7 +88,7 @@ const PreBookingForm = ({
             createdAt,
         };
 
-        DataService.addPreBooking(preBookingInfo)
+        DataService.addPreBooking(jamId, preBookingInfo)
             .then(res => {
                 // const preBookingId = res.id;
                 const iURL = `/jam_registration/${bookingCode}`;
