@@ -1,5 +1,4 @@
 /* eslint-disable no-nested-ternary */
-
 import React, { useState, useEffect } from 'react';
 
 // COMPONENTS
@@ -10,6 +9,7 @@ import Calculations from '../../../../../../../services/Calculations';
 import LandlordRoomsList from './LandlordRoomsList';
 import LandlordRoomInfo from './LandlordRoomInfo';
 import RoomsOverview from './RoomsOverview';
+import CheckAvailability from '../../../../../../../Common/CheckAvailability';
 
 // CSS
 import './index.css';
@@ -66,6 +66,8 @@ const LandlordRooms = ({ jamId, roomId }) => {
     console.log('roomInfo en roomInfo= ', roomInfo);
     return (
         <div className="landlord-rooms">
+
+            <CheckAvailability jamId={jamId} />
 
             <div className="landlord-room-info">
                 {roomId === 'overview' && jamOrderedBookings.length !== 0
