@@ -18,7 +18,6 @@ import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
 import rootReducer from './redux/reducers/rootReducer';
 import App from './Components/App';
 import fbConfig from './config/fbConfig';
-
 // compose me permite agregar varios "potenciadores" al store.
 // en este caso agrego, thunk y los dos fun que me potencial la intereacción react-redux-firebase
 const store = createStore(rootReducer,

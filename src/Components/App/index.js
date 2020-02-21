@@ -8,6 +8,8 @@ import Login from '../Auth/Login';
 import Register from '../Auth/Register';
 import Dashboard from '../Dashboard';
 import PreBookingForm from '../UI/Forms/StudentsFlat/PreBookingForm';
+import StudentInfoForm from '../UI/Forms/StudentsFlat/StudentInfoForm';
+
 
 // SERVICES
 // import DataService from '../services/DataService';
@@ -18,6 +20,8 @@ import './index.css';
 
 function App() {
     return (
+        // <>
+        //     <ErrorAlert />
         <BrowserRouter>
             <div className="App">
                 <div className="navBar">
@@ -29,10 +33,12 @@ function App() {
                         <Route exact path="/login" component={Login} />
                         <Route exact path="/register" component={Register} />
                         <Route path="/invite/:bookingId" exact render={(props) => <PreBookingForm propsFn={props.history} bookingID={props.match.params.bookingId} />} />
+                        <Route path="/jam_registration/:bookingCode" exact render={(props) => <StudentInfoForm propsFn={props.history} bookingCode={props.match.params.bookingCode} />} />
                     </Switch>
                 </div>
             </div>
         </BrowserRouter>
+        // </>
     );
 }
 

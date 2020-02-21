@@ -450,12 +450,9 @@ export default class DataService {
     }
 
     // PREBOOKING
-    static addPreBooking(jamId, roomId, preBookingInfo) {
+    static addPreBooking(preBookingInfo) {
         return new Promise((resolve, reject) => {
-            firebase.firestore().collection('jams')
-                .doc(jamId)
-                .collection('rooms')
-                .doc(roomId)
+            firebase.firestore()
                 .collection('preBookings')
                 .add(preBookingInfo)
                 .then((docRef) => {
@@ -485,6 +482,27 @@ export default class DataService {
                 .catch((error) => {
                     const errorCode = error.code;
                 // console.log('Message could not be sent: ', errorCode);
+                });
+        });
+    }
+
+    static getInvitationInfo(bookingCode) {
+        console.log('bookingCode: ', bookingCode);
+
+        return new Promise((resolve, reject) => {
+            firebase.firestore()
+                .collection('preBookings')
+                .where('bookingCode', '==', bookingCode)
+                .get()
+                .then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        // doc.data() is never undefined for query doc snapshots
+                        console.log(doc.id, ' => ', doc.data());
+                        resolve(doc.data());
+                    });
+                })
+                .catch((error) => {
+                    console.log('Error getting documents: ', error);
                 });
         });
     }

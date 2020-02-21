@@ -21,7 +21,7 @@ export default function ErrorAlert(errorMessage) {
                 severity="error"
             >
                 <AlertTitle>Error</AlertTitle>
-                {errorMessage}
+                {/* {errorMessage} */}
             </Alert>
         </div>
     );
