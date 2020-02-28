@@ -72,10 +72,12 @@ const PreBookingForm = ({
 
         const createdAt = new Date();
         const bookingCode = Calculations.generateCode();
-
+        const registrationURL = `/localhost:3000/newBooking/${jammerEmail}/bookingCode`;
+        const jamName = 'AMPLE 53';
 
         const preBookingInfo = {
             jamId,
+            jamName,
             roomId,
             jammerName,
             jammerEmail,
@@ -86,17 +88,14 @@ const PreBookingForm = ({
             rent,
             deposit,
             createdAt,
+            registrationURL,
         };
 
-        DataService.addPreBooking(jamId, preBookingInfo)
+        DataService.addPreBooking(preBookingInfo)
             .then(res => {
-                // const preBookingId = res.id;
-                const iURL = `/jam_registration/${bookingCode}`;
-                setInviteURL(iURL);
-                // alert('Pre-booking ID: ', inviteURL);
+                const preBookingId = res.id;
+                console.log('preBookingId: ', preBookingId);
             });
-
-        // setOpen(false);
     };
 
     const handleClickOpen = () => {
@@ -106,7 +105,7 @@ const PreBookingForm = ({
     const handleClose = () => {
         setOpen(false);
     };
-    console.log('inviteURL: ', inviteURL === '');
+
     return (
 
         <div>

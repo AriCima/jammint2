@@ -451,9 +451,10 @@ export default class DataService {
 
     // PREBOOKING
     static addPreBooking(preBookingInfo) {
+        console.log('preBookingInfo: ', preBookingInfo);
         return new Promise((resolve, reject) => {
             firebase.firestore()
-                .collection('invitations')
+                .collection('preBookings')
                 .add(preBookingInfo)
                 .then((docRef) => {
                     console.log('Document written with ID: ', docRef.id);
