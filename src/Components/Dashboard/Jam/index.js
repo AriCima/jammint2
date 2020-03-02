@@ -10,18 +10,17 @@ import './index.css';
 
 const Jam = ({ jamId, jamInfo, auth } ) => {
 
-  const isAdmin = jamInfo.adminId && jamInfo.adminId === auth.uid;
+    const isAdmin = jamInfo.adminId && jamInfo.adminId === auth.uid;
 
-  return (
-    <div className="jam-wrapper">
-      { isAdmin ? 
-          <LandlordJam jamId={jamId} jamInfo={jamInfo}/>
-        :
-          <StudentJam jamId={jamId}/>
-      }
-    </div>
-   
-  );
+    return (
+        <div className="jam-wrapper">
+            { isAdmin ?
+                <LandlordJam jamId={jamId} jamInfo={jamInfo} />
+                :
+                <StudentJam jamId={jamId} />
+            }
+        </div>
+    );
 };
 
 
@@ -33,7 +32,7 @@ const mapStateToProps = state => {
   }
 };
 
-export default connect(mapStateToProps) (Jam);
+export default connect(mapStateToProps)(Jam);
 
 
 

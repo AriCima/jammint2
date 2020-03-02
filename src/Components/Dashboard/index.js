@@ -21,14 +21,12 @@ const Dashboard = ({ auth, userJams, getJamInfo, jamId, jamInfo }) => {
     useEffect(() => {
         const userId = auth.uid;
         DataService.getUserJams(userId)
-        .then(result => {
-            setJamsList(result);
-            const x = Calculations.getOnwStudentsFlats(result, userId)
-            setOwnStudentsFlats(x);
-        })
-        .catch(err => console.log(err));
-
-
+            .then(result => {
+                setJamsList(result);
+                const x = Calculations.getOnwStudentsFlats(result, userId);
+                setOwnStudentsFlats(x);
+            })
+            .catch(err => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[auth.uid, userJams]);
 
@@ -41,26 +39,20 @@ const Dashboard = ({ auth, userJams, getJamInfo, jamId, jamInfo }) => {
         <div className="dashboard">
             <aside className="jams-list">
 
-            {jamsList && 
-                <JamsList userJams={jamsList}/>
-            }
+                {jamsList && 
+                    <JamsList userJams={jamsList}/>
+                }
             </aside>
 
             <div className="jam-screen">
-                { jamId === null ? 
-                // { jamInfo.length === 0 ? 
-                    <JamsOverview 
-                        ownStudentsFlats={ownStudentsFlats}
-                    /> 
+                {/* { jamId === null ?
+                    <JamsOverview ownStudentsFlats={ownStudentsFlats} />
                     :
-                    <Jam 
-                        jamId={jamId}
-                        jamInfo={jamInfo}
-                    />
-                }
-            
+                    <Jam jamId={jamId} jamInfo={jamInfo} />
+                } */}
+                <Jam jamId={jamId} jamInfo={jamInfo} />
             </div>
-            
+
         </div>
     );
 }

@@ -16,62 +16,67 @@ import { faComments} from '@fortawesome/free-solid-svg-icons'
 import './index.css';
 
 const LandlordNavBar = ({ setJamSection, changeRoomId, jamName, jamType}) => {
-    
-    const [jamSections, setJamSections] = useState([])
-   
-    const onSelectJamSection = (section, activeScreen)=> {
-        setJamSection(section)
+
+    const [jamSections, setJamSections] = useState([]);
+
+    const onSelectJamSection = (section) => {
+        console.log('jamSelection navBar: ', section);
+        setJamSection(section);
         changeRoomId('overview');
     };
 
     useEffect(() => {
-        const sections = Calculations.getJamSections(jamType)
-        setJamSections(sections)
-    }, [jamType, setJamSections])
+        const sections = Calculations.getJamSections(jamType);
+        setJamSections(sections);
+    }, [jamType, setJamSections]);
 
     const renderLandlordNavBar = () => {
         return jamSections.map((section, id) => {
-            const fontIcon = Calculations.getHeaderIcon(section);
-            return jamType === 'chat' ? 
-            
-            <div className="jamAdminNavBar-item" key={id} onClick={() => onSelectJamSection(`${section}`)}>
-                <FontAwesomeIcon className="navBar-icon-style" icon={faComments} />
-            </div>
-            
-            : 
-
-            <div className="jamAdminNavBar-item" key={id} onClick={() => onSelectJamSection(`${section}`)}>
-                {/* {fontIcon} */}
-                {section}
-            </div>
-            
-        })
+            return jamType === 'Chat' ?
+                (
+                    <div
+                        className="jamAdminNavBar-item" 
+                        key={id}
+                        onClick={() => onSelectJamSection(`${section}`)}
+                    >
+                        <FontAwesomeIcon className="navBar-icon-style" icon={faComments} />
+                    </div>
+                ):(
+                    <div
+                        className="jamAdminNavBar-item"
+                        key={id}
+                        onClick={() => onSelectJamSection(`${section}`)}
+                    >
+                        {section}
+                    </div>
+                );
+        });
     };
 
     return ( 
         <div className="jamAdminNavBar">
-            {jamSections === undefined ? <p>NO JAM SELECTED</p> : 
-                <Fragment>
-                {jamType !== 'chat' ? 
-                    (
-                        <Fragment>
-                            <div className="jamAdminNavBar-left">
-                                <div className="jamAdminNavBar-jamName">
-                                    <p>{jamName}</p>
+            {jamSections === undefined ? <p>NO JAM SELECTED</p> :(
+                <>
+                    {jamType !== 'chat' ?
+                        (
+                            <>
+                                <div className="jamAdminNavBar-left">
+                                    <div className="jamAdminNavBar-jamName">
+                                        <p>{jamName}</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="jamAdminNavBar-right">
+                                <div className="jamAdminNavBar-right">
+                                    {renderLandlordNavBar()}
+                                </div>
+                            </>
+                        ) : (
+                            <div className="jamAdminNavBar-chat">
                                 {renderLandlordNavBar()}
                             </div>
-                        </Fragment>
-                    ) : (
-                        <div className="jamAdminNavBar-chat">
-                            {renderLandlordNavBar()}
-                        </div>
-                    )
-                }
-                </Fragment>
-            }
+                        )
+                    }
+                </>
+            )}
         </div>
     );
 

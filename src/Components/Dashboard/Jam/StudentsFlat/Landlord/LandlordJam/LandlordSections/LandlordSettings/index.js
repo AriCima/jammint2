@@ -1,10 +1,11 @@
 
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // COMPONENTS
 import { connect } from 'react-redux';
 import { setJamSection } from '../../../../../../../../redux/actions/jamSection';
-// import NewAccommodationForm from '../../../../../UI/Forms/StudentsFlat/NewAccommodationForm';
+import CustomInputFieldWithLabel from '../../../../../../../UI/CustomInputFieldWithLabel';
+import ButtonSubmit from '../../../../../../../UI/ButtonSubmit';
 
 // CSS
 import './index.css';
@@ -12,32 +13,178 @@ import './index.css';
 const LandlordSettings = (props) => {
 
     const { setJamSection, jamId } = props;
-    
-    useEffect((sectionName) => {
-        setJamSection(sectionName)
-    },[setJamSection])
+    const [jamInfo, setJamInfo] = useState({});
+    const [accInfo, setAccInfo] = useState({});
+
+    const handleJamInfoChange = (event) => {
+        event.persist();
+        setJamInfo(jamInfo => ({ ...jamInfo, [event.target.id]: event.target.value }));
+    };
+    const handleAccInfoChange = (event) => {
+        event.persist();
+        setAccInfo(accInfo => ({ ...accInfo, [event.target.id]: event.target.value }));
+    };
+
+    const updateJamInfo = (e) => {
+        e.preventdefault();
+    };
+    const updateAccInfo = (e) => {
+        e.preventdefault();
+    };
 
     return (
 
         <div className="landlord-jam-settings">
-            SE TI NG S
-            <h1>{jamId}</h1>
-            {/* <NewAccommodationForm /> */}
-        </div>
+            <div className="landlord-jam-settings-section">
+                <div className="landlord-jam-settings-section-title">
+                    <h2>Jam Info</h2>
+                    <form onSubmit={updateJamInfo}>
+                        <div className="student-form-row">
+                            <CustomInputFieldWithLabel
+                                type="text"
+                                width="200px"
+                                label="Jam Name"
+                                id="jamName"
+                                value={jamInfo.jamName}
+                                changeControl={handleJamInfoChange}
+                            />
+                            <CustomInputFieldWithLabel
+                                type="text"
+                                width="200px"
+                                label="Description"
+                                id="jamDesc"
+                                value={jamInfo.jamDesc}
+                                changeControl={handleJamInfoChange}
+                            />
+                        </div>
+                        <div className="form-button-area">
+                            <ButtonSubmit />
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div className="landlord-jam-settings-section">
+                <div className="landlord-jam-settings-section-title">
+                    <h2>Apartment Info</h2>
+                    <p>We <span>strongly</span>recomend you to fill the information about the apartment location in order to be able to automatically
+                    print a contract upon a reception of a booking</p>
+                    <form onSubmit={updateAccInfo}>
+                        <div className="student-form-row">
+                            <CustomInputFieldWithLabel
+                                type="text"
+                                width="200px"
+                                label="Address"
+                                id="jamAddress"
+                                value={accInfo.jamAddress}
+                                changeControl={handleAccInfoChange}
+                            />
 
-    );   
+                            <CustomInputFieldWithLabel
+                                type="text"
+                                width="200px"
+                                label="Zip-Code"
+                                id="jamZipCode"
+                                value={accInfo.jamZipCode}
+                                changeControl={handleAccInfoChange}
+                            />
+                        </div>
+                        <div className="student-form-row">
+                            <CustomInputFieldWithLabel
+                                type="text"
+                                width="200px"
+                                label="City"
+                                id="jamCity"
+                                value={accInfo.jamCity}
+                                changeControl={handleAccInfoChange}
+                            />
+
+                            <CustomInputFieldWithLabel
+                                type="text"
+                                width="200px"
+                                label="Country"
+                                id="jamCountry"
+                                value={accInfo.jamCountry}
+                                changeControl={handleAccInfoChange}
+                            />
+                        </div>
+                        <div className="form-button-area">
+                            <ButtonSubmit />
+                        </div>
+                    </form>
+                </div>
+                <div className="landlord-jam-settings-section">
+
+                <div className="landlord-jam-settings-section-title">
+                    <h2>Landlord Info</h2>
+                    <p>We <span>strongly</span>recomend you to fill the landlord information. Important: the <span>"landlord"</span> is the person
+                    who will sing the rent contract</p>
+                    <form onSubmit={updateandlordInfo}>
+                        <div className="student-form-row">
+                            <CustomInputFieldWithLabel
+                                type="text"
+                                width="200px"
+                                label="Name"
+                                id="landlordName"
+                                value={landlordInfo.landlordName}
+                                changeControl={handleLandlordInfoChange}
+                            />
+                            <CustomInputFieldWithLabel
+                                type="text"
+                                width="200px"
+                                label="Name"
+                                id="landlordSurname"
+                                value={landlordInfo.landlordSurname}
+                                changeControl={handleLandlordInfoChange}
+                            />
+
+                            <CustomInputFieldWithLabel
+                                type="text"
+                                width="200px"
+                                label="ID number"
+                                id="landlordIdNumber"
+                                value={landlordInfo.landlordIdNumber}
+                                changeControl={handleLandlordInfoChange}
+                            />
+                        </div>
+
+                        <div className="student-form-row">
+                            <CustomInputFieldWithLabel
+                                type="text"
+                                width="200px"
+                                label="City"
+                                id="jamCity"
+                                value={accInfo.jamCity}
+                                changeControl={handleLandlordInfoChange}
+                            />
+
+                            <CustomInputFieldWithLabel
+                                type="text"
+                                width="200px"
+                                label="Country"
+                                id="jamCountry"
+                                value={accInfo.jamCountry}
+                                changeControl={handleAccInfoChange}
+                            />
+                        </div>
+                        <div className="form-button-area">
+                            <ButtonSubmit />
+                        </div>
+                    </form>
+            </div>
+        </div>
+    );
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setJamSection: () => dispatch(setJamSection('settings'))
-    }
-}
+        setJamSection: () => dispatch(setJamSection('settings')),
+    };
+};
 
 const mapStateToProps = (state) => {
     return {
         user: state.firebase.auth,
-        jamId: state.jamId
-    }
-}
+        jamId: state.jamId,
+    };
+};
 export default connect(mapStateToProps, mapDispatchToProps)(LandlordSettings);

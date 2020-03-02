@@ -61,13 +61,13 @@ export default class Calculations {
         let sections = [];
         switch (type) {
             case 'accommodation':
-              sections = ['board', 'jammers', 'myJam', 'settings']
+              sections = ['Board', 'Jammers', 'MyJam', 'Settings']
               break;
             case 'studentsFlat':
-                sections = ['Board', 'Rooms']
+                sections = ['Board', 'Rooms', 'Settings']
                 break;
             case 'chat': 
-                sections = ['chat']
+                sections = ['Chat']
                 break;
             default:
               //console.log('no reconoce tipo')
