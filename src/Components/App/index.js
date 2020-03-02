@@ -32,8 +32,8 @@ function App() {
                         <Route exact path="/" component={Dashboard} />
                         <Route exact path="/login" component={Login} />
                         <Route exact path="/register" component={Register} />
-                        <Route path="/invite/:bookingId" exact render={(props) => <PreBookingForm propsFn={props.history} bookingID={props.match.params.bookingId} />} />
-                        <Route path="/jam_registration/:bookingCode" exact render={(props) => <StudentInfoForm propsFn={props.history} bookingCode={props.match.params.bookingCode} />} />
+                        <Route path="/invite/:bookingCode" exact render={(props) => <PreBookingForm propsFn={props.history} bookingCode={props.match.params.bookingCode} />} />
+                        <Route path="/jam_reg/:bookingCode" exact render={(props) => <StudentInfoForm propsFn={props.history} bookingCode={props.match.params.bookingCode} />} />
                     </Switch>
                 </div>
             </div>

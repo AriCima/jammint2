@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import Calculations from '../../../../../../../../services/Calculations';
+import Calculations from '../../../services/Calculations';
 
 import './index.css';
 
+// REACT PDF: https://react-pdf.org/
+
 const ContractES = (props) => {
 
-    const { 
+    const {
         jamId,
         userId,
         jammerInfo,
@@ -53,11 +55,13 @@ const ContractES = (props) => {
         // roomBalcony,
         // roomLocation,
         // roomPrivateBathroom,
-        // RoomSize    
+        // RoomSize
     } = props;
 
-    const divisions = Calculations.getApartmentDivisions(accInfo.totalRooms)
+
+    const divisions = Calculations.getApartmentDivisions(accInfo.totalRooms);
     const divisiones = divisions.esp;
+
     return (
         <div className="contract-wrapper">
             <div className="contract-header">

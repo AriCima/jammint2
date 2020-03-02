@@ -5,21 +5,21 @@ import './index.css';
 
 const ContractEN = (props) => {
 
-    const { 
+    const {
         jamId,
         userId,
         roomNr,
         jammerInfo,
         landlordTitle,
-        landlordName, 
-        landlordSurname, 
-        landlordIdNr, 
-        landlordStreet, 
-        landlordHouseNr, 
+        landlordName,
+        landlordSurname,
+        landlordIdNr,
+        landlordStreet,
+        landlordHouseNr,
         landlordFloor,
-        landlordDoor, 
-        landlordZipCode, 
-        landlordCity, 
+        landlordDoor,
+        landlordZipCode,
+        landlordCity,
         jammerCity,
         jammerCondition,
         jammerCountry,
@@ -293,13 +293,13 @@ const ContractEN = (props) => {
 }
 
 const mapStateToProps = state => {
-    return { 
+    return {
         userJams: state.userJams,
         jamId: state.jamId,
         jamInfo: state.jamInfo,
         auth: state.firebase.auth,
-    }
+    };
 };
 
-export default connect(mapStateToProps) (ContractEN);
+export default connect(mapStateToProps)(ContractEN);
 

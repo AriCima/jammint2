@@ -63,11 +63,10 @@ const LandlordRooms = ({ jamId, roomId }) => {
         }
     }, [jamRoomsInfo]);
 
-    console.log('roomInfo en roomInfo= ', roomInfo);
     return (
         <div className="landlord-rooms">
 
-            <CheckAvailability jamId={jamId} />
+            {/* <CheckAvailability jamId={jamId} /> */}
 
             <div className="landlord-room-info">
                 {roomId === 'overview' && jamOrderedBookings.length !== 0

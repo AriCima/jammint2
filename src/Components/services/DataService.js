@@ -462,13 +462,13 @@ export default class DataService {
                 })
                 .catch((error) => {
                     const errorCode = error.code;
-                // console.log('Message could not be sent: ', errorCode);
+                    console.log('Message could not be sent: ', errorCode);
                 });
         });
     }
 
-    // BOOKINGS
-    static addNewBooking(jamId, roomId, bookingInfo) {
+    // BOOKINGS  Y4W-2a48
+    static addNewRoomBooking(jamId, roomId, bookingInfo) {
         return new Promise((resolve, reject) => {
             firebase.firestore().collection('jams')
                 .doc(jamId)
@@ -482,15 +482,31 @@ export default class DataService {
                 })
                 .catch((error) => {
                     const errorCode = error.code;
-                // console.log('Message could not be sent: ', errorCode);
+                    console.log('Message could not be sent: ', errorCode);
                 });
         });
     }
 
-    static getInvitationInfo(bookingCode) {
+    static addNewBookingRequest(bookingInfo) {
         return new Promise((resolve, reject) => {
             firebase.firestore()
-                .collection('invitations')
+                .collection('bookings')
+                .add(bookingInfo)
+                .then((docRef) => {
+                    console.log('Document written with ID: ', docRef.id);
+                    resolve(docRef);
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    console.log('Message could not be sent: ', errorCode);
+                });
+        });
+    }
+
+    static getPreBookingInfo(bookingCode) {
+        return new Promise((resolve, reject) => {
+            firebase.firestore()
+                .collection('preBookings')
                 .where('bookingCode', '==', bookingCode)
                 .get()
                 .then((querySnapshot) => {
