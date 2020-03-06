@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 
 // COMPONENTS
@@ -10,48 +9,35 @@ import ButtonSubmit from '../../../../../../../UI/ButtonSubmit';
 // CSS
 import './index.css';
 
-const LandlordSettings = (props) => {
+const ContractInfoForm = (props) => {
 
-    const { setJamSection, jamId } = props;
-    const [jamInfo, setJamInfo] = useState({});
-    const [accInfo, setAccInfo] = useState({});
-    const [landlordInfo, setLandlordInfo] = useState({});
+    // VER QUÉ PROPS VIENEN
+    const { jamId, jamName } = props;
+    const [contractInfo, setContractInfo] = useState({});
 
     const handleJamInfoChange = (event) => {
         event.persist();
-        setJamInfo(jamInfo => ({ ...jamInfo, [event.target.id]: event.target.value }));
-    };
-    const handleAccInfoChange = (event) => {
-        event.persist();
-        setAccInfo(accInfo => ({ ...accInfo, [event.target.id]: event.target.value }));
-    };
-    const handleLandlordInfoChange = (event) => {
-        event.persist();
-        setLandlordInfo(landlordInfo => ({ ...landlordInfo, [event.target.id]: event.target.value }));
+        setContractInfo(contractInfo => ({ ...contractInfo, [event.target.id]: event.target.value }));
     };
 
-    const updateJamInfo = (e) => {
+
+    const saveCotnractInfo = (e) => {
         e.preventdefault();
     };
-    const updateAccInfo = (e) => {
-        e.preventdefault();
-    };
-    const updateLandlordInfo = (e) => {
-        e.preventdefault();
-    };
+
 
     return (
 
-        <div className="landlord-jam-settings">
-            <div className="landlord-jam-settings-section">
-                <div className="landlord-jam-settings-section-title">
+        <div className="contract-info-form">
+            <div className="contract-info-form-section">
+                <div className="contract-info-form-section-title">
                     <h2>Jam Info</h2>
-                    <form onSubmit={updateJamInfo}>
+                    <form onSubmit={saveCotnractInfo}>
                         <div className="form-row">
                             <CustomInputFieldWithLabel
                                 type="text"
                                 width="200px"
-                                label="Jam Name"
+                                label="Name"
                                 id="jamName"
                                 value={jamInfo.jamName}
                                 changeControl={handleJamInfoChange}
@@ -71,8 +57,8 @@ const LandlordSettings = (props) => {
                     </form>
                 </div>
             </div>
-            <div className="landlord-jam-settings-section">
-                <div className="landlord-jam-settings-section-title">
+            <div className="contract-info-form-section">
+                <div className="contract-info-form-section-title">
                     <h2>Apartment Info</h2>
                     <p>
                         We
@@ -122,8 +108,8 @@ const LandlordSettings = (props) => {
                     </form>
                 </div>
             </div>
-            <div className="landlord-jam-settings-section">
-                <div className="landlord-jam-settings-section-title">
+            <div className="contract-info-form-section">
+                <div className="contract-info-form-section-title">
                     <h2>Landlord Info</h2>
                     <p>
                         We
@@ -216,4 +202,4 @@ const mapStateToProps = (state) => {
         jamId: state.jamId,
     };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(LandlordSettings);
+export default connect(mapStateToProps, mapDispatchToProps)(ContractInfoForm);

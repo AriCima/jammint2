@@ -9,7 +9,7 @@ import Calculations from '../../../../../../../services/Calculations';
 import LandlordRoomsList from './LandlordRoomsList';
 import LandlordRoomInfo from './LandlordRoomInfo';
 import RoomsOverview from './RoomsOverview';
-import CheckAvailability from '../../../../../../../Common/CheckAvailability';
+// import CheckAvailability from '../../../../../../../Common/CheckAvailability';
 
 // CSS
 import './index.css';

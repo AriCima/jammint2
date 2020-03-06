@@ -104,8 +104,8 @@ New Booking for room:
                     <div className="input-block">
                         <input
                             type="text"
-                            id="jammerMogbile"
-                            placeholder="email"
+                            id="jammerMobile"
+                            placeholder="mobile"
                             value={bookingInfo.jammerMobile}
                             onChange={handleInputChange}
                         />
