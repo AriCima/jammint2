@@ -13,8 +13,8 @@ admin.initializeApp();
 let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'a53bcn@gmail.com',
-        pass: 'Dulcinea2010'
+        user: 
+        pass:
     }
 });
 
@@ -81,8 +81,8 @@ var transport = nodemailer.createTransport({
     port: 465,
     secure: true,
     auth: {
-        user: 'a53bcn@gmail.com',
-        pass: 'Dulcinea2010'
+        user:
+        pass:
     }
 });
 
@@ -90,7 +90,7 @@ exports.sendRegistrationEmail = functions.firestore
 .document('preBookings/{preBookingId}')
 .onCreate((snap, context) => {   // I want this function to be fired when a document is created, so I am using onCreate() method. You can use onUpdate, onDelete or onWrite as well. 
     const mailOptions = {
-        from: `a53bcn@gmail.com`,
+        from: ``,
         to: snap.data().jammerEmail,
         subject: 'Welcome to Barcelona',
         html: `
